@@ -1,6 +1,6 @@
 
-ROM used:   3794/16384 (12%)
-            3794/16384 (12%) including unused fragments
+ROM used:   3790/16384 (12%)
+            3790/16384 (12%) including unused fragments
 
             0.7 Average locations per line
             6.7 Average locations per statement
@@ -18,18 +18,18 @@ Lines Stmts  %   Files
   759     0   0  C:\Program Files (x86)\PICC\Devices\18F2550.h
   228     0   0  usb\pic18_usb.h
   328     0   0  C:\Program Files (x86)\PICC\Drivers\usb_hw_layer.h
-  365     0   0  C:\Program Files (x86)\PICC\Drivers\usb_desc_hid.h
+  348     0   0  usb\usb_desc_hid.h
  1103     0   0  C:\Program Files (x86)\PICC\Drivers\usb.h
  1177   247  43  usb\usb.c
  1403   317  56  C:\Program Files (x86)\PICC\Drivers\pic18_usb.c
 ----- -----
- 5397   568 Total
+ 5380   568 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
 0     32   0    0             @const719
 0     48   1    0             @const725
-0     48   1    0             @const731
+0     44   1    0             @const731
 0     18   0    0             @const734
 0     18   0    0             @const738
 0     58   1    0             @const742
@@ -37,7 +37,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     18   0    0             @const748
 0     34   0    0             @const753
 0     54   1    0             @const757
-0     30   0    5             @MUL1616
+0     30   0    5   139  4.3  @MUL1616
 0     80   1    4   139  4.3  usb_tbe
 0     36   0    1   145  3.2  usb_detach
 0     34   0    0   136  2.2  usb_attach
@@ -76,28 +76,28 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    310   4    1  1492  8.8  usb_Get_Descriptor
 0     14   0    0    76  1.8  usb_finish_set_address
 0    170   2    4   666  8.6  usb_copy_desc_seg_to_ep
-0     34   0    0             @goto11593
+0     34   0    0    38  1.2  @goto11593
 0     36   0    0    38  1.2  MAIN
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               39
+    Functions               41
     Statements              568
-    Comments                2312
-    Volume (V)              31412
-    Difficulty (D)          178.8
-    Effort to implement (E) 5615333
-    Time to implement (T)   86 hours, 39 minutes
+    Comments                2304
+    Volume (V)              31943
+    Difficulty (D)          185.3
+    Effort to implement (E) 5917605
+    Time to implement (T)   91 hours, 19 minutes
     Est Delivered Bugs (B)  11
     Cyclomatic Complexity   106
-    Maintainability (MI)    62
+    Maintainability (MI)    52
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-00006     4  0  
 00008-00094   142  0  
-00096-07FFE  3644  28974  
+00096-07FFE  3640  28978  
 
 
 

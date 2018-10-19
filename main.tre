@@ -47,7 +47,7 @@
          ³  ³  ³  ÀÄusb_copy_desc_seg_to_ep  0/170  Ram=4
          ³  ³  ³     ÃÄ@goto11593  0/34  Ram=0
          ³  ³  ³     ÃÄ@const742  0/58  Ram=0
-         ³  ³  ³     ÃÄ@const731  0/48  Ram=0
+         ³  ³  ³     ÃÄ@const731  0/44  Ram=0
          ³  ³  ³     ÃÄ@const757  0/54  Ram=0
          ³  ³  ³     ÃÄ@const753  0/34  Ram=0
          ³  ³  ³     ÀÄusb_request_send_response  0/6  Ram=1

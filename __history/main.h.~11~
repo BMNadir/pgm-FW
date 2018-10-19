@@ -15,6 +15,6 @@
 #define USB_CONFIG_VID 0x04D8                      //Chnage Vendor Id
 
 #include "usb/pic18_usb.h"
-#include "usb/usb_desc_hid.h"
+#include <usb_desc_hid.h>
 #include "usb/usb.c"
 

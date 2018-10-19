@@ -169,13 +169,6 @@
       //interface 0
          0
    };
-   
-   const int16 USB_CLASS_SPECIFIC_DESC_LOOKUP_SIZE[USB_NUM_CONFIGURATIONS][1] =
-   {
-   //config 1
-      //interface 0
-         32
-   };
 //////////////////////////////////////////////////////////////////
 ///
 ///   start config descriptor
