@@ -14,12 +14,8 @@ void main()
            // Read up to 16 bytes from endpoint1 buffer and save it to variable data
            usb_get_packet(1, data, 64);
            delay_ms(1);                          // Wait 1 second
-           for (int8 i = 0; i < 64; i++)
-           {
-               data[i] *= 2;
-           }
            // Return the received bytes back
-           usb_put_packet(1, data, 64, USB_DTS_TOGGLE);
+           usb_put_packet(1, data, 16, USB_DTS_TOGGLE);
          }
        }
    }

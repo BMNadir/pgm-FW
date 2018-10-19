@@ -49,11 +49,11 @@
 #DEFINE __USB_DESCRIPTORS__
 
 #ifndef USB_CONFIG_PID
-   #define USB_CONFIG_PID  0x0001
+   #define USB_CONFIG_PID  0x0020
 #endif
 
 #ifndef USB_CONFIG_VID
-   #define  USB_CONFIG_VID 0x0025
+   #define  USB_CONFIG_VID 0x0461
 #endif
 
 

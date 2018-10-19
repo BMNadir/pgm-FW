@@ -49,11 +49,11 @@
 #DEFINE __USB_DESCRIPTORS__
 
 #ifndef USB_CONFIG_PID
-   #define USB_CONFIG_PID  0x0001
+   #define USB_CONFIG_PID  0x0020
 #endif
 
 #ifndef USB_CONFIG_VID
-   #define  USB_CONFIG_VID 0x0025
+   #define  USB_CONFIG_VID 0x0461
 #endif
 
 
@@ -137,8 +137,8 @@
    ///
    //////////////////////////////////////////////////////////////////
 
-const char USB_CLASS_SPECIFIC_DESC[] = 
-{
+   const char USB_CLASS_SPECIFIC_DESC[] = 
+   {
       6, 0, 255,        // Usage Page = Vendor Defined
       9, 1,             // Usage = IO device
       0xa1, 1,          // Collection = Application
@@ -152,12 +152,10 @@ const char USB_CLASS_SPECIFIC_DESC[] =
       0x95, USB_CONFIG_HID_TX_SIZE,        // Report count = 16 bits (2 bytes)
       0x81, 2,          // Input (Data, Var, Abs)
       0x19, 1,          // Usage minimum
-      0x29, 8,          // Usage maximum
-      0x75, 8,          // Report size = 8 (bits)
-      0x95, USB_CONFIG_HID_RX_SIZE,        // Report count = 16 bits (2 bytes)
+      0x29, USB_CONFIG_HID_RX_SIZE,        // Report count = 16 bits (2 bytes)
       0x91, 2,          // Output (Data, Var, Abs)
       0xc0              // End Collection
-};
+   };
 
    //if a class has an extra descriptor not part of the config descriptor,
    // this lookup table defines where to look for it in the const
@@ -186,61 +184,61 @@ const char USB_CLASS_SPECIFIC_DESC[] =
 ///
 //////////////////////////////////////////////////////////////////
 
-#DEFINE USB_TOTAL_CONFIG_LEN      41  //config+interface+class+endpoint+endpoint (2 endpoints)
+   #DEFINE USB_TOTAL_CONFIG_LEN      41  //config+interface+class+endpoint+endpoint (2 endpoints)
 
-const char USB_CONFIG_DESC[] = {
-//IN ORDER TO COMPLY WITH WINDOWS HOSTS, THE ORDER OF THIS ARRAY MUST BE:
-   //    config(s)
-   //    interface(s)
-   //    class(es)
-   //    endpoint(s)
+   const char USB_CONFIG_DESC[] = {
+   //IN ORDER TO COMPLY WITH WINDOWS HOSTS, THE ORDER OF THIS ARRAY MUST BE:
+      //    config(s)
+      //    interface(s)
+      //    class(es)
+      //    endpoint(s)
 
-//config_descriptor for config index 1
-      USB_DESC_CONFIG_LEN, //length of descriptor size          ==1
-      USB_DESC_CONFIG_TYPE, //constant CONFIGURATION (CONFIGURATION 0x02)     ==2
-      USB_TOTAL_CONFIG_LEN,0, //size of all data returned for this config      ==3,4
-      1, //number of interfaces this device supports       ==5
-      0x01, //identifier for this configuration.  (IF we had more than one configurations)      ==6
-      0x02, //index of string descriptor for this configuration      ==7
-      0x80, //bit 6=1 if self powered, bit 5=1 if supports remote wakeup (we don't), bits 0-4 unused and bit7=1         ==8
-      50, //maximum bus power required (maximum milliamperes/2)  (0x32 = 100mA)
+   //config_descriptor for config index 1
+         USB_DESC_CONFIG_LEN, //length of descriptor size          ==1
+         USB_DESC_CONFIG_TYPE, //constant CONFIGURATION (CONFIGURATION 0x02)     ==2
+         USB_TOTAL_CONFIG_LEN,0, //size of all data returned for this config      ==3,4
+         1, //number of interfaces this device supports       ==5
+         0x01, //identifier for this configuration.  (IF we had more than one configurations)      ==6
+         0x02, //index of string descriptor for this configuration      ==7
+         0x80, //bit 6=1 if self powered, bit 5=1 if supports remote wakeup (we don't), bits 0-4 unused and bit7=1         ==8
+         50, //maximum bus power required (maximum milliamperes/2)  (0x32 = 100mA)
 
-//interface descriptor 1
-      USB_DESC_INTERFACE_LEN, //length of descriptor      =10
-      USB_DESC_INTERFACE_TYPE, //constant INTERFACE (INTERFACE 0x04)       =11
-      0x00, //number defining this interface (IF we had more than one interface)    ==12
-      0x00, //alternate setting     ==13
-      2, //number of endpoins, except 0 (pic167xx has 3, but we dont have to use all).       ==14
-      0x03, //class code, 03 = HID     ==15
-      0x00, //subclass code //boot     ==16
-      0x00, //protocol code      ==17
-      0x00, //index of string descriptor for interface      ==18
+   //interface descriptor 1
+         USB_DESC_INTERFACE_LEN, //length of descriptor      =10
+         USB_DESC_INTERFACE_TYPE, //constant INTERFACE (INTERFACE 0x04)       =11
+         0x00, //number defining this interface (IF we had more than one interface)    ==12
+         0x00, //alternate setting     ==13
+         2, //number of endpoins, except 0 (pic167xx has 3, but we dont have to use all).       ==14
+         0x03, //class code, 03 = HID     ==15
+         0x00, //subclass code //boot     ==16
+         0x00, //protocol code      ==17
+         0x00, //index of string descriptor for interface      ==18
 
-//class descriptor 1  (HID)
-      USB_DESC_CLASS_LEN, //length of descriptor    ==19
-      0x21, //dscriptor type (0x21 == HID)      ==20
-      0x00,0x01, //hid class release number (1.0)      ==21,22
-      0x00, //localized country code (0 = none)       ==23
-      0x01, //number of hid class descrptors that follow (1)      ==24
-      0x22, //report descriptor type (0x22 == HID)                ==25
-      32, 0x00, //length of report descriptor            ==26,27
+   //class descriptor 1  (HID)
+         USB_DESC_CLASS_LEN, //length of descriptor    ==19
+         0x21, //dscriptor type (0x21 == HID)      ==20
+         0x00,0x01, //hid class release number (1.0)      ==21,22
+         0x00, //localized country code (0 = none)       ==23
+         0x01, //number of hid class descrptors that follow (1)      ==24
+         0x22, //report descriptor type (0x22 == HID)                ==25
+         32, 0x00, //length of report descriptor            ==26,27
 
-//endpoint descriptor
-      USB_DESC_ENDPOINT_LEN, //length of descriptor                   ==28
-      USB_DESC_ENDPOINT_TYPE, //constant ENDPOINT (ENDPOINT 0x05)          ==29
-      0x81, //endpoint number and direction (0x81 = EP1 IN)       ==30
-      USB_EP1_TX_ENABLE, //transfer type supported (0x03 is interrupt)         ==31
-      USB_EP1_TX_SIZE,0x00, //maximum packet size supported                  ==32,33
-      USB_CONFIG_HID_TX_POLL,  //polling interval, in ms.  (cant be smaller than 10 for slow speed)      ==34
+   //endpoint descriptor
+         USB_DESC_ENDPOINT_LEN, //length of descriptor                   ==28
+         USB_DESC_ENDPOINT_TYPE, //constant ENDPOINT (ENDPOINT 0x05)          ==29
+         0x81, //endpoint number and direction (0x81 = EP1 IN)       ==30
+         USB_EP1_TX_ENABLE, //transfer type supported (0x03 is interrupt)         ==31
+         USB_EP1_TX_SIZE,0x00, //maximum packet size supported                  ==32,33
+         USB_CONFIG_HID_TX_POLL,  //polling interval, in ms.  (cant be smaller than 10 for slow speed)      ==34
 
-//endpoint descriptor
-      USB_DESC_ENDPOINT_LEN, //length of descriptor                   ==35
-      USB_DESC_ENDPOINT_TYPE, //constant ENDPOINT (ENDPOINT 0x05)          ==36
-      0x01, //endpoint number and direction (0x01 = EP1 OUT)      ==37
-      USB_EP1_RX_ENABLE, //transfer type supported (0x03 is interrupt)         ==38
-      USB_EP1_RX_SIZE,0x00, //maximum packet size supported                  ==39,40
-      USB_CONFIG_HID_RX_POLL //polling interval, in ms.  (cant be smaller than 10 for slow speed)    ==41
-};
+   //endpoint descriptor
+         USB_DESC_ENDPOINT_LEN, //length of descriptor                   ==35
+         USB_DESC_ENDPOINT_TYPE, //constant ENDPOINT (ENDPOINT 0x05)          ==36
+         0x01, //endpoint number and direction (0x01 = EP1 OUT)      ==37
+         USB_EP1_RX_ENABLE, //transfer type supported (0x03 is interrupt)         ==38
+         USB_EP1_RX_SIZE,0x00, //maximum packet size supported                  ==39,40
+         USB_CONFIG_HID_RX_POLL //polling interval, in ms.  (cant be smaller than 10 for slow speed)    ==41
+   };
 
    //****** BEGIN CONFIG DESCRIPTOR LOOKUP TABLES ********
    //since we can't make pointers to constants in certain pic16s, this is an offset table to find
@@ -326,26 +324,24 @@ char const USB_STRING_DESC[]={
    //string 1
          8, //length of string index
          USB_DESC_STRING_TYPE, //descriptor type 0x03 (STRING)
-         'P',0,
-         'G',0,
-         'M',0,
+         'C',0,
+         'C',0,
+         'S',0,
    //string 2
-         28, //length of string index
+         26, //length of string index
          USB_DESC_STRING_TYPE, //descriptor type 0x03 (STRING)
-         'B',0,
-         'E',0,
-         'L',0,
-         'A',0,
-         'R',0,
-         'B',0,
-         'I',0,
-         '\'',0,
+         'C',0,
+         'C',0,
          'S',0,
          ' ',0,
-         'P',0,
+         'H',0,
          'I',0,
-         'C',0,
-         
+         'D',0,
+         ' ',0,
+         'D',0,
+         'e',0,
+         'm',0,
+         'o',0
 };
 
 #ENDIF

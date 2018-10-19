@@ -49,11 +49,11 @@
 #DEFINE __USB_DESCRIPTORS__
 
 #ifndef USB_CONFIG_PID
-   #define USB_CONFIG_PID  0x0001
+   #define USB_CONFIG_PID  0x0020
 #endif
 
 #ifndef USB_CONFIG_VID
-   #define  USB_CONFIG_VID 0x0025
+   #define  USB_CONFIG_VID 0x0461
 #endif
 
 
@@ -326,26 +326,24 @@ char const USB_STRING_DESC[]={
    //string 1
          8, //length of string index
          USB_DESC_STRING_TYPE, //descriptor type 0x03 (STRING)
-         'P',0,
-         'G',0,
-         'M',0,
+         'C',0,
+         'C',0,
+         'S',0,
    //string 2
-         28, //length of string index
+         26, //length of string index
          USB_DESC_STRING_TYPE, //descriptor type 0x03 (STRING)
-         'B',0,
-         'E',0,
-         'L',0,
-         'A',0,
-         'R',0,
-         'B',0,
-         'I',0,
-         '\'',0,
+         'C',0,
+         'C',0,
          'S',0,
          ' ',0,
-         'P',0,
+         'H',0,
          'I',0,
-         'C',0,
-         
+         'D',0,
+         ' ',0,
+         'D',0,
+         'e',0,
+         'm',0,
+         'o',0
 };
 
 #ENDIF

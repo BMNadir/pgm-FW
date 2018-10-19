@@ -1,8 +1,8 @@
-C L "MAIN" 0 10 1 "FUNCTION"
-D G "__PCH__" 0 14 ""5.008""
-D G "__DEVICE__" 0 14 "2550"
-D G "__DATE__" 0 14 ""19-oct.-18""
-D G "__TIME__" 0 14 ""11:55:52"" "Standard Header file for the PIC18F2550 device ////////////////"
+E G "USB_GETDESC_DEVICE_TYP" 6 432 "3" `705 
+D G "__PCH__" 6 432 ""5.008""
+D G "__DEVICE__" 6 432 "2550"
+D G "__DATE__" 6 432 ""19-oct.-18""
+D G "__TIME__" 6 432 ""14:44:02"" "Standard Header file for the PIC18F2550 device ////////////////"
 c L "set_tris_a" 2 5 21 "FUNCTION"
 v L "value" 2 36 "int8" `54 
 f B "set_tris_a" 2 36 "void(int8 value)" `53 
@@ -852,10 +852,7 @@ d G "INT_COMP" 2 753 "0x00A040"
 d G "INT_EEPROM" 2 754 "0x00A010"
 d G "INT_OSCF" 2 755 "0x00A080"
 d G "INT_USB" 2 756 "0x00A020"
-D G "USB_CONFIG_HID_TX_SIZE" 1 12 "64" "Transmit packet size (bytes)"
-D G "USB_CONFIG_HID_RX_SIZE" 1 13 "64" "Receive packet size (bytes)"
-D G "USB_CONFIG_PID" 1 14 "0x01FF" "Chnage Product Id"
-D G "USB_CONFIG_VID" 1 15 "0x04D8" "Chnage Vendor Id"
+C L "jump_to_irs" 1 12 4 "FUNCTION"
 D G "__PIC18_USB_H__" 3 136 ""
 D G "__USB_HARDWARE__" 3 138 ""
 D G "__PIC__" 3 141 "1"
@@ -932,7 +929,11 @@ C L "usb_flush_out" 3 178 10 "FUNCTION"
 V L "endpoint" 3 225 "int8" `682 
 F G "usb_rx_packet_size" 3 225 "int16(int8 endpoint)" `681  "/                          usb_desc_hid.h                            ////"
 D G "__USB_DESCRIPTORS__" 5 49 ""
+D G "USB_CONFIG_PID" 5 52 "0x0001"
+D G "USB_CONFIG_VID" 5 56 "0x0025"
 D G "USB_CONFIG_VERSION" 5 63 "0x0002" "01.00"
+D G "USB_CONFIG_HID_TX_SIZE" 5 68 "0x40" "compatible with hiddemo.exe"
+D G "USB_CONFIG_HID_RX_SIZE" 5 73 "0x40" "compatible with hiddemo.exe"
 D G "USB_CONFIG_HID_TX_POLL" 5 79 "1"
 D G "USB_CONFIG_HID_RX_POLL" 5 85 "1"
 D G "USB_HID_DEVICE" 5 93 "TRUE"
@@ -1120,13 +1121,15 @@ C L "usb_isr_tok_in_dne" 5 131 1 "FUNCTION"
 C L "usb_isr_tok_in_dne" 5 131 1 "FUNCTION"
 C L "usb_isr_tok_in_dne" 5 131 1 "FUNCTION"
 C L "usb_isr_tok_in_dne" 5 131 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 131 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 131 1 "FUNCTION"
 C L "usb_isr_tok_in_dne" 5 131 6 "FUNCTION"
-V G "USB_CLASS_SPECIFIC_DESC_LOOKUP" 5 166 "[1][1]" `734  "config 1"
+V G "USB_CLASS_SPECIFIC_DESC_LOOKUP" 5 168 "[1][1]" `734  "config 1"
 C L "usb_isr_tok_in_dne" 5 131 1 "FUNCTION"
-V G "USB_CLASS_SPECIFIC_DESC_LOOKUP_SIZE" 5 173 "[1][1]" `738  "config 1"
+V G "USB_CLASS_SPECIFIC_DESC_LOOKUP_SIZE" 5 175 "[1][1]" `738  "config 1"
 C L "usb_isr_tok_in_dne" 5 131 1 "FUNCTION"
-D G "USB_TOTAL_CONFIG_LEN" 5 187 "41" "config+interface+class+endpoint+endpoint (2 endpoints)"
-V G "USB_CONFIG_DESC" 5 189 "[1]" `742  "IN ORDER TO COMPLY WITH WINDOWS HOSTS, THE ORDER OF THIS ARRAY MUST BE:"
+D G "USB_TOTAL_CONFIG_LEN" 5 189 "41" "config+interface+class+endpoint+endpoint (2 endpoints)"
+V G "USB_CONFIG_DESC" 5 191 "[1]" `742  "IN ORDER TO COMPLY WITH WINDOWS HOSTS, THE ORDER OF THIS ARRAY MUST BE:"
 C L "usb_isr_tok_in_dne" 5 131 5 "FUNCTION"
 C L "usb_isr_tok_in_dne" 5 131 1 "FUNCTION"
 C L "usb_isr_tok_in_dne" 5 131 1 "FUNCTION"
@@ -1164,41 +1167,41 @@ C L "usb_isr_tok_in_dne" 5 131 1 "FUNCTION"
 C L "usb_isr_tok_in_dne" 5 131 1 "FUNCTION"
 C L "usb_isr_tok_in_dne" 5 131 1 "FUNCTION"
 C L "usb_isr_tok_in_dne" 5 131 1 "FUNCTION"
-D G "USB_NUM_HID_INTERFACES" 5 249 "1"
-D G "USB_MAX_NUM_INTERFACES" 5 253 "1"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-V G "USB_NUM_INTERFACES" 5 256 "[1]" `745 
-C L "usb_isr_tok_in_dne" 5 243 5 "FUNCTION"
-V G "USB_CLASS_DESCRIPTORS" 5 263 "[1][1][1]" `748  "config 1"
-C L "usb_isr_tok_in_dne" 5 243 2 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-V G "USB_DEVICE_DESC" 5 282 "[18]" `753  "starts of with device configuration. only one possible"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 5 "FUNCTION"
-V G "USB_STRING_DESC_OFFSET" 5 312 "int8[1]" `756 
-C L "usb_isr_tok_in_dne" 5 243 5 "FUNCTION"
-V G "USB_STRING_DESC" 5 319 "[1]" `757  "string 0"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 2 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
-C L "usb_isr_tok_in_dne" 5 243 1 "FUNCTION"
+D G "USB_NUM_HID_INTERFACES" 5 251 "1"
+D G "USB_MAX_NUM_INTERFACES" 5 255 "1"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+V G "USB_NUM_INTERFACES" 5 258 "[1]" `745 
+C L "usb_isr_tok_in_dne" 5 245 5 "FUNCTION"
+V G "USB_CLASS_DESCRIPTORS" 5 265 "[1][1][1]" `748  "config 1"
+C L "usb_isr_tok_in_dne" 5 245 2 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+V G "USB_DEVICE_DESC" 5 284 "[18]" `753  "starts of with device configuration. only one possible"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 5 "FUNCTION"
+V G "USB_STRING_DESC_OFFSET" 5 314 "int8[1]" `756 
+C L "usb_isr_tok_in_dne" 5 245 5 "FUNCTION"
+V G "USB_STRING_DESC" 5 321 "[1]" `757  "string 0"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 2 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
+C L "usb_isr_tok_in_dne" 5 245 1 "FUNCTION"
 D G "__USB_DRIVER__" 7 162 ""
 D G "debug_usb" 7 181 "(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z)"
 D G "debug_putc" 7 182 "(c)"
@@ -1293,8 +1296,8 @@ F G "usb_isr_rst" 8 557 "void()" `884
 F G "usb_isr_uerr" 8 558 "void()" `885 
 F G "usb_isr_sof" 8 559 "void()" `886 
 F G "usb_isr_activity" 8 560 "void()" `887 
-F G "usb_isr_uidle" 8 561 "void(int16 ,int16 )" `888 
-F G "usb_isr_tok_dne" 8 562 "void(int16 )" `889 
+F G "usb_isr_uidle" 8 561 "void()" `888 
+F G "usb_isr_tok_dne" 8 562 "void()" `889 
 F G "usb_isr_stall" 8 563 "void()" `890 
 F G "usb_init_ep0_setup" 8 564 "void()" `891  "BEGIN User Functions:"
 C L "usb_init_ep0_setup" 8 120 1 "FUNCTION"
@@ -1469,7 +1472,7 @@ V G "USB_stack_status" 7 520 "TYPE_USB_STACK_STATUS" `712
 V G "USB_address_pending" 7 522 "int8" `921  "save previous state because packets can take several isrs"
 V G "usb_getdesc_ptr" 7 523 "int16" `922 
 V G "usb_getdesc_len" 7 523 "int16" `923  "for reading string and config descriptors"
-F G "usb_put_0len_0" 7 529 "void(*int8 size)" `924 
+F G "usb_put_0len_0" 7 529 "void()" `924 
 V L "endpoint" 7 530 "int8" `926 
 V L "status" 7 530 "*int16" `927 
 V L "buffer" 7 530 "*int16" `928 
@@ -1585,7 +1588,13 @@ F G "usb_copy_desc_seg_to_ep" 7 1136 "void()" `935
 V L "i" 7 1137 "int8" `954 
 V L "c" 7 1138 "int8" `955  "debug_usb(debug_putc, "!%LX! ", &usb_ep0_tx_buffer[0]);"
 C L "usb_copy_desc_seg_to_ep" 7 221 1 "FUNCTION"
-F G "MAIN" 0 4 "void()" `957 
+V G "data" 0 4 "int8[64]" `957 
+F G "MAIN" 0 6 "void()" `958 
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 2 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+V L "i" 0 17 "int8" `961 
+C L "MAIN" 0 12 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1
