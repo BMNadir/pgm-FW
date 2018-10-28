@@ -1,38 +1,16 @@
 ÀÄmain
-   ÃÄMAIN  0/130  Ram=3
+   ÃÄMAIN  0/70  Ram=1
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄusb_init_cs  0/6  Ram=0
    ³  ³  ÀÄusb_detach  0/36  Ram=1
    ³  ³     ÀÄusb_token_reset  0/40  Ram=3
+   ³  ÃÄ@delay_ms1  0/42  Ram=1
    ³  ÃÄusb_task  0/36  Ram=1
    ³  ³  ÀÄusb_attach  0/34  Ram=0
    ³  ³     ÀÄusb_token_reset  0/40  Ram=3
    ³  ÃÄusb_enumerated  0/8  Ram=0
-   ³  ÃÄusb_kbhit  0/84  Ram=4
-   ³  ³  ÀÄ@MUL1616  0/30  Ram=5
-   ³  ÃÄusb_get_packet  0/64  Ram=5
-   ³  ³  ÃÄusb_get_packet_buffer  0/260  Ram=12
-   ³  ³  ³  ÃÄ@MUL1616  0/30  Ram=5
-   ³  ³  ³  ÃÄ@MUL1616  0/30  Ram=5
-   ³  ³  ³  ÀÄ@MUL1616  0/30  Ram=5
-   ³  ³  ÀÄusb_flush_out  0/240  Ram=9
-   ³  ³     ÃÄ@MUL1616  0/30  Ram=5
-   ³  ³     ÃÄ@MUL1616  0/30  Ram=5
-   ³  ³     ÃÄ@const725  0/66  Ram=0
-   ³  ³     ÃÄ@MUL1616  0/30  Ram=5
-   ³  ³     ÀÄ@MUL1616  0/30  Ram=5
-   ³  ÃÄ@delay_ms1  0/42  Ram=1
-   ³  ÀÄusb_put_packet  0/188  Ram=10
-   ³     ÃÄusb_tbe  0/78  Ram=4
-   ³     ³  ÀÄ@MUL1616  0/30  Ram=5
-   ³     ÃÄ@MUL1616  0/30  Ram=5
-   ³     ÀÄusb_flush_in  0/268  Ram=9
-   ³        ÃÄusb_tbe  0/78  Ram=4
-   ³        ³  ÀÄ*
-   ³        ÃÄ@MUL1616  0/30  Ram=5
-   ³        ÃÄ@MUL1616  0/30  Ram=5
-   ³        ÃÄ@MUL1616  0/30  Ram=5
-   ³        ÀÄ@MUL1616  0/30  Ram=5
+   ³  ÀÄusb_kbhit  0/84  Ram=4
+   ³     ÀÄ@MUL1616  0/30  Ram=5
    ÀÄusb_isr  0/114  Ram=2
       ÃÄusb_isr_activity  0/16  Ram=0
       ÃÄusb_isr_stall  0/14  Ram=0
@@ -84,14 +62,14 @@
          ³  ³  ³  ÃÄusb_disable_endpoint  0/96  Ram=5
          ³  ³  ³  ³  ÀÄ*
          ³  ³  ³  ÃÄ@const719  0/32  Ram=0
-         ³  ³  ³  ÃÄ@const725  0/66  Ram=0
+         ³  ³  ³  ÃÄ@const725  0/48  Ram=0
          ³  ³  ³  ÃÄ@MUL1616  0/30  Ram=5
          ³  ³  ³  ÃÄ@MUL1616  0/30  Ram=5
-         ³  ³  ³  ÃÄ@const725  0/66  Ram=0
+         ³  ³  ³  ÃÄ@const725  0/48  Ram=0
          ³  ³  ³  ÃÄ@MUL1616  0/30  Ram=5
          ³  ³  ³  ÃÄ@const719  0/32  Ram=0
          ³  ³  ³  ÃÄ@MUL1616  0/30  Ram=5
-         ³  ³  ³  ÃÄ@const725  0/66  Ram=0
+         ³  ³  ³  ÃÄ@const725  0/48  Ram=0
          ³  ³  ³  ÃÄ@MUL1616  0/30  Ram=5
          ³  ³  ³  ÀÄ@const719  0/32  Ram=0
          ³  ³  ÃÄusb_request_send_response  0/6  Ram=1
@@ -126,11 +104,20 @@
          ³  ³  ÀÄusb_request_stall  0/4  Ram=0
          ³  ÀÄusb_request_stall  0/4  Ram=0
          ÃÄusb_flush_out  0/240  Ram=9
-         ³  ÀÄ*
+         ³  ÃÄ@MUL1616  0/30  Ram=5
+         ³  ÃÄ@MUL1616  0/30  Ram=5
+         ³  ÃÄ@const725  0/48  Ram=0
+         ³  ÃÄ@MUL1616  0/30  Ram=5
+         ³  ÀÄ@MUL1616  0/30  Ram=5
          ÃÄusb_flush_out  0/240  Ram=9
          ³  ÀÄ*
          ÃÄusb_flush_in  0/268  Ram=9
-         ³  ÀÄ*
+         ³  ÃÄusb_tbe  0/80  Ram=4
+         ³  ³  ÀÄ@MUL1616  0/30  Ram=5
+         ³  ÃÄ@MUL1616  0/30  Ram=5
+         ³  ÃÄ@MUL1616  0/30  Ram=5
+         ³  ÃÄ@MUL1616  0/30  Ram=5
+         ³  ÀÄ@MUL1616  0/30  Ram=5
          ÃÄusb_isr_tok_out_dne  0/6  Ram=1
          ÃÄusb_flush_out  0/240  Ram=9
          ³  ÀÄ*

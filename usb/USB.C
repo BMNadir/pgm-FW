@@ -177,6 +177,7 @@
       if (len) {debug_usb(debug_putc,"...");}
       debug_usb(debug_putc,"] ");
    }
+   
 #else
    #define debug_usb(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z)
    #define debug_putc(c)
@@ -189,10 +190,10 @@
  #include <pic16f_usb.c>
 #endif
 
-#if defined(__PIC18_USB_H__)
+//#if defined(__PIC18_USB_H__)
  #include <pic18_usb.c>
-#endif
-
+//#endif
+/*
 #if defined(__PIC24_USB_H__)
  #include <pic24_usb.c>
 #endif
@@ -209,14 +210,16 @@
 #IFNDEF __USB_DESCRIPTORS__
    #ERROR You must include USB descriptors.
 #ENDIF
-
-#if (defined(USB_USE_FULL_SPEED) && (USB_USE_FULL_SPEED==1))
+*/
+//#if (defined(USB_USE_FULL_SPEED) && (USB_USE_FULL_SPEED==1))
    #define USB_ISO_PACKET_MAX_SIZE     1023
    #define USB_NONISO_PACKET_MAX_SIZE  64
+/*
 #else
    #define USB_ISO_PACKET_MAX_SIZE     1023
    #define USB_NONISO_PACKET_MAX_SIZE  8
 #endif
+*/
 
 //--------- endpoint 1 defines ----------
 #if USB_EP1_RX_ENABLE!=USB_ENABLE_DISABLED

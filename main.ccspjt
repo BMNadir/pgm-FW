@@ -15,10 +15,12 @@ Type=4
 [Opened Files]
 1=main.c
 2=main.h
-3=usb\usb_desc_hid.h
-4=C:\Program Files (x86)\PICC\Drivers\usb.h
-5=C:\Program Files (x86)\PICC\Drivers\usb_desc_hid.h
-6=
+3=usb\USB.C
+4=pgm_lib.c
+5=pgm_lib.h
+6=C:\Program Files (x86)\PICC\Examples\EX_GLINT.C
+7=
+8=
 [main.c]
 Type=4
 [Units]
