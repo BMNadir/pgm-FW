@@ -24,6 +24,18 @@
 #BYTE INTCON   = 0xFF2
 #BYTE INTCON2  = 0xFF1
 #BYTE PORTB    = 0xF81
+#BYTE PCL      = 0xFF9
+#BYTE PCLATH   = 0xFFA
+//#BYTE WREG     = 0xFE8
+#BYTE STATUS   = 0xFD8
+
+
+//STATUS Reg Bits //
+#BIT C      = STATUS.0
+#BIT DC     = STATUS.1
+#BIT Z      = STATUS.2
+#BIT OV     = STATUS.3
+#BIT N      = STATUS.4
 
 
 //  PORT A  //
@@ -88,6 +100,14 @@
 #define Vdd_1V8     ( 64/4)         //  1.8V Vdd
 
 
+//PGM Commands
+#define GET_VERSION 0x01
+
+
+//Prototypes
+void getVersionNumber ();
+void toggleLED ();
+void returnOne ();
 #ENDIF
 
 

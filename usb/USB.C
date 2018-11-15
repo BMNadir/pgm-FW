@@ -184,14 +184,14 @@
    #define debug_display_ram(x,y)
 #endif
 
-#include <usb.h>
+#include "usb.h"
 
 #if defined(__PIC16F_USB_H__)
  #include <pic16f_usb.c>
 #endif
 
 //#if defined(__PIC18_USB_H__)
- #include <pic18_usb.c>
+ #include "pic18_usb.c"
 //#endif
 /*
 #if defined(__PIC24_USB_H__)
