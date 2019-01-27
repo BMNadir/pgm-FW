@@ -7,21 +7,21 @@ CCSVersion=5.008
 [Target Data]
 FileList=main.c
 [Directories]
-Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\;N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\usb\
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\;N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\usb\;N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\usb\C:\Program Files (x86)\PICC\Devices\
 [N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\main]
 Type=4
 [mru-list]
 1=main.c
 [Opened Files]
 1=main.c
-2=main.h
-3=pgm_lib.c
-4=pgm_lib.h
-5=usb\USB.C
-6=usb\USB.H
+2=pgm_lib.c
+3=pgm_lib.h
+4=
+5=
+6=
 7=usb\pic18_usb.h
 8=C:\Program Files (x86)\PICC\Drivers\usb_hw_layer.h
-9=main.lst
+9=
 10=
 [main.c]
 Type=4

@@ -1,9 +1,4 @@
 >>> Warning 203 "C:\Program Files (x86)\PICC\Drivers\pic18_usb.c" Line 640(1,1): Condition always TRUE
->>> Warning 216 "main.c" Line 41(1,2): Interrupts disabled during call to prevent re-entrancy:  (usb_token_reset)
->>> Warning 216 "main.c" Line 41(1,2): Interrupts disabled during call to prevent re-entrancy:  (@MUL1616)
->>> Warning 216 "main.c" Line 41(1,2): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_out)
->>> Warning 216 "main.c" Line 41(1,2): Interrupts disabled during call to prevent re-entrancy:  (usb_tbe)
->>> Warning 216 "main.c" Line 41(1,2): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_in)
-      Memory usage:   ROM=14%      RAM=18% - 20%
-      0 Errors,  6 Warnings.
-Build Successful.
+*** Error 173 "main.c" Line 4(6,10): Functions may not be nested
+*** Error 79 "main.c" Line 40(1,2): Expect }
+*** Error 79 "main.c" Line 40(1,2): Expect }

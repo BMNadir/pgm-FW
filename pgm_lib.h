@@ -28,6 +28,15 @@
 #BYTE PCLATH   = 0xFFA
 //#BYTE WREG     = 0xFE8
 #BYTE STATUS   = 0xFD8
+#BYTE PIE1     = 0xF9D
+#BYTE PIR1     = 0xF9E
+#BYTE T1CON    = 0xFCD
+#BYTE ADCON0   = 0xFC2
+#BYTE TMR1H    = 0xFCF
+#BYTE TMR1L    = 0xFCE
+#BYTE ADRESH   = 0xFC4
+#BYTE ADRESL   = 0xFC3
+
 
 
 //STATUS Reg Bits //
@@ -56,15 +65,15 @@
 //  PORT B  //
 #BIT tris_Vpp_ON      =   TRISB.2
 #BIT Vpp_ON           =   LATB.2
-//#define Vpp_ON_pin    PORTB, 2      // WEK
+//#define Vpp_ON_pin    PORTB, 2 
 
 #BIT tris_Vdd_TGT_N =  TRISB.3    // RB3 Output
 #BIT Vdd_TGT_N      =  LATB.3
-//#define Vdd_TGT_N_pin      PORTB, 3      // WEK
+//#define Vdd_TGT_N_pin      PORTB, 3 
 
 #BIT tris_Vdd_TGT_P =  TRISB.4  // RB4 Output
 #BIT Vdd_TGT_P      =  LATB.4
-//#define Vdd_TGT_P_pin      PORTB, 4      // WEK
+//#define Vdd_TGT_P_pin      PORTB, 4
 
 #BIT tris_PROG_SWITCH =   TRISB.5   
 #BIT PROG_SWITCH_pin  =   PORTB.5
@@ -85,14 +94,48 @@
 #BIT TRISA0 = TRISA.0
 #BIT TRISA1 = TRISA.1
 #BIT RBPU   = INTCON2.7
+
+#BIT INT0IE = INTCON.4
 #BIT PEIE   = INTCON.6
 #BIT GIE    = INTCON.7
 
+//PIE1 Bits
+#BIT TMR1IE = PIE1.0
+#BIT TMR2IE = PIE1.1
+#BIT CCP1IE = PIE1.2
+#BIT SSPIE  = PIE1.3
+#BIT TXIE   = PIE1.4
+#BIT RCIE   = PIE1.5
+#BIT ADIE   = PIE1.6
+#BIT SPPIE  = PIE1.7
 
+//PIR1 Bits
+#BIT TMR1IF = PIR1.0
+#BIT TMR2IF = PIR1.1
+#BIT CCP1IF = PIR1.2
+#BIT SSPIF  = PIR1.3
+#BIT TXIF   = PIR1.4
+#BIT RCIF   = PIR1.5
+#BIT ADIF   = PIR1.6
+#BIT SPPIF  = PIR1.7
+
+//T1CON Bits
+#BIT TMR1ON = T1CON.0
+#BIT TMR1CS = T1CON.1
+#BIT T1SYNC = T1CON.2
+#BIT T1OSCEN= T1CON.3
+#BIT T1CKPS0= T1CON.4
+#BIT T1CKPS1= T1CON.5
+#BIT T1RUN  = T1CON.6
+#BIT RD16   = T1CON.7
+
+//ADCON0 Bits
+#BIT GO     = ADCON0.1
 
 
 //DEFINITIONS 
 #define PWM_150kHz  79  
+
 // PWM duty cycle for (CCPR1L register value)
 #define Vdd_5V0     (192/4)         //  5.0V Vdd
 #define Vdd_3V3     (116/4)         //  3.3V Vdd
@@ -102,12 +145,27 @@
 
 //PGM Commands
 #define GET_VERSION 0x01
-
+#define SET_VDD 0x03
+#define SET_VPP 0x04
+#define READ_VOLTAGES 0x05
+#define RUN_ROM_SCRIPT 0x06
+#define DOWNLOAD_SCRIPT_ARGS 0x06
 
 //Prototypes
-void getVersionNumber ();
-void toggleLED ();
-void returnOne ();
+void getVersionNumber (void);
+void calAndSetCCP (unsigned int8 ccph, unsigned int8 ccpl);
+unsigned int8 CalThresholdByte(unsigned int8 voltageVal);
+void sendVoltages (void);
+void ADC_VPP_VDD_control (int1 state);
+void getADC (unsigned int8 channel);
+unsigned int16 calADCWord(unsigned int16 Val);
+void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation);
+unsigned int8 readN_Bits(unsigned int8 numberOfBits);
+void write_upload_buff(unsigned int8 wrByte);
+void shiftBitsOutICSP (unsigned int8 charToBeShifted, unsigned int8 numberOfBits);
+void downloadScriptArgs (void);
+unsigned int8 getICSP_States(void);
+unsigned int8 pop_down_buff (void);
 #ENDIF
 
 

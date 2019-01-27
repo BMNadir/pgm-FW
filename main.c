@@ -5,7 +5,7 @@ void main()
 {
    usb_init_cs(); 
    pgm_init();
-   
+   /*
    #ASM 
    BSF BUSY_LED
    #ENDASM
@@ -13,13 +13,13 @@ void main()
    #ASM 
    BCF BUSY_LED
    #ENDASM
-   
+   */
    while(TRUE)
    {
       usb_task();
       if(usb_enumerated()){// If the device has been enumerated by the PC
          if(usb_kbhit(1))
-         {                  // If endpoint1 has data in it's receive buffer
+         {                  // If endpoint1 has data in its receive buffer
          
          Process_Input ();
          
@@ -37,7 +37,6 @@ void main()
          }
        }
    }
-   
 }
 
 
