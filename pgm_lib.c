@@ -5,7 +5,7 @@
 volatile unsigned int8 DATAin[64];  //USB packet is copied here when received 
 unsigned int8 i;     //used to iterate through DATAin in Process_Input()
 
-unsigned int8 DATA_Out_Buffer[128]; //Data is tored here by scripts and read by USB
+unsigned int8 DATA_Out_Buffer[128]; //Data is stored here by scripts and read by USB
 struct 
 {
    unsigned int8 rd_idx;
@@ -21,8 +21,8 @@ struct
    unsigned int8 nbr_bytes; //number of bytes in DATA_In_Buffer
 } DIB_mngnt;   //DATA_In_Buffer Management 
 
-unsigned int8 scrpt_args[20];
-unsigned int8  scrpt_rd_idx = 0; //scrpt_args_num_bytes = 0,
+//unsigned int8 scrpt_args[20];
+//unsigned int8  scrpt_rd_idx = 0; //scrpt_args_num_bytes = 0,
 
 struct {
    unsigned int8   VddThreshold;   // error detect threshold
@@ -229,12 +229,11 @@ runROMScriptLbl:
       read_program_memory(address, scriptBuffer, DATAin[i+1]); 
       executeScript(DATAin[i+1], scriptBuffer);
       free(scriptBuffer);
-      scrpt_rd_idx = 0;
       i += 4;
       continue;
       
 downloadScrptArgsLbl:
-   downloadScriptArgs();
+   //downloadScriptArgs();
    i++;
    continue;
    }  
@@ -388,7 +387,7 @@ unsigned int16 calADCWord(unsigned int16 Val)
 
     return (unsigned int16) cal_value;
 }
-
+/*
 void downloadScriptArgs (void)
 {
    unsigned int8 len = DATAin[++i];
@@ -399,7 +398,7 @@ void downloadScriptArgs (void)
    scrpt_rd_idx = 0;
 }
 
-
+*/
 
 
 
@@ -408,7 +407,7 @@ void downloadScriptArgs (void)
 void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation)
 {
    unsigned int8 si = 0; //initialize script index to 0
-   unsigned int8 offset, loop_buff_idx;
+   unsigned int8 offset, loop_buff_idx, temp;
    int1 first_iteration = 1; //used by LOOPBUFFER cmd
    unsigned int16 nbr_iterations;
    unsigned int8 *SFR_ptr; //used by the WRITE_SFR and READ_SFR commands
@@ -449,7 +448,7 @@ void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation)
          BRA      IF_EQ_GOTOLbl
       #ENDASM 
 readN_BitsLbl:
-      write_upload_buff(readN_Bits(scrpt_args[scrpt_rd_idx++]));//WriteUploadBuffer(readN_Bits(*(scriptLocation + si + 1)));
+      write_upload_buff(readN_Bits(*(scriptLocation + ++si)));//WriteUploadBuffer(readN_Bits(*(scriptLocation + si + 1)));
       si++;
       continue;
    
@@ -476,16 +475,16 @@ NOP24Lbl:
    
 COREINST24Lbl:
       ShiftBitsOutICSP(0, 4);
-      ShiftBitsOutICSP(scrpt_args[scrpt_rd_idx++], 8);
-      ShiftBitsOutICSP(scrpt_args[scrpt_rd_idx++], 8);
-      ShiftBitsOutICSP(scrpt_args[scrpt_rd_idx++], 8);
+      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
+      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
+      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
       si++;
       continue;
 
 COREINST18Lbl:
       ShiftBitsOutICSP(0, 4);
-      ShiftBitsOutICSP(scrpt_args[scrpt_rd_idx++], 8);
-      ShiftBitsOutICSP(scrpt_args[scrpt_rd_idx++], 8);
+      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
+      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
       si++;
       continue;
    
@@ -512,8 +511,8 @@ LOOPBUFFERLbl:  //will loop through a number of script commands, argument is the
          si = first_iteration;   //Still iterating
          continue;
       }
-      loop_buff_idx = si - 1; //always loops to the instruction before it, except in the script n 255 in the original Firmware
-      scrpt_rd_idx -= 2;      //the instruction before LOOPBUFFER has 2 args
+      loop_buff_idx = si - *(scriptLocation + ++si); //always loops to the instruction before it, except in the script n 255 in the original Firmware
+      //scrpt_rd_idx -= 2;      //the instruction before LOOPBUFFER has 2 args
       nbr_iterations = (unsigned int16) pop_down_buff ();   //low byte
       nbr_iterations += (256  *  pop_down_buff ());         //upper byte
       if (nbr_iterations == 0)   //no iterations 
@@ -526,13 +525,13 @@ LOOPBUFFERLbl:  //will loop through a number of script commands, argument is the
       continue;
       
 WRITE_SFRLbl:
-      SFR_ptr = (unsigned int8 *) 0x0F00 + scrpt_args[scrpt_rd_idx++];
-      *SFR_ptr = scrpt_args[scrpt_rd_idx++];
+      SFR_ptr = (unsigned int8 *) 0x0F00 + *(scriptLocation + ++si);
+      *SFR_ptr = *(scriptLocation + ++si);
       si++;
       continue;
 
 READ_SFRLbl:
-      SFR_ptr = (unsigned int8 *) 0x0F00 + scrpt_args[scrpt_rd_idx++];
+      SFR_ptr = (unsigned int8 *) 0x0F00 + *(scriptLocation + ++si);
       write_upload_buff(*SFR_ptr);
       si++;
       continue;
@@ -542,14 +541,14 @@ EXIT_SCRIPTLbl:
       continue;
       
 GOTO_IDXLbl:
-      si = scrpt_args[scrpt_rd_idx++];
+      si = *(scriptLocation + ++si);
       continue;
       
 IF_GT_GOTOLbl: //if last loaded byte in DATA_Out_Buffer is greater than arg[1], execution will branch to offset specified by arg[2] 
       temp = DATA_Out_Buffer[DOM_mngnt.wr_idx - 1]; //get last byte written to DATA_Out_Buffer, - 1 because DOM_mngnt.wr_idx is always post-incremented, and points to the next location to be written
-      if (temp > scrpt_args[scrpt_rd_idx++])
+      if (temp > *(scriptLocation + ++si))
       {
-         si += (signed int8) scrpt_args[scrpt_rd_idx++];
+         si += (signed int8) *(scriptLocation + ++si);
       }
       else 
       {
@@ -559,9 +558,9 @@ IF_GT_GOTOLbl: //if last loaded byte in DATA_Out_Buffer is greater than arg[1], 
       
 IF_EQ_GOTOLbl: //if last loaded byte in DATA_Out_Buffer is equal than arg[1], execution will branch to offset specified by arg[2] 
       temp = DATA_Out_Buffer[DOM_mngnt.wr_idx - 1]; //get last byte written to DATA_Out_Buffer, - 1 because DOM_mngnt.wr_idx is always post-incremented, and points to the next location to be written
-      if (temp == scrpt_args[scrpt_rd_idx++])
+      if (temp == *(scriptLocation + ++si))
       {
-         si += (signed int8) scrpt_args[scrpt_rd_idx++];
+         si += (signed int8) *(scriptLocation + ++si);
       }
       else 
       {

@@ -4,8 +4,14 @@
 
 volatile unsigned int8 DATAin[64];  //USB packet is copied here when received 
 unsigned int8 i;     //used to iterate through DATAin in Process_Input()
+
 unsigned int8 DATA_Out_Buffer[128]; //Data is tored here by scripts and read by USB
-unsigned int8 wr_index = 0; //Keeps track of bytes in DATA_Out_Buffer
+struct 
+{
+   unsigned int8 rd_idx;
+   unsigned int8 wr_idx;
+   unsigned int8 nbr_bytes; //number of bytes in DATA_On_Buffer
+} DOM_mngnt;   //DATA_Out_Buffer Management
 
 unsigned int8 DATA_In_Buffer[256];
 struct 
@@ -438,6 +444,9 @@ void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation)
          BRA      WRITE_SFRLbl
          BRA      READ_SFRLbl
          BRA      EXIT_SCRIPTLbl
+         BRA      GOTO_IDXLbl
+         BRA      IF_GT_GOTOLbl
+         BRA      IF_EQ_GOTOLbl
       #ENDASM 
 readN_BitsLbl:
       write_upload_buff(readN_Bits(scrpt_args[scrpt_rd_idx++]));//WriteUploadBuffer(readN_Bits(*(scriptLocation + si + 1)));
@@ -467,16 +476,16 @@ NOP24Lbl:
    
 COREINST24Lbl:
       ShiftBitsOutICSP(0, 4);
-      ShiftBitsOutICSP(scrpt_args[scrpt_rd_idx++], 8);
-      ShiftBitsOutICSP(scrpt_args[scrpt_rd_idx++], 8);
-      ShiftBitsOutICSP(scrpt_args[scrpt_rd_idx++], 8);
+      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
+      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
+      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
       si++;
       continue;
 
 COREINST18Lbl:
       ShiftBitsOutICSP(0, 4);
-      ShiftBitsOutICSP(scrpt_args[scrpt_rd_idx++], 8);
-      ShiftBitsOutICSP(scrpt_args[scrpt_rd_idx++], 8);
+      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
+      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
       si++;
       continue;
    
@@ -517,13 +526,13 @@ LOOPBUFFERLbl:  //will loop through a number of script commands, argument is the
       continue;
       
 WRITE_SFRLbl:
-      SFR_ptr = (unsigned int8 *) 0x0F00 + scrpt_args[scrpt_rd_idx++];
-      *SFR_ptr = scrpt_args[scrpt_rd_idx++];
+      SFR_ptr = (unsigned int8 *) 0x0F00 + *(scriptLocation + ++si);
+      *SFR_ptr = *(scriptLocation + ++si);
       si++;
       continue;
 
 READ_SFRLbl:
-      SFR_ptr = (unsigned int8 *) 0x0F00 + scrpt_args[scrpt_rd_idx++];
+      SFR_ptr = (unsigned int8 *) 0x0F00 + *(scriptLocation + ++si);
       write_upload_buff(*SFR_ptr);
       si++;
       continue;
@@ -533,10 +542,32 @@ EXIT_SCRIPTLbl:
       continue;
       
 GOTO_IDXLbl:
-      si = scrpt_args[scrpt_rd_idx++];
+      si = *(scriptLocation + ++si);
       continue;
       
+IF_GT_GOTOLbl: //if last loaded byte in DATA_Out_Buffer is greater than arg[1], execution will branch to offset specified by arg[2] 
+      temp = DATA_Out_Buffer[DOM_mngnt.wr_idx - 1]; //get last byte written to DATA_Out_Buffer, - 1 because DOM_mngnt.wr_idx is always post-incremented, and points to the next location to be written
+      if (temp > *(scriptLocation + ++si))
+      {
+         si += (signed int8) *(scriptLocation + ++si);
+      }
+      else 
+      {
+         si++;
+      }
+      continue;
       
+IF_EQ_GOTOLbl: //if last loaded byte in DATA_Out_Buffer is equal than arg[1], execution will branch to offset specified by arg[2] 
+      temp = DATA_Out_Buffer[DOM_mngnt.wr_idx - 1]; //get last byte written to DATA_Out_Buffer, - 1 because DOM_mngnt.wr_idx is always post-incremented, and points to the next location to be written
+      if (temp == scrpt_args[scrpt_rd_idx++])
+      {
+         si += (signed int8) scrpt_args[scrpt_rd_idx++];
+      }
+      else 
+      {
+         si++;
+      }
+      continue;
    } //end of while loop
 }
 
@@ -571,14 +602,18 @@ unsigned int8 readN_Bits(unsigned int8 numberOfBits)
    return bitsBuff;
 }
 
+
 void write_upload_buff(unsigned int8 wrByte)
 {
-   if (wr_index > 63) 
+   if (DOM_mngnt.nbr_bytes > 127) 
    {
-      wr_index = 0;
       return;
    }
-   DATA_Out_Buffer[wr_index++] = wrByte;
+   DATA_Out_Buffer[DOM_mngnt.wr_idx++] = wrByte;
+   if (DOM_mngnt.wr_idx > 127)
+      DOM_mngnt.wr_idx = 0;
+   
+   DOM_mngnt.nbr_bytes++;
 }
 
 /*
