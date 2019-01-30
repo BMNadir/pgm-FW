@@ -175,7 +175,6 @@ void shiftBitsOutICSP (unsigned int8 charToBeShifted, unsigned int8 numberOfBits
 unsigned int8 getICSP_States(void);
 unsigned int8 pop_down_buff (void);
 void delay_short (unsigned int8 duration);
-void delay_long (unsigned int8 duration);
 #ENDIF
 
 

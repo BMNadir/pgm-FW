@@ -36,8 +36,7 @@
 #BYTE TMR1L    = 0xFCE
 #BYTE ADRESH   = 0xFC4
 #BYTE ADRESL   = 0xFC3
-#BYTE TMR0H    = 0xFD7
-#BYTE TMR0L    = 0xFD6
+
 
 
 //STATUS Reg Bits //
@@ -94,18 +93,11 @@
 #BIT HLVDIE = PIE2.2
 #BIT TRISA0 = TRISA.0
 #BIT TRISA1 = TRISA.1
-
 #BIT RBPU   = INTCON2.7
 
-#BIT TMR0IF = INTCON.2
 #BIT INT0IE = INTCON.4
-#BIT TMR0IE = INTCON.5
 #BIT PEIE   = INTCON.6
 #BIT GIE    = INTCON.7
-
-
-#BIT TMR0ON = T0CON.7
-
 
 //PIE1 Bits
 #BIT TMR1IE = PIE1.0
@@ -174,8 +166,7 @@ void shiftBitsOutICSP (unsigned int8 charToBeShifted, unsigned int8 numberOfBits
 //void downloadScriptArgs (void);
 unsigned int8 getICSP_States(void);
 unsigned int8 pop_down_buff (void);
-void delay_short (unsigned int8 duration);
-void delay_long (unsigned int8 duration);
+void dela_short (void);
 #ENDIF
 
 

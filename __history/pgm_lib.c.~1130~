@@ -606,7 +606,6 @@ LOOPLbl:
 SET_ICSP_RATELbl:
       icsp_rate = *(scriptLocation + ++si);
       si++;
-      continue;
       
    } //end of while loop
 }

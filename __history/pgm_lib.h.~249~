@@ -97,15 +97,9 @@
 
 #BIT RBPU   = INTCON2.7
 
-#BIT TMR0IF = INTCON.2
 #BIT INT0IE = INTCON.4
-#BIT TMR0IE = INTCON.5
 #BIT PEIE   = INTCON.6
 #BIT GIE    = INTCON.7
-
-
-#BIT TMR0ON = T0CON.7
-
 
 //PIE1 Bits
 #BIT TMR1IE = PIE1.0
@@ -175,7 +169,6 @@ void shiftBitsOutICSP (unsigned int8 charToBeShifted, unsigned int8 numberOfBits
 unsigned int8 getICSP_States(void);
 unsigned int8 pop_down_buff (void);
 void delay_short (unsigned int8 duration);
-void delay_long (unsigned int8 duration);
 #ENDIF
 
 

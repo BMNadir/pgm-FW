@@ -5,8 +5,6 @@
 volatile unsigned int8 DATAin[64];  //USB packet is copied here when received 
 unsigned int8 i;     //used to iterate through DATAin in Process_Input()
 
-unsigned int8 icsp_rate; //period in multiples of 1uS 
-
 unsigned int8 DATA_Out_Buffer[128]; //Data is stored here by scripts and read by USB
 struct 
 {
@@ -453,7 +451,6 @@ void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation)
          BRA      SHORT_DELAYLbl
          BRA      LONG_DELAYLbl
          BRA      LOOPLbl
-         BRA      SET_ICSP_RATELbl
       #ENDASM 
 readN_BitsLbl:
       write_upload_buff(readN_Bits(*(scriptLocation + ++si)));//WriteUploadBuffer(readN_Bits(*(scriptLocation + si + 1)));
@@ -597,16 +594,6 @@ LOOPLbl:
             continue;
          }
       }
-      first_iteration_L = 0;
-      loop_idx = si - *(scriptLocation + si + 1);
-      loop_count = *(scriptLocation + si + 2);
-      si = loop_idx;
-      continue;
- 
-SET_ICSP_RATELbl:
-      icsp_rate = *(scriptLocation + ++si);
-      si++;
-      continue;
       
    } //end of while loop
 }

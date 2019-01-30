@@ -1,0 +1,22 @@
+0xD5 : readN_BitsLbl		arguments : 1 = number of bits
+0xD6 : readByteLbl 			arguments : 0
+0xD7 : VISI24 			arguments : 0
+0xD8 : NOP24			arguments : 0
+0xD9 : COREINST24			arguments : 3 = low byte, mid byte, upper byte
+0xDA : COREINST18			arguments : 2 = low byte, upper byte
+0xDB : POP_DOWNLOAD_BUFFER	arguments : 0
+0xDC : readICSP_States		arguments : 0
+0xDD : LOOPBUFFER		arguments : 1 = index offset to loop to 
+0xDE : WRITE_SFR			arguments : 2 = 1 -> lower byte of SFR addr, 2 -> data to be written
+0xDF : READ_SFR			arguments : 1 = lower byte of SFR addr
+0xE0 : EXIT_SCRIPT			arguments : 0
+0xE1 : GOTO_IDX			arguments : 1 = script command index to go to
+0xE2 : IF_GT_GOTO			arguments : 2 = 1->byte to compare with head of DATA_Out_Buffer, 2->signed idx to branch to 
+0xE3 : IF_GT_GOTO			arguments : 2 = 1->byte to compare with head of DATA_Out_Buffer, 2->signed idx to branch to  
+0xE4 : SHORT_DELAY		arguments : 1 = duration
+0xE4 : LOOP			arguments : 2 = 1 -> index offset, 2 -> iterations
+
+
+
+
+

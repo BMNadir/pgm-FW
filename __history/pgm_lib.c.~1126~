@@ -602,11 +602,6 @@ LOOPLbl:
       loop_count = *(scriptLocation + si + 2);
       si = loop_idx;
       continue;
- 
-SET_ICSP_RATELbl:
-      icsp_rate = *(scriptLocation + ++si);
-      si++;
-      continue;
       
    } //end of while loop
 }

@@ -5,8 +5,6 @@
 volatile unsigned int8 DATAin[64];  //USB packet is copied here when received 
 unsigned int8 i;     //used to iterate through DATAin in Process_Input()
 
-unsigned int8 icsp_rate; //period in multiples of 1uS 
-
 unsigned int8 DATA_Out_Buffer[128]; //Data is stored here by scripts and read by USB
 struct 
 {
@@ -411,9 +409,8 @@ void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation)
 {
    unsigned int8 si = 0; //initialize script index to 0
    unsigned int8 offset, loop_buff_idx, temp;
-   int1 first_iteration_LB = 1; //used by LOOPBUFFER cmd
-   int1 first_iteration_L = 1; //Used by LOOP cmd
-   unsigned int16 nbr_iterations, loop_count, loop_idx;
+   int1 first_iteration = 1; //used by LOOPBUFFER cmd
+   unsigned int16 nbr_iterations;
    unsigned int8 *SFR_ptr; //used by the WRITE_SFR and READ_SFR commands
    
    #ASM
@@ -452,8 +449,6 @@ void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation)
          BRA      IF_EQ_GOTOLbl
          BRA      SHORT_DELAYLbl
          BRA      LONG_DELAYLbl
-         BRA      LOOPLbl
-         BRA      SET_ICSP_RATELbl
       #ENDASM 
 readN_BitsLbl:
       write_upload_buff(readN_Bits(*(scriptLocation + ++si)));//WriteUploadBuffer(readN_Bits(*(scriptLocation + si + 1)));
@@ -507,16 +502,16 @@ readICSP_StatesLbl:
       continue;
    
 LOOPBUFFERLbl:  //will loop through a number of script commands, argument is the number if bytes to loop through 
-      if (!first_iteration_LB)
+      if (!first_iteration)
       {
          nbr_iterations--;
          if (nbr_iterations == 0)   //no iterations 
          {
-            first_iteration_LB = 1; //number of iterations endded for the current run 
+            first_iteration = 1; //number of iterations endded for the current run 
             si ++;
             continue;
          }
-         si = first_iteration_LB;   //Still iterating
+         si = first_iteration;   //Still iterating
          continue;
       }
       loop_buff_idx = si - *(scriptLocation + ++si); //always loops to the instruction before it, except in the script n 255 in the original Firmware
@@ -528,7 +523,7 @@ LOOPBUFFERLbl:  //will loop through a number of script commands, argument is the
          si++; //advance to next command 
          continue;
       }
-      first_iteration_LB = 0;
+      first_iteration = 0;
       si = loop_buff_idx;  
       continue;
       
@@ -584,29 +579,6 @@ SHORT_DELAYLbl:      //causes a delay of : duration * 21.3us, NOTE : 0 = 255
 LONG_DELAYLbl:
       delay_long (*(scriptLocation + ++si));
       si++;
-      continue;
-      
-LOOPLbl:
-      if (!first_iteration_L)
-      {
-         loop_count--;
-         if (loopcount == 0)
-         {
-            first_iteration_L = 1;
-            si += 3; //LOOP command + 2 args
-            continue;
-         }
-      }
-      first_iteration_L = 0;
-      loop_idx = si - *(scriptLocation + si + 1);
-      loop_count = *(scriptLocation + si + 2);
-      si = loop_idx;
-      continue;
- 
-SET_ICSP_RATELbl:
-      icsp_rate = *(scriptLocation + ++si);
-      si++;
-      continue;
       
    } //end of while loop
 }
@@ -712,7 +684,7 @@ unsigned int8 pop_down_buff (void)
    return popped;
 }
 
-//Each Timer0's lower byte increment is 21.3 uS, there's a delay of 12 uS between script commands, it is ignored here
+//Each Timer0 tick is 21.3 uS, there's a delay of 12 uS between script commands, it is ignored here
 void delay_short (unsigned int8 duration)
 {
    #ASM
@@ -721,21 +693,16 @@ void delay_short (unsigned int8 duration)
       MOVWF    TMR0H
    #ENDASM
    TMR0L = 0 - duration;
-   TMR0ON = 1; //start Timer0, DS page 127
-   while (TMR0IF == 0); //Wait for overflow flag to be set
-   TMR0ON = 0; //Stop Timer0
+   TMR0ON = 1; //Timer0 on control bit, DS page 127
+   while (TMR0IF == 0);
+   TMR0ON = 1; //Stop Timer0
    
 }
 
-//Each Timer0's upper byte increment is 5.46mS
+
 void delay_long (unsigned int8 duration)
 {
-   TMR0IF = 0;
-   TMR0H = 0 - duration;
-   TMR0L = 0;
-   TMR0ON = 1; //Start Timer0
-   while (TMR0IF == 0); //Wait for overflow flag to be set
-   TMR0ON = 0; //Stop Timer0
+
 }
 
 
