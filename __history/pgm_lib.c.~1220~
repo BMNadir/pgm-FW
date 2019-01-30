@@ -756,6 +756,8 @@ unsigned int8 shift_bits_in (unsigned int8 number_of_bits)
 {
    
    unsigned int8 bits_buff = 0; //Bits are shifted in here 
+   //unsigned int8 iteration = numberOfBits;
+   #BIT buff0 = bits_buff.0
    #ASM
       BSF      tris_ICSPDAT  //Set PGD pin as input
    READBITSLOOP:
@@ -778,6 +780,7 @@ unsigned int8 shift_bits_in (unsigned int8 number_of_bits)
 
 void shift_bits_out (unsigned int8  outb, unsigned int8 number_of_bits)
 {
+   #BIT  outb0=outb.0
    #ASM
       BCF   tris_ICSPDAT   //Make sure PGD pin is set as output
       WRITELOOP:

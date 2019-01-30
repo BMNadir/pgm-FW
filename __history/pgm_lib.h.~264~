@@ -177,7 +177,7 @@ unsigned int8 pop_down_buff (void);
 void delay_short (unsigned int8 duration);
 void delay_long (unsigned int8 duration);
 unsigned int8 shift_bits_in (unsigned int8 number_of_bits);
-void shift_bits_out (unsigned int8  outb, unsigned int8 number_of_bits);
+unsigned int8 shift_bits_out (unsigned int8  outb, unsigned int8 number_of_bits);
 #ENDIF
 
 

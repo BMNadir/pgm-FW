@@ -1,10 +1,11 @@
 ÀÄmain
-   ÃÄMAIN  0/112  Ram=0
+   ÃÄMAIN  0/142  Ram=1
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄusb_init_cs  0/6  Ram=0
    ³  ³  ÀÄusb_detach  0/40  Ram=1
    ³  ³     ÀÄusb_token_reset  0/44  Ram=3
    ³  ÃÄpgm_init  0/124  Ram=0
+   ³  ÃÄ@delay_ms1  0/42  Ram=1
    ³  ÃÄusb_task  0/36  Ram=1
    ³  ³  ÀÄusb_attach  0/34  Ram=0
    ³  ³     ÀÄusb_token_reset  0/44  Ram=3
@@ -23,7 +24,7 @@
    ³     ³     ÃÄ@const725  0/66  Ram=0
    ³     ³     ÃÄ@MUL1616  0/34  Ram=5
    ³     ³     ÀÄ@MUL1616  0/34  Ram=5
-   ³     ÃÄ@delay_ms1  0/44  Ram=1
+   ³     ÃÄ@delay_ms1  0/42  Ram=1
    ³     ÃÄgetVersionNumber  0/148  Ram=4
    ³     ³  ÃÄmalloc  0/330  Ram=12
    ³     ³  ³  ÃÄcreate_node  0/60  Ram=8
@@ -73,28 +74,28 @@
    ³     ³  ÀÄ*
    ³     ÃÄ@MUL1616  0/34  Ram=5
    ³     ÃÄ@READ_PROGRAM_MEMORY  0/32  Ram=7
-   ³     ÃÄexecuteScript  0/1354  Ram=20
+   ³     ÃÄexecuteScript  0/1464  Ram=20
    ³     ³  ÃÄread_n_bits_24  0/36  Ram=2
    ³     ³  ÃÄwrite_upload_buff  0/40  Ram=3
    ³     ³  ÃÄread_n_bits_24  0/36  Ram=2
    ³     ³  ÃÄwrite_upload_buff  0/40  Ram=3
-   ³     ³  ÃÄshiftBitsOutICSP  0/36  Ram=4
-   ³     ³  ÃÄshiftBitsOutICSP  0/36  Ram=4
+   ³     ³  ÃÄshiftBitsOutICSP  0/28  Ram=2
+   ³     ³  ÃÄshiftBitsOutICSP  0/28  Ram=2
    ³     ³  ÃÄread_n_bits_24  0/36  Ram=2
    ³     ³  ÃÄwrite_upload_buff  0/40  Ram=3
    ³     ³  ÃÄread_n_bits_24  0/36  Ram=2
    ³     ³  ÃÄwrite_upload_buff  0/40  Ram=3
-   ³     ³  ÃÄshiftBitsOutICSP  0/36  Ram=4
-   ³     ³  ÃÄshiftBitsOutICSP  0/36  Ram=4
-   ³     ³  ÃÄshiftBitsOutICSP  0/36  Ram=4
-   ³     ³  ÃÄshiftBitsOutICSP  0/36  Ram=4
-   ³     ³  ÃÄshiftBitsOutICSP  0/36  Ram=4
-   ³     ³  ÃÄshiftBitsOutICSP  0/36  Ram=4
-   ³     ³  ÃÄshiftBitsOutICSP  0/36  Ram=4
-   ³     ³  ÃÄshiftBitsOutICSP  0/36  Ram=4
-   ³     ³  ÃÄshiftBitsOutICSP  0/36  Ram=4
-   ³     ³  ÃÄshiftBitsOutICSP  0/36  Ram=4
-   ³     ³  ÃÄshiftBitsOutICSP  0/36  Ram=4
+   ³     ³  ÃÄshiftBitsOutICSP  0/28  Ram=2
+   ³     ³  ÃÄshiftBitsOutICSP  0/28  Ram=2
+   ³     ³  ÃÄshiftBitsOutICSP  0/28  Ram=2
+   ³     ³  ÃÄshiftBitsOutICSP  0/28  Ram=2
+   ³     ³  ÃÄshiftBitsOutICSP  0/28  Ram=2
+   ³     ³  ÃÄshiftBitsOutICSP  0/28  Ram=2
+   ³     ³  ÃÄshiftBitsOutICSP  0/28  Ram=2
+   ³     ³  ÃÄshiftBitsOutICSP  0/28  Ram=2
+   ³     ³  ÃÄshiftBitsOutICSP  0/28  Ram=2
+   ³     ³  ÃÄshiftBitsOutICSP  0/28  Ram=2
+   ³     ³  ÃÄshiftBitsOutICSP  0/28  Ram=2
    ³     ³  ÃÄpop_down_buff  0/46  Ram=2
    ³     ³  ÃÄgetICSP_States  0/26  Ram=2
    ³     ³  ÃÄwrite_upload_buff  0/40  Ram=3
@@ -103,7 +104,10 @@
    ³     ³  ÃÄwrite_upload_buff  0/40  Ram=3
    ³     ³  ÃÄdelay_short  0/28  Ram=2
    ³     ³  ÃÄdelay_long  0/26  Ram=2
-   ³     ³  ÀÄshift_bits_in  0/60  Ram=2
+   ³     ³  ÃÄshift_bits_in  0/60  Ram=2
+   ³     ³  ÃÄwrite_upload_buff  0/40  Ram=3
+   ³     ³  ÃÄpop_down_buff  0/46  Ram=2
+   ³     ³  ÀÄshift_bits_out  0/32  Ram=2
    ³     ÀÄfree  0/122  Ram=8
    ³        ÀÄ*
    ÀÄusb_isr  0/126  Ram=2

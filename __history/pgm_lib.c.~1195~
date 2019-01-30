@@ -455,8 +455,7 @@ void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation)
          BRA      LOOPLbl
          //BRA      SET_ICSP_RATELbl      //Used for HCS encoders, not MCUs
          BRA      SHIFT_BITS_IN_LBL
-         BRA      SHIFT_BITS_IN_BUFFER_LBL
-         BRA      SHIFT_BITS_OUT_BUFFER_LBL
+         BRA      SHIFT_BITS_IN__BUFFER_LBL
       #ENDASM 
 readN_BitsLbl:
       write_upload_buff(read_n_bits_24(*(scriptLocation + ++si)));//WriteUploadBuffer(readN_Bits(*(scriptLocation + si + 1)));
@@ -622,7 +621,7 @@ SHIFT_BITS_IN_BUFFER_LBL:
       continue;
       
 SHIFT_BITS_OUT_BUFFER_LBL: //Shift bits located in DATA_In_Buffer out 
-      shift_bits_out (pop_down_buff(), *(scriptLocation + ++si));
+      
       si++;
       continue;
       
@@ -639,12 +638,13 @@ unsigned int8 read_n_bits_24(unsigned int8 numberOfBits)
 {
    unsigned int8 bitsBuff = 0; //Bits are shifted in here 
    //unsigned int8 iteration = numberOfBits;
+   #BIT buff0 = bitsBuff.0
    #ASM
       BSF      tris_ICSPDAT  //Set PGD pin as input
       //MOVLW 0x01        //this will be used to set the bits 
    READBITSLOOP:
       BTFSC    ICSPDAT_in  //read PGD pin
-      BSF      bitsBuff,0      //If PGD was high, set the corresponding bit starting from LSB
+      BSF      buff0      //If PGD was high, set the corresponding bit starting from LSB
       BSF      ICSPCLK_out       //Clock rising edge
       //RLNCF    W,W               //Rotate W left, (no carry)
       NOP
@@ -680,20 +680,23 @@ void write_upload_buff(unsigned int8 wrByte)
 */
 void shiftBitsOutICSP (unsigned int8 charToBeShifted, unsigned int8 numberOfBits)
 {
-   //unsigned int8 tempChar = charToBeShifted;
+   unsigned int8 tempChar = charToBeShifted;
+   unsigned int8 tempNumBits = numberOfBits;
    
+   #BIT char0=tempChar.0
+   //#BIT num0=numberOfBits.0
    
    #ASM
       BITSOUTLOOP:
-         BTFSS    charToBeShifted,0
+         BTFSS    char0
          BCF      ICSPDAT_out    //If LSB of charToBeShifted is 0, clear PGD pin
-         BTFSC    charToBeShifted,0
+         BTFSC    char0
          BCF      ICSPDAT_out
          NOP
          BSF      ICSPCLK_out    //Clock rising edge 
          NOP
          BCF      ICSPCLK_out
-         RRNCF    charToBeShifted,f
+         RRNCF    tempChar
          DECFSZ   numberOfBits
          BRA      BITSOUTLOOP
    #ENDASM
@@ -756,6 +759,8 @@ unsigned int8 shift_bits_in (unsigned int8 number_of_bits)
 {
    
    unsigned int8 bits_buff = 0; //Bits are shifted in here 
+   //unsigned int8 iteration = numberOfBits;
+   #BIT buff0 = bits_buff.0
    #ASM
       BSF      tris_ICSPDAT  //Set PGD pin as input
    READBITSLOOP:
@@ -764,7 +769,7 @@ unsigned int8 shift_bits_in (unsigned int8 number_of_bits)
       NOP
       NOP
       BTFSC    ICSPDAT_in  //read PGD pin
-      BSF      bits_buff,0      //If PGD was high, set the corresponding bit starting from LSB
+      BSF      buff0      //If PGD was high, set the corresponding bit starting from LSB
       BCF      ICSPCLK_out    //Clock falling edge 
       NOP
       RRNCF    bits_buff, f    //Rotate right (no carry)
@@ -779,18 +784,18 @@ unsigned int8 shift_bits_in (unsigned int8 number_of_bits)
 void shift_bits_out (unsigned int8  outb, unsigned int8 number_of_bits)
 {
    #ASM
-      BCF   tris_ICSPDAT   //Make sure PGD pin is set as output
+      BCF 
       WRITELOOP:
-         BTFSS    outb,0
+         BTFSS    outb
          BCF      ICSPDAT_out
-         BTFSC    outb,0
+         BTFSC    outb
          BSF      ICSPDAT_out
          NOP
          BSF      ICSPCLK_out //Clock rising edge
          NOP
          BCF      ICSPCLK_out  //Clock falling edge 
-         RRNCF    outb
-         DECFSZ   number_of_bits
+         RRNCF    outb, 1, 0
+         DECFSZ   number_of_bits, 1, 0
          BRA      WRITELOOP
    #ENDASM
 }

@@ -7,11 +7,11 @@ void main()
    pgm_init();
    
    #ASM 
-   BSF LATC,0  //Busy LED
+   BSF LATC,0
    #ENDASM
-   delay_ms(500);
+   delay_ms(100);
    #ASM 
-   BCF LATC,0
+   BCF BUSY_LED
    #ENDASM
    
    while(TRUE)

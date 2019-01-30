@@ -5,15 +5,15 @@ void main()
 {
    usb_init_cs(); 
    pgm_init();
-   
+   /*
    #ASM 
-   BSF LATC,0  //Busy LED
+   BSF BUSY_LED
    #ENDASM
-   delay_ms(500);
+   delay_ms(100);
    #ASM 
-   BCF LATC,0
+   BCF BUSY_LED
    #ENDASM
-   
+   */
    while(TRUE)
    {
       usb_task();
