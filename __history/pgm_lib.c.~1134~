@@ -5,7 +5,7 @@
 volatile unsigned int8 DATAin[64];  //USB packet is copied here when received 
 unsigned int8 i;     //used to iterate through DATAin in Process_Input()
 
-//unsigned int8 icsp_rate; //period in multiples of 1uS 
+unsigned int8 icsp_rate; //period in multiples of 1uS 
 
 unsigned int8 DATA_Out_Buffer[128]; //Data is stored here by scripts and read by USB
 struct 
@@ -453,8 +453,7 @@ void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation)
          BRA      SHORT_DELAYLbl
          BRA      LONG_DELAYLbl
          BRA      LOOPLbl
-         //BRA      SET_ICSP_RATELbl      //Used for HCS encoders, not MCUs
-         BRA      SHIFT_BITS_IN_LBL
+         BRA      SET_ICSP_RATELbl
       #ENDASM 
 readN_BitsLbl:
       write_upload_buff(read_n_bits_24(*(scriptLocation + ++si)));//WriteUploadBuffer(readN_Bits(*(scriptLocation + si + 1)));
@@ -469,8 +468,8 @@ readByteLbl:
 VISI24Lbl:
       ShiftBitsOutICSP(1, 4);
       ShiftBitsOutICSP(0, 8);
-      write_upload_buff(read_n_bits_24(8));
-      write_upload_buff(read_n_bits_24(8));
+      write_upload_buff(readN_Bits(8));
+      write_upload_buff(readN_Bits(8));
       si++;
       continue;
    
@@ -591,7 +590,7 @@ LOOPLbl:
       if (!first_iteration_L)
       {
          loop_count--;
-         if (loop_count == 0)
+         if (loopcount == 0)
          {
             first_iteration_L = 1;
             si += 3; //LOOP command + 2 args
@@ -604,15 +603,11 @@ LOOPLbl:
       si = loop_idx;
       continue;
  
-//SET_ICSP_RATELbl:
-//      icsp_rate = *(scriptLocation + ++si);
-//      si++;
-//      continue;
-
-SHIFT_BITS_IN_LBL:
-      shift_bits_in(*(scriptLocation + ++si));
+SET_ICSP_RATELbl:
+      icsp_rate = *(scriptLocation + ++si);
       si++;
       continue;
+      
    } //end of while loop
 }
 
@@ -743,31 +738,7 @@ void delay_long (unsigned int8 duration)
    TMR0ON = 0; //Stop Timer0
 }
 
-unsigned int8 shift_bits_in (unsigned int8 number_of_bits)
-{
-   
-   unsigned int8 bits_buff = 0; //Bits are shifted in here 
-   //unsigned int8 iteration = numberOfBits;
-   #BIT buff0 = bits_buff.0
-   #ASM
-      BSF      tris_ICSPDAT  //Set PGD pin as input
-   READBITSLOOP:
-      BSF      ICSPCLK_out       //Clock rising edge
-      NOP
-      NOP
-      NOP
-      BTFSC    ICSPDAT_in  //read PGD pin
-      BSF      buff0      //If PGD was high, set the corresponding bit starting from LSB
-      BCF      ICSPCLK_out    //Clock falling edge 
-      NOP
-      RRNCF    bits_buff, f    //Rotate right (no carry)
-      DECFSZ   number_of_bits, f
-      BRA      READBITSLOOP
-      BCF      tris_ICSPDAT //PGD set as output
-   #ENDASM
-   bits_buff >>= (8 - number_of_bits); //right justified
-   return bits_buff;
-}
+
 
 
 

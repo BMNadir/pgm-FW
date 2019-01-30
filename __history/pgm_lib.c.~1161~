@@ -763,7 +763,6 @@ unsigned int8 shift_bits_in (unsigned int8 number_of_bits)
       RRNCF    bits_buff, f    //Rotate right (no carry)
       DECFSZ   number_of_bits, f
       BRA      READBITSLOOP
-      BCF      tris_ICSPDAT //PGD set as output
    #ENDASM
    bits_buff >>= (8 - number_of_bits); //right justified
    return bits_buff;

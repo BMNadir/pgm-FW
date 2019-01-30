@@ -14,7 +14,11 @@
 0xE2 : IF_GT_GOTO			arguments : 2 = 1->byte to compare with head of DATA_Out_Buffer, 2->signed idx to branch to 
 0xE3 : IF_GT_GOTO			arguments : 2 = 1->byte to compare with head of DATA_Out_Buffer, 2->signed idx to branch to  
 0xE4 : SHORT_DELAY		arguments : 1 = duration
-0xE4 : LOOP			arguments : 2 = 1 -> index offset, 2 -> iterations
+0xE5 : LOOP			arguments : 2 = 1 -> index offset, 2 -> iterations
+0xE6 : SHIFT_BITS_IN_LBL		arguments : 1 = number of bits
+
+
+
 
 
 

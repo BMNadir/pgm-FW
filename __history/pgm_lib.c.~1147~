@@ -5,7 +5,7 @@
 volatile unsigned int8 DATAin[64];  //USB packet is copied here when received 
 unsigned int8 i;     //used to iterate through DATAin in Process_Input()
 
-//unsigned int8 icsp_rate; //period in multiples of 1uS 
+unsigned int8 icsp_rate; //period in multiples of 1uS 
 
 unsigned int8 DATA_Out_Buffer[128]; //Data is stored here by scripts and read by USB
 struct 
@@ -453,7 +453,7 @@ void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation)
          BRA      SHORT_DELAYLbl
          BRA      LONG_DELAYLbl
          BRA      LOOPLbl
-         //BRA      SET_ICSP_RATELbl      //Used for HCS encoders, not MCUs
+         BRA      SET_ICSP_RATELbl
          BRA      SHIFT_BITS_IN_LBL
       #ENDASM 
 readN_BitsLbl:
@@ -604,10 +604,10 @@ LOOPLbl:
       si = loop_idx;
       continue;
  
-//SET_ICSP_RATELbl:
-//      icsp_rate = *(scriptLocation + ++si);
-//      si++;
-//      continue;
+SET_ICSP_RATELbl:
+      icsp_rate = *(scriptLocation + ++si);
+      si++;
+      continue;
 
 SHIFT_BITS_IN_LBL:
       shift_bits_in(*(scriptLocation + ++si));
@@ -745,28 +745,7 @@ void delay_long (unsigned int8 duration)
 
 unsigned int8 shift_bits_in (unsigned int8 number_of_bits)
 {
-   
-   unsigned int8 bits_buff = 0; //Bits are shifted in here 
-   //unsigned int8 iteration = numberOfBits;
-   #BIT buff0 = bits_buff.0
-   #ASM
-      BSF      tris_ICSPDAT  //Set PGD pin as input
-   READBITSLOOP:
-      BSF      ICSPCLK_out       //Clock rising edge
-      NOP
-      NOP
-      NOP
-      BTFSC    ICSPDAT_in  //read PGD pin
-      BSF      buff0      //If PGD was high, set the corresponding bit starting from LSB
-      BCF      ICSPCLK_out    //Clock falling edge 
-      NOP
-      RRNCF    bits_buff, f    //Rotate right (no carry)
-      DECFSZ   number_of_bits, f
-      BRA      READBITSLOOP
-      BCF      tris_ICSPDAT //PGD set as output
-   #ENDASM
-   bits_buff >>= (8 - number_of_bits); //right justified
-   return bits_buff;
+   tris_ICSPDAT = 1; //set PGD pin as input
 }
 
 

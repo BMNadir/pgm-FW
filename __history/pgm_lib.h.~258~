@@ -168,7 +168,7 @@ void ADC_VPP_VDD_control (int1 state);
 void getADC (unsigned int8 channel);
 unsigned int16 calADCWord(unsigned int16 Val);
 void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation);
-unsigned int8 read_n_bits_24(unsigned int8 numberOfBits);
+unsigned int8 readN_Bits(unsigned int8 numberOfBits);
 void write_upload_buff(unsigned int8 wrByte);
 void shiftBitsOutICSP (unsigned int8 charToBeShifted, unsigned int8 numberOfBits);
 //void downloadScriptArgs (void);
@@ -176,7 +176,6 @@ unsigned int8 getICSP_States(void);
 unsigned int8 pop_down_buff (void);
 void delay_short (unsigned int8 duration);
 void delay_long (unsigned int8 duration);
-unsigned int8 shift_bits_in (unsigned int8 number_of_bits);
 #ENDIF
 
 

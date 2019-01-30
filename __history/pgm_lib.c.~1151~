@@ -745,28 +745,29 @@ void delay_long (unsigned int8 duration)
 
 unsigned int8 shift_bits_in (unsigned int8 number_of_bits)
 {
+   tris_ICSPDAT = 1; //set PGD pin as input
    
-   unsigned int8 bits_buff = 0; //Bits are shifted in here 
+   unsigned int8 bitsBuff = 0; //Bits are shifted in here 
    //unsigned int8 iteration = numberOfBits;
-   #BIT buff0 = bits_buff.0
+   #BIT buff0 = bitsBuff.0
    #ASM
       BSF      tris_ICSPDAT  //Set PGD pin as input
+      //MOVLW 0x01        //this will be used to set the bits 
    READBITSLOOP:
-      BSF      ICSPCLK_out       //Clock rising edge
-      NOP
-      NOP
-      NOP
       BTFSC    ICSPDAT_in  //read PGD pin
       BSF      buff0      //If PGD was high, set the corresponding bit starting from LSB
+      BSF      ICSPCLK_out       //Clock rising edge
+      //RLNCF    W,W               //Rotate W left, (no carry)
+      NOP
+      NOP
+      NOP
       BCF      ICSPCLK_out    //Clock falling edge 
       NOP
-      RRNCF    bits_buff, f    //Rotate right (no carry)
-      DECFSZ   number_of_bits, f
+      RRNCF    bitsBuff, f    //Rotate right (no carry)
+      DECFSZ   numberOfBits, f
       BRA      READBITSLOOP
-      BCF      tris_ICSPDAT //PGD set as output
    #ENDASM
-   bits_buff >>= (8 - number_of_bits); //right justified
-   return bits_buff;
+   return bitsBuff;
 }
 
 
