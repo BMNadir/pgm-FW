@@ -38,7 +38,6 @@
 #BYTE ADRESL   = 0xFC3
 #BYTE TMR0H    = 0xFD7
 #BYTE TMR0L    = 0xFD6
-#BYTE CCP2CON  = 0xFBA
 
 
 //STATUS Reg Bits //
@@ -179,7 +178,6 @@ void delay_short (unsigned int8 duration);
 void delay_long (unsigned int8 duration);
 unsigned int8 shift_bits_in (unsigned int8 number_of_bits);
 void shift_bits_out (unsigned int8  outb, unsigned int8 number_of_bits);
-void set_icsp_pins(unsigned int8 state); 
 #ENDIF
 
 

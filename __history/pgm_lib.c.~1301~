@@ -470,10 +470,6 @@ void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation)
          BRA      VPP_PWM_ON_LBL
          BRA      VPP_ON_LBL
          BRA      VPP_OFF_LBL
-         BRA      VDD_GND_ON_LBL
-         BRA      VDD_GND_OFF_LBL
-         BRA      VDD_ON_LBL
-         BRA      VDD_OFF_LBL
       #ENDASM 
 readN_BitsLbl:
       write_upload_buff(read_n_bits_24(*(scriptLocation + ++si)));//WriteUploadBuffer(readN_Bits(*(scriptLocation + si + 1)));
@@ -723,20 +719,6 @@ VDD_GND_ON_LBL:
 VDD_GND_OFF_LBL:
       #ASM
          BCF   Vdd_TGT_N
-      #ENDASM
-      si++; 
-      continue;
- 
-VDD_ON_LBL:
-      #ASM
-         BCF   Vdd_TGT_P
-      #ENDASM
-      si++; 
-      continue;
-      
-VDD_OFF_LBL:
-      #ASM
-         BSF   Vdd_TGT_P
       #ENDASM
       si++; 
       continue;

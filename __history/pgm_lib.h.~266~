@@ -38,7 +38,6 @@
 #BYTE ADRESL   = 0xFC3
 #BYTE TMR0H    = 0xFD7
 #BYTE TMR0L    = 0xFD6
-#BYTE CCP2CON  = 0xFBA
 
 
 //STATUS Reg Bits //

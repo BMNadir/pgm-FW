@@ -16,7 +16,34 @@
 0xE4 : SHORT_DELAY		arguments : 1 = duration
 0xE5 : LOOP			arguments : 2 = 1 -> index offset, 2 -> iterations
 0xE6 : SHIFT_BITS_IN		arguments : 1 = number of bits
-0xE7 : SHIFT_BITS_IN_BUFFER
+0xE7 : SHIFT_BITS_IN_BUFFER		arguments : 1 = number of bits
+0xE8 : SHIFT_BITS_OUT_BUFFER	arguments : 1 = number of bits to shift out
+0xE9 : SHIFT_BITS_OUT		arguments : 2 = 1 -> number of bits to shift out, 2-> output byte
+0xEA : SHIFT_BYTE_IN		arguments : 0
+0xEB : SHIFT_BYTE_IN_BUFFER	arguments : 0
+0xEC : SHIFT_BYTE_OUT_BUFFER	arguments : 0
+0xED : SHIFT_BYTE_OUT		arguments : 1 = byte to be shifted out
+0xEE : SET_ICSP_PINS		arguments : 1 = pin states
+0xEF : MCLR_TGT_GND_OFF		arguments : 0
+0xF0 : MCLR_TGT_GND_ON		arguments : 0
+0xF1 : VPP_PWM_OFF		arguments : 0
+0xF2 : VPP_PWM_ON		arguments : 0
+0xF3 : VPP_ON			arguments : 0
+0xF4 : VPP_OFF			arguments : 0
+0xF5 : VDD_GND_ON		arguments : 0
+0xF6 : VDD_GND_OFF		arguments : 0
+0xF7 : VDD_ON			arguments : 0
+0xF8 : VDD_OFF			arguments : 0
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -734,12 +734,6 @@ VDD_ON_LBL:
       si++; 
       continue;
       
-VDD_OFF_LBL:
-      #ASM
-         BSF   Vdd_TGT_P
-      #ENDASM
-      si++; 
-      continue;
       
    } //end of while loop
 }

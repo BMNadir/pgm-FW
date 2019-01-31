@@ -1,11 +1,11 @@
 >>> Warning 203 "C:\Program Files (x86)\PICC\Drivers\pic18_usb.c" Line 640(1,1): Condition always TRUE
->>> Warning 206 "N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\pgm_lib.c" Line 723(1,1): Variable of this data type is never greater than this constant
->>> Warning 204 "N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\pgm_lib.c" Line 723(1,1): Condition always FALSE
+>>> Warning 206 "N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\pgm_lib.c" Line 838(1,1): Variable of this data type is never greater than this constant
+>>> Warning 204 "N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\pgm_lib.c" Line 838(1,1): Condition always FALSE
 >>> Warning 216 "main.c" Line 40(1,2): Interrupts disabled during call to prevent re-entrancy:  (usb_token_reset)
 >>> Warning 216 "main.c" Line 40(1,2): Interrupts disabled during call to prevent re-entrancy:  (@MUL1616)
 >>> Warning 216 "main.c" Line 40(1,2): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_out)
 >>> Warning 216 "main.c" Line 40(1,2): Interrupts disabled during call to prevent re-entrancy:  (usb_tbe)
 >>> Warning 216 "main.c" Line 40(1,2): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_in)
-      Memory usage:   ROM=30%      RAM=38% - 41%
+      Memory usage:   ROM=31%      RAM=38% - 41%
       0 Errors,  8 Warnings.
 Build Successful.

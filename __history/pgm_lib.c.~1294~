@@ -468,12 +468,6 @@ void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation)
          BRA      MCLR_TGT_GND_ON_LBL
          BRA      VPP_PWM_OFF_LBL
          BRA      VPP_PWM_ON_LBL
-         BRA      VPP_ON_LBL
-         BRA      VPP_OFF_LBL
-         BRA      VDD_GND_ON_LBL
-         BRA      VDD_GND_OFF_LBL
-         BRA      VDD_ON_LBL
-         BRA      VDD_OFF_LBL
       #ENDASM 
 readN_BitsLbl:
       write_upload_buff(read_n_bits_24(*(scriptLocation + ++si)));//WriteUploadBuffer(readN_Bits(*(scriptLocation + si + 1)));
@@ -705,42 +699,6 @@ VPP_ON_LBL:
       #ENDASM
       si++; 
       continue;
- 
- VPP_OFF_LBL:
-      #ASM
-         BCF   Vpp_ON
-      #ENDASM
-      si++; 
-      continue;
-      
-VDD_GND_ON_LBL:
-      #ASM
-         BSF   Vdd_TGT_N
-      #ENDASM
-      si++; 
-      continue;
-      
-VDD_GND_OFF_LBL:
-      #ASM
-         BCF   Vdd_TGT_N
-      #ENDASM
-      si++; 
-      continue;
- 
-VDD_ON_LBL:
-      #ASM
-         BCF   Vdd_TGT_P
-      #ENDASM
-      si++; 
-      continue;
-      
-VDD_OFF_LBL:
-      #ASM
-         BSF   Vdd_TGT_P
-      #ENDASM
-      si++; 
-      continue;
-      
    } //end of while loop
 }
 

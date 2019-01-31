@@ -464,16 +464,7 @@ void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation)
          BRA      SHIFT_BYTE_OUT_BUFFER_LBL
          BRA      SHIFT_BYTE_OUT_LBL
          BRA      SET_ICSP_PINS_LBL
-         BRA      MCLR_TGT_GND_OFF_LBL
-         BRA      MCLR_TGT_GND_ON_LBL
-         BRA      VPP_PWM_OFF_LBL
-         BRA      VPP_PWM_ON_LBL
-         BRA      VPP_ON_LBL
-         BRA      VPP_OFF_LBL
-         BRA      VDD_GND_ON_LBL
-         BRA      VDD_GND_OFF_LBL
-         BRA      VDD_ON_LBL
-         BRA      VDD_OFF_LBL
+         
       #ENDASM 
 readN_BitsLbl:
       write_upload_buff(read_n_bits_24(*(scriptLocation + ++si)));//WriteUploadBuffer(readN_Bits(*(scriptLocation + si + 1)));
@@ -654,7 +645,7 @@ SHIFT_BYTE_IN_LBL:
       continue;
       
 SHIFT_BYTE_IN_BUFFER_LBL:
-      write_upload_buff (shift_bits_in(8));
+      shift_bits_out (shift_bits_in(8));
       si++;
       continue;
       
@@ -672,73 +663,6 @@ SET_ICSP_PINS_LBL:
       icsp_pins_states = *(scriptLocation + ++si);
       set_icsp_pins(icsp_pins_states);
       si++;
-      continue;
-      
-MCLR_TGT_GND_OFF_LBL:
-      #ASM
-         BCF   MCLR_TGT
-      #ENDASM
-      si++;
-      continue;
-
-MCLR_TGT_GND_ON_LBL:
-      #ASM
-         BSF   MCLR_TGT
-      #ENDASM
-      si++;
-      continue;
-      
-VPP_PWM_OFF_LBL:
-      CCP2CON = 0x00; //Turn off PWM, DS page 143
-      Vpp_PUMP = 0;
-      si++;
-      continue;
-      
-VPP_PWM_ON_LBL:
-      CCP2CON = 0x0C; //PWM mode, DS page 143
-      si++;
-      continue;
-      
-VPP_ON_LBL:
-      #ASM
-         BSF   Vpp_ON
-      #ENDASM
-      si++; 
-      continue;
- 
- VPP_OFF_LBL:
-      #ASM
-         BCF   Vpp_ON
-      #ENDASM
-      si++; 
-      continue;
-      
-VDD_GND_ON_LBL:
-      #ASM
-         BSF   Vdd_TGT_N
-      #ENDASM
-      si++; 
-      continue;
-      
-VDD_GND_OFF_LBL:
-      #ASM
-         BCF   Vdd_TGT_N
-      #ENDASM
-      si++; 
-      continue;
- 
-VDD_ON_LBL:
-      #ASM
-         BCF   Vdd_TGT_P
-      #ENDASM
-      si++; 
-      continue;
-      
-VDD_OFF_LBL:
-      #ASM
-         BSF   Vdd_TGT_P
-      #ENDASM
-      si++; 
       continue;
       
    } //end of while loop
@@ -912,10 +836,8 @@ void shift_bits_out (unsigned int8  outb, unsigned int8 number_of_bits)
 
 void set_icsp_pins(unsigned int8 state)
 {
-   ICSPCLK_out  = (state & 0x04) ? 1 : 0; //state[0] = Clock state
-   ICSPDAT_out  = (state & 0x08) ? 1 : 0; //state[0] = Data state
-   tris_ICSPCLK = (state & 0x01) ? 1 : 0; //state[0] = Clock direction
-   tris_ICSPDAT = (state & 0x02) ? 1 : 0; //state[1] = Data direction
+   ICSPCLK_out = (state & 0x04) ? 1 : 0;
+   ICSPDAT_out = (state & 0x04) ? 1 : 0;
 }
 
 
