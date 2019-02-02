@@ -20,6 +20,7 @@
 #include "usb/usb_desc_hid.h"
 #include "usb/usb.c"
 
+#include "scripts.h"
 #include "pgm_lib.c"
 
 #ENDIF

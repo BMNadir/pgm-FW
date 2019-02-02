@@ -1,11 +1,11 @@
 #include <main.h>
-
-
+ 
 void main()
 {
    usb_init_cs(); 
    pgm_init();
    
+   /*
    #ASM 
    BSF LATC,0  //Busy LED
    #ENDASM
@@ -13,7 +13,7 @@ void main()
    #ASM 
    BCF LATC,0
    #ENDASM
-   
+   */
    while(TRUE)
    {
       usb_task();

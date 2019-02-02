@@ -1,39 +1,40 @@
 
-ROM used:   10126/16384 (31%)
-            10126/16384 (31%) including unused fragments
+ROM used:   10288/16384 (31%)
+            10292/16384 (31%) including unused fragments
 
             1.5 Average locations per line
-            9.5 Average locations per statement
+            9.4 Average locations per statement
 
-RAM used:   783/2048 (38%) at main() level
-            836/2048 (41%) worst case
+RAM used:   846/2048 (41%) at main() level
+            896/2048 (44%) worst case
 
 Stack used: 15 worst case (6 in main + 9 for interrupts)
 Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   43    13   1  main.c
-   28     0   0  main.h
+   43    10   1  main.c
+   29     0   0  main.h
   759     0   0  C:\Program Files (x86)\PICC\Devices\18F2550.h
   228     0   0  usb\pic18_usb.h
   328     0   0  C:\Program Files (x86)\PICC\Drivers\usb_hw_layer.h
   352     0   0  usb\usb_desc_hid.h
  1103     0   0  C:\Program Files (x86)\PICC\Drivers\usb.h
  1180   247  23  usb\usb.c
- 1403   317  30  C:\Program Files (x86)\PICC\Drivers\pic18_usb.c
-  929   348  33  pgm_lib.c
-  193     0   0  pgm_lib.h
+ 1403   317  29  C:\Program Files (x86)\PICC\Drivers\pic18_usb.c
+    3     0   0  scripts.h
+ 1002   380  35  pgm_lib.c
+  195     0   0  pgm_lib.h
   326   128  12  C:\Program Files (x86)\PICC\Drivers\stdlibm.h
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
    76    13   1  C:\Program Files (x86)\PICC\Drivers\memmgmt.c
 ----- -----
- 6980  1066 Total
+ 7059  1095 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
 0     32   0    7             @READ_PROGRAM_MEMORY
-0     42   0    1             @delay_ms1
+0     44   0    1             @delay_ms1
 0     32   0    0             @const719
 0     66   0    0             @const725
 0     48   0    0             @const731
@@ -44,7 +45,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     18   0    0             @const748
 0     34   0    0             @const753
 0     56   0    0             @const757
-0     98   0    4   139  4.3  usb_kbhit
+0     92   0    4   139  4.3  usb_kbhit
 0     34   0    5             @MUL1616
 0     86   0    4   139  4.3  usb_tbe
 0     40   0    1   145  3.2  usb_detach
@@ -52,11 +53,11 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0      6   0    0    16  1.0  usb_init_cs
 0     36   0    1   367  5.2  usb_task
 0    292   1    9  1092  5.4  usb_flush_in
-0    198   1   10   344  6.1  usb_put_packet
+0    194   1   10   344  6.1  usb_put_packet
 0    266   1    9   914  5.0  usb_flush_out
 0    276   1   12   652  5.9  usb_get_packet_buffer
 0     72   0    5   154  3.9  usb_get_packet
-0    102   1    6   258  4.6  usb_stall_ep
+0    102   0    6   258  4.6  usb_stall_ep
 0    100   0    6   266  4.6  usb_unstall_ep
 0    118   1    5   373  6.0  usb_endpoint_stalled
 0     26   0    1    94  2.7  usb_set_address
@@ -88,7 +89,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     12   0    0   105  3.8  usb_isr_tkn_setup_ClassInterface
 0    336   2    1  1492  8.8  usb_Get_Descriptor
 0     14   0    0    76  1.8  usb_finish_set_address
-0    188   1    4   668  8.4  usb_copy_desc_seg_to_ep
+0    188   1    4   666  8.6  usb_copy_desc_seg_to_ep
 0     34   0    0             @goto11593
 0     60   0    8   150  3.6  create_node
 0     24   0    6    60  3.1  update_node
@@ -98,47 +99,51 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    330   2   12   853 11.5  malloc
 0    122   1    8   380  6.3  free
 0    124   1    0   460  2.9  pgm_init
-0    596   3    3  1866 10.4  Process_Input
-0    148   1    4   260  3.7  getVersionNumber
-0    198   1    7   429  7.7  calAndSetCCP
+0    652   3    3  2428 10.8  Process_Input
+0     42   0    0   314  4.1  get_version_number
+0    194   1    7   450  8.7  cal_and_set_ccp
 0     86   0    6             @MULS1616
-0     30   0    2   131  5.1  CalThresholdByte
-0    346   2    6   750  5.7  sendVoltages
-0     64   0    1   227  3.3  ADC_VPP_VDD_control
+0     28   0    2   131  5.1  cal_threshold_byte
+0    348   2    6   750  5.7  send_voltages
+0     58   0    1   227  3.3  adc_vpp_vdd_control
 0     20   0    1    83  2.9  getADC
 0    108   1    7   173  5.3  calADCWord
-0   1828   9   20  7728 13.2  executeScript
+0     94   0    4   287  6.5  write_down_buff
+0    146   1    4   492  8.5  send_data_usb
+0   1846   9   20  7740 13.2  executeScript
 0     36   0    2   139  3.9  read_n_bits_24
-0     40   0    3   206  4.5  write_upload_buff
+0     44   0    3   206  4.5  write_upload_buff
 0     28   0    2   116  2.1  shiftBitsOutICSP
 0     26   0    2   138  3.5  getICSP_States
-0     46   0    2   246  5.5  pop_down_buff
+0     42   0    2   246  5.5  pop_down_buff
 0     28   0    2   128  3.1  delay_short
 0     26   0    2   153  3.1  delay_long
 0     58   0    2   188  4.9  shift_bits_in
 0     30   0    2   113  2.0  shift_bits_out
 0     72   0    1   245  3.2  set_icsp_pins
-0    142   1    1   174  2.6  MAIN
+0    112   1    0   113  2.0  MAIN
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               71
-    Statements              1066
-    Comments                2736
-    Volume (V)              65500
-    Difficulty (D)          343.2
-    Effort to implement (E) 22480788
-    Time to implement (T)   346 hours, 56 minutes
-    Est Delivered Bugs (B)  27
-    Cyclomatic Complexity   138
-    Maintainability (MI)    82
+    Functions               73
+    Statements              1095
+    Comments                2764
+    Volume (V)              68228
+    Difficulty (D)          359.5
+    Effort to implement (E) 24530163
+    Time to implement (T)   378 hours, 33 minutes
+    Est Delivered Bugs (B)  28
+    Cyclomatic Complexity   142
+    Maintainability (MI)    86
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-00006     4  0  
 00008-00094   142  0  
-00096-07FFE  9976  22642  
+00096-01DFE  7526  4  
+01E00-01E00     2  0  
+01E02-07FFE  2610  22476  
 
 
 

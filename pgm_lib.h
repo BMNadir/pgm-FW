@@ -161,11 +161,11 @@
 #define DOWNLOAD_SCRIPT_ARGS 0x07
 
 //Prototypes
-void getVersionNumber (void);
-void calAndSetCCP (unsigned int8 ccph, unsigned int8 ccpl);
-unsigned int8 CalThresholdByte(unsigned int8 voltageVal);
-void sendVoltages (void);
-void ADC_VPP_VDD_control (int1 state);
+void get_version_number (void);
+void cal_and_set_ccp (unsigned int8 ccph, unsigned int8 ccpl);
+unsigned int8 cal_threshold_byte(unsigned int8 voltageVal);
+void send_voltages (void);
+void adc_vpp_vdd_control (int1 state);
 void getADC (unsigned int8 channel);
 unsigned int16 calADCWord(unsigned int16 Val);
 void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation);
@@ -180,6 +180,8 @@ void delay_long (unsigned int8 duration);
 unsigned int8 shift_bits_in (unsigned int8 number_of_bits);
 void shift_bits_out (unsigned int8  outb, unsigned int8 number_of_bits);
 void set_icsp_pins(unsigned int8 state); 
+void write_down_buff(void);
+void send_data_usb(void);
 #ENDIF
 
 

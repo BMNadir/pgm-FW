@@ -1,20 +1,22 @@
 /* This file contains all programmer functions */
 #include "pgm_lib.h"  
-#INCLUDE <stdlibm.h> //necessary for malloc 
+#include <stdlibm.h> //necessary for malloc 
 
 volatile unsigned int8 DATAin[64];  //USB packet is copied here when received 
 unsigned int8 i;     //used to iterate through DATAin in Process_Input()
 
+unsigned int8 data_out[64]; //Data is read from here by USB
+
 //unsigned int8 icsp_rate; //period in multiples of 1uS 
 unsigned int8 icsp_pins_states; 
 
-unsigned int8 DATA_Out_Buffer[128]; //Data is stored here by scripts and read by USB
+unsigned int8 DATA_Out_Buffer[128]; //Data is stored here by scripts and will be copied to data_out to be read by USB
 struct 
 {
    unsigned int8 rd_idx;
    unsigned int8 wr_idx;
    unsigned int8 nbr_bytes; //number of bytes in DATA_On_Buffer
-} DOM_mngnt;   //DATA_Out_Buffer Management
+} DOB_mngnt;   //DATA_Out_Buffer Management
 
 unsigned int8 DATA_In_Buffer[256];
 struct 
@@ -96,7 +98,7 @@ void pgm_init()
    BCF tris_Vpp_ON         // B2 set as output
    
    BCF BUSY_LED            
-   BCF tris_BUSY_LED       // Busy_led pin set as output
+   BCF tris_BUSY_LED       // BUSY_LED pin set as output
    
    BCF Vpp_PUMP            
    BCF tris_Vpp_PUMP       // C1 output (CCP2)
@@ -158,7 +160,7 @@ void Process_Input ()
    unsigned int8 packet_length = DATAin[0];
    unsigned int8 offset;
 
-   while (i < packet_length)
+   while (i <= packet_length)
    {
       offset = DATAin[i];
       if (offset < 0x01) break; //unknown instruction
@@ -179,30 +181,36 @@ void Process_Input ()
          BRA      setVPPLbl
          BRA      readVoltagesLbl
          BRA      runROMScriptLbl
-         BRA      downloadScrptArgsLbl
+         //BRA      downloadScrptArgsLbl
+         BRA      CLEAR_DOWN_BUFF_LBL
+         BRA      WRITE_DOWN_BUFF_LBL
+         BRA      CLEAR_UP_BUFF_LBL
+         BRA      UPLOAD_LBL
       #ENDASM 
       
 getVersionLbl:
-      getVersionNumber ();
+      get_version_number();
       break;
+      
 toggleLEDLbl:
       #ASM
          BTG BUSY_LED
       #ENDASM
       break;
+      
 setVDDLbl:
       /*
        * DATAin[i+1] = CCPL
        * DATAin[i+2] = CCPH
        * DATAin[i+3] = VDDLim
       */
-      // CCPH:CCPL = ((Vdd * 32) + 10.5) << 6, << 6 because CCP1 (holds the duty cycle, resolution is 10 bits) is left justified, 
-      // and is left justified because the 2 LSB bits are located in CCP1CON.
+      // CCPH:CCPL = ((Vdd * 32) + 10.5) << 6, << 6 because CCP1 (holds the duty cycle, resolution is 10 bits) and is left justified, the 2 LSB bits are located in CCP1CON.
       // Duty_cycle = vdd * 32+ 10.5
-      calAndSetCCP (DATAin[i+2], DATAin[i+1]);
-      VddVppLevels.VddThreshold = CalThresholdByte (DATAin[i+3]);
+      cal_and_set_ccp (DATAin[i+2], DATAin[i+1]);
+      VddVppLevels.VddThreshold = cal_threshold_byte (DATAin[i+3]);
       i += 4;
       continue;
+      
 setVPPLbl:
       /*
        * DATAin[i+1] = CCPR2L, this is the duty cycle, generally = 0x40;
@@ -210,14 +218,14 @@ setVPPLbl:
        * DATAin[i+3] = VPPlim = Vfault * 18.61 
       */
       Vpp_PWM.CCPRSetPoint = DATAin[i+1];
-      Vpp_PWM.UppperLimit = CalThresholdByte(DATAin[i+2])+1; //VPP upper limit = VPP + 1
+      Vpp_PWM.UppperLimit = cal_threshold_byte(DATAin[i+2])+1; //VPP upper limit = VPP + 1
       Vpp_PWM.LowerLimit = Vpp_PWM.UppperLimit - 2;        //VPP lower limit = VPP - 1
-      VddVppLevels.VppThreshold = CalThresholdByte(DATAin[i+3]); //calibrate VPPLim 
+      VddVppLevels.VppThreshold = cal_threshold_byte(DATAin[i+3]); //calibrate VPPLim 
       i += 4;
       continue;
       
 readVoltagesLbl:
-      sendVoltages ();
+      send_voltages ();
       i++;
       continue;
       
@@ -235,10 +243,34 @@ runROMScriptLbl:
       i += 4;
       continue;
       
-downloadScrptArgsLbl:
+//downloadScrptArgsLbl:
    //downloadScriptArgs();
-   i++;
-   continue;
+   //i++;
+   //continue;
+
+CLEAR_DOWN_BUFF_LBL: 
+      DIB_mngnt.rd_idx = 0;
+      DIB_mngnt.wr_idx = 0;
+      DIB_mngnt.nbr_bytes = 0;
+      i++;
+      continue;
+
+WRITE_DOWN_BUFF_LBL:
+      i++;
+      write_down_buff();
+      continue;
+
+CLEAR_UP_BUFF_LBL:
+      DOB_mngnt.rd_idx = 0;
+      DOB_mngnt.wr_idx = 0;
+      DOB_mngnt.nbr_bytes = 0;
+      i++;
+      continue;
+      
+UPLOAD_LBL:
+      send_data_usb();
+      i++;
+      continue;
    }  
    /*
    #ASM
@@ -246,8 +278,9 @@ downloadScrptArgsLbl:
    #ENDASM*/
 }
 
-void getVersionNumber (void)
+void get_version_number (void)
 {
+   /*
    unsigned int8 *DATAout  = malloc(4);
    *DATAout++ = 4;  //length of data to be sent, including this byte
    *DATAout++ = 0;
@@ -255,18 +288,19 @@ void getVersionNumber (void)
    *DATAout = 1;
    usb_put_packet(1, (DATAout-3), 64, USB_DTS_TOGGLE);
    free(DATAout);
-   
-   /*
-   DATAin [0] = 4;  //length of data to be sent, including this byte
-   DATAin [1] = 0;
-   DATAin [2] = 0;
-   DATAin [3] = 1;
-   usb_put_packet(1, DATAin, 64, USB_DTS_TOGGLE);
    */
+   
+   const char version[] = __DATE__;
+   
+   data_out [0] = 3;  //length of data to be sent, this byte not included
+   data_out [1] = 0;
+   data_out [2] = 2;    //month
+   data_out [3] = ((version[0] - 48) * 16)+ (version[1] - 48); // substract 48 to convert from string to int
+   usb_put_packet(1, data_out, 64, USB_DTS_TOGGLE);
 }
 
 //Used in setVDD
-void calAndSetCCP (unsigned int8 ccph, unsigned int8 ccpl)
+void cal_and_set_ccp (unsigned int8 ccph, unsigned int8 ccpl)
 {
    signed int16 ccp1 = (ccph * 0x100) + ccpl; //ccp1 = ccph:ccpl
    unsigned int8 tempCal;
@@ -283,18 +317,19 @@ void calAndSetCCP (unsigned int8 ccph, unsigned int8 ccpl)
    //The following is to place the lower 2 bits of the duty cycle resolution in bits 4 and 5 of CCP1CON
    CCP1 &= 0xFF;
    tempCal = (unsigned int8) (CCP1 >> 2);
-   /*
+
    CCP1CON = (CCP1CON & 0xCF) | tempCal;
-   */
+   /*
    #ASM 
    MOVLW 0xCF
    ANDWF CCP1CON,W
    IORLW tempCal
    MOVWF CCP1CON
    #ENDASM
+   */
 }
 
-unsigned int8 CalThresholdByte(unsigned int8 voltageVal)
+unsigned int8 cal_threshold_byte(unsigned int8 voltageVal)
 {
     unsigned int8 inverse_cal = 0x0200 - VoltageCalibration.adc_calfactor; //adc_calfactor by default is 0x0100 so, 0x0200 - adc_calfactor is the same as 1 / adc_calfactor 
     inverse_cal *= voltageVal;
@@ -306,12 +341,12 @@ unsigned int8 CalThresholdByte(unsigned int8 voltageVal)
 //TODO: create a function to store cal and offset values in eeprom and a function to read them
 
 //Read VDD and VPP voltages, used to detect self-powered targets 
-void sendVoltages (void)
+void send_voltages (void)
 {
    unsigned int16 adc_result;
    unsigned int8 *DATAout = malloc(5);
    *DATAout++ = 5;   //Length of data to be sent
-   ADC_VPP_VDD_control (0); //Stop ADC, VPP and VDD
+   adc_vpp_vdd_control (0); //Stop ADC, VPP and VDD
    getADC (0x04); //CH1_VDD
    adc_result = (ADRESH * 0x100) + ADRESL;
    adc_result = calADCWord(adc_result);
@@ -326,10 +361,10 @@ void sendVoltages (void)
    
    usb_put_packet(1, (DATAout-4), 64, USB_DTS_TOGGLE);
    free(DATAout);
-   ADC_VPP_VDD_control (1); //Start ADC, VPP and VDD
+   adc_vpp_vdd_control (1); //Start ADC, VPP and VDD
 }
 
-void ADC_VPP_VDD_control (int1 state)
+void adc_vpp_vdd_control (int1 state)
 {
    if (state)
    {//Activate modules
@@ -389,6 +424,41 @@ unsigned int16 calADCWord(unsigned int16 Val)
         cal_value = 0xFFFF;
 
     return (unsigned int16) cal_value;
+}
+
+void write_down_buff(void)
+{
+   unsigned int8 len = DATAin[i++]; //get length of data
+   
+   if (len + DIB_mngnt.nbr_bytes > 255) return;  
+   
+   for (unsigned int8 k = 0; k < len; k++)
+   {
+      DATA_In_Buffer[DIB_mngnt.wr_idx++] = DATAin[i++];
+      //if (DIB_mngnt.wr_idx > 255)       //just let DIB_mngnt.wr_idx overflow 
+      //   DIB_mngnt.wr_idx = 0;
+         
+      DIB_mngnt.nbr_bytes++;
+   }
+   
+}
+
+
+void send_data_usb(void)
+{
+   unsigned int8 len = DOB_mngnt.nbr_bytes; //get number of bytes in DATA_Out_Buffer
+   
+   len = len < 63 ? len : 63; //first byte in usb report will be used to store length, the other 63 used for data
+   data_out[0] = len;
+   for (unsigned int8 m = 1; m <= len; m++)
+   {
+      data_out[m] = data_out_buffer[DOB_mngnt.rd_idx++];
+      if (DOB_mngnt.rd_idx > 127)
+            DOB_mngnt.rd_idx = 0;
+   }
+   
+   DOB_mngnt.nbr_bytes -= len;
+   usb_put_packet(1, data_out, len+1, USB_DTS_TOGGLE);
 }
 
 /*
@@ -573,7 +643,7 @@ GOTO_IDXLbl:
       continue;
       
 IF_GT_GOTOLbl: //if last loaded byte in DATA_Out_Buffer is greater than arg[1], execution will branch to offset specified by arg[2] 
-      temp = DATA_Out_Buffer[DOM_mngnt.wr_idx - 1]; //get last byte written to DATA_Out_Buffer, - 1 because DOM_mngnt.wr_idx is always post-incremented, and points to the next location to be written
+      temp = DATA_Out_Buffer[DOB_mngnt.wr_idx - 1]; //get last byte written to DATA_Out_Buffer, - 1 because DOM_mngnt.wr_idx is always post-incremented, and points to the next location to be written
       if (temp > *(scriptLocation + ++si))
       {
          si += (signed int8) *(scriptLocation + ++si);
@@ -585,7 +655,7 @@ IF_GT_GOTOLbl: //if last loaded byte in DATA_Out_Buffer is greater than arg[1], 
       continue;
       
 IF_EQ_GOTOLbl: //if last loaded byte in DATA_Out_Buffer is equal than arg[1], execution will branch to offset specified by arg[2] 
-      temp = DATA_Out_Buffer[DOM_mngnt.wr_idx - 1]; //get last byte written to DATA_Out_Buffer, - 1 because DOM_mngnt.wr_idx is always post-incremented, and points to the next location to be written
+      temp = DATA_Out_Buffer[DOB_mngnt.wr_idx - 1]; //get last byte written to DATA_Out_Buffer, - 1 because DOM_mngnt.wr_idx is always post-incremented, and points to the next location to be written
       if (temp == *(scriptLocation + ++si))
       {
          si += (signed int8) *(scriptLocation + ++si);
@@ -731,6 +801,9 @@ VDD_ON_LBL:
       #ASM
          BCF   Vdd_TGT_P
       #ENDASM
+      #ASM
+         BSF   BUSY_LED  //Busy LED
+      #ENDASM
       si++; 
       continue;
       
@@ -777,15 +850,15 @@ unsigned int8 read_n_bits_24(unsigned int8 numberOfBits)
 
 void write_upload_buff(unsigned int8 wrByte)
 {
-   if (DOM_mngnt.nbr_bytes > 127) 
+   if (DOB_mngnt.nbr_bytes > 127) 
    {
       return;
    }
-   DATA_Out_Buffer[DOM_mngnt.wr_idx++] = wrByte;
-   if (DOM_mngnt.wr_idx > 127)
-      DOM_mngnt.wr_idx = 0;
+   DATA_Out_Buffer[DOB_mngnt.wr_idx++] = wrByte;
+   if (DOB_mngnt.wr_idx > 127)
+      DOB_mngnt.wr_idx = 0;
    
-   DOM_mngnt.nbr_bytes++;
+   DOB_mngnt.nbr_bytes++;
 }
 
 /*
@@ -912,8 +985,8 @@ void shift_bits_out (unsigned int8  outb, unsigned int8 number_of_bits)
 
 void set_icsp_pins(unsigned int8 state)
 {
-   ICSPCLK_out  = (state & 0x04) ? 1 : 0; //state[0] = Clock state
-   ICSPDAT_out  = (state & 0x08) ? 1 : 0; //state[0] = Data state
+   ICSPCLK_out  = (state & 0x04) ? 1 : 0; //state[3] = Clock state
+   ICSPDAT_out  = (state & 0x08) ? 1 : 0; //state[4] = Data state
    tris_ICSPCLK = (state & 0x01) ? 1 : 0; //state[0] = Clock direction
    tris_ICSPDAT = (state & 0x02) ? 1 : 0; //state[1] = Data direction
 }
