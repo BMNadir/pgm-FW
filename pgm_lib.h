@@ -168,7 +168,7 @@ void send_voltages (void);
 void adc_vpp_vdd_control (int1 state);
 void getADC (unsigned int8 channel);
 unsigned int16 calADCWord(unsigned int16 Val);
-void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation);
+void executeScript(unsigned int8 scrpt_len, unsigned int8 *scriptLocation);
 unsigned int8 read_n_bits_24(unsigned int8 numberOfBits);
 void write_upload_buff(unsigned int8 wrByte);
 void shiftBitsOutICSP (unsigned int8 charToBeShifted, unsigned int8 numberOfBits);

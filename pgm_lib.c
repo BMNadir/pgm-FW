@@ -478,7 +478,7 @@ void downloadScriptArgs (void)
 
 
 
-void executeScript(unsigned int8 scrpt_len, unsigned int16 *scriptLocation)
+void executeScript(unsigned int8 scrpt_len, unsigned int8 *scriptLocation)
 {
    unsigned int8 si = 0; //initialize script index to 0
    unsigned int8 offset, loop_buff_idx, temp;
@@ -772,6 +772,7 @@ VPP_PWM_ON_LBL:
 VPP_ON_LBL:
       #ASM
          BSF   Vpp_ON
+         BSF   BUSY_LED  //Busy LED
       #ENDASM
       si++; 
       continue;
@@ -800,9 +801,6 @@ VDD_GND_OFF_LBL:
 VDD_ON_LBL:
       #ASM
          BCF   Vdd_TGT_P
-      #ENDASM
-      #ASM
-         BSF   BUSY_LED  //Busy LED
       #ENDASM
       si++; 
       continue;

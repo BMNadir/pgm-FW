@@ -24,7 +24,7 @@
    ³     ³     ÃÄ@MUL1616  0/34  Ram=5
    ³     ³     ÀÄ@MUL1616  0/34  Ram=5
    ³     ÃÄ@delay_ms1  0/44  Ram=1
-   ³     ÃÄget_version_number  0/42  Ram=0
+   ³     ÃÄget_version_number  0/44  Ram=0
    ³     ³  ÀÄusb_put_packet  0/194  Ram=10
    ³     ³     ÃÄusb_tbe  0/86  Ram=4
    ³     ³     ³  ÀÄ@MUL1616  0/34  Ram=5
@@ -69,7 +69,7 @@
    ³     ³  ÀÄ*
    ³     ÃÄ@MUL1616  0/34  Ram=5
    ³     ÃÄ@READ_PROGRAM_MEMORY  0/32  Ram=7
-   ³     ÃÄexecuteScript  0/1846  Ram=20
+   ³     ÃÄexecuteScript  0/1638  Ram=19
    ³     ³  ÃÄread_n_bits_24  0/36  Ram=2
    ³     ³  ÃÄwrite_upload_buff  0/44  Ram=3
    ³     ³  ÃÄread_n_bits_24  0/36  Ram=2

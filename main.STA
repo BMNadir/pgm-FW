@@ -1,9 +1,9 @@
 
-ROM used:   10288/16384 (31%)
-            10292/16384 (31%) including unused fragments
+ROM used:   10084/16384 (31%)
+            10086/16384 (31%) including unused fragments
 
-            1.5 Average locations per line
-            9.4 Average locations per statement
+            1.4 Average locations per line
+            9.2 Average locations per statement
 
 RAM used:   846/2048 (41%) at main() level
             896/2048 (44%) worst case
@@ -23,13 +23,13 @@ Lines Stmts  %   Files
  1180   247  23  usb\usb.c
  1403   317  29  C:\Program Files (x86)\PICC\Drivers\pic18_usb.c
     3     0   0  scripts.h
- 1002   380  35  pgm_lib.c
+ 1000   379  35  pgm_lib.c
   195     0   0  pgm_lib.h
   326   128  12  C:\Program Files (x86)\PICC\Drivers\stdlibm.h
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
    76    13   1  C:\Program Files (x86)\PICC\Drivers\memmgmt.c
 ----- -----
- 7059  1095 Total
+ 7057  1094 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -57,7 +57,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    266   1    9   914  5.0  usb_flush_out
 0    276   1   12   652  5.9  usb_get_packet_buffer
 0     72   0    5   154  3.9  usb_get_packet
-0    102   0    6   258  4.6  usb_stall_ep
+0    102   1    6   258  4.6  usb_stall_ep
 0    100   0    6   266  4.6  usb_unstall_ep
 0    118   1    5   373  6.0  usb_endpoint_stalled
 0     26   0    1    94  2.7  usb_set_address
@@ -100,7 +100,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    122   1    8   380  6.3  free
 0    124   1    0   460  2.9  pgm_init
 0    652   3    3  2428 10.8  Process_Input
-0     42   0    0   314  4.1  get_version_number
+0     44   0    0   314  4.1  get_version_number
 0    194   1    7   450  8.7  cal_and_set_ccp
 0     86   0    6             @MULS1616
 0     28   0    2   131  5.1  cal_threshold_byte
@@ -110,7 +110,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    108   1    7   173  5.3  calADCWord
 0     94   0    4   287  6.5  write_down_buff
 0    146   1    4   492  8.5  send_data_usb
-0   1846   9   20  7740 13.2  executeScript
+0   1638   8   19  7740 13.2  executeScript
 0     36   0    2   139  3.9  read_n_bits_24
 0     44   0    3   206  4.5  write_upload_buff
 0     28   0    2   116  2.1  shiftBitsOutICSP
@@ -126,7 +126,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 
 Program metrics:
     Functions               73
-    Statements              1095
+    Statements              1094
     Comments                2764
     Volume (V)              68228
     Difficulty (D)          359.5
@@ -141,9 +141,9 @@ Program metrics:
 00000-00002     4  0  
 00004-00006     4  0  
 00008-00094   142  0  
-00096-01DFE  7526  4  
-01E00-01E00     2  0  
-01E02-07FFE  2610  22476  
+00096-01DFE  7528  2  
+01E00-01E02     4  0  
+01E04-07FFE  2402  22682  
 
 
 

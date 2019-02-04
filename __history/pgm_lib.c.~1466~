@@ -98,7 +98,7 @@ void pgm_init()
    BCF tris_Vpp_ON         // B2 set as output
    
    BCF BUSY_LED            
-   BCF tris_BUSY_LED       // Busy_led pin set as output
+   BCF tris_BUSY_LED       // BUSY_LED pin set as output
    
    BCF Vpp_PUMP            
    BCF tris_Vpp_PUMP       // C1 output (CCP2)
@@ -160,7 +160,7 @@ void Process_Input ()
    unsigned int8 packet_length = DATAin[0];
    unsigned int8 offset;
 
-   while (i < packet_length)
+   while (i <= packet_length)
    {
       offset = DATAin[i];
       if (offset < 0x01) break; //unknown instruction
@@ -191,11 +191,13 @@ void Process_Input ()
 getVersionLbl:
       get_version_number();
       break;
+      
 toggleLEDLbl:
       #ASM
          BTG BUSY_LED
       #ENDASM
       break;
+      
 setVDDLbl:
       /*
        * DATAin[i+1] = CCPL
@@ -208,6 +210,7 @@ setVDDLbl:
       VddVppLevels.VddThreshold = cal_threshold_byte (DATAin[i+3]);
       i += 4;
       continue;
+      
 setVPPLbl:
       /*
        * DATAin[i+1] = CCPR2L, this is the duty cycle, generally = 0x40;
@@ -287,11 +290,12 @@ void get_version_number (void)
    free(DATAout);
    */
    
-   unsigned int8 dot_version = __DATE__[1] ;
-   data_out [0] = 4;  //length of data to be sent, including this byte
+   const char version[] = __DATE__;
+   
+   data_out [0] = 3;  //length of data to be sent, this byte not included
    data_out [1] = 0;
-   data_out [2] = 2;
-   data_out [3] = dot_version;
+   data_out [2] = 2;    //month
+   data_out [3] = ((version[0] - 48) * 16)+ (version[1] - 48); // substract 48 to convert from string to int
    usb_put_packet(1, data_out, 64, USB_DTS_TOGGLE);
 }
 
@@ -313,15 +317,16 @@ void cal_and_set_ccp (unsigned int8 ccph, unsigned int8 ccpl)
    //The following is to place the lower 2 bits of the duty cycle resolution in bits 4 and 5 of CCP1CON
    CCP1 &= 0xFF;
    tempCal = (unsigned int8) (CCP1 >> 2);
-   /*
+
    CCP1CON = (CCP1CON & 0xCF) | tempCal;
-   */
+   /*
    #ASM 
    MOVLW 0xCF
    ANDWF CCP1CON,W
    IORLW tempCal
    MOVWF CCP1CON
    #ENDASM
+   */
 }
 
 unsigned int8 cal_threshold_byte(unsigned int8 voltageVal)
@@ -767,6 +772,7 @@ VPP_PWM_ON_LBL:
 VPP_ON_LBL:
       #ASM
          BSF   Vpp_ON
+         BSF   BUSY_LED  //Busy LED
       #ENDASM
       si++; 
       continue;
