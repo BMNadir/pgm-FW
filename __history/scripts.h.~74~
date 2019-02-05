@@ -1,0 +1,54 @@
+#ifndef SCRIPTS_H
+#define SCRIPTS_H
+/*****************************************************************************/
+/*****************************************************************************/
+/*****************************************************************************/
+/******                       SCRIPT COMMANDS                           ******/
+/*****************************************************************************/
+/*****************************************************************************/
+/*****************************************************************************/
+#define READ_N_BITS           0xD5     //arguments : 1 = number of bits
+#define READ_BYTE             0xD6     //arguments : 0
+#define VISI24                0xD7
+#define NOP24                 0xD8
+#define COREINST24            0xD9
+#define COREINST18            0xDA
+#define POP_DOWNLOAD_BUFFER   0xDB
+#define READ_ICSP_STATES      0xDC
+#define LOOP_BUFFER           0xDD
+#define WRITE_SFR             0xDE
+#define READ_SFR              0xDF
+#define EXIT_SCRIPT           0xE0
+#define GOTO_IDX              0xE1
+#define IF_GT_GOTO            0xE2
+#define IF_EQ_GOTO            0xE3
+#define SHORT_DELAY           0xE4
+#define LONG_DELAY            0xE5
+#define LOOP                  0xE6
+#define SHIFT_BITS_IN         0xE7
+#define SHIFT_BITS_IN_BUFFER  0xE8
+#define SHIFT_BITS_OUT_BUFFER 0xE9
+#define SHIFT_BITS_OUT        0xEA
+#define SHIFT_BYTE_IN         0xEB     //arguments : 0
+#define SHIFT_BYTE_IN         0xEC     //arguments : 0
+
+
+
+
+
+
+#rom int8 0x1E00 = {0xF0, 0xE5, 100, 0xF4}
+#rom int8 0x1E04 = {0xE5, 100, 0xF0}
+
+
+
+
+#endif 
+
+
+
+
+
+
+
+

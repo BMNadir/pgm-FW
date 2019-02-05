@@ -1,12 +1,12 @@
-0xD5 : readN_BitsLbl		arguments : 1 = number of bits
-0xD6 : readByteLbl 			arguments : 0
+0xD5 : READ_N_BITS		arguments : 1 = number of bits
+0xD6 : READ_BYTE			arguments : 0
 0xD7 : VISI24 			arguments : 0
 0xD8 : NOP24			arguments : 0
 0xD9 : COREINST24			arguments : 3 = low byte, mid byte, upper byte
 0xDA : COREINST18			arguments : 2 = low byte, upper byte
 0xDB : POP_DOWNLOAD_BUFFER	arguments : 0
-0xDC : readICSP_States		arguments : 0
-0xDD : LOOPBUFFER		arguments : 1 = index offset to loop to 
+0xDC : READ_ICSP_STATES		arguments : 0
+0xDD : LOOP_BUFFER		arguments : 1 = index offset to loop to 
 0xDE : WRITE_SFR			arguments : 2 = 1 -> lower byte of SFR addr, 2 -> data to be written
 0xDF : READ_SFR			arguments : 1 = lower byte of SFR addr
 0xE0 : EXIT_SCRIPT			arguments : 0

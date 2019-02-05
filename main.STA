@@ -1,6 +1,6 @@
 
-ROM used:   10084/16384 (31%)
-            10086/16384 (31%) including unused fragments
+ROM used:   10090/16384 (31%)
+            10092/16384 (31%) including unused fragments
 
             1.4 Average locations per line
             9.2 Average locations per statement
@@ -22,14 +22,14 @@ Lines Stmts  %   Files
  1103     0   0  C:\Program Files (x86)\PICC\Drivers\usb.h
  1180   247  23  usb\usb.c
  1403   317  29  C:\Program Files (x86)\PICC\Drivers\pic18_usb.c
-    3     0   0  scripts.h
- 1000   379  35  pgm_lib.c
+   38     0   0  scripts.h
+ 1003   380  35  pgm_lib.c
   195     0   0  pgm_lib.h
   326   128  12  C:\Program Files (x86)\PICC\Drivers\stdlibm.h
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
    76    13   1  C:\Program Files (x86)\PICC\Drivers\memmgmt.c
 ----- -----
- 7057  1094 Total
+ 7095  1095 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -89,7 +89,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     12   0    0   105  3.8  usb_isr_tkn_setup_ClassInterface
 0    336   2    1  1492  8.8  usb_Get_Descriptor
 0     14   0    0    76  1.8  usb_finish_set_address
-0    188   1    4   666  8.6  usb_copy_desc_seg_to_ep
+0    188   1    4   708  6.1  usb_copy_desc_seg_to_ep
 0     34   0    0             @goto11593
 0     60   0    8   150  3.6  create_node
 0     24   0    6    60  3.1  update_node
@@ -110,7 +110,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    108   1    7   173  5.3  calADCWord
 0     94   0    4   287  6.5  write_down_buff
 0    146   1    4   492  8.5  send_data_usb
-0   1638   8   19  7740 13.2  executeScript
+0   1640   8   19  7752 13.2  executeScript
 0     36   0    2   139  3.9  read_n_bits_24
 0     44   0    3   206  4.5  write_upload_buff
 0     28   0    2   116  2.1  shiftBitsOutICSP
@@ -126,15 +126,15 @@ Page ROM  %  RAM   Vol Diff  Functions:
 
 Program metrics:
     Functions               73
-    Statements              1094
-    Comments                2764
-    Volume (V)              68228
-    Difficulty (D)          359.5
-    Effort to implement (E) 24530163
-    Time to implement (T)   378 hours, 33 minutes
+    Statements              1095
+    Comments                2772
+    Volume (V)              68289
+    Difficulty (D)          357.0
+    Effort to implement (E) 24377129
+    Time to implement (T)   376 hours, 11 minutes
     Est Delivered Bugs (B)  28
     Cyclomatic Complexity   142
-    Maintainability (MI)    86
+    Maintainability (MI)    85
 
  Segment     Used  Free
 -----------  ----  ----
@@ -143,7 +143,8 @@ Program metrics:
 00008-00094   142  0  
 00096-01DFE  7528  2  
 01E00-01E02     4  0  
-01E04-07FFE  2402  22682  
+01E04-01E06     4  0  
+01E08-07FFE  2404  22676  
 
 
 

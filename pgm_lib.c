@@ -506,24 +506,24 @@ void executeScript(unsigned int8 scrpt_len, unsigned int8 *scriptLocation)
          BTFSC    C
          INCF     PCLATH
          MOVWF    PCL
-         BRA      readN_BitsLbl  //Read N bits from target and store them in DATA_Out_Buffer, (May not be used)
-         BRA      readByteLbl
-         BRA      VISI24Lbl
-         BRA      NOP24Lbl
-         BRA      COREINST24Lbl 
-         BRA      COREINST18Lbl
-         BRA      POP_DOWNLOAD_BUFFERLbl
-         BRA      readICSP_StatesLbl
-         BRA      LOOPBUFFERLbl
-         BRA      WRITE_SFRLbl
-         BRA      READ_SFRLbl
-         BRA      EXIT_SCRIPTLbl 
-         BRA      GOTO_IDXLbl
-         BRA      IF_GT_GOTOLbl  
-         BRA      IF_EQ_GOTOLbl
-         BRA      SHORT_DELAYLbl
-         BRA      LONG_DELAYLbl
-         BRA      LOOPLbl
+         BRA      READ_N_BITS_LBL  //Read N bits from target and store them in DATA_Out_Buffer, (May not be used)
+         BRA      READ_BYTE_LBL
+         BRA      VISI24_LBL
+         BRA      NOP24_LBL
+         BRA      COREINST24_LBL
+         BRA      COREINST18_LBL
+         BRA      POP_DOWNLOAD_BUFFER_LBL
+         BRA      READ_ICSP_STATES_LBL
+         BRA      LOOP_BUFFER_LBL
+         BRA      WRITE_SFR_LBL
+         BRA      READ_SFR_LBL
+         BRA      EXIT_SCRIPT_LBL
+         BRA      GOTO_IDX_LBL
+         BRA      IF_GT_GOTO_LBL
+         BRA      IF_EQ_GOTO_LBL
+         BRA      SHORT_DELAY_LBL
+         BRA      LONG_DELAY_LBL
+         BRA      LOOP_LBL
          //BRA      SET_ICSP_RATELbl      //Used for HCS encoders, not MCUs
          BRA      SHIFT_BITS_IN_LBL
          BRA      SHIFT_BITS_IN_BUFFER_LBL
@@ -545,17 +545,17 @@ void executeScript(unsigned int8 scrpt_len, unsigned int8 *scriptLocation)
          BRA      VDD_ON_LBL
          BRA      VDD_OFF_LBL
       #ENDASM 
-readN_BitsLbl:
+READ_N_BITS_LBL:
       write_upload_buff(read_n_bits_24(*(scriptLocation + ++si)));//WriteUploadBuffer(readN_Bits(*(scriptLocation + si + 1)));
       si++;
       continue;
    
-readByteLbl:
+READ_BYTE_LBL:
       write_upload_buff(read_n_bits_24(8));
       si++;
       continue;
 
-VISI24Lbl:
+VISI24_LBL:
       ShiftBitsOutICSP(1, 4);
       ShiftBitsOutICSP(0, 8);
       write_upload_buff(read_n_bits_24(8));
@@ -563,7 +563,7 @@ VISI24Lbl:
       si++;
       continue;
    
-NOP24Lbl:
+NOP24_LBL:
       ShiftBitsOutICSP(0, 8);
       ShiftBitsOutICSP(0, 8);
       ShiftBitsOutICSP(0, 8);
@@ -571,7 +571,7 @@ NOP24Lbl:
       si++;
       continue;
    
-COREINST24Lbl:
+COREINST24_LBL:
       ShiftBitsOutICSP(0, 4);
       ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
       ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
@@ -579,24 +579,24 @@ COREINST24Lbl:
       si++;
       continue;
 
-COREINST18Lbl:
+COREINST18_LBL:
       ShiftBitsOutICSP(0, 4);
       ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
       ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
       si++;
       continue;
    
-POP_DOWNLOAD_BUFFERLbl:
+POP_DOWNLOAD_BUFFER_LBL:
       pop_down_buff ();
       si++;
       continue;
    
-readICSP_StatesLbl:
+READ_ICSP_STATES_LBL:
       write_upload_buff(getICSP_States());
       si++;
       continue;
    
-LOOPBUFFERLbl:  //will loop through a number of script commands, argument is the number if bytes to loop through 
+LOOP_BUFFER_LBL:  //will loop through a number of script commands, argument is the number if bytes to loop through 
       if (!first_iteration_LB)
       {
          nbr_iterations--;
@@ -622,27 +622,27 @@ LOOPBUFFERLbl:  //will loop through a number of script commands, argument is the
       si = loop_buff_idx;  
       continue;
       
-WRITE_SFRLbl:
+WRITE_SFR_LBL:
       SFR_ptr = (unsigned int8 *) 0x0F00 + *(scriptLocation + ++si);
       *SFR_ptr = *(scriptLocation + ++si);
       si++;
       continue;
 
-READ_SFRLbl:
+READ_SFR_LBL:
       SFR_ptr = (unsigned int8 *) 0x0F00 + *(scriptLocation + ++si);
       write_upload_buff(*SFR_ptr);
       si++;
       continue;
       
-EXIT_SCRIPTLbl:
+EXIT_SCRIPT_LBL:
       si = scrpt_len;
       continue;
       
-GOTO_IDXLbl:
+GOTO_IDX_LBL:
       si = *(scriptLocation + ++si);
       continue;
       
-IF_GT_GOTOLbl: //if last loaded byte in DATA_Out_Buffer is greater than arg[1], execution will branch to offset specified by arg[2] 
+IF_GT_GOTO_LBL: //if last loaded byte in DATA_Out_Buffer is greater than arg[1], execution will branch to offset specified by arg[2] 
       temp = DATA_Out_Buffer[DOB_mngnt.wr_idx - 1]; //get last byte written to DATA_Out_Buffer, - 1 because DOM_mngnt.wr_idx is always post-incremented, and points to the next location to be written
       if (temp > *(scriptLocation + ++si))
       {
@@ -654,7 +654,7 @@ IF_GT_GOTOLbl: //if last loaded byte in DATA_Out_Buffer is greater than arg[1], 
       }
       continue;
       
-IF_EQ_GOTOLbl: //if last loaded byte in DATA_Out_Buffer is equal than arg[1], execution will branch to offset specified by arg[2] 
+IF_EQ_GOTO_LBL: //if last loaded byte in DATA_Out_Buffer is equal than arg[1], execution will branch to offset specified by arg[2] 
       temp = DATA_Out_Buffer[DOB_mngnt.wr_idx - 1]; //get last byte written to DATA_Out_Buffer, - 1 because DOM_mngnt.wr_idx is always post-incremented, and points to the next location to be written
       if (temp == *(scriptLocation + ++si))
       {
@@ -666,17 +666,17 @@ IF_EQ_GOTOLbl: //if last loaded byte in DATA_Out_Buffer is equal than arg[1], ex
       }
       continue;
       
-SHORT_DELAYLbl:      //causes a delay of : duration * 21.3us, NOTE : 0 = 255
+SHORT_DELAY_LBL:      //causes a delay of : duration * 21.3us, NOTE : 0 = 255
       delay_short (*(scriptLocation + ++si));
       si++;
       continue;
       
-LONG_DELAYLbl:
+LONG_DELAY_LBL:
       delay_long (*(scriptLocation + ++si));
       si++;
       continue;
       
-LOOPLbl:
+LOOP_LBL:
       if (!first_iteration_L)
       {
          loop_count--;
@@ -748,6 +748,9 @@ MCLR_TGT_GND_OFF_LBL:
       #ASM
          BCF   MCLR_TGT
       #ENDASM
+      #ASM
+         BSF   BUSY_LED  //Busy LED
+      #ENDASM
       si++;
       continue;
 
@@ -772,7 +775,7 @@ VPP_PWM_ON_LBL:
 VPP_ON_LBL:
       #ASM
          BSF   Vpp_ON
-         BSF   BUSY_LED  //Busy LED
+         BCF   BUSY_LED  //Busy LED
       #ENDASM
       si++; 
       continue;
