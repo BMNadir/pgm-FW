@@ -1,9 +1,9 @@
 
-ROM used:   10090/16384 (31%)
-            10092/16384 (31%) including unused fragments
+ROM used:   10520/16384 (32%)
+            12574/16384 (38%) including unused fragments
 
             1.4 Average locations per line
-            9.2 Average locations per statement
+            8.9 Average locations per statement
 
 RAM used:   846/2048 (41%) at main() level
             896/2048 (44%) worst case
@@ -20,21 +20,21 @@ Lines Stmts  %   Files
   328     0   0  C:\Program Files (x86)\PICC\Drivers\usb_hw_layer.h
   352     0   0  usb\usb_desc_hid.h
  1103     0   0  C:\Program Files (x86)\PICC\Drivers\usb.h
- 1180   247  23  usb\usb.c
- 1403   317  29  C:\Program Files (x86)\PICC\Drivers\pic18_usb.c
-   38     0   0  scripts.h
- 1003   380  35  pgm_lib.c
-  195     0   0  pgm_lib.h
-  326   128  12  C:\Program Files (x86)\PICC\Drivers\stdlibm.h
+ 1180   247  21  usb\usb.c
+ 1403   317  27  C:\Program Files (x86)\PICC\Drivers\pic18_usb.c
+ 1055   435  37  pgm_lib.c
+  188     0   0  pgm_lib.h
+  326   128  11  C:\Program Files (x86)\PICC\Drivers\stdlibm.h
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
    76    13   1  C:\Program Files (x86)\PICC\Drivers\memmgmt.c
+  160     0   0  scripts.h
+   66    37   3  isr.c
 ----- -----
- 7095  1095 Total
+ 7328  1187 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
 0     32   0    7             @READ_PROGRAM_MEMORY
-0     44   0    1             @delay_ms1
 0     32   0    0             @const719
 0     66   0    0             @const725
 0     48   0    0             @const731
@@ -57,7 +57,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    266   1    9   914  5.0  usb_flush_out
 0    276   1   12   652  5.9  usb_get_packet_buffer
 0     72   0    5   154  3.9  usb_get_packet
-0    102   1    6   258  4.6  usb_stall_ep
+0    102   0    6   258  4.6  usb_stall_ep
 0    100   0    6   266  4.6  usb_unstall_ep
 0    118   1    5   373  6.0  usb_endpoint_stalled
 0     26   0    1    94  2.7  usb_set_address
@@ -89,7 +89,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     12   0    0   105  3.8  usb_isr_tkn_setup_ClassInterface
 0    336   2    1  1492  8.8  usb_Get_Descriptor
 0     14   0    0    76  1.8  usb_finish_set_address
-0    188   1    4   708  6.1  usb_copy_desc_seg_to_ep
+0    188   1    4   668  8.4  usb_copy_desc_seg_to_ep
 0     34   0    0             @goto11593
 0     60   0    8   150  3.6  create_node
 0     24   0    6    60  3.1  update_node
@@ -98,53 +98,74 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    274   1   12   705  9.2  traverse
 0    330   2   12   853 11.5  malloc
 0    122   1    8   380  6.3  free
-0    124   1    0   460  2.9  pgm_init
-0    652   3    3  2428 10.8  Process_Input
-0     44   0    0   314  4.1  get_version_number
-0    194   1    7   450  8.7  cal_and_set_ccp
-0     86   0    6             @MULS1616
-0     28   0    2   131  5.1  cal_threshold_byte
-0    348   2    6   750  5.7  send_voltages
+0    164   1    0  1819  3.0  pgm_init
+0    648   3    3  2527 11.4  Process_Input
+0     44   0    0   174  2.7  get_version_number
+0    194   1    7   462  8.7  cal_and_set_ccp
+0     86   0    6   462  8.7  @MULS1616
+0     28   0    2   136  5.1  cal_threshold_byte
+0    352   2    6   750  5.7  send_voltages
 0     58   0    1   227  3.3  adc_vpp_vdd_control
 0     20   0    1    83  2.9  getADC
 0    108   1    7   173  5.3  calADCWord
-0     94   0    4   287  6.5  write_down_buff
-0    146   1    4   492  8.5  send_data_usb
-0   1640   8   19  7752 13.2  executeScript
+0     96   0    4   281  6.2  write_down_buff
+0    140   1    4   470  7.8  send_data_usb
+0   1672   8   19  7857 13.2  execute_script
 0     36   0    2   139  3.9  read_n_bits_24
-0     44   0    3   206  4.5  write_upload_buff
-0     28   0    2   116  2.1  shiftBitsOutICSP
+0     44   0    3   230  4.5  write_upload_buff
+0     36   0    4   175  3.3  shift_bits_out_ICSP
 0     26   0    2   138  3.5  getICSP_States
-0     42   0    2   246  5.5  pop_down_buff
+0     42   0    1   191  4.9  pop_down_buff
 0     28   0    2   128  3.1  delay_short
 0     26   0    2   153  3.1  delay_long
-0     58   0    2   188  4.9  shift_bits_in
-0     30   0    2   113  2.0  shift_bits_out
-0     72   0    1   245  3.2  set_icsp_pins
+0     42   0    3   234  3.8  shift_bits_in
+0     36   0    4   196  3.5  shift_bits_out
+0     72   0    1   293  1.2  set_icsp_pins
+0     62   0    0   401  6.1  timer1_overflow
+0     44   0    0   538  6.2  adc_complete
 0    112   1    0   113  2.0  MAIN
- Inline         0             @cinit1
+ Inline         0   113  2.0  @cinit1
 
 Program metrics:
-    Functions               73
-    Statements              1095
-    Comments                2772
-    Volume (V)              68289
-    Difficulty (D)          357.0
-    Effort to implement (E) 24377129
-    Time to implement (T)   376 hours, 11 minutes
-    Est Delivered Bugs (B)  28
-    Cyclomatic Complexity   142
-    Maintainability (MI)    85
+    Functions               77
+    Statements              1187
+    Comments                2845
+    Volume (V)              74632
+    Difficulty (D)          377.3
+    Effort to implement (E) 28162021
+    Time to implement (T)   434 hours, 36 minutes
+    Est Delivered Bugs (B)  31
+    Cyclomatic Complexity   150
+    Maintainability (MI)    91
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-00006     4  0  
-00008-00094   142  0  
-00096-01DFE  7528  2  
-01E00-01E02     4  0  
-01E04-01E06     4  0  
-01E08-07FFE  2404  22676  
+00008-000AC   166  0  
+000AE-02FFE  10060  2054  
+03000-0300E    16  0  
+03010-05FFE     0  12272  
+06000-0601C    30  0  
+0601E-0603A     0  30  
+0603C-06042     8  0  
+06044-06048     0  6  
+0604A-0607A    50  0  
+0607C-060AC     0  50  
+060AE-060C8    28  0  
+060CA-060E2     0  26  
+060E4-06110    46  0  
+06112-0613C     0  44  
+0613E-0614E    18  0  
+06150-0615E     0  16  
+06160-06174    22  0  
+06176-06188     0  20  
+0618A-0619A    18  0  
+0619C-061AC     0  18  
+061AE-061C8    28  0  
+061CA-061E2     0  26  
+061E4-061F8    22  0  
+061FA-07FFE     0  7686  
 
 
 

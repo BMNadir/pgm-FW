@@ -15,6 +15,7 @@
 #BYTE TRISC    = 0xF94
 #BYTE LATC     = 0xF8B
 #BYTE CCPR1L   = 0xFBE
+#BYTE CCPR2L   = 0xFBB
 #BYTE T0CON    = 0xFD5
 #BYTE T2CON    = 0xFCA
 #BYTE PR2      = 0xFCB
@@ -67,7 +68,7 @@
 //  PORT B  //
 #BIT tris_Vpp_ON      =   TRISB.2
 #BIT Vpp_ON           =   LATB.2
-//#define Vpp_ON_pin    PORTB, 2 
+#define Vpp_ON_pin    PORTB, 2 
 
 #BIT tris_Vdd_TGT_N =  TRISB.3    // RB3 Output
 #BIT Vdd_TGT_N      =  LATB.3
@@ -75,7 +76,7 @@
 
 #BIT tris_Vdd_TGT_P =  TRISB.4  // RB4 Output
 #BIT Vdd_TGT_P      =  LATB.4
-//#define Vdd_TGT_P_pin      PORTB, 4
+#define Vdd_TGT_P_pin      PORTB, 4
 
 #BIT tris_PROG_SWITCH =   TRISB.5   
 #BIT PROG_SWITCH_pin  =   PORTB.5
@@ -152,14 +153,6 @@
 #define Vdd_1V8     ( 64/4)         //  1.8V Vdd
 
 
-//PGM Commands
-#define GET_VERSION 0x01
-#define SET_VDD 0x03
-#define SET_VPP 0x04
-#define READ_VOLTAGES 0x05
-#define RUN_ROM_SCRIPT 0x06
-#define DOWNLOAD_SCRIPT_ARGS 0x07
-
 //Prototypes
 void get_version_number (void);
 void cal_and_set_ccp (unsigned int8 ccph, unsigned int8 ccpl);
@@ -168,18 +161,18 @@ void send_voltages (void);
 void adc_vpp_vdd_control (int1 state);
 void getADC (unsigned int8 channel);
 unsigned int16 calADCWord(unsigned int16 Val);
-void executeScript(unsigned int8 scrpt_len, unsigned int8 *scriptLocation);
+void execute_script(unsigned int8 scrpt_len, unsigned int8 *script_location);
 unsigned int8 read_n_bits_24(unsigned int8 numberOfBits);
-void write_upload_buff(unsigned int8 wrByte);
-void shiftBitsOutICSP (unsigned int8 charToBeShifted, unsigned int8 numberOfBits);
+void write_upload_buff(unsigned int8 wr_byte);
+void shift_bits_out_ICSP (unsigned int8 char_to_be_shifted, unsigned int8 number_of_bits);
 //void downloadScriptArgs (void);
 unsigned int8 getICSP_States(void);
 unsigned int8 pop_down_buff (void);
 void delay_short (unsigned int8 duration);
 void delay_long (unsigned int8 duration);
 unsigned int8 shift_bits_in (unsigned int8 number_of_bits);
-void shift_bits_out (unsigned int8  outb, unsigned int8 number_of_bits);
-void set_icsp_pins(unsigned int8 state); 
+void shift_bits_out (unsigned int8 outb, unsigned int8 number_of_bits);
+void set_icsp_pins(int8 state); 
 void write_down_buff(void);
 void send_data_usb(void);
 #ENDIF

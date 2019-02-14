@@ -1,0 +1,78 @@
+#include <main.h>
+ 
+#INT_TIMER1
+void timer1_overflow (void)
+{
+   //Reset Timer1
+   TMR1H = 0xFA;
+   TMR1L = 0x38;
+   
+   //Check if Vdd values is less than threshold 
+   if ((!Vdd_TGT_P_pin) && (ADRESH < VddVppLevels.VddThreshold))
+   {
+      if (VddVppLevels.VddErrCount == 12)
+      {
+         Vpp_ON = 0;      // shut off VPP 
+         Vdd_TGT_P = 1;   // shut off VDD
+      }
+      else
+      {
+         VddVppLevels.VddErrCount++;         // Increment on error.
+      } 
+   }
+   else
+   {
+      VddVppLevels.VddErrCount = 0;            // Reset on good voltage
+   }
+   
+   ADIF = 0; // clear ADC interrupt
+   ADCON0 = 0x01; // Set ADC channel for VPP_TGT_FB and turn on ADC (ADCON0)
+   ADIE = 1;      //Enable ADC interrupt
+   GO = 1;  //Start Conversion;
+}
+
+#INT_AD
+void adc_complete (void) 
+{
+   if (CCP2CON == 0x0C)
+}
+void main()
+{
+   pgm_init();
+   usb_init_cs(); 
+   
+   /*
+   #ASM 
+   BSF LATC,0  //Busy LED
+   #ENDASM
+   delay_ms(500);
+   #ASM 
+   BCF LATC,0
+   #ENDASM
+   */
+   while(TRUE)
+   {
+      usb_task();
+      if(usb_enumerated()){// If the device has been enumerated by the PC
+         if(usb_kbhit(1))
+         {                  // If endpoint1 has data in its receive buffer
+         
+         Process_Input ();
+         
+         
+         
+         /*
+           usb_get_packet(1, data, 64);
+           delay_ms(1);                          // Wait 1 second
+           for (int8 i = 0; i < 64; i++)
+           {
+               data[i] *= 2;
+           }
+           // Return the received bytes back
+           usb_put_packet(1, data, 64, USB_DTS_TOGGLE);*/
+         }
+       }
+   }
+}
+
+

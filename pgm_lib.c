@@ -2,8 +2,8 @@
 #include "pgm_lib.h"  
 #include <stdlibm.h> //necessary for malloc 
 
-volatile unsigned int8 DATAin[64];  //USB packet is copied here when received 
-unsigned int8 i;     //used to iterate through DATAin in Process_Input()
+volatile unsigned int8 data_in[64];  //USB packet is copied here when received 
+unsigned int8 i;     //used to iterate through data_in in Process_Input()
 
 unsigned int8 data_out[64]; //Data is read from here by USB
 
@@ -52,117 +52,148 @@ struct {
 
 void pgm_init()
 {
-   #ASM
-   MOVLW 0x13
-   MOVWF HLVDCON           //Configure HIGH/LOW-VOLTAGE DETECT CONTROL REGISTER, See datasheet page 281
+   // Configure HIGH/LOW-VOLTAGE DETECT CONTROL REGISTER, See datasheet page 281
+   HLVDCON = 0x13;
    
-   BCF HLVDIF          //Clear High/Low-Voltage Detect Interrupt Flag bit, Datasheet page 105
-   BSF HLVDIE         //Enable High/Low-Voltage Detect Interrupt, datasheet page 107
+   // Clear High/Low-Voltage Detect Interrupt Flag bit, Datasheet page 105
+   HLVDIF  = 0;
    
-   //Initialize I/O
+   // Enable High/Low-Voltage Detect Interrupt, datasheet page 107
+   HLVDIE = 0;
    
-   BSF TRISA0        // Set pin A0 as input, datasheet page 113
-   BSF TRISA1        // Set pin A1 as input
+   // Set pin A0 as input, datasheet page 113
+   TRISA0 = 1;
    
-   MOVLW 0x0D
-   MOVWF ADCON1            // A0 & A1 Set as Analog inputs, DS page 262
+   // Set pin A1 as input
+   TRISA1 = 1;
    
-   MOVLW 0x03
-   MOVWF ADCON2            // A/D Conversion Clock Select bits, clock derived from A/D RC oscillator, DS page 263
+   // Only AN0 and AN1 analog inputs, DS page 262
+   ADCON1 = 0b00001101; 
    
-   BSF tris_ICSPDAT        // pin A2 set as input
-   BCF ICSPDAT_in
-   BCF ICSPDAT_out
+   // A/D Conversion Clock Select bits, clock derived from A/D RC oscillator, DS page 263
+   ADCON2 = 0x03;
    
-   BCF tris_ICSPCLK        // pin A3 set as output, why was it initially set as input ?
-   BCF ICSPCLK_in
-   BCF ICSPCLK_out
+   // Pin A2 set as input and initialized to 0
+   tris_ICSPDAT = 1;
+   ICSPDAT_in = 0;
+   ICSPDAT_out = 0;
    
-   BSF tris_AUX            // pin A4 set as input
-   BCF AUX
+   // Pin A3 set as input and initialized to 0
+   tris_ICSPCLK = 1;
+   ICSPCLK_in = 0;
+   ICSPCLK_out = 0;
    
-   BCF MCLR_TGT
-   BCF tris_MCLR_TGT       // A5 Set as output
+   // Pin A4 set as input and initialized to 0
+   tris_AUX = 1;
+   AUX = 0;
    
-   BCF Vdd_TGT_N           // initialize half-bridge N-gate off
-   BCF tris_Vdd_TGT_N
+   // Pin A5 Set as output and initialized to 0
+   MCLR_TGT = 0;
+   tris_MCLR_TGT = 0;
    
-   BSF Vdd_TGT_P           // initialize half-bridge P-gate off
-   BCF tris_Vdd_TGT_P
+   // Initialize half-bridge N-gate off
+   Vdd_TGT_N = 0;
+   tris_Vdd_TGT_N =0;
    
-   BSF tris_PROG_SWITCH    // B5 input
-   BSF PROG_SWITCH_pin     // initialize to 1
-   BCF RBPU                // PORTB pull-ups are enabled by individual port latch value, DS page 102
+   // Initialize half-bridge P-gate off
+   Vdd_TGT_P = 1;
+   tris_Vdd_TGT_P = 0;
    
-   BCF Vpp_ON              // Initialize Vpp to off
-   BCF tris_Vpp_ON         // B2 set as output
+   // Pin B5 set as input, initialize to 1
+   tris_PROG_SWITCH = 1;
+   PROG_SWITCH_pin = 1;
    
-   BCF BUSY_LED            
-   BCF tris_BUSY_LED       // BUSY_LED pin set as output
+   // PORTB pull-ups are enabled by individual port latch value, DS page 102
+   RBPU = 0;
    
-   BCF Vpp_PUMP            
-   BCF tris_Vpp_PUMP       // C1 output (CCP2)
+   // Initialize Vpp to off, set pin B2 set as output
+   Vpp_ON = 0;
+   tris_Vpp_ON = 0;
    
-   BCF Vdd_TGT_ADJ
-   BCF tris_Vdd_TGT_ADJ    // C2 output (CCP1)
+   // Initialize BUSY_LED pin to 0, and set it as output
+   BUSY_LED = 0;
+   tris_BUSY_LED = 0;
    
-   MOVLW 0x08
-   MOVWF T0CON             //Timer0 off, 16-bit timer, internal clock, prescaler not assigned
+   // Initialize C1 (CCP2) to 0 and set it as output 
+   Vpp_PUMP = 0;
+   tris_Vpp_PUMP = 0;
+   
+   // Initialize C2 (CCP1) to 0 and set it as output 
+   Vdd_TGT_ADJ = 0;
+   tris_Vdd_TGT_ADJ = 0;
+   
+   // Timer0 off, 16-bit timer, internal clock, prescaler not assigned
+   T0CON = 0x08;
    
    //Timer1 is used by VddVpp voltage monitoring interrupt or UART RX.
-   //configure Timer2 (used by CCP1 and CCP2)
    
-   MOVLW 0x04
-   MOVWF T2CON             //1:1 Postscale, 1:1 Prescale, Timer2 on
+   // Configure Timer2 (used by CCP1 and CCP2)
+   // 1:1 Postscale, 1:1 Prescale, Timer2 on
+   T2CON = 0x04;
    
-   MOVLW PWM_150kHz        // PWM freq = 150kHz
-   MOVWF PR2               //Timer2 Period Register (sets PWM Period for CCP1 and 2)
+   // Set PWM freq to 150kHz
+   PR2 = PWM_150kHz;
    
-   MOVLW 0x0C              
-   MOVWF CCP1CON           // PWM mode, datasheet page 151
+   // Select PWM mode, datasheet page 151
+   CCP1CON = 0x0C;
    
-   MOVLW Vdd_3V3            
-   MOVWF CCPR1L
+   // Set VDD Duty cycle
+   CCPR1L = Vdd_3V3;
    
-   // initialize CCP2 for VPP 
-   //Maybe add later
+   // Initialize CCP2 for VPP 
+   Vpp_PWM.CCPRSetPoint = 64;
+   Vpp_PWM.UppperLimit = 62;  
+   Vpp_PWM.LowerLimit = 60;
+   VddVppLevels.VddThreshold = 126;   
+   VddVppLevels.VppThreshold = 45;
    
-   MOVLW 0x07              
-   MOVWF CMCON          // Comparators off
+   // Comparators off, DS page 271
+   CMCON = 0x07;
    
-   CLRF CVRCON          // Voltage Reference off
+   // Voltage Reference off, DS page 277
+   CVRCON = 0;
    
    // Set up Interrupts
-    BSF PEIE         //enable Peripheral Interrupt Enable
-    BSF GIE          //enable global interrupts
+   // Enable Peripheral Interrupt Enable
+   PEIE = 1;
    
-    // Start voltage monitoring
-    //ppVddADCTmr1_Start();
-    
-    BSF PEIE         //Enable Peripheral interrupts 
-    BSF GIE          //Enable global interrupts
-   #ENDASM
-   VoltageCalibration.adc_calfactor = 0x0100;  // Set default values. 
+   // Enable global interrupts
+   GIE = 1;
+   
+   // Start VDD and VPP voltage monitoring
+   adc_vpp_vdd_control (1);
+   
+   // Initialize buffers
+   DOB_mngnt.nbr_bytes = 0; 
+   DOB_mngnt.wr_idx    = 0;
+   DOB_mngnt.rd_idx    = 0;
+   DIB_mngnt.nbr_bytes = 0; 
+   DIB_mngnt.wr_idx    = 0;
+   DIB_mngnt.rd_idx    = 0;
+   
+   // Set default values for ADC voltage calibration
+   VoltageCalibration.adc_calfactor = 0x0100;  
    VoltageCalibration.vdd_offset = 0x00;
    VoltageCalibration.vdd_calfactor = 0x80;
 }
 
 void Process_Input ()
-{
-/*
-   #ASM 
-      BSF BUSY_LED
-   #ENDASM*/
-   i = 1;   //Initialize index
-   usb_get_packet(1, DATAin, 64);
+{  
+   BUSY_LED = 1;
+   i = 1;   // Initialize index
+   usb_get_packet(1, data_in, 64);
    //usb_flush_out(1, USB_DTS_TOGGLE);
-   delay_ms(1);
-   unsigned int8 packet_length = DATAin[0];
+   unsigned int8 packet_length = data_in[0];
    unsigned int8 offset;
-
+   
+   
+   MCLR_TGT = 1;
+   
+   
+   
    while (i <= packet_length)
    {
-      offset = DATAin[i];
+      offset = data_in[i];
       if (offset < 0x01) break; //unknown instruction
       
       offset -= 0x01;
@@ -175,12 +206,12 @@ void Process_Input ()
          BTFSC    C
          INCF     PCLATH
          MOVWF    PCL
-         BRA      getVersionLbl
-         BRA      toggleLEDLbl
-         BRA      setVDDLbl
-         BRA      setVPPLbl
-         BRA      readVoltagesLbl
-         BRA      runROMScriptLbl
+         BRA      GET_VERSION_LBL 
+         BRA      TOGGLE_LED_LBL
+         BRA      SET_VDD_LBL
+         BRA      SET_VPP_LBL
+         BRA      READ_VOLTAGES_LBL
+         BRA      RUN_ROM_SCRIPT_LBL
          //BRA      downloadScrptArgsLbl
          BRA      CLEAR_DOWN_BUFF_LBL
          BRA      WRITE_DOWN_BUFF_LBL
@@ -188,58 +219,57 @@ void Process_Input ()
          BRA      UPLOAD_LBL
       #ENDASM 
       
-getVersionLbl:
+GET_VERSION_LBL:
       get_version_number();
       break;
       
-toggleLEDLbl:
-      #ASM
-         BTG BUSY_LED
-      #ENDASM
+TOGGLE_LED_LBL:
+      BUSY_LED ^= 1;
       break;
       
-setVDDLbl:
+SET_VDD_LBL:
       /*
-       * DATAin[i+1] = CCPL
-       * DATAin[i+2] = CCPH
-       * DATAin[i+3] = VDDLim
+       * data_in[i+1] = CCPL
+       * data_in[i+2] = CCPH
+       * data_in[i+3] = VDDLim
       */
       // CCPH:CCPL = ((Vdd * 32) + 10.5) << 6, << 6 because CCP1 (holds the duty cycle, resolution is 10 bits) and is left justified, the 2 LSB bits are located in CCP1CON.
       // Duty_cycle = vdd * 32+ 10.5
-      cal_and_set_ccp (DATAin[i+2], DATAin[i+1]);
-      VddVppLevels.VddThreshold = cal_threshold_byte (DATAin[i+3]);
+      cal_and_set_ccp (data_in[i+2], data_in[i+1]);
+      VddVppLevels.VddThreshold = cal_threshold_byte (data_in[i+3]);
       i += 4;
       continue;
       
-setVPPLbl:
+SET_VPP_LBL:
       /*
-       * DATAin[i+1] = CCPR2L, this is the duty cycle, generally = 0x40;
-       * DATAin[i+2] = VPPADC = Vpp * 18.61          Vpp is the desired voltage.
-       * DATAin[i+3] = VPPlim = Vfault * 18.61 
+       * data_in[i+1] = CCPR2L, this is the duty cycle, generally = 0x40;
+       * data_in[i+2] = VPPADC = Vpp * 18.61          Vpp is the desired voltage.
+       * data_in[i+3] = VPPlim = Vfault * 18.61 
       */
-      Vpp_PWM.CCPRSetPoint = DATAin[i+1];
-      Vpp_PWM.UppperLimit = cal_threshold_byte(DATAin[i+2])+1; //VPP upper limit = VPP + 1
+      Vpp_PWM.CCPRSetPoint = data_in[i+1];
+      Vpp_PWM.UppperLimit = cal_threshold_byte(data_in[i+2])+1; //VPP upper limit = VPP + 1
       Vpp_PWM.LowerLimit = Vpp_PWM.UppperLimit - 2;        //VPP lower limit = VPP - 1
-      VddVppLevels.VppThreshold = cal_threshold_byte(DATAin[i+3]); //calibrate VPPLim 
+      VddVppLevels.VppThreshold = cal_threshold_byte(data_in[i+3]); //calibrate VPPLim 
       i += 4;
       continue;
       
-readVoltagesLbl:
+READ_VOLTAGES_LBL:
       send_voltages ();
       i++;
       continue;
       
-runROMScriptLbl:
+RUN_ROM_SCRIPT_LBL:
       /*
-       * DATAin[i+1] = Script's length
-       * DATAin[i+2] = Least significant byte of the script's address
-       * DATAin[i+3] = Most significant byte of the script's address
+       * data_in[i+1] = Script's length
+       * data_in[i+2] = Least significant byte of the script's address
+       * data_in[i+3] = Most significant byte of the script's address
       */
-      unsigned int8 *scriptBuffer = malloc (DATAin[i+1]);
-      unsigned int16 address =  ((DATAin[i+3] * 0x100) + DATAin[i+2]);
-      read_program_memory(address, scriptBuffer, DATAin[i+1]); 
-      executeScript(DATAin[i+1], scriptBuffer);
-      free(scriptBuffer);
+      unsigned int8 *script_buffer = malloc (data_in[i+1]);
+      unsigned int16 address =  ((data_in[i+3] * 0x100) + data_in[i+2]);
+      read_program_memory(address, script_buffer, data_in[i+1]); 
+      execute_script(data_in[i+1], script_buffer);
+      free(script_buffer);
+      BUSY_LED = 0;
       i += 4;
       continue;
       
@@ -271,11 +301,12 @@ UPLOAD_LBL:
       send_data_usb();
       i++;
       continue;
-   }  
+   }
    /*
    #ASM
       BCF BUSY_LED
-   #ENDASM*/
+   #ENDASM
+   */
 }
 
 void get_version_number (void)
@@ -290,12 +321,11 @@ void get_version_number (void)
    free(DATAout);
    */
    
-   const char version[] = __DATE__;
    
    data_out [0] = 3;  //length of data to be sent, this byte not included
    data_out [1] = 0;
    data_out [2] = 2;    //month
-   data_out [3] = ((version[0] - 48) * 16)+ (version[1] - 48); // substract 48 to convert from string to int
+   data_out [3] = 14;
    usb_put_packet(1, data_out, 64, USB_DTS_TOGGLE);
 }
 
@@ -309,11 +339,7 @@ void cal_and_set_ccp (unsigned int8 ccph, unsigned int8 ccpl)
    ccp1 *= VoltageCalibration.vdd_calfactor;     //default is 0x80 = 0b10000000
    ccp1 >>= 1;                                   //shift by one to get the original >> 6 after multiplying by 0x80
    tempCal = (unsigned int8) (ccp1 >> 8);
-   #ASM 
-   MOVLW tempCal
-   MOVWF CCPR1L
-   #ENDASM
-   
+   CCPR1L = tempCal;
    //The following is to place the lower 2 bits of the duty cycle resolution in bits 4 and 5 of CCP1CON
    CCP1 &= 0xFF;
    tempCal = (unsigned int8) (CCP1 >> 2);
@@ -331,7 +357,7 @@ void cal_and_set_ccp (unsigned int8 ccph, unsigned int8 ccpl)
 
 unsigned int8 cal_threshold_byte(unsigned int8 voltageVal)
 {
-    unsigned int8 inverse_cal = 0x0200 - VoltageCalibration.adc_calfactor; //adc_calfactor by default is 0x0100 so, 0x0200 - adc_calfactor is the same as 1 / adc_calfactor 
+    unsigned int8 inverse_cal = (0x0200 - VoltageCalibration.adc_calfactor); //adc_calfactor by default is 0x0100 so, 0x0200 - adc_calfactor is the same as 1 / adc_calfactor 
     inverse_cal *= voltageVal;
     inverse_cal >>= 8;
 
@@ -428,19 +454,16 @@ unsigned int16 calADCWord(unsigned int16 Val)
 
 void write_down_buff(void)
 {
-   unsigned int8 len = DATAin[i++]; //get length of data
-   
+   unsigned int8 len = data_in[i++]; //get length of data
    if (len + DIB_mngnt.nbr_bytes > 255) return;  
    
-   for (unsigned int8 k = 0; k < len; k++)
+   for (int8 k = 0; k < len; k++)
    {
-      DATA_In_Buffer[DIB_mngnt.wr_idx++] = DATAin[i++];
+      DATA_In_Buffer[DIB_mngnt.wr_idx++] = data_in[i++];
       //if (DIB_mngnt.wr_idx > 255)       //just let DIB_mngnt.wr_idx overflow 
       //   DIB_mngnt.wr_idx = 0;
-         
       DIB_mngnt.nbr_bytes++;
    }
-   
 }
 
 
@@ -450,7 +473,7 @@ void send_data_usb(void)
    
    len = len < 63 ? len : 63; //first byte in usb report will be used to store length, the other 63 used for data
    data_out[0] = len;
-   for (unsigned int8 m = 1; m <= len; m++)
+   for (int8 m = 1; m <= len; m++)
    {
       data_out[m] = data_out_buffer[DOB_mngnt.rd_idx++];
       if (DOB_mngnt.rd_idx > 127)
@@ -458,16 +481,16 @@ void send_data_usb(void)
    }
    
    DOB_mngnt.nbr_bytes -= len;
-   usb_put_packet(1, data_out, len+1, USB_DTS_TOGGLE);
+   usb_put_packet(1, data_out, 64, USB_DTS_TOGGLE);
 }
 
 /*
 void downloadScriptArgs (void)
 {
-   unsigned int8 len = DATAin[++i];
+   unsigned int8 len = data_in[++i];
    for (unsigned int8 j = 0; j < len; j++)
    {
-      scrpt_args[j] = DATAin[++i];           //Copy the arguments from USB packet to scrpt_args buffer 
+      scrpt_args[j] = data_in[++i];           //Copy the arguments from USB packet to scrpt_args buffer 
    }
    scrpt_rd_idx = 0;
 }
@@ -478,7 +501,7 @@ void downloadScriptArgs (void)
 
 
 
-void executeScript(unsigned int8 scrpt_len, unsigned int8 *scriptLocation)
+void execute_script(unsigned int8 scrpt_len, unsigned int8 *script_location)
 {
    unsigned int8 si = 0; //initialize script index to 0
    unsigned int8 offset, loop_buff_idx, temp;
@@ -496,7 +519,7 @@ void executeScript(unsigned int8 scrpt_len, unsigned int8 *scriptLocation)
    if (scrpt_len == 0) return; 
    while (si < scrpt_len)
    {
-      offset = *(scriptLocation + si); 
+      offset = *(script_location + si); 
       offset -= 0xD5;  // Consider 0xD5 to be the minimum for now
       offset *= 2;     
       offset += 8;     
@@ -546,7 +569,7 @@ void executeScript(unsigned int8 scrpt_len, unsigned int8 *scriptLocation)
          BRA      VDD_OFF_LBL
       #ENDASM 
 READ_N_BITS_LBL:
-      write_upload_buff(read_n_bits_24(*(scriptLocation + ++si)));//WriteUploadBuffer(readN_Bits(*(scriptLocation + si + 1)));
+      write_upload_buff(read_n_bits_24(*(script_location + ++si)));//WriteUploadBuffer(readN_Bits(*(script_location + si + 1)));
       si++;
       continue;
    
@@ -556,33 +579,33 @@ READ_BYTE_LBL:
       continue;
 
 VISI24_LBL:
-      ShiftBitsOutICSP(1, 4);
-      ShiftBitsOutICSP(0, 8);
+      shift_bits_out_ICSP(1, 4);
+      shift_bits_out_ICSP(0, 8);
       write_upload_buff(read_n_bits_24(8));
       write_upload_buff(read_n_bits_24(8));
       si++;
       continue;
    
 NOP24_LBL:
-      ShiftBitsOutICSP(0, 8);
-      ShiftBitsOutICSP(0, 8);
-      ShiftBitsOutICSP(0, 8);
-      ShiftBitsOutICSP(0, 8);
+      shift_bits_out_ICSP(0, 8);
+      shift_bits_out_ICSP(0, 8);
+      shift_bits_out_ICSP(0, 8);
+      shift_bits_out_ICSP(0, 8);
       si++;
       continue;
    
 COREINST24_LBL:
-      ShiftBitsOutICSP(0, 4);
-      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
-      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
-      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
+      shift_bits_out_ICSP(0, 4);
+      shift_bits_out_ICSP(*(script_location + ++si), 8);
+      shift_bits_out_ICSP(*(script_location + ++si), 8);
+      shift_bits_out_ICSP(*(script_location + ++si), 8);
       si++;
       continue;
 
 COREINST18_LBL:
-      ShiftBitsOutICSP(0, 4);
-      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
-      ShiftBitsOutICSP(*(scriptLocation + ++si), 8);
+      shift_bits_out_ICSP(0, 4);
+      shift_bits_out_ICSP(*(script_location + ++si), 8);
+      shift_bits_out_ICSP(*(script_location + ++si), 8);
       si++;
       continue;
    
@@ -609,7 +632,7 @@ LOOP_BUFFER_LBL:  //will loop through a number of script commands, argument is t
          si = first_iteration_LB;   //Still iterating
          continue;
       }
-      loop_buff_idx = si - *(scriptLocation + ++si); //always loops to the instruction before it, except in the script n 255 in the original Firmware
+      loop_buff_idx = si - *(script_location + ++si); //always loops to the instruction before it, except in the script n 255 in the original Firmware
       //scrpt_rd_idx -= 2;      //the instruction before LOOPBUFFER has 2 args
       nbr_iterations = (unsigned int16) pop_down_buff ();   //low byte
       nbr_iterations += (256  *  pop_down_buff ());         //upper byte
@@ -623,13 +646,13 @@ LOOP_BUFFER_LBL:  //will loop through a number of script commands, argument is t
       continue;
       
 WRITE_SFR_LBL:
-      SFR_ptr = (unsigned int8 *) 0x0F00 + *(scriptLocation + ++si);
-      *SFR_ptr = *(scriptLocation + ++si);
+      SFR_ptr = (unsigned int8 *) 0x0F00 + *(script_location + ++si);
+      *SFR_ptr = *(script_location + ++si);
       si++;
       continue;
 
 READ_SFR_LBL:
-      SFR_ptr = (unsigned int8 *) 0x0F00 + *(scriptLocation + ++si);
+      SFR_ptr = (unsigned int8 *) 0x0F00 + *(script_location + ++si);
       write_upload_buff(*SFR_ptr);
       si++;
       continue;
@@ -639,14 +662,14 @@ EXIT_SCRIPT_LBL:
       continue;
       
 GOTO_IDX_LBL:
-      si = *(scriptLocation + ++si);
+      si = *(script_location + ++si);
       continue;
       
 IF_GT_GOTO_LBL: //if last loaded byte in DATA_Out_Buffer is greater than arg[1], execution will branch to offset specified by arg[2] 
       temp = DATA_Out_Buffer[DOB_mngnt.wr_idx - 1]; //get last byte written to DATA_Out_Buffer, - 1 because DOM_mngnt.wr_idx is always post-incremented, and points to the next location to be written
-      if (temp > *(scriptLocation + ++si))
+      if (temp > *(script_location + ++si))
       {
-         si += (signed int8) *(scriptLocation + ++si);
+         si += (signed int8) *(script_location + ++si);
       }
       else 
       {
@@ -656,9 +679,9 @@ IF_GT_GOTO_LBL: //if last loaded byte in DATA_Out_Buffer is greater than arg[1],
       
 IF_EQ_GOTO_LBL: //if last loaded byte in DATA_Out_Buffer is equal than arg[1], execution will branch to offset specified by arg[2] 
       temp = DATA_Out_Buffer[DOB_mngnt.wr_idx - 1]; //get last byte written to DATA_Out_Buffer, - 1 because DOM_mngnt.wr_idx is always post-incremented, and points to the next location to be written
-      if (temp == *(scriptLocation + ++si))
+      if (temp == *(script_location + ++si))
       {
-         si += (signed int8) *(scriptLocation + ++si);
+         si += (signed int8) *(script_location + ++si);
       }
       else 
       {
@@ -667,12 +690,12 @@ IF_EQ_GOTO_LBL: //if last loaded byte in DATA_Out_Buffer is equal than arg[1], e
       continue;
       
 SHORT_DELAY_LBL:      //causes a delay of : duration * 21.3us, NOTE : 0 = 255
-      delay_short (*(scriptLocation + ++si));
+      delay_short (*(script_location + ++si));
       si++;
       continue;
       
 LONG_DELAY_LBL:
-      delay_long (*(scriptLocation + ++si));
+      delay_long (*(script_location + ++si));
       si++;
       continue;
       
@@ -686,35 +709,37 @@ LOOP_LBL:
             si += 3; //LOOP command + 2 args
             continue;
          }
+         si = loop_idx;
+         continue;
       }
       first_iteration_L = 0;
-      loop_idx = si - *(scriptLocation + si + 1);
-      loop_count = *(scriptLocation + si + 2);
+      loop_idx = si - *(script_location + si + 1);
+      loop_count = *(script_location + si + 2);
       si = loop_idx;
       continue;
  
 //SET_ICSP_RATELbl:
-//      icsp_rate = *(scriptLocation + ++si);
+//      icsp_rate = *(script_location + ++si);
 //      si++;
 //      continue;
 
 SHIFT_BITS_IN_LBL:
-      shift_bits_in(*(scriptLocation + ++si));
+      shift_bits_in(*(script_location + ++si));
       si++;
       continue;
       
 SHIFT_BITS_IN_BUFFER_LBL:
-      write_upload_buff(shift_bits_in(*(scriptLocation + ++si)));
+      write_upload_buff(shift_bits_in(*(script_location + ++si)));
       si++;
       continue;
       
 SHIFT_BITS_OUT_BUFFER_LBL: //Shift bits located in DATA_In_Buffer out 
-      shift_bits_out (pop_down_buff(), *(scriptLocation + ++si));
+      shift_bits_out (pop_down_buff(), *(script_location + ++si));
       si++;
       continue;
       
 SHIFT_BITS_OUT_LBL:
-      shift_bits_out (*(scriptLocation + si + 2), *(scriptLocation + si + 1));
+      shift_bits_out (*(script_location + si + 2), *(script_location + si + 1));
       si += 3;
       continue;
       
@@ -734,22 +759,19 @@ SHIFT_BYTE_OUT_BUFFER_LBL:
       continue;
       
 SHIFT_BYTE_OUT_LBL:
-      shift_bits_out (*(scriptLocation + ++si), 8);
+      shift_bits_out (*(script_location + ++si), 8);
       si++;
       continue;
       
 SET_ICSP_PINS_LBL:
-      icsp_pins_states = *(scriptLocation + ++si);
-      set_icsp_pins(icsp_pins_states);
-      si++;
+      icsp_pins_states = *(script_location + si + 1);
+      set_icsp_pins(*(script_location + ++si));
+      si += 1;
       continue;
       
 MCLR_TGT_GND_OFF_LBL:
       #ASM
          BCF   MCLR_TGT
-      #ENDASM
-      #ASM
-         BSF   BUSY_LED  //Busy LED
       #ENDASM
       si++;
       continue;
@@ -775,7 +797,6 @@ VPP_PWM_ON_LBL:
 VPP_ON_LBL:
       #ASM
          BSF   Vpp_ON
-         BCF   BUSY_LED  //Busy LED
       #ENDASM
       si++; 
       continue;
@@ -849,42 +870,43 @@ unsigned int8 read_n_bits_24(unsigned int8 numberOfBits)
 }
 
 
-void write_upload_buff(unsigned int8 wrByte)
+void write_upload_buff(unsigned int8 wr_byte)
 {
    if (DOB_mngnt.nbr_bytes > 127) 
    {
       return;
    }
-   DATA_Out_Buffer[DOB_mngnt.wr_idx++] = wrByte;
+   
+   DATA_Out_Buffer[DOB_mngnt.wr_idx] = wr_byte;
+   DOB_mngnt.wr_idx++;
    if (DOB_mngnt.wr_idx > 127)
       DOB_mngnt.wr_idx = 0;
-   
    DOB_mngnt.nbr_bytes++;
 }
 
 /*
  * Note: ICSP pins must be set to outputs
- *
+ * PIC24F
  *
 */
-void shiftBitsOutICSP (unsigned int8 charToBeShifted, unsigned int8 numberOfBits)
+void shift_bits_out_ICSP (unsigned int8 char_to_be_shifted, unsigned int8 number_of_bits)
 {
-   //unsigned int8 tempChar = charToBeShifted;
-   
+   char temp_char = char_to_be_shifted;
+   char num_bits = number_of_bits;
    
    #ASM
-      BITSOUTLOOP:
-         BTFSS    charToBeShifted,0
-         BCF      ICSPDAT_out    //If LSB of charToBeShifted is 0, clear PGD pin
-         BTFSC    charToBeShifted,0
+      BITS_OUT_LOOP:
+         BTFSS    temp_char,0
+         BCF      ICSPDAT_out    //If LSB of char_to_be_shifted is 0, clear PGD pin
+         BTFSC    temp_char,0
          BCF      ICSPDAT_out
          NOP
          BSF      ICSPCLK_out    //Clock rising edge 
          NOP
          BCF      ICSPCLK_out
-         RRNCF    charToBeShifted,f
-         DECFSZ   numberOfBits
-         BRA      BITSOUTLOOP
+         RRNCF    temp_char,f
+         DECFSZ   num_bits
+         BRA      BITS_OUT_LOOP
    #ENDASM
 }
 
@@ -907,30 +929,32 @@ unsigned int8 pop_down_buff (void)
    {
       return 0;
    }
-   popped = DATA_In_Buffer[DIB_mngnt.rd_idx++];
+   popped = DATA_In_Buffer[DIB_mngnt.rd_idx];
+   DIB_mngnt.rd_idx++;
    DIB_mngnt.nbr_bytes--;
-   if (DIB_mngnt.rd_idx > 255)
-      DIB_mngnt.rd_idx = 0;
+   
+   //if (DIB_mngnt.rd_idx > 255)
+   //   DIB_mngnt.rd_idx = 0;
    
    return popped;
 }
 
-//Each Timer0's lower byte increment is 21.3 uS, there's a delay of 12 uS between script commands, it is ignored here
+// Each Timer0's lower byte increment is 21.3 uS, there's a delay of 12 uS between script commands, it is ignored here
 void delay_short (unsigned int8 duration)
 {
    #ASM
-      BCF   TMR0IF   //Clear timer0 interrupt flag
-      MOVLW    0xFF     //So that the timer will overflow when TMR0L does
+      BCF   TMR0IF   // Clear timer0 interrupt flag
+      MOVLW    0xFF     // So that the timer will overflow when TMR0L does
       MOVWF    TMR0H
    #ENDASM
    TMR0L = 0 - duration;
-   TMR0ON = 1; //start Timer0, DS page 127
+   TMR0ON = 1; // Start Timer0, DS page 127
    while (TMR0IF == 0); //Wait for overflow flag to be set
-   TMR0ON = 0; //Stop Timer0
+   TMR0ON = 0; // Stop Timer0
    
 }
 
-//Each Timer0's upper byte increment is 5.46mS
+// Each Timer0's upper byte increment is 5.46mS ((1 / 48M) *256 * 256)
 void delay_long (unsigned int8 duration)
 {
    TMR0IF = 0;
@@ -943,53 +967,81 @@ void delay_long (unsigned int8 duration)
 
 unsigned int8 shift_bits_in (unsigned int8 number_of_bits)
 {
-   
-   unsigned int8 bits_buff = 0; //Bits are shifted in here 
+   unsigned int8 num_bits = number_of_bits;
+   unsigned int8 bits_buff = 0; // Bits are shifted in here 
+   tris_ICSPDAT = 1;             // Set PGD pin as input
    #ASM
-      BSF      tris_ICSPDAT  //Set PGD pin as input
-   READBITSLOOP:
-      BSF      ICSPCLK_out       //Clock rising edge
+   READ_BITS_LOOP:
+      BSF      LATA, 3  // ICSPCLK_out       // Clock rising edge
       NOP
       NOP
       NOP
-      BTFSC    ICSPDAT_in  //read PGD pin
-      BSF      bits_buff,0      //If PGD was high, set the corresponding bit starting from LSB
-      BCF      ICSPCLK_out    //Clock falling edge 
+      BTFSC    PORTA, 2        // Read PGD pin
+      BSF      bits_buff,0       // If PGD was high, set the corresponding bit starting from LSB
+      BCF      LATA, 3       // Clock falling edge 
       NOP
-      RRNCF    bits_buff, f    //Rotate right (no carry)
-      DECFSZ   number_of_bits, f
-      BRA      READBITSLOOP
-      BCF      tris_ICSPDAT //PGD set as output
+      RRNCF    bits_buff, 1      // Rotate right (no carry)
+      DECFSZ   num_bits, 1
+      BRA      READ_BITS_LOOP
+      BCF      tris_ICSPDAT      // PGD set as output
    #ENDASM
-   bits_buff >>= (8 - number_of_bits); //right justified
+   
+   //bits_buff >>= (8 - num_bits); // Right justified
    return bits_buff;
 }
 
 void shift_bits_out (unsigned int8  outb, unsigned int8 number_of_bits)
 {
+   unsigned int8 out_char = outb;
+   unsigned int8  num_bits = number_of_bits;
    #ASM
-      BCF   tris_ICSPDAT   //Make sure PGD pin is set as output
-      WRITELOOP:
-         BTFSS    outb,0
+      WRITE_BITS_LOOP:
+         BTFSS    out_char,0
          BCF      ICSPDAT_out
-         BTFSC    outb,0
+         BTFSC    out_char,0
          BSF      ICSPDAT_out
          NOP
          BSF      ICSPCLK_out //Clock rising edge
          NOP
          BCF      ICSPCLK_out  //Clock falling edge 
-         RRNCF    outb
-         DECFSZ   number_of_bits
-         BRA      WRITELOOP
+         RRNCF    out_char, 1
+         DECFSZ   num_bits, 1
+         BRA      WRITE_BITS_LOOP
    #ENDASM
 }
 
-void set_icsp_pins(unsigned int8 state)
+void set_icsp_pins(int8 state)
 {
+   /*
+   BUSY_LED = 0; 
+   if (state & 0x04)
+      ICSPCLK_out = 1;   
+   else
+      ICSPCLK_out = 0;
+   // set ISCDAT latch
+   if (state & 0x08)
+   {
+      ICSPDAT_out = 1;  
+   }
+   else
+      ICSPDAT_out = 0;
+
+   // set ISCPCLK direction
+   if (state & 0x01)
+      tris_ICSPCLK = 1;   
+   else
+      tris_ICSPCLK = 0;
+   // set ISCDAT direction
+   if (state & 0x02)
+      tris_ICSPDAT = 1;   
+   else
+      tris_ICSPDAT = 0;
+   */
    ICSPCLK_out  = (state & 0x04) ? 1 : 0; //state[3] = Clock state
    ICSPDAT_out  = (state & 0x08) ? 1 : 0; //state[4] = Data state
    tris_ICSPCLK = (state & 0x01) ? 1 : 0; //state[0] = Clock direction
    tris_ICSPDAT = (state & 0x02) ? 1 : 0; //state[1] = Data direction
+
 }
 
 

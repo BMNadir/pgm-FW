@@ -1,10 +1,10 @@
 #include <main.h>
- 
+#include "isr.c"
+
 void main()
 {
-   usb_init_cs(); 
    pgm_init();
-   
+   usb_init_cs(); 
    /*
    #ASM 
    BSF LATC,0  //Busy LED
