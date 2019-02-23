@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
+CCS PCH C Compiler, Version 5.008, 5967               23-févr.-19 15:14
 
                Filename:   N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\main.lst
 
-               ROM used:   10520 bytes (32%)
+               ROM used:   10484 bytes (32%)
                            Largest free fragment is 12272
                RAM used:   846 (41%) at main() level
-                           896 (44%) worst case
+                           895 (44%) worst case
                Stack used: 15 locations (6 in main + 9 for interrupts)
                Stack size: 31
 
 *
-0000:  GOTO   278A
+0000:  GOTO   2766
 *
 0008:  MOVWF  04
 000A:  MOVFF  FD8,05
@@ -251,15 +251,15 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 021A:  DATA 43,00
 *
 02C4:  MOVLB  2
-02C6:  MOVF   x6B,W
-02C8:  MULWF  x6D
+02C6:  MOVF   x6A,W
+02C8:  MULWF  x6C
 02CA:  MOVFF  FF3,01
 02CE:  MOVFF  FF4,00
-02D2:  MULWF  x6E
+02D2:  MULWF  x6D
 02D4:  MOVF   FF3,W
 02D6:  ADDWF  00,F
-02D8:  MOVF   x6C,W
-02DA:  MULWF  x6D
+02D8:  MOVF   x6B,W
+02DA:  MULWF  x6C
 02DC:  MOVF   FF3,W
 02DE:  ADDWFC 00,W
 02E0:  MOVWF  02
@@ -325,60 +325,60 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 1490:  MOVLB  0
 1492:  GOTO   1514 (RETURN)
 *
-17AC:  MOVLB  2
-17AE:  CLRF   x56
-17B0:  CLRF   x57
-17B2:  MOVLW  01
-17B4:  MOVWF  x58
-17B6:  CLRF   FDA
-17B8:  CLRF   FD9
-17BA:  MOVLW  02
-17BC:  MOVWF  x5B
-17BE:  MOVLW  4E
-17C0:  MOVWF  x5A
-17C2:  MOVLW  02
-17C4:  MOVWF  FEA
-17C6:  MOVLW  52
-17C8:  MOVWF  FE9
-17CA:  MOVFF  25B,FE2
-17CE:  MOVFF  25A,FE1
-17D2:  MOVFF  258,259
-17D6:  BCF    FD8.0
-17D8:  MOVF   FE5,W
-17DA:  MULWF  FEE
-17DC:  MOVF   FF3,W
-17DE:  ADDWFC x56,F
-17E0:  MOVF   FF4,W
-17E2:  ADDWFC x57,F
-17E4:  DECFSZ x59,F
-17E6:  BRA    17D6
-17E8:  MOVFF  256,FDE
-17EC:  MOVFF  257,256
-17F0:  CLRF   x57
-17F2:  BTFSC  FD8.0
-17F4:  INCF   x57,F
-17F6:  INCF   x5A,F
-17F8:  BTFSC  FD8.2
-17FA:  INCF   x5B,F
-17FC:  INCF   x58,F
-17FE:  MOVF   x58,W
-1800:  SUBLW  05
-1802:  BNZ   17C2
-1804:  MOVLB  0
-1806:  GOTO   1838 (RETURN)
+1586:  MOVLB  2
+1588:  CLRF   x54
+158A:  CLRF   x55
+158C:  MOVLW  01
+158E:  MOVWF  x56
+1590:  CLRF   FDA
+1592:  CLRF   FD9
+1594:  MOVLW  02
+1596:  MOVWF  x59
+1598:  MOVLW  4C
+159A:  MOVWF  x58
+159C:  MOVLW  02
+159E:  MOVWF  FEA
+15A0:  MOVLW  50
+15A2:  MOVWF  FE9
+15A4:  MOVFF  259,FE2
+15A8:  MOVFF  258,FE1
+15AC:  MOVFF  256,257
+15B0:  BCF    FD8.0
+15B2:  MOVF   FE5,W
+15B4:  MULWF  FEE
+15B6:  MOVF   FF3,W
+15B8:  ADDWFC x54,F
+15BA:  MOVF   FF4,W
+15BC:  ADDWFC x55,F
+15BE:  DECFSZ x57,F
+15C0:  BRA    15B0
+15C2:  MOVFF  254,FDE
+15C6:  MOVFF  255,254
+15CA:  CLRF   x55
+15CC:  BTFSC  FD8.0
+15CE:  INCF   x55,F
+15D0:  INCF   x58,F
+15D2:  BTFSC  FD8.2
+15D4:  INCF   x59,F
+15D6:  INCF   x56,F
+15D8:  MOVF   x56,W
+15DA:  SUBLW  05
+15DC:  BNZ   159C
+15DE:  MOVLB  0
+15E0:  GOTO   1612 (RETURN)
 *
-1BEA:  MOVFF  246,01
-1BEE:  MOVFF  245,00
-1BF2:  TSTFSZ 00
-1BF4:  INCF   01,F
-1BF6:  TBLRD*+
-1BF8:  MOVFF  FF5,FEE
-1BFC:  DECFSZ 00,F
-1BFE:  BRA    1BF6
-1C00:  DECFSZ 01,F
-1C02:  BRA    1BF6
-1C04:  CLRF   FF8
-1C06:  GOTO   2714 (RETURN)
+1958:  MOVFF  246,01
+195C:  MOVFF  245,00
+1960:  TSTFSZ 00
+1962:  INCF   01,F
+1964:  TBLRD*+
+1966:  MOVFF  FF5,FEE
+196A:  DECFSZ 00,F
+196C:  BRA    1964
+196E:  DECFSZ 01,F
+1970:  BRA    1964
+1972:  CLRF   FF8
+1974:  GOTO   269A (RETURN)
 ....................  
 .................... #list 
 ....................  
@@ -5399,11 +5399,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 11B0:  BTFSC  FF2.7
 11B2:  BSF    16.7
 11B4:  BCF    FF2.7
-11B6:  CLRF   x6C
-11B8:  MOVFF  23E,26B
-11BC:  CLRF   x6E
+11B6:  CLRF   x6B
+11B8:  MOVFF  23E,26A
+11BC:  CLRF   x6D
 11BE:  MOVLW  08
-11C0:  MOVWF  x6D
+11C0:  MOVWF  x6C
 11C2:  MOVLB  0
 11C4:  CALL   02C4
 11C8:  BTFSC  16.7
@@ -5423,7 +5423,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 11EC:  MOVLW  01
 11EE:  MOVWF  01
 11F0:  MOVLB  0
-11F2:  GOTO   27F0 (RETURN)
+11F2:  GOTO   27CC (RETURN)
 .................... } 
 ....................  
 .................... // see usb_hw_layer.h for documentation 
@@ -5433,7 +5433,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 *
 0C90:  CLRF   03
 0C92:  MOVLB  2
-0C94:  MOVF   x66,W
+0C94:  MOVF   x65,W
 0C96:  ADDLW  70
 0C98:  MOVWF  FE9
 0C9A:  MOVLW  0F
@@ -5441,26 +5441,26 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0C9E:  MOVWF  FEA
 0CA0:  MOVF   FEF,F
 0CA2:  BZ    0CDA
-0CA4:  CLRF   x6C
-0CA6:  MOVFF  266,26B
-0CAA:  CLRF   x6E
+0CA4:  CLRF   x6B
+0CA6:  MOVFF  265,26A
+0CAA:  CLRF   x6D
 0CAC:  MOVLW  08
-0CAE:  MOVWF  x6D
+0CAE:  MOVWF  x6C
 0CB0:  MOVLB  0
 0CB2:  CALL   02C4
-0CB6:  MOVFF  02,268
-0CBA:  MOVFF  01,267
+0CB6:  MOVFF  02,267
+0CBA:  MOVFF  01,266
 0CBE:  MOVLW  04
 0CC0:  MOVLB  2
-0CC2:  ADDWF  x67,F
+0CC2:  ADDWF  x66,F
 0CC4:  MOVLW  00
-0CC6:  ADDWFC x68,F
-0CC8:  MOVFF  267,FE9
+0CC6:  ADDWFC x67,F
+0CC8:  MOVFF  266,FE9
 0CCC:  MOVLW  04
-0CCE:  ADDWF  x68,W
+0CCE:  ADDWF  x67,W
 0CD0:  MOVWF  FEA
-0CD2:  MOVFF  FEF,269
-0CD6:  BTFSS  x69.7
+0CD2:  MOVFF  FEF,268
+0CD6:  BTFSS  x68.7
 0CD8:  BRA    0CDE
 0CDA:  MOVLW  00
 0CDC:  BRA    0CE0
@@ -5544,7 +5544,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    usb_detach(); 
 *
 1146:  BRA    111E
-1148:  GOTO   27D8 (RETURN)
+1148:  GOTO   27B4 (RETURN)
 .................... } 
 ....................  
 .................... // see usb_hw_layer.h for documentation 
@@ -5610,7 +5610,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 118C:  MOVWF  1F
 ....................       debug_usb(debug_putc, "\r\n\nUSB TASK: POWERED"); 
 ....................    } 
-118E:  GOTO   27DC (RETURN)
+118E:  GOTO   27B8 (RETURN)
 .................... } 
 ....................  
 .................... // see usb_hw_layer.h for documentation 
@@ -5634,7 +5634,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................  
 ....................    if (usb_tbe(endpoint))  
 *
-0CE6:  MOVFF  261,266
+0CE6:  MOVFF  260,265
 0CEA:  RCALL  0C90
 0CEC:  MOVF   01,F
 0CEE:  BTFSC  FD8.2
@@ -5642,31 +5642,31 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    { 
 ....................       EP_BDxCNT_I(endpoint)=len; 
 0CF2:  MOVLB  2
-0CF4:  CLRF   x6C
-0CF6:  MOVFF  261,26B
-0CFA:  CLRF   x6E
+0CF4:  CLRF   x6B
+0CF6:  MOVFF  260,26A
+0CFA:  CLRF   x6D
 0CFC:  MOVLW  08
-0CFE:  MOVWF  x6D
+0CFE:  MOVWF  x6C
 0D00:  MOVLB  0
 0D02:  CALL   02C4
-0D06:  MOVFF  02,267
-0D0A:  MOVFF  01,266
+0D06:  MOVFF  02,266
+0D0A:  MOVFF  01,265
 0D0E:  MOVLW  04
 0D10:  MOVLB  2
-0D12:  ADDWF  x66,F
+0D12:  ADDWF  x65,F
 0D14:  MOVLW  00
-0D16:  ADDWFC x67,F
+0D16:  ADDWFC x66,F
 0D18:  MOVLW  01
-0D1A:  ADDWF  x66,W
+0D1A:  ADDWF  x65,W
 0D1C:  MOVWF  01
 0D1E:  MOVLW  00
-0D20:  ADDWFC x67,W
+0D20:  ADDWFC x66,W
 0D22:  MOVWF  03
 0D24:  MOVFF  01,FE9
 0D28:  MOVLW  04
 0D2A:  ADDWF  03,W
 0D2C:  MOVWF  FEA
-0D2E:  MOVFF  262,FEF
+0D2E:  MOVFF  261,FEF
 ....................  
 ....................       debug_display_ram(len, EP_BDxADR_I(endpoint)); 
 ....................  
@@ -5674,53 +5674,53 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................       i=0x80; 
 ....................      #else 
 ....................       if (tgl == USB_DTS_TOGGLE)  
-0D32:  MOVF   x64,W
+0D32:  MOVF   x63,W
 0D34:  SUBLW  02
 0D36:  BNZ   0D78
 ....................       { 
 ....................          i = EP_BDxST_I(endpoint); 
-0D38:  CLRF   x6C
-0D3A:  MOVFF  261,26B
-0D3E:  CLRF   x6E
+0D38:  CLRF   x6B
+0D3A:  MOVFF  260,26A
+0D3E:  CLRF   x6D
 0D40:  MOVLW  08
-0D42:  MOVWF  x6D
+0D42:  MOVWF  x6C
 0D44:  MOVLB  0
 0D46:  CALL   02C4
-0D4A:  MOVFF  02,267
-0D4E:  MOVFF  01,266
+0D4A:  MOVFF  02,266
+0D4E:  MOVFF  01,265
 0D52:  MOVLW  04
 0D54:  MOVLB  2
-0D56:  ADDWF  x66,F
+0D56:  ADDWF  x65,F
 0D58:  MOVLW  00
-0D5A:  ADDWFC x67,F
-0D5C:  MOVFF  266,FE9
+0D5A:  ADDWFC x66,F
+0D5C:  MOVFF  265,FE9
 0D60:  MOVLW  04
-0D62:  ADDWF  x67,W
+0D62:  ADDWF  x66,W
 0D64:  MOVWF  FEA
-0D66:  MOVFF  FEF,265
+0D66:  MOVFF  FEF,264
 ....................          if (bit_test(i,6)) 
-0D6A:  BTFSS  x65.6
+0D6A:  BTFSS  x64.6
 0D6C:  BRA    0D72
 ....................             tgl = USB_DTS_DATA0;  //was DATA1, goto DATA0 
-0D6E:  CLRF   x64
+0D6E:  CLRF   x63
 0D70:  BRA    0D76
 ....................          else 
 ....................             tgl = USB_DTS_DATA1;  //was DATA0, goto DATA1 
 0D72:  MOVLW  01
-0D74:  MOVWF  x64
+0D74:  MOVWF  x63
 ....................       } 
 0D76:  BRA    0DAC
 ....................       else if (tgl == USB_DTS_USERX)  
-0D78:  MOVF   x64,W
+0D78:  MOVF   x63,W
 0D7A:  SUBLW  04
 0D7C:  BNZ   0DAC
 ....................       { 
 ....................          i = EP_BDxST_O(endpoint); 
-0D7E:  CLRF   x6C
-0D80:  MOVFF  261,26B
-0D84:  CLRF   x6E
+0D7E:  CLRF   x6B
+0D80:  MOVFF  260,26A
+0D84:  CLRF   x6D
 0D86:  MOVLW  08
-0D88:  MOVWF  x6D
+0D88:  MOVWF  x6C
 0D8A:  MOVLB  0
 0D8C:  CALL   02C4
 0D90:  MOVLB  2
@@ -5728,63 +5728,63 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0D96:  MOVLW  04
 0D98:  ADDWF  02,W
 0D9A:  MOVWF  FEA
-0D9C:  MOVFF  FEF,265
+0D9C:  MOVFF  FEF,264
 ....................          if (bit_test(i,6)) 
-0DA0:  BTFSS  x65.6
+0DA0:  BTFSS  x64.6
 0DA2:  BRA    0DAA
 ....................             tgl = USB_DTS_DATA1; 
 0DA4:  MOVLW  01
-0DA6:  MOVWF  x64
+0DA6:  MOVWF  x63
 0DA8:  BRA    0DAC
 ....................          else 
 ....................             tgl = USB_DTS_DATA0; 
-0DAA:  CLRF   x64
+0DAA:  CLRF   x63
 ....................       } 
 ....................       if (tgl == USB_DTS_DATA1)  
-0DAC:  DECFSZ x64,W
+0DAC:  DECFSZ x63,W
 0DAE:  BRA    0DB6
 ....................          i=0xC8;  //DATA1, UOWN 
 0DB0:  MOVLW  C8
-0DB2:  MOVWF  x65
+0DB2:  MOVWF  x64
 0DB4:  BRA    0DBA
 ....................       else //if (tgl == USB_DTS_DATA0)  
 ....................          i=0x88; //DATA0, UOWN 
 0DB6:  MOVLW  88
-0DB8:  MOVWF  x65
+0DB8:  MOVWF  x64
 ....................      #endif 
 ....................  
 ....................       //set BC8 and BC9 
 ....................       if (bit_test(len,8)) {bit_set(i,0);} 
-0DBA:  BTFSS  x63.0
+0DBA:  BTFSS  x62.0
 0DBC:  BRA    0DC0
-0DBE:  BSF    x65.0
+0DBE:  BSF    x64.0
 ....................       if (bit_test(len,9)) {bit_set(i,1);} 
-0DC0:  BTFSS  x63.1
+0DC0:  BTFSS  x62.1
 0DC2:  BRA    0DC6
-0DC4:  BSF    x65.1
+0DC4:  BSF    x64.1
 ....................  
 ....................       debug_usb(debug_putc, " %X", i); 
 ....................  
 ....................       EP_BDxST_I(endpoint) = i;//save changes 
-0DC6:  CLRF   x6C
-0DC8:  MOVFF  261,26B
-0DCC:  CLRF   x6E
+0DC6:  CLRF   x6B
+0DC8:  MOVFF  260,26A
+0DCC:  CLRF   x6D
 0DCE:  MOVLW  08
-0DD0:  MOVWF  x6D
+0DD0:  MOVWF  x6C
 0DD2:  MOVLB  0
 0DD4:  CALL   02C4
-0DD8:  MOVFF  02,267
-0DDC:  MOVFF  01,266
+0DD8:  MOVFF  02,266
+0DDC:  MOVFF  01,265
 0DE0:  MOVLW  04
 0DE2:  MOVLB  2
-0DE4:  ADDWF  x66,F
+0DE4:  ADDWF  x65,F
 0DE6:  MOVLW  00
-0DE8:  ADDWFC x67,F
-0DEA:  MOVFF  266,FE9
+0DE8:  ADDWFC x66,F
+0DEA:  MOVFF  265,FE9
 0DEE:  MOVLW  04
-0DF0:  ADDWF  x67,W
+0DF0:  ADDWF  x66,W
 0DF2:  MOVWF  FEA
-0DF4:  MOVFF  265,FEF
+0DF4:  MOVFF  264,FEF
 ....................        
 ....................       //putc('!'); 
 ....................        
@@ -5818,7 +5818,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    unsigned int8 * buff_add;     
 ....................  
 ....................    if (usb_tbe(endpoint))  
-135A:  MOVFF  24A,266
+135A:  MOVFF  246,265
 135E:  RCALL  0C90
 1360:  BTFSC  16.7
 1362:  BSF    FF2.7
@@ -5831,42 +5831,42 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    { 
 ....................       buff_add = EP_BDxADR_I(endpoint); 
 1370:  MOVLB  2
-1372:  CLRF   x6C
-1374:  MOVFF  24A,26B
-1378:  CLRF   x6E
+1372:  CLRF   x6B
+1374:  MOVFF  246,26A
+1378:  CLRF   x6D
 137A:  MOVLW  08
-137C:  MOVWF  x6D
+137C:  MOVWF  x6C
 137E:  MOVLB  0
 1380:  CALL   02C4
 1384:  BTFSC  16.7
 1386:  BSF    FF2.7
-1388:  MOVFF  02,253
-138C:  MOVFF  01,252
+1388:  MOVFF  02,24F
+138C:  MOVFF  01,24E
 1390:  MOVLW  04
 1392:  MOVLB  2
-1394:  ADDWF  x52,F
+1394:  ADDWF  x4E,F
 1396:  MOVLW  00
-1398:  ADDWFC x53,F
+1398:  ADDWFC x4F,F
 139A:  MOVLW  02
-139C:  ADDWF  x52,W
+139C:  ADDWF  x4E,W
 139E:  MOVWF  01
 13A0:  MOVLW  00
-13A2:  ADDWFC x53,W
+13A2:  ADDWFC x4F,W
 13A4:  MOVWF  03
 13A6:  MOVFF  01,FE9
 13AA:  MOVLW  04
 13AC:  ADDWF  03,W
 13AE:  MOVWF  FEA
-13B0:  MOVFF  FEC,251
+13B0:  MOVFF  FEC,24D
 13B4:  MOVF   FED,F
-13B6:  MOVFF  FEF,250
+13B6:  MOVFF  FEF,24C
 ....................       memcpy(buff_add, ptr, len);      
-13BA:  MOVFF  251,FEA
-13BE:  MOVFF  250,FE9
-13C2:  MOVFF  24C,FE2
-13C6:  MOVFF  24B,FE1
-13CA:  MOVFF  24E,02
-13CE:  MOVFF  24D,01
+13BA:  MOVFF  24D,FEA
+13BE:  MOVFF  24C,FE9
+13C2:  MOVFF  248,FE2
+13C6:  MOVFF  247,FE1
+13CA:  MOVFF  24A,02
+13CE:  MOVFF  249,01
 13D2:  MOVF   01,F
 13D4:  BZ    13DA
 13D6:  INCF   02,F
@@ -5884,10 +5884,10 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 13F0:  BCF    FF2.7
 ....................        
 ....................       return(usb_flush_in(endpoint, len, tgl)); 
-13F2:  MOVFF  24A,261
-13F6:  MOVFF  24E,263
-13FA:  MOVFF  24D,262
-13FE:  MOVFF  24F,264
+13F2:  MOVFF  246,260
+13F6:  MOVFF  24A,262
+13FA:  MOVFF  249,261
+13FE:  MOVFF  24B,263
 1402:  MOVLB  0
 1404:  RCALL  0CE6
 1406:  BTFSC  16.7
@@ -5928,11 +5928,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    i = EP_BDxST_O(endpoint); 
 *
 0B86:  MOVLB  2
-0B88:  CLRF   x6C
-0B8A:  MOVFF  261,26B
-0B8E:  CLRF   x6E
+0B88:  CLRF   x6B
+0B8A:  MOVFF  260,26A
+0B8E:  CLRF   x6D
 0B90:  MOVLW  08
-0B92:  MOVWF  x6D
+0B92:  MOVWF  x6C
 0B94:  MOVLB  0
 0B96:  CALL   02C4
 0B9A:  MOVLB  2
@@ -5940,93 +5940,93 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0BA0:  MOVLW  04
 0BA2:  ADDWF  02,W
 0BA4:  MOVWF  FEA
-0BA6:  MOVFF  FEF,263
+0BA6:  MOVFF  FEF,262
 ....................    if (tgl == USB_DTS_TOGGLE)  
-0BAA:  MOVF   x62,W
+0BAA:  MOVF   x61,W
 0BAC:  SUBLW  02
 0BAE:  BNZ   0BBC
 ....................    { 
 ....................       if (bit_test(i,6)) 
-0BB0:  BTFSS  x63.6
+0BB0:  BTFSS  x62.6
 0BB2:  BRA    0BB8
 ....................          tgl = USB_DTS_DATA0;  //was DATA1, goto DATA0 
-0BB4:  CLRF   x62
+0BB4:  CLRF   x61
 0BB6:  BRA    0BBC
 ....................       else 
 ....................          tgl = USB_DTS_DATA1;  //was DATA0, goto DATA1 
 0BB8:  MOVLW  01
-0BBA:  MOVWF  x62
+0BBA:  MOVWF  x61
 ....................    } 
 ....................    if (tgl == USB_DTS_STALL)  
-0BBC:  MOVF   x62,W
+0BBC:  MOVF   x61,W
 0BBE:  SUBLW  03
 0BC0:  BNZ   0BFA
 ....................    { 
 ....................       i = 0x84; 
 0BC2:  MOVLW  84
-0BC4:  MOVWF  x63
+0BC4:  MOVWF  x62
 ....................       EP_BDxST_I(endpoint) = 0x84; //stall both in and out endpoints 
-0BC6:  CLRF   x6C
-0BC8:  MOVFF  261,26B
-0BCC:  CLRF   x6E
+0BC6:  CLRF   x6B
+0BC8:  MOVFF  260,26A
+0BCC:  CLRF   x6D
 0BCE:  MOVLW  08
-0BD0:  MOVWF  x6D
+0BD0:  MOVWF  x6C
 0BD2:  MOVLB  0
 0BD4:  CALL   02C4
-0BD8:  MOVFF  02,267
-0BDC:  MOVFF  01,266
+0BD8:  MOVFF  02,266
+0BDC:  MOVFF  01,265
 0BE0:  MOVLW  04
 0BE2:  MOVLB  2
-0BE4:  ADDWF  x66,F
+0BE4:  ADDWF  x65,F
 0BE6:  MOVLW  00
-0BE8:  ADDWFC x67,F
-0BEA:  MOVFF  266,FE9
+0BE8:  ADDWFC x66,F
+0BEA:  MOVFF  265,FE9
 0BEE:  MOVLW  04
-0BF0:  ADDWF  x67,W
+0BF0:  ADDWF  x66,W
 0BF2:  MOVWF  FEA
 0BF4:  MOVLW  84
 0BF6:  MOVWF  FEF
 ....................    } 
 0BF8:  BRA    0C08
 ....................    else if (tgl == USB_DTS_DATA1) 
-0BFA:  DECFSZ x62,W
+0BFA:  DECFSZ x61,W
 0BFC:  BRA    0C04
 ....................       i = 0xC8;  //DATA1, UOWN 
 0BFE:  MOVLW  C8
-0C00:  MOVWF  x63
+0C00:  MOVWF  x62
 0C02:  BRA    0C08
 ....................    else //if (tgl == USB_DTS_DATA0)  
 ....................       i = 0x88; //DATA0, UOWN 
 0C04:  MOVLW  88
-0C06:  MOVWF  x63
+0C06:  MOVWF  x62
 ....................   #endif 
 ....................  
 ....................    //bit_clear(__usb_kbhit_status,endpoint); 
 ....................  
 ....................    len = usb_ep_rx_size[endpoint]; 
 0C08:  BCF    FD8.0
-0C0A:  RLCF   x61,W
+0C0A:  RLCF   x60,W
 0C0C:  CLRF   03
-0C0E:  MOVFF  FF2,266
+0C0E:  MOVFF  FF2,265
 0C12:  BCF    FF2.7
 0C14:  MOVLB  0
 0C16:  CALL   00CE
 0C1A:  TBLRD*+
 0C1C:  MOVFF  FF5,03
 0C20:  MOVLB  2
-0C22:  BTFSC  x66.7
+0C22:  BTFSC  x65.7
 0C24:  BSF    FF2.7
-0C26:  MOVWF  x64
-0C28:  MOVFF  03,265
+0C26:  MOVWF  x63
+0C28:  MOVFF  03,264
 ....................    EP_BDxCNT_O(endpoint) = len; 
-0C2C:  CLRF   x6C
-0C2E:  MOVFF  261,26B
-0C32:  CLRF   x6E
+0C2C:  CLRF   x6B
+0C2E:  MOVFF  260,26A
+0C32:  CLRF   x6D
 0C34:  MOVLW  08
-0C36:  MOVWF  x6D
+0C36:  MOVWF  x6C
 0C38:  MOVLB  0
 0C3A:  CALL   02C4
-0C3E:  MOVFF  01,266
+0C3E:  MOVFF  01,265
 0C42:  MOVLW  01
 0C44:  MOVLB  2
 0C46:  ADDWF  01,W
@@ -6038,22 +6038,22 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0C54:  MOVLW  04
 0C56:  ADDWF  03,W
 0C58:  MOVWF  FEA
-0C5A:  MOVFF  264,FEF
+0C5A:  MOVFF  263,FEF
 ....................    if (bit_test(len,8)) {bit_set(i,0);} 
-0C5E:  BTFSS  x65.0
+0C5E:  BTFSS  x64.0
 0C60:  BRA    0C64
-0C62:  BSF    x63.0
+0C62:  BSF    x62.0
 ....................    if (bit_test(len,9)) {bit_set(i,1);} 
-0C64:  BTFSS  x65.1
+0C64:  BTFSS  x64.1
 0C66:  BRA    0C6A
-0C68:  BSF    x63.1
+0C68:  BSF    x62.1
 ....................  
 ....................    EP_BDxST_O(endpoint) = i; 
-0C6A:  CLRF   x6C
-0C6C:  MOVFF  261,26B
-0C70:  CLRF   x6E
+0C6A:  CLRF   x6B
+0C6C:  MOVFF  260,26A
+0C70:  CLRF   x6D
 0C72:  MOVLW  08
-0C74:  MOVWF  x6D
+0C74:  MOVWF  x6C
 0C76:  MOVLB  0
 0C78:  CALL   02C4
 0C7C:  MOVLB  2
@@ -6061,7 +6061,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0C82:  MOVLW  04
 0C84:  ADDWF  02,W
 0C86:  MOVWF  FEA
-0C88:  MOVFF  263,FEF
+0C88:  MOVFF  262,FEF
 0C8C:  MOVLB  0
 0C8E:  RETURN 0
 .................... } 
@@ -6106,11 +6106,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................  
 ....................    al = EP_BDxADR_O(endpoint); 
 11FE:  MOVLB  2
-1200:  CLRF   x6C
-1202:  MOVFF  249,26B
-1206:  CLRF   x6E
+1200:  CLRF   x6B
+1202:  MOVFF  249,26A
+1206:  CLRF   x6D
 1208:  MOVLW  08
-120A:  MOVWF  x6D
+120A:  MOVWF  x6C
 120C:  MOVLB  0
 120E:  CALL   02C4
 1212:  BTFSC  16.7
@@ -6135,11 +6135,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 1240:  BSF    16.7
 1242:  BCF    FF2.7
 ....................    i = EP_BDxCNT_O(endpoint); 
-1244:  CLRF   x6C
-1246:  MOVFF  249,26B
-124A:  CLRF   x6E
+1244:  CLRF   x6B
+1246:  MOVFF  249,26A
+124A:  CLRF   x6D
 124C:  MOVLW  08
-124E:  MOVWF  x6D
+124E:  MOVWF  x6C
 1250:  MOVLB  0
 1252:  CALL   02C4
 1256:  BTFSC  16.7
@@ -6163,11 +6163,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 1280:  BSF    16.7
 1282:  BCF    FF2.7
 ....................    st = EP_BDxST_O(endpoint); 
-1284:  CLRF   x6C
-1286:  MOVFF  249,26B
-128A:  CLRF   x6E
+1284:  CLRF   x6B
+1286:  MOVFF  249,26A
+128A:  CLRF   x6D
 128C:  MOVLW  08
-128E:  MOVWF  x6D
+128E:  MOVWF  x6C
 1290:  MOVLB  0
 1292:  CALL   02C4
 1296:  BTFSC  16.7
@@ -6243,10 +6243,10 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 132C:  BSF    16.7
 132E:  BCF    FF2.7
 ....................    usb_flush_out(endpoint, USB_DTS_TOGGLE); 
-1330:  MOVFF  244,261
+1330:  MOVFF  244,260
 1334:  MOVLW  02
 1336:  MOVLB  2
-1338:  MOVWF  x62
+1338:  MOVWF  x61
 133A:  MOVLB  0
 133C:  RCALL  0B86
 133E:  BTFSC  16.7
@@ -6257,7 +6257,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 1344:  MOVFF  247,01
 1348:  MOVFF  248,02
 134C:  MOVLB  0
-134E:  GOTO   251E (RETURN)
+134E:  GOTO   24A4 (RETURN)
 .................... } 
 ....................  
 .................... // see usb_hw_layer.h for documentation 
@@ -6268,34 +6268,34 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    direction = bit_test(endpoint,7); 
 *
 0A00:  MOVLB  2
-0A02:  BCF    x62.0
-0A04:  BTFSC  x61.7
-0A06:  BSF    x62.0
+0A02:  BCF    x61.0
+0A04:  BTFSC  x60.7
+0A06:  BSF    x61.0
 ....................    endpoint &= 0x7F; 
-0A08:  BCF    x61.7
+0A08:  BCF    x60.7
 ....................     
 ....................    if (direction)  
-0A0A:  BTFSS  x62.0
+0A0A:  BTFSS  x61.0
 0A0C:  BRA    0A40
 ....................    { 
 ....................       EP_BDxST_I(endpoint) = 0x84; 
-0A0E:  CLRF   x6C
-0A10:  MOVFF  261,26B
-0A14:  CLRF   x6E
+0A0E:  CLRF   x6B
+0A10:  MOVFF  260,26A
+0A14:  CLRF   x6D
 0A16:  MOVLW  08
-0A18:  MOVWF  x6D
+0A18:  MOVWF  x6C
 0A1A:  MOVLB  0
 0A1C:  RCALL  02C4
-0A1E:  MOVFF  02,264
-0A22:  MOVFF  01,263
+0A1E:  MOVFF  02,263
+0A22:  MOVFF  01,262
 0A26:  MOVLW  04
 0A28:  MOVLB  2
-0A2A:  ADDWF  x63,F
+0A2A:  ADDWF  x62,F
 0A2C:  MOVLW  00
-0A2E:  ADDWFC x64,F
-0A30:  MOVFF  263,FE9
+0A2E:  ADDWFC x63,F
+0A30:  MOVFF  262,FE9
 0A34:  MOVLW  04
-0A36:  ADDWF  x64,W
+0A36:  ADDWF  x63,W
 0A38:  MOVWF  FEA
 0A3A:  MOVLW  84
 0A3C:  MOVWF  FEF
@@ -6304,11 +6304,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    else  
 ....................    { 
 ....................       EP_BDxST_O(endpoint) = 0x84; 
-0A40:  CLRF   x6C
-0A42:  MOVFF  261,26B
-0A46:  CLRF   x6E
+0A40:  CLRF   x6B
+0A42:  MOVFF  260,26A
+0A46:  CLRF   x6D
 0A48:  MOVLW  08
-0A4A:  MOVWF  x6D
+0A4A:  MOVWF  x6C
 0A4C:  MOVLB  0
 0A4E:  RCALL  02C4
 0A50:  MOVLB  2
@@ -6331,37 +6331,37 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    direction = bit_test(endpoint,7); 
 *
 099C:  MOVLB  2
-099E:  BCF    x62.0
-09A0:  BTFSC  x61.7
-09A2:  BSF    x62.0
+099E:  BCF    x61.0
+09A0:  BTFSC  x60.7
+09A2:  BSF    x61.0
 ....................    endpoint &= 0x7F; 
-09A4:  BCF    x61.7
+09A4:  BCF    x60.7
 ....................     
 ....................    if (direction)  
-09A6:  BTFSS  x62.0
+09A6:  BTFSS  x61.0
 09A8:  BRA    09DC
 ....................    { 
 ....................      #if USB_IGNORE_RX_DTS 
 ....................       EP_BDxST_I(endpoint) = 0x80; 
 ....................      #else 
 ....................       EP_BDxST_I(endpoint) = 0x88; 
-09AA:  CLRF   x6C
-09AC:  MOVFF  261,26B
-09B0:  CLRF   x6E
+09AA:  CLRF   x6B
+09AC:  MOVFF  260,26A
+09B0:  CLRF   x6D
 09B2:  MOVLW  08
-09B4:  MOVWF  x6D
+09B4:  MOVWF  x6C
 09B6:  MOVLB  0
 09B8:  RCALL  02C4
-09BA:  MOVFF  02,264
-09BE:  MOVFF  01,263
+09BA:  MOVFF  02,263
+09BE:  MOVFF  01,262
 09C2:  MOVLW  04
 09C4:  MOVLB  2
-09C6:  ADDWF  x63,F
+09C6:  ADDWF  x62,F
 09C8:  MOVLW  00
-09CA:  ADDWFC x64,F
-09CC:  MOVFF  263,FE9
+09CA:  ADDWFC x63,F
+09CC:  MOVFF  262,FE9
 09D0:  MOVLW  04
-09D2:  ADDWF  x64,W
+09D2:  ADDWF  x63,W
 09D4:  MOVWF  FEA
 09D6:  MOVLW  88
 09D8:  MOVWF  FEF
@@ -6371,11 +6371,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    else  
 ....................    { 
 ....................       EP_BDxST_O(endpoint) = 0x00; 
-09DC:  CLRF   x6C
-09DE:  MOVFF  261,26B
-09E2:  CLRF   x6E
+09DC:  CLRF   x6B
+09DE:  MOVFF  260,26A
+09E2:  CLRF   x6D
 09E4:  MOVLW  08
-09E6:  MOVWF  x6D
+09E6:  MOVWF  x6C
 09E8:  MOVLB  0
 09EA:  RCALL  02C4
 09EC:  MOVLB  2
@@ -6398,46 +6398,46 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    direction = bit_test(endpoint,7); 
 *
 0A66:  MOVLB  2
-0A68:  BCF    x62.0
-0A6A:  BTFSC  x61.7
-0A6C:  BSF    x62.0
+0A68:  BCF    x61.0
+0A6A:  BTFSC  x60.7
+0A6C:  BSF    x61.0
 ....................    endpoint &= 0x7F; 
-0A6E:  BCF    x61.7
+0A6E:  BCF    x60.7
 ....................     
 ....................    if (direction)  
-0A70:  BTFSS  x62.0
+0A70:  BTFSS  x61.0
 0A72:  BRA    0AA6
 ....................    { 
 ....................       st=EP_BDxST_I(endpoint); 
-0A74:  CLRF   x6C
-0A76:  MOVFF  261,26B
-0A7A:  CLRF   x6E
+0A74:  CLRF   x6B
+0A76:  MOVFF  260,26A
+0A7A:  CLRF   x6D
 0A7C:  MOVLW  08
-0A7E:  MOVWF  x6D
+0A7E:  MOVWF  x6C
 0A80:  MOVLB  0
 0A82:  RCALL  02C4
-0A84:  MOVFF  02,265
-0A88:  MOVFF  01,264
+0A84:  MOVFF  02,264
+0A88:  MOVFF  01,263
 0A8C:  MOVLW  04
 0A8E:  MOVLB  2
-0A90:  ADDWF  x64,F
+0A90:  ADDWF  x63,F
 0A92:  MOVLW  00
-0A94:  ADDWFC x65,F
-0A96:  MOVFF  264,FE9
+0A94:  ADDWFC x64,F
+0A96:  MOVFF  263,FE9
 0A9A:  MOVLW  04
-0A9C:  ADDWF  x65,W
+0A9C:  ADDWF  x64,W
 0A9E:  MOVWF  FEA
-0AA0:  MOVFF  FEF,263
+0AA0:  MOVFF  FEF,262
 ....................    } 
 0AA4:  BRA    0AC6
 ....................    else  
 ....................    { 
 ....................       st=EP_BDxST_O(endpoint); 
-0AA6:  CLRF   x6C
-0AA8:  MOVFF  261,26B
-0AAC:  CLRF   x6E
+0AA6:  CLRF   x6B
+0AA8:  MOVFF  260,26A
+0AAC:  CLRF   x6D
 0AAE:  MOVLW  08
-0AB0:  MOVWF  x6D
+0AB0:  MOVWF  x6C
 0AB2:  MOVLB  0
 0AB4:  RCALL  02C4
 0AB6:  MOVLB  2
@@ -6445,13 +6445,13 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0ABC:  MOVLW  04
 0ABE:  ADDWF  02,W
 0AC0:  MOVWF  FEA
-0AC2:  MOVFF  FEF,263
+0AC2:  MOVFF  FEF,262
 ....................    } 
 ....................     
 ....................    return(bit_test(st,7) && bit_test(st,2)); 
-0AC6:  BTFSS  x63.7
+0AC6:  BTFSS  x62.7
 0AC8:  BRA    0ACE
-0ACA:  BTFSC  x63.2
+0ACA:  BTFSC  x62.2
 0ACC:  BRA    0AD2
 0ACE:  MOVLW  00
 0AD0:  BRA    0AD4
@@ -6466,11 +6466,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 .................... { 
 ....................    UADDR = address; 
 *
-0E14:  MOVFF  262,F6E
+0E14:  MOVFF  261,F6E
 ....................     
 ....................    if (address)  
 0E18:  MOVLB  2
-0E1A:  MOVF   x62,F
+0E1A:  MOVF   x61,F
 0E1C:  BZ    0E24
 ....................    { 
 ....................       usb_state = USB_STATE_ADDRESS; 
@@ -6500,7 +6500,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    if (config == 0) 
 *
 0612:  MOVLB  2
-0614:  MOVF   x61,F
+0614:  MOVF   x60,F
 0616:  BNZ   0624
 ....................    { 
 ....................       // if config=0 then set addressed state 
@@ -6521,65 +6521,65 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0626:  MOVWF  1F
 ....................       addy = (unsigned int16)USB_DATA_BUFFER_LOCATION+(2*USB_MAX_EP0_PACKET_LENGTH); 
 0628:  MOVLW  04
-062A:  MOVWF  x64
+062A:  MOVWF  x63
 062C:  MOVLW  90
-062E:  MOVWF  x63
+062E:  MOVWF  x62
 ....................       for (en=1; en<USB_NUM_UEP; en++)  
 0630:  MOVLW  01
-0632:  MOVWF  x62
-0634:  MOVF   x62,W
+0632:  MOVWF  x61
+0634:  MOVF   x61,W
 0636:  SUBLW  0F
 0638:  BTFSS  FD8.0
 063A:  BRA    0826
 ....................       { 
 ....................          // enable and config endpoints based upon user configuration 
 ....................          usb_disable_endpoint(en); 
-063C:  MOVFF  262,26A
+063C:  MOVFF  261,269
 0640:  MOVLB  0
 0642:  RCALL  02E6
 ....................          new_uep = 0; 
 0644:  MOVLB  2
-0646:  CLRF   x65
+0646:  CLRF   x64
 ....................          if (usb_ep_rx_type[en] != USB_ENABLE_DISABLED)  
 0648:  CLRF   03
-064A:  MOVF   x62,W
-064C:  MOVFF  FF2,269
+064A:  MOVF   x61,W
+064C:  MOVFF  FF2,268
 0650:  BCF    FF2.7
 0652:  MOVLB  0
 0654:  RCALL  00AE
 0656:  MOVLB  2
-0658:  BTFSC  x69.7
+0658:  BTFSC  x68.7
 065A:  BSF    FF2.7
 065C:  SUBLW  FF
 065E:  BZ    073E
 ....................          { 
 ....................             new_uep = 0x04; 
 0660:  MOVLW  04
-0662:  MOVWF  x65
+0662:  MOVWF  x64
 ....................             len = usb_ep_rx_size[en]; 
 0664:  BCF    FD8.0
-0666:  RLCF   x62,W
+0666:  RLCF   x61,W
 0668:  CLRF   03
-066A:  MOVFF  FF2,269
+066A:  MOVFF  FF2,268
 066E:  BCF    FF2.7
 0670:  MOVLB  0
 0672:  RCALL  00CE
 0674:  TBLRD*+
 0676:  MOVFF  FF5,03
 067A:  MOVLB  2
-067C:  BTFSC  x69.7
+067C:  BTFSC  x68.7
 067E:  BSF    FF2.7
-0680:  MOVWF  x66
-0682:  MOVFF  03,267
+0680:  MOVWF  x65
+0682:  MOVFF  03,266
 ....................             EP_BDxCNT_O(en) = len; 
-0686:  CLRF   x6C
-0688:  MOVFF  262,26B
-068C:  CLRF   x6E
+0686:  CLRF   x6B
+0688:  MOVFF  261,26A
+068C:  CLRF   x6D
 068E:  MOVLW  08
-0690:  MOVWF  x6D
+0690:  MOVWF  x6C
 0692:  MOVLB  0
 0694:  RCALL  02C4
-0696:  MOVFF  01,269
+0696:  MOVFF  01,268
 069A:  MOVLW  01
 069C:  MOVLB  2
 069E:  ADDWF  01,W
@@ -6591,16 +6591,16 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 06AC:  MOVLW  04
 06AE:  ADDWF  03,W
 06B0:  MOVWF  FEA
-06B2:  MOVFF  266,FEF
+06B2:  MOVFF  265,FEF
 ....................             EP_BDxADR_O(en) = addy; 
-06B6:  CLRF   x6C
-06B8:  MOVFF  262,26B
-06BC:  CLRF   x6E
+06B6:  CLRF   x6B
+06B8:  MOVFF  261,26A
+06BC:  CLRF   x6D
 06BE:  MOVLW  08
-06C0:  MOVWF  x6D
+06C0:  MOVWF  x6C
 06C2:  MOVLB  0
 06C4:  RCALL  02C4
-06C6:  MOVFF  01,269
+06C6:  MOVFF  01,268
 06CA:  MOVLW  02
 06CC:  MOVLB  2
 06CE:  ADDWF  01,W
@@ -6612,46 +6612,46 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 06DC:  MOVLW  04
 06DE:  ADDWF  03,W
 06E0:  MOVWF  FEA
-06E2:  MOVFF  264,FEC
+06E2:  MOVFF  263,FEC
 06E6:  MOVF   FED,F
-06E8:  MOVFF  263,FEF
+06E8:  MOVFF  262,FEF
 ....................             addy += usb_ep_rx_size[en]; 
 06EC:  BCF    FD8.0
-06EE:  RLCF   x62,W
+06EE:  RLCF   x61,W
 06F0:  CLRF   03
-06F2:  MOVFF  FF2,269
+06F2:  MOVFF  FF2,268
 06F6:  BCF    FF2.7
 06F8:  MOVLB  0
 06FA:  RCALL  00CE
 06FC:  TBLRD*+
 06FE:  MOVFF  FF5,03
 0702:  MOVLB  2
-0704:  BTFSC  x69.7
+0704:  BTFSC  x68.7
 0706:  BSF    FF2.7
-0708:  ADDWF  x63,F
+0708:  ADDWF  x62,F
 070A:  MOVF   03,W
-070C:  ADDWFC x64,F
+070C:  ADDWFC x63,F
 ....................            #if USB_IGNORE_RX_DTS 
 ....................             i = 0x80; 
 ....................            #else 
 ....................             i = 0x88; 
 070E:  MOVLW  88
-0710:  MOVWF  x68
+0710:  MOVWF  x67
 ....................            #endif 
 ....................             if (bit_test(len,8)) {bit_set(i,0);} 
-0712:  BTFSS  x67.0
+0712:  BTFSS  x66.0
 0714:  BRA    0718
-0716:  BSF    x68.0
+0716:  BSF    x67.0
 ....................             if (bit_test(len,9)) {bit_set(i,1);} 
-0718:  BTFSS  x67.1
+0718:  BTFSS  x66.1
 071A:  BRA    071E
-071C:  BSF    x68.1
+071C:  BSF    x67.1
 ....................             EP_BDxST_O(en) = i; 
-071E:  CLRF   x6C
-0720:  MOVFF  262,26B
-0724:  CLRF   x6E
+071E:  CLRF   x6B
+0720:  MOVFF  261,26A
+0724:  CLRF   x6D
 0726:  MOVLW  08
-0728:  MOVWF  x6D
+0728:  MOVWF  x6C
 072A:  MOVLB  0
 072C:  RCALL  02C4
 072E:  MOVLB  2
@@ -6659,119 +6659,119 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0734:  MOVLW  04
 0736:  ADDWF  02,W
 0738:  MOVWF  FEA
-073A:  MOVFF  268,FEF
+073A:  MOVFF  267,FEF
 ....................          } 
 ....................          if (usb_ep_tx_type[en] != USB_ENABLE_DISABLED)  
 073E:  CLRF   03
-0740:  MOVF   x62,W
-0742:  MOVFF  FF2,269
+0740:  MOVF   x61,W
+0742:  MOVFF  FF2,268
 0746:  BCF    FF2.7
 0748:  MOVLB  0
 074A:  RCALL  00AE
 074C:  MOVLB  2
-074E:  BTFSC  x69.7
+074E:  BTFSC  x68.7
 0750:  BSF    FF2.7
 0752:  SUBLW  FF
 0754:  BZ    07EC
 ....................          { 
 ....................             new_uep |= 0x02; 
-0756:  BSF    x65.1
+0756:  BSF    x64.1
 ....................             EP_BDxADR_I(en) = addy; 
-0758:  CLRF   x6C
-075A:  MOVFF  262,26B
-075E:  CLRF   x6E
+0758:  CLRF   x6B
+075A:  MOVFF  261,26A
+075E:  CLRF   x6D
 0760:  MOVLW  08
-0762:  MOVWF  x6D
+0762:  MOVWF  x6C
 0764:  MOVLB  0
 0766:  RCALL  02C4
-0768:  MOVFF  02,26A
-076C:  MOVFF  01,269
+0768:  MOVFF  02,269
+076C:  MOVFF  01,268
 0770:  MOVLW  04
 0772:  MOVLB  2
-0774:  ADDWF  x69,F
+0774:  ADDWF  x68,F
 0776:  MOVLW  00
-0778:  ADDWFC x6A,F
+0778:  ADDWFC x69,F
 077A:  MOVLW  02
-077C:  ADDWF  x69,W
+077C:  ADDWF  x68,W
 077E:  MOVWF  01
 0780:  MOVLW  00
-0782:  ADDWFC x6A,W
+0782:  ADDWFC x69,W
 0784:  MOVWF  03
 0786:  MOVFF  01,FE9
 078A:  MOVLW  04
 078C:  ADDWF  03,W
 078E:  MOVWF  FEA
-0790:  MOVFF  264,FEC
+0790:  MOVFF  263,FEC
 0794:  MOVF   FED,F
-0796:  MOVFF  263,FEF
+0796:  MOVFF  262,FEF
 ....................             addy += usb_ep_tx_size[en]; 
 079A:  BCF    FD8.0
-079C:  RLCF   x62,W
+079C:  RLCF   x61,W
 079E:  CLRF   03
-07A0:  MOVFF  FF2,269
+07A0:  MOVFF  FF2,268
 07A4:  BCF    FF2.7
 07A6:  MOVLB  0
 07A8:  RCALL  00CE
 07AA:  TBLRD*+
 07AC:  MOVFF  FF5,03
 07B0:  MOVLB  2
-07B2:  BTFSC  x69.7
+07B2:  BTFSC  x68.7
 07B4:  BSF    FF2.7
-07B6:  ADDWF  x63,F
+07B6:  ADDWF  x62,F
 07B8:  MOVF   03,W
-07BA:  ADDWFC x64,F
+07BA:  ADDWFC x63,F
 ....................             EP_BDxST_I(en) = 0x40; 
-07BC:  CLRF   x6C
-07BE:  MOVFF  262,26B
-07C2:  CLRF   x6E
+07BC:  CLRF   x6B
+07BE:  MOVFF  261,26A
+07C2:  CLRF   x6D
 07C4:  MOVLW  08
-07C6:  MOVWF  x6D
+07C6:  MOVWF  x6C
 07C8:  MOVLB  0
 07CA:  RCALL  02C4
-07CC:  MOVFF  02,26A
-07D0:  MOVFF  01,269
+07CC:  MOVFF  02,269
+07D0:  MOVFF  01,268
 07D4:  MOVLW  04
 07D6:  MOVLB  2
-07D8:  ADDWF  x69,F
+07D8:  ADDWF  x68,F
 07DA:  MOVLW  00
-07DC:  ADDWFC x6A,F
-07DE:  MOVFF  269,FE9
+07DC:  ADDWFC x69,F
+07DE:  MOVFF  268,FE9
 07E2:  MOVLW  04
-07E4:  ADDWF  x6A,W
+07E4:  ADDWF  x69,W
 07E6:  MOVWF  FEA
 07E8:  MOVLW  40
 07EA:  MOVWF  FEF
 ....................          } 
 ....................          if (new_uep == 0x06) {new_uep = 0x0E;} 
-07EC:  MOVF   x65,W
+07EC:  MOVF   x64,W
 07EE:  SUBLW  06
 07F0:  BNZ   07F6
 07F2:  MOVLW  0E
-07F4:  MOVWF  x65
+07F4:  MOVWF  x64
 ....................          if (usb_ep_tx_type[en] != USB_ENABLE_ISOCHRONOUS) {new_uep |= 0x10;} 
 07F6:  CLRF   03
-07F8:  MOVF   x62,W
-07FA:  MOVFF  FF2,269
+07F8:  MOVF   x61,W
+07FA:  MOVFF  FF2,268
 07FE:  BCF    FF2.7
 0800:  MOVLB  0
 0802:  RCALL  00AE
 0804:  MOVLB  2
-0806:  BTFSC  x69.7
+0806:  BTFSC  x68.7
 0808:  BSF    FF2.7
 080A:  SUBLW  01
 080C:  BZ    0810
-080E:  BSF    x65.4
+080E:  BSF    x64.4
 ....................           
 ....................          UEP(en) = new_uep; 
 0810:  CLRF   03
-0812:  MOVF   x62,W
+0812:  MOVF   x61,W
 0814:  ADDLW  70
 0816:  MOVWF  FE9
 0818:  MOVLW  0F
 081A:  ADDWFC 03,W
 081C:  MOVWF  FEA
-081E:  MOVFF  265,FEF
-0822:  INCF   x62,F
+081E:  MOVFF  264,FEF
+0822:  INCF   x61,F
 0824:  BRA    0634
 0826:  MOVLB  0
 ....................       } 
@@ -6786,7 +6786,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 *
 02E6:  CLRF   03
 02E8:  MOVLB  2
-02EA:  MOVF   x6A,W
+02EA:  MOVF   x69,W
 02EC:  ADDLW  70
 02EE:  MOVWF  FE9
 02F0:  MOVLW  0F
@@ -6795,7 +6795,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 02F6:  CLRF   FEF
 ....................     
 ....................    if (usb_endpoint_is_valid(en)) 
-02F8:  MOVFF  26A,26B
+02F8:  MOVFF  269,26A
 02FC:  MOVLB  0
 02FE:  RCALL  0262
 0300:  MOVF   01,F
@@ -6803,11 +6803,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    { 
 ....................       EP_BDxST_O(en) = 0;   //clear state, deque if necessary       
 0304:  MOVLB  2
-0306:  CLRF   x6C
-0308:  MOVFF  26A,26B
-030C:  CLRF   x6E
+0306:  CLRF   x6B
+0308:  MOVFF  269,26A
+030C:  CLRF   x6D
 030E:  MOVLW  08
-0310:  MOVWF  x6D
+0310:  MOVWF  x6C
 0312:  MOVLB  0
 0314:  RCALL  02C4
 0316:  MOVLB  2
@@ -6817,23 +6817,23 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0320:  MOVWF  FEA
 0322:  CLRF   FEF
 ....................       EP_BDxST_I(en) = 0;   //clear state, deque if necessary 
-0324:  CLRF   x6C
-0326:  MOVFF  26A,26B
-032A:  CLRF   x6E
+0324:  CLRF   x6B
+0326:  MOVFF  269,26A
+032A:  CLRF   x6D
 032C:  MOVLW  08
-032E:  MOVWF  x6D
+032E:  MOVWF  x6C
 0330:  MOVLB  0
 0332:  RCALL  02C4
-0334:  MOVFF  02,26C
-0338:  MOVFF  01,26B
+0334:  MOVFF  02,26B
+0338:  MOVFF  01,26A
 033C:  MOVLW  04
 033E:  MOVLB  2
-0340:  ADDWF  x6B,F
+0340:  ADDWF  x6A,F
 0342:  MOVLW  00
-0344:  ADDWFC x6C,F
-0346:  MOVFF  26B,FE9
+0344:  ADDWFC x6B,F
+0346:  MOVFF  26A,FE9
 034A:  MOVLW  04
-034C:  ADDWF  x6C,W
+034C:  ADDWF  x6B,W
 034E:  MOVWF  FEA
 0350:  CLRF   FEF
 0352:  MOVLB  0
@@ -6849,16 +6849,16 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    for (i=1; i<USB_NUM_UEP; i++) 
 0356:  MOVLW  01
 0358:  MOVLB  2
-035A:  MOVWF  x69
-035C:  MOVF   x69,W
+035A:  MOVWF  x68
+035C:  MOVF   x68,W
 035E:  SUBLW  0F
 0360:  BNC   0370
 ....................       usb_disable_endpoint(i); 
-0362:  MOVFF  269,26A
+0362:  MOVFF  268,269
 0366:  MOVLB  0
 0368:  RCALL  02E6
 036A:  MOVLB  2
-036C:  INCF   x69,F
+036C:  INCF   x68,F
 036E:  BRA    035C
 0370:  MOVLB  0
 0372:  RETURN 0
@@ -6960,7 +6960,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................  
 ....................       TRNAttempts = 0; 
 0FA6:  MOVLB  2
-0FA8:  CLRF   x5E
+0FA8:  CLRF   x5D
 ....................       do 
 ....................       { 
 ....................          if (UIR_TRN && UIE_TRN)  
@@ -6985,8 +6985,8 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0FC4:  MOVLB  0
 ....................       } while (TRNAttempts++ < 4); 
 0FC6:  MOVLB  2
-0FC8:  MOVF   x5E,W
-0FCA:  INCF   x5E,F
+0FC8:  MOVF   x5D,W
+0FCA:  INCF   x5D,F
 0FCC:  SUBLW  03
 0FCE:  BC    0FAA
 0FD0:  MOVLB  0
@@ -7264,7 +7264,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 .................... // see usb_hw_layer.h for documentation 
 .................... void usb_request_send_response(unsigned int8 len) {__setup_0_tx_size = len;} 
 *
-03DA:  MOVFF  264,20
+03DA:  MOVFF  263,20
 03DE:  RETURN 0
 .................... void usb_request_get_data(void)  {__setup_0_tx_size = 0xFE;} 
 .................... void usb_request_stall(void)  {__setup_0_tx_size = 0xFF;} 
@@ -7293,11 +7293,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 *
 0E60:  RRCF   1E,W
 0E62:  MOVLB  2
-0E64:  MOVWF  x5F
-0E66:  RRCF   x5F,F
-0E68:  RRCF   x5F,F
+0E64:  MOVWF  x5E
+0E66:  RRCF   x5E,F
+0E68:  RRCF   x5E,F
 0E6A:  MOVLW  1F
-0E6C:  ANDWF  x5F,F
+0E6C:  ANDWF  x5E,F
 ....................  
 ....................    debug_usb(debug_putc, "T "); 
 ....................    debug_usb(debug_putc, "%X ", USTATCopy); 
@@ -7316,7 +7316,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0E74:  MOVF   x00,W
 0E76:  ANDLW  3C
 0E78:  MOVLB  2
-0E7A:  MOVWF  x60
+0E7A:  MOVWF  x5F
 ....................        
 ....................       EP_BDxST_O(0) &= 0x43;  //clear pid, prevent bdstal/pid confusion 
 0E7C:  MOVLW  43
@@ -7325,7 +7325,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................        
 ....................       if (pidKey == USB_PIC_PID_SETUP)  
 0E82:  MOVLB  2
-0E84:  MOVF   x60,W
+0E84:  MOVF   x5F,W
 0E86:  SUBLW  34
 0E88:  BNZ   0ED4
 ....................       { 
@@ -7355,9 +7355,9 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0E9C:  BRA    0EAC
 ....................             usb_flush_out(0, USB_DTS_STALL); 
 0E9E:  MOVLB  2
-0EA0:  CLRF   x61
+0EA0:  CLRF   x60
 0EA2:  MOVLW  03
-0EA4:  MOVWF  x62
+0EA4:  MOVWF  x61
 0EA6:  MOVLB  0
 0EA8:  RCALL  0B86
 0EAA:  BRA    0ED0
@@ -7365,9 +7365,9 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................          { 
 ....................             usb_flush_out(0, USB_DTS_TOGGLE); 
 0EAC:  MOVLB  2
-0EAE:  CLRF   x61
+0EAE:  CLRF   x60
 0EB0:  MOVLW  02
-0EB2:  MOVWF  x62
+0EB2:  MOVWF  x61
 0EB4:  MOVLB  0
 0EB6:  RCALL  0B86
 ....................             if (__setup_0_tx_size != 0xFE) 
@@ -7376,11 +7376,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0EBC:  BZ    0ED0
 ....................                usb_flush_in(0 ,__setup_0_tx_size, USB_DTS_USERX); 
 0EBE:  MOVLB  2
-0EC0:  CLRF   x61
-0EC2:  CLRF   x63
-0EC4:  MOVFF  20,262
+0EC0:  CLRF   x60
+0EC2:  CLRF   x62
+0EC4:  MOVFF  20,261
 0EC8:  MOVLW  04
-0ECA:  MOVWF  x64
+0ECA:  MOVWF  x63
 0ECC:  MOVLB  0
 0ECE:  RCALL  0CE6
 ....................          } 
@@ -7390,19 +7390,19 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0ED0:  BRA    0F0A
 0ED2:  MOVLB  2
 ....................       else if (pidKey == USB_PIC_PID_OUT)  
-0ED4:  MOVF   x60,W
+0ED4:  MOVF   x5F,W
 0ED6:  SUBLW  04
 0ED8:  BNZ   0F0C
 ....................       { 
 ....................          usb_isr_tok_out_dne(0); 
-0EDA:  CLRF   x61
+0EDA:  CLRF   x60
 0EDC:  MOVLB  0
 0EDE:  RCALL  0E0A
 ....................          usb_flush_out(0, USB_DTS_TOGGLE); 
 0EE0:  MOVLB  2
-0EE2:  CLRF   x61
+0EE2:  CLRF   x60
 0EE4:  MOVLW  02
-0EE6:  MOVWF  x62
+0EE6:  MOVWF  x61
 0EE8:  MOVLB  0
 0EEA:  RCALL  0B86
 ....................          if ((__setup_0_tx_size!=0xFE) && (__setup_0_tx_size!=0xFF)) 
@@ -7415,11 +7415,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................          { 
 ....................             usb_flush_in(0,__setup_0_tx_size,USB_DTS_DATA1);   //send response (usually a 0len) 
 0EF8:  MOVLB  2
-0EFA:  CLRF   x61
-0EFC:  CLRF   x63
-0EFE:  MOVFF  20,262
+0EFA:  CLRF   x60
+0EFC:  CLRF   x62
+0EFE:  MOVFF  20,261
 0F02:  MOVLW  01
-0F04:  MOVWF  x64
+0F04:  MOVWF  x63
 0F06:  MOVLB  0
 0F08:  RCALL  0CE6
 ....................          } 
@@ -7441,7 +7441,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................       __setup_0_tx_size = 0xFF; 
 0F14:  SETF   20
 ....................       usb_isr_tok_in_dne(0); 
-0F16:  CLRF   x61
+0F16:  CLRF   x60
 0F18:  MOVLB  0
 0F1A:  RCALL  0E3C
 ....................       if (__setup_0_tx_size!=0xFF) 
@@ -7450,11 +7450,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0F20:  BRA    0F34
 ....................          usb_flush_in(0, __setup_0_tx_size, USB_DTS_TOGGLE); 
 0F22:  MOVLB  2
-0F24:  CLRF   x61
-0F26:  CLRF   x63
-0F28:  MOVFF  20,262
+0F24:  CLRF   x60
+0F26:  CLRF   x62
+0F28:  MOVFF  20,261
 0F2C:  MOVLW  02
-0F2E:  MOVWF  x64
+0F2E:  MOVWF  x63
 0F30:  MOVLB  0
 0F32:  RCALL  0CE6
 ....................       else 
@@ -7472,7 +7472,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................       { 
 ....................          //EP_BDxST_O(en) = EP_BDxST_O(en) & 0xC3;   //clear up any BDSTAL confusion 
 ....................          usb_isr_tok_out_dne(en); 
-0F3C:  MOVFF  25F,261
+0F3C:  MOVFF  25E,260
 0F40:  MOVLB  0
 0F42:  RCALL  0E0A
 ....................       } 
@@ -7482,7 +7482,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................       { 
 ....................          //EP_BDxST_I(en) = EP_BDxST_I(en) & 0xC3;   //clear up any BDSTAL confusion 
 ....................          usb_isr_tok_in_dne(en); 
-0F48:  MOVFF  25F,261
+0F48:  MOVFF  25E,260
 0F4C:  MOVLB  0
 0F4E:  RCALL  0E3C
 0F50:  MOVLB  2
@@ -7857,7 +7857,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 *
 1192:  MOVF   18,W
 1194:  MOVWF  01
-1196:  GOTO   27E0 (RETURN)
+1196:  GOTO   27BC (RETURN)
 .................... } 
 ....................  
 .................... // see usb.h for documentation 
@@ -7963,12 +7963,12 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................     
 ....................    for (i=0;i<USB_MAX_NUM_INTERFACES;i++)  
 0378:  MOVLB  2
-037A:  CLRF   x5F
-037C:  MOVF   x5F,F
+037A:  CLRF   x5E
+037C:  MOVF   x5E,F
 037E:  BNZ   0394
 ....................       USB_Interface[i] = 0;   //reset each interface to default 
 0380:  CLRF   03
-0382:  MOVF   x5F,W
+0382:  MOVF   x5E,W
 0384:  ADDLW  26
 0386:  MOVWF  FE9
 0388:  MOVLW  00
@@ -7982,7 +7982,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................   #endif 
 ....................  
 ....................   #if USB_CDC_DEVICE 
-0390:  INCF   x5F,F
+0390:  INCF   x5E,F
 0392:  BRA    037C
 ....................    usb_cdc_init(); 
 ....................   #endif 
@@ -8021,15 +8021,15 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    direction = bit_test(endpoint,7); 
 *
 0262:  MOVLB  2
-0264:  BCF    x6C.0
-0266:  BTFSC  x6B.7
-0268:  BSF    x6C.0
+0264:  BCF    x6B.0
+0266:  BTFSC  x6A.7
+0268:  BSF    x6B.0
 ....................     
 ....................    endpoint &= 0x7F; 
-026A:  BCF    x6B.7
+026A:  BCF    x6A.7
 ....................     
 ....................    if (endpoint > 16) 
-026C:  MOVF   x6B,W
+026C:  MOVF   x6A,W
 026E:  SUBLW  10
 0270:  BC    0278
 ....................       return(FALSE); 
@@ -8038,17 +8038,17 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0276:  BRA    02C0
 ....................     
 ....................    if (direction) { //IN 
-0278:  BTFSS  x6C.0
+0278:  BTFSS  x6B.0
 027A:  BRA    02A0
 ....................       return(usb_ep_tx_type[endpoint] != USB_ENABLE_DISABLED); 
 027C:  CLRF   03
-027E:  MOVF   x6B,W
-0280:  MOVFF  FF2,26D
+027E:  MOVF   x6A,W
+0280:  MOVFF  FF2,26C
 0284:  BCF    FF2.7
 0286:  MOVLB  0
 0288:  RCALL  00AE
 028A:  MOVLB  2
-028C:  BTFSC  x6D.7
+028C:  BTFSC  x6C.7
 028E:  BSF    FF2.7
 0290:  SUBLW  FF
 0292:  BNZ   0298
@@ -8062,13 +8062,13 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    else {   //OUT 
 ....................       return(usb_ep_rx_type[endpoint] != USB_ENABLE_DISABLED); 
 02A0:  CLRF   03
-02A2:  MOVF   x6B,W
-02A4:  MOVFF  FF2,26D
+02A2:  MOVF   x6A,W
+02A4:  MOVFF  FF2,26C
 02A8:  BCF    FF2.7
 02AA:  MOVLB  0
 02AC:  RCALL  00AE
 02AE:  MOVLB  2
-02B0:  BTFSC  x6D.7
+02B0:  BTFSC  x6C.7
 02B2:  BSF    FF2.7
 02B4:  SUBLW  FF
 02B6:  BNZ   02BC
@@ -8086,7 +8086,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    if (endpoint==0) { 
 *
 0E3C:  MOVLB  2
-0E3E:  MOVF   x61,F
+0E3E:  MOVF   x60,F
 0E40:  BNZ   0E5C
 ....................       if (USB_stack_status.dev_req == GET_DESCRIPTOR) {usb_copy_desc_seg_to_ep();} //check this, we are missing report descriptor? 
 0E42:  DECFSZ 17,W
@@ -8119,7 +8119,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    if (endpoint==0) { 
 *
 0E0A:  MOVLB  2
-0E0C:  MOVF   x61,F
+0E0C:  MOVF   x60,F
 0E0E:  BNZ   0E10
 ....................      debug_usb(debug_putc,"TOUT 0 "); 
 ....................      #if USB_CDC_DEVICE 
@@ -8262,7 +8262,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................             usb_request_send_response(2); 
 0858:  MOVLW  02
 085A:  MOVLB  2
-085C:  MOVWF  x64
+085C:  MOVWF  x63
 085E:  MOVLB  0
 0860:  RCALL  03DA
 ....................             break; 
@@ -8279,7 +8279,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 086C:  ANDWF  19,F
 ....................                usb_put_0len_0(); 
 086E:  MOVLB  2
-0870:  CLRF   x64
+0870:  CLRF   x63
 0872:  MOVLB  0
 0874:  RCALL  03DA
 ....................             } 
@@ -8302,7 +8302,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0886:  BSF    19.1
 ....................                usb_put_0len_0(); 
 0888:  MOVLB  2
-088A:  CLRF   x64
+088A:  CLRF   x63
 088C:  MOVLB  0
 088E:  RCALL  03DA
 ....................             } 
@@ -8329,7 +8329,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................             #endif 
 ....................             usb_put_0len_0(); 
 08A2:  MOVLB  2
-08A4:  CLRF   x64
+08A4:  CLRF   x63
 08A6:  MOVLB  0
 08A8:  RCALL  03DA
 ....................             break; 
@@ -8349,7 +8349,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................             usb_request_send_response(1); 
 08B4:  MOVLW  01
 08B6:  MOVLB  2
-08B8:  MOVWF  x64
+08B8:  MOVWF  x63
 08BA:  MOVLB  0
 08BC:  RCALL  03DA
 ....................             break; 
@@ -8364,13 +8364,13 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................                USB_stack_status.curr_config=usb_ep0_rx_buffer[2]; 
 08C8:  MOVFF  412,18
 ....................                usb_set_configured(usb_ep0_rx_buffer[2]); 
-08CC:  MOVFF  412,261
+08CC:  MOVFF  412,260
 08D0:  MOVLB  0
 08D2:  BRA    0612
 ....................                debug_usb(debug_putc,"SC%U", USB_stack_status.curr_config);                
 ....................                usb_put_0len_0(); 
 08D4:  MOVLB  2
-08D6:  CLRF   x64
+08D6:  CLRF   x63
 08D8:  MOVLB  0
 08DA:  RCALL  03DA
 08DC:  MOVLB  4
@@ -8402,7 +8402,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    unsigned int8 curr_config; 
 ....................  
 ....................    curr_config=USB_stack_status.curr_config; 
-08E8:  MOVFF  18,261
+08E8:  MOVFF  18,260
 ....................  
 ....................    switch (usb_ep0_rx_buffer[1]) { 
 08EC:  MOVLB  4
@@ -8427,7 +8427,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................             usb_request_send_response(2); 
 090A:  MOVLW  02
 090C:  MOVLB  2
-090E:  MOVWF  x64
+090E:  MOVWF  x63
 0910:  MOVLB  0
 0912:  RCALL  03DA
 ....................             break; 
@@ -8436,17 +8436,17 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................       case USB_STANDARD_REQUEST_GET_INTERFACE: 
 ....................             if ( curr_config && (usb_ep0_rx_buffer[4] < USB_NUM_INTERFACES[curr_config-1]) ) {   //book says only supports configed state 
 0916:  MOVLB  2
-0918:  MOVF   x61,F
+0918:  MOVF   x60,F
 091A:  BZ    0960
 091C:  MOVLW  01
-091E:  SUBWF  x61,W
+091E:  SUBWF  x60,W
 0920:  CLRF   03
-0922:  MOVFF  FF2,262
+0922:  MOVFF  FF2,261
 0926:  BCF    FF2.7
 0928:  MOVLB  0
 092A:  RCALL  019E
 092C:  MOVLB  2
-092E:  BTFSC  x62.7
+092E:  BTFSC  x61.7
 0930:  BSF    FF2.7
 0932:  MOVWF  01
 0934:  MOVLB  4
@@ -8468,7 +8468,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................                usb_request_send_response(1);; //send byte back 
 0952:  MOVLW  01
 0954:  MOVLB  2
-0956:  MOVWF  x64
+0956:  MOVWF  x63
 0958:  MOVLB  0
 095A:  RCALL  03DA
 ....................             } 
@@ -8484,7 +8484,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................       case USB_STANDARD_REQUEST_SET_INTERFACE: 
 ....................             if (curr_config) { //if configured state 
 0966:  MOVLB  2
-0968:  MOVF   x61,F
+0968:  MOVF   x60,F
 096A:  BZ    098C
 ....................                debug_usb(debug_putc,"SI"); 
 ....................                USB_Interface[usb_ep0_rx_buffer[4]]=usb_ep0_rx_buffer[2]; 
@@ -8499,7 +8499,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 097C:  MOVFF  412,FEF
 ....................                usb_put_0len_0(); 
 0980:  MOVLB  2
-0982:  CLRF   x64
+0982:  CLRF   x63
 0984:  MOVLB  0
 0986:  RCALL  03DA
 ....................             } 
@@ -8546,7 +8546,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 .................... void usb_isr_tkn_setup_StandardEndpoint(void) { 
 ....................    if (usb_endpoint_is_valid(usb_ep0_rx_buffer[4])) { 
 *
-0ADC:  MOVFF  414,26B
+0ADC:  MOVFF  414,26A
 0AE0:  CALL   0262
 0AE4:  MOVF   01,F
 0AE6:  BZ    0B44
@@ -8565,11 +8565,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................          case USB_STANDARD_REQUEST_CLEAR_FEATURE: 
 ....................                debug_usb(debug_putc,"CF"); 
 ....................                usb_unstall_ep(usb_ep0_rx_buffer[4]); 
-0AFC:  MOVFF  414,261
+0AFC:  MOVFF  414,260
 0B00:  BRA    099C
 ....................                usb_put_0len_0(); 
 0B02:  MOVLB  2
-0B04:  CLRF   x64
+0B04:  CLRF   x63
 0B06:  MOVLB  0
 0B08:  RCALL  03DA
 ....................                break; 
@@ -8578,11 +8578,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................          case USB_STANDARD_REQUEST_SET_FEATURE: 
 ....................                      debug_usb(debug_putc,"SF"); 
 ....................                      usb_stall_ep(usb_ep0_rx_buffer[4]); 
-0B0C:  MOVFF  414,261
+0B0C:  MOVFF  414,260
 0B10:  BRA    0A00
 ....................                      usb_put_0len_0(); 
 0B12:  MOVLB  2
-0B14:  CLRF   x64
+0B14:  CLRF   x63
 0B16:  MOVLB  0
 0B18:  RCALL  03DA
 ....................                      break; 
@@ -8596,7 +8596,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................                usb_ep0_tx_buffer[1]=0; 
 0B20:  CLRF   x51
 ....................                if (usb_endpoint_stalled(usb_ep0_rx_buffer[4])) { 
-0B22:  MOVFF  414,261
+0B22:  MOVFF  414,260
 0B26:  MOVLB  0
 0B28:  BRA    0A66
 0B2A:  MOVF   01,F
@@ -8610,7 +8610,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................                usb_request_send_response(2); 
 0B36:  MOVLW  02
 0B38:  MOVLB  2
-0B3A:  MOVWF  x64
+0B3A:  MOVWF  x63
 0B3C:  MOVLB  0
 0B3E:  RCALL  03DA
 ....................                break; 
@@ -8756,12 +8756,12 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................             usb_getdesc_len=USB_STRING_DESC[usb_getdesc_ptr]; 
 0512:  MOVFF  23,03
 0516:  MOVF   22,W
-0518:  MOVFF  FF2,262
+0518:  MOVFF  FF2,261
 051C:  BCF    FF2.7
 051E:  MOVLB  0
 0520:  RCALL  01E4
 0522:  MOVLB  2
-0524:  BTFSC  x62.7
+0524:  BTFSC  x61.7
 0526:  BSF    FF2.7
 0528:  CLRF   03
 052A:  MOVWF  24
@@ -8785,14 +8785,14 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0536:  MOVLB  4
 0538:  RLCF   x12,W
 053A:  CLRF   03
-053C:  MOVFF  FF2,262
+053C:  MOVFF  FF2,261
 0540:  BCF    FF2.7
 0542:  MOVLB  0
 0544:  RCALL  01B0
 0546:  TBLRD*+
 0548:  MOVFF  FF5,03
 054C:  MOVLB  2
-054E:  BTFSC  x62.7
+054E:  BTFSC  x61.7
 0550:  BSF    FF2.7
 0552:  MOVWF  22
 0554:  MOVFF  03,23
@@ -8804,12 +8804,12 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................                usb_getdesc_len=USB_CONFIG_DESC[usb_getdesc_ptr]; 
 0560:  MOVFF  23,03
 0564:  MOVF   22,W
-0566:  MOVFF  FF2,262
+0566:  MOVFF  FF2,261
 056A:  BCF    FF2.7
 056C:  MOVLB  0
 056E:  RCALL  0164
 0570:  MOVLB  2
-0572:  BTFSC  x62.7
+0572:  BTFSC  x61.7
 0574:  BSF    FF2.7
 0576:  CLRF   03
 0578:  MOVWF  24
@@ -8836,14 +8836,14 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 058E:  MOVLB  4
 0590:  RLCF   x14,W
 0592:  CLRF   03
-0594:  MOVFF  FF2,262
+0594:  MOVFF  FF2,261
 0598:  BCF    FF2.7
 059A:  MOVLB  0
 059C:  RCALL  0140
 059E:  TBLRD*+
 05A0:  MOVFF  FF5,03
 05A4:  MOVLB  2
-05A6:  BTFSC  x62.7
+05A6:  BTFSC  x61.7
 05A8:  BSF    FF2.7
 05AA:  MOVWF  22
 05AC:  MOVFF  03,23
@@ -8860,14 +8860,14 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 05BE:  MOVLB  4
 05C0:  RLCF   x14,W
 05C2:  CLRF   03
-05C4:  MOVFF  FF2,262
+05C4:  MOVFF  FF2,261
 05C8:  BCF    FF2.7
 05CA:  MOVLB  0
 05CC:  RCALL  0152
 05CE:  TBLRD*+
 05D0:  MOVFF  FF5,03
 05D4:  MOVLB  2
-05D6:  BTFSC  x62.7
+05D6:  BTFSC  x61.7
 05D8:  BSF    FF2.7
 05DA:  MOVWF  24
 05DC:  MOVFF  03,25
@@ -8937,7 +8937,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    USB_stack_status.dev_req=NONE;  // no request pending 
 0E30:  CLRF   17
 ....................    usb_set_address(USB_address_pending); 
-0E32:  MOVFF  21,262
+0E32:  MOVFF  21,261
 0E36:  BRA    0E14
 ....................    #endif 
 0E38:  GOTO   0E5A (RETURN)
@@ -8953,7 +8953,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 .................... void usb_copy_desc_seg_to_ep(void) { 
 *
 03E4:  MOVLB  2
-03E6:  CLRF   x62
+03E6:  CLRF   x61
 ....................    unsigned int i=0; 
 ....................    char c; 
 ....................     
@@ -8963,7 +8963,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 03E8:  MOVF   24,W
 03EA:  IORWF  25,W
 03EC:  BZ    0488
-03EE:  MOVF   x62,W
+03EE:  MOVF   x61,W
 03F0:  SUBLW  3F
 03F2:  BNC   0488
 ....................    { 
@@ -8978,13 +8978,13 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................             c=USB_CONFIG_DESC[usb_getdesc_ptr]; 
 0402:  MOVFF  23,03
 0406:  MOVF   22,W
-0408:  MOVFF  FF2,264
+0408:  MOVFF  FF2,263
 040C:  BCF    FF2.7
 040E:  RCALL  0164
 0410:  MOVLB  2
-0412:  BTFSC  x64.7
+0412:  BTFSC  x63.7
 0414:  BSF    FF2.7
-0416:  MOVWF  x63
+0416:  MOVWF  x62
 ....................             break; 
 0418:  BRA    0464
 ....................  
@@ -8993,13 +8993,13 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................             c=USB_CLASS_SPECIFIC_DESC[usb_getdesc_ptr]; 
 041A:  MOVFF  23,03
 041E:  MOVF   22,W
-0420:  MOVFF  FF2,264
+0420:  MOVFF  FF2,263
 0424:  BCF    FF2.7
 0426:  RCALL  0110
 0428:  MOVLB  2
-042A:  BTFSC  x64.7
+042A:  BTFSC  x63.7
 042C:  BSF    FF2.7
-042E:  MOVWF  x63
+042E:  MOVWF  x62
 ....................             break; 
 0430:  BRA    0464
 ....................         #endif 
@@ -9008,13 +9008,13 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................             c=USB_STRING_DESC[usb_getdesc_ptr]; 
 0432:  MOVFF  23,03
 0436:  MOVF   22,W
-0438:  MOVFF  FF2,264
+0438:  MOVFF  FF2,263
 043C:  BCF    FF2.7
 043E:  RCALL  01E4
 0440:  MOVLB  2
-0442:  BTFSC  x64.7
+0442:  BTFSC  x63.7
 0444:  BSF    FF2.7
-0446:  MOVWF  x63
+0446:  MOVWF  x62
 ....................             break; 
 0448:  BRA    0464
 ....................  
@@ -9022,13 +9022,13 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................             c=USB_DEVICE_DESC[usb_getdesc_ptr]; 
 044A:  MOVFF  23,03
 044E:  MOVF   22,W
-0450:  MOVFF  FF2,264
+0450:  MOVFF  FF2,263
 0454:  BCF    FF2.7
 0456:  RCALL  01C2
 0458:  MOVLB  2
-045A:  BTFSC  x64.7
+045A:  BTFSC  x63.7
 045C:  BSF    FF2.7
-045E:  MOVWF  x63
+045E:  MOVWF  x62
 ....................             //debug_usb(debug_putc, "-%X- ", c); 
 ....................             break; 
 0460:  BRA    0464
@@ -9044,15 +9044,15 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 046E:  DECF   25,F
 0470:  DECF   24,F
 ....................       usb_ep0_tx_buffer[i++]=c; 
-0472:  MOVF   x62,W
-0474:  INCF   x62,F
+0472:  MOVF   x61,W
+0474:  INCF   x61,F
 0476:  ADDLW  50
 0478:  MOVWF  FE9
 047A:  MOVLW  04
 047C:  MOVWF  FEA
 047E:  BTFSC  FD8.0
 0480:  INCF   FEA,F
-0482:  MOVFF  263,FEF
+0482:  MOVFF  262,FEF
 0486:  BRA    03E8
 ....................    } 
 ....................  
@@ -9060,7 +9060,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 0488:  MOVF   24,W
 048A:  IORWF  25,W
 048C:  BNZ   0496
-048E:  MOVF   x62,W
+048E:  MOVF   x61,W
 0490:  SUBLW  40
 0492:  BZ    0496
 ....................          USB_stack_status.dev_req = NONE; 
@@ -9068,7 +9068,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    } 
 ....................  
 ....................    usb_request_send_response(i); 
-0496:  MOVFF  262,264
+0496:  MOVFF  261,263
 049A:  MOVLB  0
 049C:  RCALL  03DA
 049E:  RETURN 0
@@ -9241,8 +9241,8 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 .................... unsigned int8 cal_threshold_byte(unsigned int8 voltageVal); 
 .................... void send_voltages (void); 
 .................... void adc_vpp_vdd_control (int1 state); 
-.................... void getADC (unsigned int8 channel); 
-.................... unsigned int16 calADCWord(unsigned int16 Val); 
+.................... void get_adc (unsigned int8 channel); 
+.................... unsigned int16 cal_adc_word(unsigned int16 Val); 
 .................... void execute_script(unsigned int8 scrpt_len, unsigned int8 *script_location); 
 .................... unsigned int8 read_n_bits_24(unsigned int8 numberOfBits); 
 .................... void write_upload_buff(unsigned int8 wr_byte); 
@@ -9382,43 +9382,43 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    node_t *result; 
 ....................    result =ptr; 
 *
-1574:  MOVFF  257,259
-1578:  MOVFF  256,258
+1732:  MOVFF  254,256
+1736:  MOVFF  253,255
 ....................    result->size=size; 
-157C:  MOVLB  2
-157E:  MOVFF  258,FE9
-1582:  MOVFF  259,FEA
-1586:  MOVFF  255,FEC
-158A:  MOVF   FED,F
-158C:  MOVFF  254,FEF
+173A:  MOVLB  2
+173C:  MOVFF  255,FE9
+1740:  MOVFF  256,FEA
+1744:  MOVFF  252,FEC
+1748:  MOVF   FED,F
+174A:  MOVFF  251,FEF
 ....................    result->next = NULL; 
-1590:  MOVLW  02
-1592:  ADDWF  x58,W
-1594:  MOVWF  FE9
-1596:  MOVLW  00
-1598:  ADDWFC x59,W
-159A:  MOVWF  FEA
-159C:  CLRF   FEC
-159E:  MOVF   FED,F
-15A0:  CLRF   FEF
+174E:  MOVLW  02
+1750:  ADDWF  x55,W
+1752:  MOVWF  FE9
+1754:  MOVLW  00
+1756:  ADDWFC x56,W
+1758:  MOVWF  FEA
+175A:  CLRF   FEC
+175C:  MOVF   FED,F
+175E:  CLRF   FEF
 ....................    return result; 
-15A2:  MOVFF  258,01
-15A6:  MOVFF  259,02
-15AA:  MOVLB  0
-15AC:  GOTO   1700 (RETURN)
+1760:  MOVFF  255,01
+1764:  MOVFF  256,02
+1768:  MOVLB  0
+176A:  GOTO   18BE (RETURN)
 .................... } 
 .................... void update_node(node_t *node, unsigned int16 size) // update the size of given node 
 .................... { 
 ....................    node->size=size; 
 *
-1636:  MOVLB  2
-1638:  MOVFF  256,FE9
-163C:  MOVFF  257,FEA
-1640:  MOVFF  259,FEC
-1644:  MOVF   FED,F
-1646:  MOVFF  258,FEF
-164A:  MOVLB  0
-164C:  RETURN 0
+17F4:  MOVLB  2
+17F6:  MOVFF  252,FE9
+17FA:  MOVFF  253,FEA
+17FE:  MOVFF  255,FEC
+1802:  MOVF   FED,F
+1804:  MOVFF  254,FEF
+1808:  MOVLB  0
+180A:  RETURN 0
 .................... } 
 ....................  
 .................... /* Insert node immediately after place */ //old,new 
@@ -9426,66 +9426,66 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 .................... { 
 ....................     if (place->next==NULL) 
 *
-15B0:  MOVLW  02
-15B2:  MOVLB  2
-15B4:  ADDWF  x50,W
-15B6:  MOVWF  FE9
-15B8:  MOVLW  00
-15BA:  ADDWFC x51,W
-15BC:  MOVWF  FEA
-15BE:  MOVFF  FEC,255
-15C2:  MOVF   FED,F
-15C4:  MOVFF  FEF,254
-15C8:  MOVF   x54,F
-15CA:  BNZ   15E4
-15CC:  MOVF   x55,F
-15CE:  BNZ   15E4
+176E:  MOVLW  02
+1770:  MOVLB  2
+1772:  ADDWF  x4D,W
+1774:  MOVWF  FE9
+1776:  MOVLW  00
+1778:  ADDWFC x4E,W
+177A:  MOVWF  FEA
+177C:  MOVFF  FEC,252
+1780:  MOVF   FED,F
+1782:  MOVFF  FEF,251
+1786:  MOVF   x51,F
+1788:  BNZ   17A2
+178A:  MOVF   x52,F
+178C:  BNZ   17A2
 ....................        node->next= NULL; 
-15D0:  MOVLW  02
-15D2:  ADDWF  x52,W
-15D4:  MOVWF  FE9
-15D6:  MOVLW  00
-15D8:  ADDWFC x53,W
-15DA:  MOVWF  FEA
-15DC:  CLRF   FEC
-15DE:  MOVF   FED,F
-15E0:  CLRF   FEF
-15E2:  BRA    161A
+178E:  MOVLW  02
+1790:  ADDWF  x4F,W
+1792:  MOVWF  FE9
+1794:  MOVLW  00
+1796:  ADDWFC x50,W
+1798:  MOVWF  FEA
+179A:  CLRF   FEC
+179C:  MOVF   FED,F
+179E:  CLRF   FEF
+17A0:  BRA    17D8
 ....................     else 
 ....................        node->next=place->next; 
-15E4:  MOVLW  02
-15E6:  ADDWF  x52,W
-15E8:  MOVWF  01
-15EA:  MOVLW  00
-15EC:  ADDWFC x53,W
-15EE:  MOVWF  03
-15F0:  MOVWF  x55
-15F2:  MOVLW  02
-15F4:  ADDWF  x50,W
-15F6:  MOVWF  FE9
-15F8:  MOVLW  00
-15FA:  ADDWFC x51,W
-15FC:  MOVWF  FEA
-15FE:  MOVFF  FEC,03
-1602:  MOVF   FED,F
-1604:  MOVFF  FEF,256
-1608:  MOVFF  255,FEA
-160C:  MOVFF  01,FE9
-1610:  MOVFF  03,FEC
-1614:  MOVF   FED,F
-1616:  MOVFF  256,FEF
+17A2:  MOVLW  02
+17A4:  ADDWF  x4F,W
+17A6:  MOVWF  01
+17A8:  MOVLW  00
+17AA:  ADDWFC x50,W
+17AC:  MOVWF  03
+17AE:  MOVWF  x52
+17B0:  MOVLW  02
+17B2:  ADDWF  x4D,W
+17B4:  MOVWF  FE9
+17B6:  MOVLW  00
+17B8:  ADDWFC x4E,W
+17BA:  MOVWF  FEA
+17BC:  MOVFF  FEC,03
+17C0:  MOVF   FED,F
+17C2:  MOVFF  FEF,253
+17C6:  MOVFF  252,FEA
+17CA:  MOVFF  01,FE9
+17CE:  MOVFF  03,FEC
+17D2:  MOVF   FED,F
+17D4:  MOVFF  253,FEF
 ....................     place->next=node; 
-161A:  MOVLW  02
-161C:  ADDWF  x50,W
-161E:  MOVWF  FE9
-1620:  MOVLW  00
-1622:  ADDWFC x51,W
-1624:  MOVWF  FEA
-1626:  MOVFF  253,FEC
-162A:  MOVF   FED,F
-162C:  MOVFF  252,FEF
-1630:  MOVLB  0
-1632:  GOTO   171A (RETURN)
+17D8:  MOVLW  02
+17DA:  ADDWF  x4D,W
+17DC:  MOVWF  FE9
+17DE:  MOVLW  00
+17E0:  ADDWFC x4E,W
+17E2:  MOVWF  FEA
+17E4:  MOVFF  250,FEC
+17E8:  MOVF   FED,F
+17EA:  MOVFF  24F,FEF
+17EE:  MOVLB  0
+17F0:  GOTO   18D8 (RETURN)
 .................... } 
 ....................  
 .................... ///////////////////////////////////////////////////////////////////////////////////////////////////////////// 
@@ -9494,63 +9494,63 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    node_t *ptr; 
 ....................    for(ptr=__DYNAMIC_HEAD;ptr->next!=node;ptr=ptr->next); 
 *
-1876:  MOVFF  28,259
-187A:  MOVFF  27,258
-187E:  MOVLW  02
-1880:  MOVLB  2
-1882:  ADDWF  x58,W
-1884:  MOVWF  FE9
-1886:  MOVLW  00
-1888:  ADDWFC x59,W
-188A:  MOVWF  FEA
-188C:  MOVFF  FEC,25B
-1890:  MOVF   FED,F
-1892:  MOVFF  FEF,25A
-1896:  MOVF   x56,W
-1898:  SUBWF  x5A,W
-189A:  BNZ   18A2
-189C:  MOVF   x57,W
-189E:  SUBWF  x5B,W
-18A0:  BZ    18BE
-18A2:  MOVLW  02
-18A4:  ADDWF  x58,W
-18A6:  MOVWF  FE9
-18A8:  MOVLW  00
-18AA:  ADDWFC x59,W
-18AC:  MOVWF  FEA
-18AE:  MOVFF  FEC,259
-18B2:  MOVF   FED,F
-18B4:  MOVFF  FEF,258
-18B8:  MOVLB  0
-18BA:  BRA    187E
-18BC:  MOVLB  2
+2182:  MOVFF  28,255
+2186:  MOVFF  27,254
+218A:  MOVLW  02
+218C:  MOVLB  2
+218E:  ADDWF  x54,W
+2190:  MOVWF  FE9
+2192:  MOVLW  00
+2194:  ADDWFC x55,W
+2196:  MOVWF  FEA
+2198:  MOVFF  FEC,257
+219C:  MOVF   FED,F
+219E:  MOVFF  FEF,256
+21A2:  MOVF   x52,W
+21A4:  SUBWF  x56,W
+21A6:  BNZ   21AE
+21A8:  MOVF   x53,W
+21AA:  SUBWF  x57,W
+21AC:  BZ    21CA
+21AE:  MOVLW  02
+21B0:  ADDWF  x54,W
+21B2:  MOVWF  FE9
+21B4:  MOVLW  00
+21B6:  ADDWFC x55,W
+21B8:  MOVWF  FEA
+21BA:  MOVFF  FEC,255
+21BE:  MOVF   FED,F
+21C0:  MOVFF  FEF,254
+21C4:  MOVLB  0
+21C6:  BRA    218A
+21C8:  MOVLB  2
 ....................    ptr->next=node->next; 
-18BE:  MOVLW  02
-18C0:  ADDWF  x58,W
-18C2:  MOVWF  01
-18C4:  MOVLW  00
-18C6:  ADDWFC x59,W
-18C8:  MOVWF  03
-18CA:  MOVWF  x5B
-18CC:  MOVLW  02
-18CE:  ADDWF  x56,W
-18D0:  MOVWF  FE9
-18D2:  MOVLW  00
-18D4:  ADDWFC x57,W
-18D6:  MOVWF  FEA
-18D8:  MOVFF  FEC,03
-18DC:  MOVF   FED,F
-18DE:  MOVFF  FEF,25C
-18E2:  MOVFF  25B,FEA
-18E6:  MOVFF  01,FE9
-18EA:  MOVFF  03,FEC
-18EE:  MOVF   FED,F
-18F0:  MOVFF  25C,FEF
+21CA:  MOVLW  02
+21CC:  ADDWF  x54,W
+21CE:  MOVWF  01
+21D0:  MOVLW  00
+21D2:  ADDWFC x55,W
+21D4:  MOVWF  03
+21D6:  MOVWF  x57
+21D8:  MOVLW  02
+21DA:  ADDWF  x52,W
+21DC:  MOVWF  FE9
+21DE:  MOVLW  00
+21E0:  ADDWFC x53,W
+21E2:  MOVWF  FEA
+21E4:  MOVFF  FEC,03
+21E8:  MOVF   FED,F
+21EA:  MOVFF  FEF,258
+21EE:  MOVFF  257,FEA
+21F2:  MOVFF  01,FE9
+21F6:  MOVFF  03,FEC
+21FA:  MOVF   FED,F
+21FC:  MOVFF  258,FEF
 ....................    node=NULL; 
-18F4:  CLRF   x57
-18F6:  CLRF   x56
-18F8:  MOVLB  0
-18FA:  GOTO   19BC (RETURN)
+2200:  CLRF   x53
+2202:  CLRF   x52
+2204:  MOVLB  0
+2206:  GOTO   22C8 (RETURN)
 .................... } 
 ....................  
 .................... ///////////////////////////////////////////////////////////////////////////////////////////////////////////// 
@@ -9582,15 +9582,15 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    node_t *node,*temp; 
 ....................    unsigned int16 nsize,nextsize; 
 ....................    node=__DYNAMIC_HEAD; 
-18FE:  MOVFF  28,24F
-1902:  MOVFF  27,24E
+220A:  MOVFF  28,24B
+220E:  MOVFF  27,24A
 ....................    while(node!=NULL) 
-1906:  MOVLB  2
-1908:  MOVF   x4E,F
-190A:  BNZ   1912
-190C:  MOVF   x4F,F
-190E:  BTFSC  FD8.2
-1910:  BRA    1A0A
+2212:  MOVLB  2
+2214:  MOVF   x4A,F
+2216:  BNZ   221E
+2218:  MOVF   x4B,F
+221A:  BTFSC  FD8.2
+221C:  BRA    2318
 ....................    { 
 ....................      #if defined(__DO_DEBUG_STDLIBM) 
 ....................       if (INVALID_MEMORY_LOCATION(node)) 
@@ -9601,30 +9601,30 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................       }    
 ....................      #endif 
 ....................      if(!bit_test(node->size,_MEMMGMT_POS))// node free 
-1912:  MOVFF  24E,FE9
-1916:  MOVFF  24F,FEA
-191A:  MOVFF  FEC,257
-191E:  MOVF   FED,F
-1920:  MOVFF  FEF,256
-1924:  BTFSC  x57.7
-1926:  BRA    19EE
+221E:  MOVFF  24A,FE9
+2222:  MOVFF  24B,FEA
+2226:  MOVFF  FEC,253
+222A:  MOVF   FED,F
+222C:  MOVFF  FEF,252
+2230:  BTFSC  x53.7
+2232:  BRA    22FC
 ....................       { 
 ....................          nsize=node->size; 
-1928:  MOVFF  24E,FE9
-192C:  MOVFF  24F,FEA
-1930:  MOVFF  FEC,253
-1934:  MOVF   FED,F
-1936:  MOVFF  FEF,252
+2234:  MOVFF  24A,FE9
+2238:  MOVFF  24B,FEA
+223C:  MOVFF  FEC,24F
+2240:  MOVF   FED,F
+2242:  MOVFF  FEF,24E
 ....................          temp=(unsigned int16)node->next; 
-193A:  MOVLW  02
-193C:  ADDWF  x4E,W
-193E:  MOVWF  FE9
-1940:  MOVLW  00
-1942:  ADDWFC x4F,W
-1944:  MOVWF  FEA
-1946:  MOVFF  FEC,251
-194A:  MOVF   FED,F
-194C:  MOVFF  FEF,250
+2246:  MOVLW  02
+2248:  ADDWF  x4A,W
+224A:  MOVWF  FE9
+224C:  MOVLW  00
+224E:  ADDWFC x4B,W
+2250:  MOVWF  FEA
+2252:  MOVFF  FEC,24D
+2256:  MOVF   FED,F
+2258:  MOVFF  FEF,24C
 ....................         #if defined(__DO_DEBUG_STDLIBM) 
 ....................          if (INVALID_MEMORY_LOCATION(temp)) 
 ....................          { 
@@ -9634,95 +9634,95 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................          } 
 ....................         #endif 
 ....................          if(!bit_test(temp->size,_MEMMGMT_POS)&& (temp==((unsigned int16)node+nsize+sizeof(node_t))))//next node free and consecutive, so combine 
-1950:  MOVFF  250,FE9
-1954:  MOVFF  251,FEA
-1958:  MOVFF  FEC,257
-195C:  MOVF   FED,F
-195E:  MOVFF  FEF,256
-1962:  BTFSC  x57.7
-1964:  BRA    19D2
-1966:  MOVF   x52,W
-1968:  ADDWF  x4E,W
-196A:  MOVWF  x58
-196C:  MOVF   x53,W
-196E:  ADDWFC x4F,W
-1970:  MOVWF  x59
-1972:  MOVLW  04
-1974:  ADDWF  x58,W
-1976:  MOVWF  01
-1978:  MOVLW  00
-197A:  ADDWFC x59,W
-197C:  MOVWF  03
-197E:  MOVF   01,W
-1980:  SUBWF  x50,W
-1982:  BNZ   19D2
-1984:  MOVF   03,W
-1986:  SUBWF  x51,W
-1988:  BNZ   19D2
+225C:  MOVFF  24C,FE9
+2260:  MOVFF  24D,FEA
+2264:  MOVFF  FEC,253
+2268:  MOVF   FED,F
+226A:  MOVFF  FEF,252
+226E:  BTFSC  x53.7
+2270:  BRA    22E0
+2272:  MOVF   x4E,W
+2274:  ADDWF  x4A,W
+2276:  MOVWF  x54
+2278:  MOVF   x4F,W
+227A:  ADDWFC x4B,W
+227C:  MOVWF  x55
+227E:  MOVLW  04
+2280:  ADDWF  x54,W
+2282:  MOVWF  01
+2284:  MOVLW  00
+2286:  ADDWFC x55,W
+2288:  MOVWF  03
+228A:  MOVF   01,W
+228C:  SUBWF  x4C,W
+228E:  BNZ   22E0
+2290:  MOVF   03,W
+2292:  SUBWF  x4D,W
+2294:  BNZ   22E0
 ....................          { 
 ....................             nextsize=temp->size; 
-198A:  MOVFF  250,FE9
-198E:  MOVFF  251,FEA
-1992:  MOVFF  FEC,255
-1996:  MOVF   FED,F
-1998:  MOVFF  FEF,254
+2296:  MOVFF  24C,FE9
+229A:  MOVFF  24D,FEA
+229E:  MOVFF  FEC,251
+22A2:  MOVF   FED,F
+22A4:  MOVFF  FEF,250
 ....................             nsize+=nextsize+sizeof(node_t); 
-199C:  MOVLW  04
-199E:  ADDWF  x54,W
-19A0:  MOVWF  01
-19A2:  MOVLW  00
-19A4:  ADDWFC x55,W
-19A6:  MOVWF  03
-19A8:  MOVF   01,W
-19AA:  ADDWF  x52,F
-19AC:  MOVF   03,W
-19AE:  ADDWFC x53,F
+22A8:  MOVLW  04
+22AA:  ADDWF  x50,W
+22AC:  MOVWF  01
+22AE:  MOVLW  00
+22B0:  ADDWFC x51,W
+22B2:  MOVWF  03
+22B4:  MOVF   01,W
+22B6:  ADDWF  x4E,F
+22B8:  MOVF   03,W
+22BA:  ADDWFC x4F,F
 ....................             remove_node(temp); 
-19B0:  MOVFF  251,257
-19B4:  MOVFF  250,256
-19B8:  MOVLB  0
-19BA:  BRA    1876
+22BC:  MOVFF  24D,253
+22C0:  MOVFF  24C,252
+22C4:  MOVLB  0
+22C6:  BRA    2182
 ....................             update_node(node,nsize); 
-19BC:  MOVFF  24F,257
-19C0:  MOVFF  24E,256
-19C4:  MOVFF  253,259
-19C8:  MOVFF  252,258
-19CC:  RCALL  1636
+22C8:  MOVFF  24B,253
+22CC:  MOVFF  24A,252
+22D0:  MOVFF  24F,255
+22D4:  MOVFF  24E,254
+22D8:  CALL   17F4
 ....................          } 
-19CE:  BRA    19EA
-19D0:  MOVLB  2
+22DC:  BRA    22F8
+22DE:  MOVLB  2
 ....................          else 
 ....................          node=node->next; 
-19D2:  MOVLW  02
-19D4:  ADDWF  x4E,W
-19D6:  MOVWF  FE9
-19D8:  MOVLW  00
-19DA:  ADDWFC x4F,W
-19DC:  MOVWF  FEA
-19DE:  MOVFF  FEC,24F
-19E2:  MOVF   FED,F
-19E4:  MOVFF  FEF,24E
-19E8:  MOVLB  0
+22E0:  MOVLW  02
+22E2:  ADDWF  x4A,W
+22E4:  MOVWF  FE9
+22E6:  MOVLW  00
+22E8:  ADDWFC x4B,W
+22EA:  MOVWF  FEA
+22EC:  MOVFF  FEC,24B
+22F0:  MOVF   FED,F
+22F2:  MOVFF  FEF,24A
+22F6:  MOVLB  0
 ....................       } 
-19EA:  BRA    1A06
-19EC:  MOVLB  2
+22F8:  BRA    2314
+22FA:  MOVLB  2
 ....................       else 
 ....................       node=node->next; 
-19EE:  MOVLW  02
-19F0:  ADDWF  x4E,W
-19F2:  MOVWF  FE9
-19F4:  MOVLW  00
-19F6:  ADDWFC x4F,W
-19F8:  MOVWF  FEA
-19FA:  MOVFF  FEC,24F
-19FE:  MOVF   FED,F
-1A00:  MOVFF  FEF,24E
-1A04:  MOVLB  0
-1A06:  BRA    1906
-1A08:  MOVLB  2
+22FC:  MOVLW  02
+22FE:  ADDWF  x4A,W
+2300:  MOVWF  FE9
+2302:  MOVLW  00
+2304:  ADDWFC x4B,W
+2306:  MOVWF  FEA
+2308:  MOVFF  FEC,24B
+230C:  MOVF   FED,F
+230E:  MOVFF  FEF,24A
+2312:  MOVLB  0
+2314:  BRA    2212
+2316:  MOVLB  2
 ....................    } 
-1A0A:  MOVLB  0
-1A0C:  GOTO   1A84 (RETURN)
+2318:  MOVLB  0
+231A:  GOTO   2394 (RETURN)
 .................... } 
 ....................  
 .................... char *malloc(size_t size) 
@@ -9735,8 +9735,8 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    #endif 
 ....................    node=__DYNAMIC_HEAD; 
 *
-164E:  MOVFF  28,24B
-1652:  MOVFF  27,24A
+180C:  MOVFF  28,248
+1810:  MOVFF  27,247
 ....................     
 ....................   #if defined(__DO_DEBUG_STDLIBM) 
 ....................    sprintf(g_DebugStdlibmStr, "malloc() size=%lu\r\n", size); 
@@ -9744,12 +9744,12 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................   #endif 
 ....................          
 ....................    while(node!=NULL) // chk until end of memlist 
-1656:  MOVLB  2
-1658:  MOVF   x4A,F
-165A:  BNZ   1662
-165C:  MOVF   x4B,F
-165E:  BTFSC  FD8.2
-1660:  BRA    1774
+1814:  MOVLB  2
+1816:  MOVF   x47,F
+1818:  BNZ   1820
+181A:  MOVF   x48,F
+181C:  BTFSC  FD8.2
+181E:  BRA    1932
 ....................    { 
 ....................      #if defined(__DO_DEBUG_STDLIBM) 
 ....................       if (INVALID_MEMORY_LOCATION(node)) 
@@ -9761,151 +9761,151 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................       } 
 ....................      #endif 
 ....................       if(!bit_test(node->size,_MEMMGMT_POS) && node->size >=size) // node is free and > = req size 
-1662:  MOVFF  24A,FE9
-1666:  MOVFF  24B,FEA
-166A:  MOVFF  FEC,251
-166E:  MOVF   FED,F
-1670:  MOVFF  FEF,250
-1674:  BTFSC  x51.7
-1676:  BRA    175C
-1678:  MOVFF  24A,FE9
-167C:  MOVFF  24B,FEA
-1680:  MOVFF  FEC,253
-1684:  MOVF   FED,F
-1686:  MOVFF  FEF,252
-168A:  MOVF   x49,W
-168C:  SUBWF  x53,W
-168E:  BNC   175C
-1690:  BNZ   1698
-1692:  MOVF   x48,W
-1694:  SUBWF  x52,W
-1696:  BNC   175C
+1820:  MOVFF  247,FE9
+1824:  MOVFF  248,FEA
+1828:  MOVFF  FEC,24E
+182C:  MOVF   FED,F
+182E:  MOVFF  FEF,24D
+1832:  BTFSC  x4E.7
+1834:  BRA    191A
+1836:  MOVFF  247,FE9
+183A:  MOVFF  248,FEA
+183E:  MOVFF  FEC,250
+1842:  MOVF   FED,F
+1844:  MOVFF  FEF,24F
+1848:  MOVF   x46,W
+184A:  SUBWF  x50,W
+184C:  BNC   191A
+184E:  BNZ   1856
+1850:  MOVF   x45,W
+1852:  SUBWF  x4F,W
+1854:  BNC   191A
 ....................       { 
 ....................          nsize=node->size;    //nsize = size of the node that "node" being pointed at 
-1698:  MOVFF  24A,FE9
-169C:  MOVFF  24B,FEA
-16A0:  MOVFF  FEC,24F
-16A4:  MOVF   FED,F
-16A6:  MOVFF  FEF,24E
+1856:  MOVFF  247,FE9
+185A:  MOVFF  248,FEA
+185E:  MOVFF  FEC,24C
+1862:  MOVF   FED,F
+1864:  MOVFF  FEF,24B
 ....................          if(nsize>size +sizeof(node_t)) //node > req size, so split and add new node to memlist 
-16AA:  MOVLW  04
-16AC:  ADDWF  x48,W
-16AE:  MOVWF  01
-16B0:  MOVLW  00
-16B2:  ADDWFC x49,W
-16B4:  MOVWF  03
-16B6:  MOVF   03,W
-16B8:  SUBWF  x4F,W
-16BA:  BNC   173C
-16BC:  BNZ   16C4
-16BE:  MOVF   x4E,W
-16C0:  SUBWF  01,W
-16C2:  BC    173C
+1868:  MOVLW  04
+186A:  ADDWF  x45,W
+186C:  MOVWF  01
+186E:  MOVLW  00
+1870:  ADDWFC x46,W
+1872:  MOVWF  03
+1874:  MOVF   03,W
+1876:  SUBWF  x4C,W
+1878:  BNC   18FA
+187A:  BNZ   1882
+187C:  MOVF   x4B,W
+187E:  SUBWF  01,W
+1880:  BC    18FA
 ....................          { 
 ....................             new=create_node(nsize-size-sizeof(node_t),(unsigned int16)node+sizeof(node_t)+size); 
-16C4:  MOVF   x48,W
-16C6:  SUBWF  x4E,W
-16C8:  MOVWF  x50
-16CA:  MOVF   x49,W
-16CC:  SUBWFB x4F,W
-16CE:  MOVWF  x51
-16D0:  MOVLW  04
-16D2:  SUBWF  x50,F
-16D4:  MOVLW  00
-16D6:  SUBWFB x51,F
-16D8:  MOVLW  04
-16DA:  ADDWF  x4A,W
-16DC:  MOVWF  x52
-16DE:  MOVLW  00
-16E0:  ADDWFC x4B,W
-16E2:  MOVWF  x53
-16E4:  MOVF   x48,W
-16E6:  ADDWF  x52,F
-16E8:  MOVF   x49,W
-16EA:  ADDWFC x53,F
-16EC:  MOVFF  251,255
-16F0:  MOVFF  250,254
-16F4:  MOVFF  253,257
-16F8:  MOVFF  252,256
-16FC:  MOVLB  0
-16FE:  BRA    1574
-1700:  MOVFF  02,24D
-1704:  MOVFF  01,24C
+1882:  MOVF   x45,W
+1884:  SUBWF  x4B,W
+1886:  MOVWF  x4D
+1888:  MOVF   x46,W
+188A:  SUBWFB x4C,W
+188C:  MOVWF  x4E
+188E:  MOVLW  04
+1890:  SUBWF  x4D,F
+1892:  MOVLW  00
+1894:  SUBWFB x4E,F
+1896:  MOVLW  04
+1898:  ADDWF  x47,W
+189A:  MOVWF  x4F
+189C:  MOVLW  00
+189E:  ADDWFC x48,W
+18A0:  MOVWF  x50
+18A2:  MOVF   x45,W
+18A4:  ADDWF  x4F,F
+18A6:  MOVF   x46,W
+18A8:  ADDWFC x50,F
+18AA:  MOVFF  24E,252
+18AE:  MOVFF  24D,251
+18B2:  MOVFF  250,254
+18B6:  MOVFF  24F,253
+18BA:  MOVLB  0
+18BC:  BRA    1732
+18BE:  MOVFF  02,24A
+18C2:  MOVFF  01,249
 ....................             insert_node_after(node,new); 
-1708:  MOVFF  24B,251
-170C:  MOVFF  24A,250
-1710:  MOVFF  24D,253
-1714:  MOVFF  24C,252
-1718:  BRA    15B0
+18C6:  MOVFF  248,24E
+18CA:  MOVFF  247,24D
+18CE:  MOVFF  24A,250
+18D2:  MOVFF  249,24F
+18D6:  BRA    176E
 ....................             update_node(node,size+_MEMMGMT_CSIZE); 
-171A:  MOVLB  2
-171C:  MOVFF  248,250
-1720:  MOVLW  80
-1722:  ADDWF  x49,W
-1724:  MOVWF  x51
-1726:  MOVFF  24B,257
-172A:  MOVFF  24A,256
-172E:  MOVWF  x59
-1730:  MOVFF  248,258
-1734:  MOVLB  0
-1736:  RCALL  1636
+18D8:  MOVLB  2
+18DA:  MOVFF  245,24D
+18DE:  MOVLW  80
+18E0:  ADDWF  x46,W
+18E2:  MOVWF  x4E
+18E4:  MOVFF  248,253
+18E8:  MOVFF  247,252
+18EC:  MOVWF  x55
+18EE:  MOVFF  245,254
+18F2:  MOVLB  0
+18F4:  RCALL  17F4
 ....................          } 
-1738:  BRA    1758
-173A:  MOVLB  2
+18F6:  BRA    1916
+18F8:  MOVLB  2
 ....................          else//not enough space for new node so use original size 
 ....................          update_node(node,nsize+_MEMMGMT_CSIZE); 
-173C:  MOVFF  24E,250
-1740:  MOVLW  80
-1742:  ADDWF  x4F,W
-1744:  MOVWF  x51
-1746:  MOVFF  24B,257
-174A:  MOVFF  24A,256
-174E:  MOVWF  x59
-1750:  MOVFF  24E,258
-1754:  MOVLB  0
-1756:  RCALL  1636
+18FA:  MOVFF  24B,24D
+18FE:  MOVLW  80
+1900:  ADDWF  x4C,W
+1902:  MOVWF  x4E
+1904:  MOVFF  248,253
+1908:  MOVFF  247,252
+190C:  MOVWF  x55
+190E:  MOVFF  24B,254
+1912:  MOVLB  0
+1914:  RCALL  17F4
 ....................          //end if 
 ....................          break; 
-1758:  MOVLB  2
-175A:  BRA    1774
+1916:  MOVLB  2
+1918:  BRA    1932
 ....................       }//end if 
 ....................       node=node->next; 
-175C:  MOVLW  02
-175E:  ADDWF  x4A,W
-1760:  MOVWF  FE9
-1762:  MOVLW  00
-1764:  ADDWFC x4B,W
-1766:  MOVWF  FEA
-1768:  MOVFF  FEC,24B
-176C:  MOVF   FED,F
-176E:  MOVFF  FEF,24A
-1772:  BRA    1658
+191A:  MOVLW  02
+191C:  ADDWF  x47,W
+191E:  MOVWF  FE9
+1920:  MOVLW  00
+1922:  ADDWFC x48,W
+1924:  MOVWF  FEA
+1926:  MOVFF  FEC,248
+192A:  MOVF   FED,F
+192C:  MOVFF  FEF,247
+1930:  BRA    1816
 ....................    }//end while 
 ....................    if(node==NULL)// reached end without finding an appropriate node 
-1774:  MOVF   x4A,F
-1776:  BNZ   1786
-1778:  MOVF   x4B,F
-177A:  BNZ   1786
+1932:  MOVF   x47,F
+1934:  BNZ   1944
+1936:  MOVF   x48,F
+1938:  BNZ   1944
 ....................    { 
 ....................       debug_stdlibm("Not enough memory for mallocation\r\n"); 
 ....................       return NULL; 
-177C:  MOVLW  00
-177E:  MOVWF  01
-1780:  MOVWF  02
-1782:  BRA    1794
+193A:  MOVLW  00
+193C:  MOVWF  01
+193E:  MOVWF  02
+1940:  BRA    1952
 ....................    } 
-1784:  BRA    1794
+1942:  BRA    1952
 ....................    else 
 ....................    return (char *)node+sizeof(node_t); // return pounsigned int8er to allocated space 
-1786:  MOVLW  04
-1788:  ADDWF  x4A,W
-178A:  MOVWF  01
-178C:  MOVLW  00
-178E:  ADDWFC x4B,W
-1790:  MOVWF  03
-1792:  MOVWF  02
-1794:  MOVLB  0
-1796:  RETURN 0
+1944:  MOVLW  04
+1946:  ADDWF  x47,W
+1948:  MOVWF  01
+194A:  MOVLW  00
+194C:  ADDWFC x48,W
+194E:  MOVWF  03
+1950:  MOVWF  02
+1952:  MOVLB  0
+1954:  GOTO   260E (RETURN)
 .................... } 
 ....................  
 .................... char *calloc(size_t nmemb,size_t size) 
@@ -9968,73 +9968,73 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................  
 ....................    if(ptr==NULL) // not a valid pounsigned int8er 
 *
-1A10:  MOVLB  2
-1A12:  MOVF   x48,F
-1A14:  BNZ   1A1E
-1A16:  MOVF   x49,F
-1A18:  BNZ   1A1E
+231E:  MOVLB  2
+2320:  MOVF   x44,F
+2322:  BNZ   232C
+2324:  MOVF   x45,F
+2326:  BNZ   232C
 ....................       return; 
-1A1A:  BRA    1A86
-1A1C:  BRA    1A80
+2328:  BRA    2396
+232A:  BRA    2390
 ....................    else 
 ....................    { 
 ....................       node=ptr-sizeof(node_t); 
-1A1E:  MOVLW  04
-1A20:  SUBWF  x48,W
-1A22:  MOVWF  x4A
-1A24:  MOVLW  00
-1A26:  SUBWFB x49,W
-1A28:  MOVWF  x4B
+232C:  MOVLW  04
+232E:  SUBWF  x44,W
+2330:  MOVWF  x46
+2332:  MOVLW  00
+2334:  SUBWFB x45,W
+2336:  MOVWF  x47
 ....................       if(bit_test(node->size,_MEMMGMT_POS))// node occupied 
-1A2A:  MOVFF  24A,FE9
-1A2E:  MOVFF  24B,FEA
-1A32:  MOVFF  FEC,24F
-1A36:  MOVF   FED,F
-1A38:  MOVFF  FEF,24E
-1A3C:  BTFSS  x4F.7
-1A3E:  BRA    1A7A
+2338:  MOVFF  246,FE9
+233C:  MOVFF  247,FEA
+2340:  MOVFF  FEC,24B
+2344:  MOVF   FED,F
+2346:  MOVFF  FEF,24A
+234A:  BTFSS  x4B.7
+234C:  BRA    238A
 ....................       { 
 ....................          nsize=node->size-_MEMMGMT_CSIZE; 
-1A40:  MOVFF  24A,FE9
-1A44:  MOVFF  24B,FEA
-1A48:  MOVFF  FEC,24F
-1A4C:  MOVF   FED,F
-1A4E:  MOVFF  FEF,24E
-1A52:  MOVLW  00
-1A54:  SUBWF  x4E,W
-1A56:  MOVWF  x4C
-1A58:  MOVLW  80
-1A5A:  SUBWFB x4F,W
-1A5C:  MOVWF  x4D
+234E:  MOVFF  246,FE9
+2352:  MOVFF  247,FEA
+2356:  MOVFF  FEC,24B
+235A:  MOVF   FED,F
+235C:  MOVFF  FEF,24A
+2360:  MOVLW  00
+2362:  SUBWF  x4A,W
+2364:  MOVWF  x48
+2366:  MOVLW  80
+2368:  SUBWFB x4B,W
+236A:  MOVWF  x49
 ....................          update_node(node,nsize); 
-1A5E:  MOVFF  24B,257
-1A62:  MOVFF  24A,256
-1A66:  MOVFF  24D,259
-1A6A:  MOVFF  24C,258
-1A6E:  MOVLB  0
-1A70:  RCALL  1636
+236C:  MOVFF  247,253
+2370:  MOVFF  246,252
+2374:  MOVFF  249,255
+2378:  MOVFF  248,254
+237C:  MOVLB  0
+237E:  CALL   17F4
 ....................          ptr=NULL; 
-1A72:  MOVLB  2
-1A74:  CLRF   x49
-1A76:  CLRF   x48
+2382:  MOVLB  2
+2384:  CLRF   x45
+2386:  CLRF   x44
 ....................  
 ....................       } 
-1A78:  BRA    1A80
+2388:  BRA    2390
 ....................       else // wrong input, return 
 ....................       { 
 ....................          ptr=NULL; 
-1A7A:  CLRF   x49
-1A7C:  CLRF   x48
+238A:  CLRF   x45
+238C:  CLRF   x44
 ....................          return; 
-1A7E:  BRA    1A86
+238E:  BRA    2396
 ....................       } 
 ....................    } 
 ....................    traverse(); 
-1A80:  MOVLB  0
-1A82:  BRA    18FE
-1A84:  MOVLB  2
-1A86:  MOVLB  0
-1A88:  RETURN 0
+2390:  MOVLB  0
+2392:  BRA    220A
+2394:  MOVLB  2
+2396:  MOVLB  0
+2398:  GOTO   26C8 (RETURN)
 .................... } 
 ....................  
 .................... char *realloc(void *ptr,size_t size) 
@@ -10359,7 +10359,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    // Start VDD and VPP voltage monitoring 
 ....................    adc_vpp_vdd_control (1); 
 10F4:  MOVLW  01
-10F6:  MOVWF  x48
+10F6:  MOVWF  x46
 10F8:  MOVLB  0
 10FA:  RCALL  1040
 ....................     
@@ -10390,126 +10390,124 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 1114:  MOVLW  80
 1116:  MOVWF  x3D
 1118:  MOVLB  0
-111A:  GOTO   27D4 (RETURN)
+111A:  GOTO   27B0 (RETURN)
 .................... } 
 ....................  
 .................... void Process_Input () 
 .................... {   
 ....................    BUSY_LED = 1; 
 *
-2502:  BSF    F8B.0
+2488:  BSF    F8B.0
 ....................    i = 1;   // Initialize index 
-2504:  MOVLW  01
-2506:  MOVWF  x69
+248A:  MOVLW  01
+248C:  MOVWF  x69
 ....................    usb_get_packet(1, data_in, 64); 
-2508:  MOVLB  2
-250A:  MOVWF  x44
-250C:  CLRF   x46
-250E:  MOVLW  29
-2510:  MOVWF  x45
-2512:  CLRF   x48
-2514:  MOVLW  40
-2516:  MOVWF  x47
-2518:  MOVLB  0
-251A:  GOTO   130A
+248E:  MOVLB  2
+2490:  MOVWF  x44
+2492:  CLRF   x46
+2494:  MOVLW  29
+2496:  MOVWF  x45
+2498:  CLRF   x48
+249A:  MOVLW  40
+249C:  MOVWF  x47
+249E:  MOVLB  0
+24A0:  GOTO   130A
 ....................    //usb_flush_out(1, USB_DTS_TOGGLE); 
 ....................    unsigned int8 packet_length = data_in[0]; 
 ....................    unsigned int8 offset; 
-251E:  MOVFF  29,23E
+24A4:  MOVFF  29,23E
 ....................     
-....................     
-....................    MCLR_TGT = 1; 
-2522:  BSF    F89.5
-....................     
-....................     
+....................    //MCLR_TGT = 1; 
 ....................     
 ....................    while (i <= packet_length) 
-2524:  MOVF   x69,W
-2526:  MOVLB  2
-2528:  SUBWF  x3E,W
-252A:  BTFSS  FD8.0
-252C:  BRA    2784
+24A8:  MOVF   x69,W
+24AA:  MOVLB  2
+24AC:  SUBWF  x3E,W
+24AE:  BTFSS  FD8.0
+24B0:  BRA    275E
 ....................    { 
 ....................       offset = data_in[i]; 
-252E:  CLRF   03
-2530:  MOVLB  0
-2532:  MOVF   x69,W
-2534:  ADDLW  29
-2536:  MOVWF  FE9
-2538:  MOVLW  00
-253A:  ADDWFC 03,W
-253C:  MOVWF  FEA
-253E:  MOVFF  FEF,23F
+24B2:  CLRF   03
+24B4:  MOVLB  0
+24B6:  MOVF   x69,W
+24B8:  ADDLW  29
+24BA:  MOVWF  FE9
+24BC:  MOVLW  00
+24BE:  ADDWFC 03,W
+24C0:  MOVWF  FEA
+24C2:  MOVFF  FEF,23F
 ....................       if (offset < 0x01) break; //unknown instruction 
-2542:  MOVLB  2
-2544:  MOVF   x3F,F
-2546:  BTFSC  FD8.2
-2548:  BRA    2784
+24C6:  MOVLB  2
+24C8:  MOVF   x3F,F
+24CA:  BTFSC  FD8.2
+24CC:  BRA    275E
 ....................        
 ....................       offset -= 0x01; 
-254A:  MOVLW  01
-254C:  SUBWF  x3F,F
+24CE:  MOVLW  01
+24D0:  SUBWF  x3F,F
 ....................       offset *= 2; 
-254E:  BCF    FD8.0
-2550:  RLCF   x3F,F
+24D2:  BCF    FD8.0
+24D4:  RLCF   x3F,F
 ....................       offset += 8; 
-2552:  MOVLW  08
-2554:  ADDWF  x3F,F
+24D6:  MOVLW  08
+24D8:  ADDWF  x3F,F
 ....................        
 ....................       #ASM 
 ....................          MOVF     PCL, W  //Save current PCL value in Wreg, by reading PCL, PCH and PCU will be loaded into PCLATH and PCLATU  
-2556:  MOVF   FF9,W
+24DA:  MOVF   FF9,W
 ....................          ADDWF    offset, W 
-2558:  ADDWF  x3F,W
+24DC:  ADDWF  x3F,W
 ....................          BTFSC    C 
-255A:  BTFSC  FD8.0
+24DE:  BTFSC  FD8.0
 ....................          INCF     PCLATH 
-255C:  INCF   FFA,F
+24E0:  INCF   FFA,F
 ....................          MOVWF    PCL 
-255E:  MOVWF  FF9
+24E2:  MOVWF  FF9
 ....................          BRA      GET_VERSION_LBL  
-2560:  BRA    2574
+24E4:  BRA    24FA
 ....................          BRA      TOGGLE_LED_LBL 
-2562:  BRA    257E
+24E6:  BRA    2504
 ....................          BRA      SET_VDD_LBL 
-2564:  BRA    2590
+24E8:  BRA    2516
 ....................          BRA      SET_VPP_LBL 
-2566:  BRA    25EE
+24EA:  BRA    2574
 ....................          BRA      READ_VOLTAGES_LBL 
-2568:  BRA    2658
+24EC:  BRA    25DE
 ....................          BRA      RUN_ROM_SCRIPT_LBL 
-256A:  BRA    2664
+24EE:  BRA    25EA
 ....................          //BRA      downloadScrptArgsLbl 
 ....................          BRA      CLEAR_DOWN_BUFF_LBL 
-256C:  BRA    274E
+24F0:  BRA    26D0
 ....................          BRA      WRITE_DOWN_BUFF_LBL 
-256E:  BRA    275C
+24F2:  BRA    26DE
 ....................          BRA      CLEAR_UP_BUFF_LBL 
-2570:  BRA    2768
+24F4:  BRA    26EA
 ....................          BRA      UPLOAD_LBL 
-2572:  BRA    2778
+24F6:  BRA    26FA
+....................          BRA      RUN_USB_SCRIPT_LBL 
+24F8:  BRA    2704
 ....................       #ENDASM  
 ....................        
 .................... GET_VERSION_LBL: 
 ....................       get_version_number(); 
-2574:  MOVLB  0
-2576:  GOTO   1414
+24FA:  MOVLB  0
+24FC:  GOTO   1414
 ....................       break; 
-257A:  MOVLB  2
-257C:  BRA    2784
+2500:  MOVLB  2
+2502:  BRA    275E
 ....................        
 .................... TOGGLE_LED_LBL: 
 ....................       BUSY_LED ^= 1; 
-257E:  CLRF   00
-2580:  BTFSC  F8B.0
-2582:  INCF   00,F
-2584:  MOVLW  01
-2586:  XORWF  00,F
-2588:  BCF    F8B.0
-258A:  BTFSC  00.0
-258C:  BSF    F8B.0
+2504:  CLRF   00
+2506:  BTFSC  F8B.0
+2508:  INCF   00,F
+250A:  MOVLW  01
+250C:  XORWF  00,F
+250E:  BCF    F8B.0
+2510:  BTFSC  00.0
+2512:  BSF    F8B.0
 ....................       break; 
-258E:  BRA    2784
+2514:  BRA    275E
 ....................        
 .................... SET_VDD_LBL: 
 ....................       /* 
@@ -10520,47 +10518,47 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................       // CCPH:CCPL = ((Vdd * 32) + 10.5) << 6, << 6 because CCP1 (holds the duty cycle, resolution is 10 bits) and is left justified, the 2 LSB bits are located in CCP1CON. 
 ....................       // Duty_cycle = vdd * 32+ 10.5 
 ....................       cal_and_set_ccp (data_in[i+2], data_in[i+1]); 
-2590:  MOVLW  02
-2592:  MOVLB  0
-2594:  ADDWF  x69,W
-2596:  CLRF   03
-2598:  ADDLW  29
-259A:  MOVWF  FE9
-259C:  MOVLW  00
-259E:  ADDWFC 03,W
-25A0:  MOVWF  FEA
-25A2:  MOVFF  FEF,244
-25A6:  MOVLW  01
-25A8:  ADDWF  x69,W
-25AA:  CLRF   03
-25AC:  ADDLW  29
-25AE:  MOVWF  FE9
-25B0:  MOVLW  00
-25B2:  ADDWFC 03,W
-25B4:  MOVWF  FEA
-25B6:  MOVFF  FEF,245
-25BA:  MOVFF  244,246
-25BE:  MOVFF  245,247
-25C2:  GOTO   1496
+2516:  MOVLW  02
+2518:  MOVLB  0
+251A:  ADDWF  x69,W
+251C:  CLRF   03
+251E:  ADDLW  29
+2520:  MOVWF  FE9
+2522:  MOVLW  00
+2524:  ADDWFC 03,W
+2526:  MOVWF  FEA
+2528:  MOVFF  FEF,244
+252C:  MOVLW  01
+252E:  ADDWF  x69,W
+2530:  CLRF   03
+2532:  ADDLW  29
+2534:  MOVWF  FE9
+2536:  MOVLW  00
+2538:  ADDWFC 03,W
+253A:  MOVWF  FEA
+253C:  MOVFF  FEF,245
+2540:  MOVFF  244,246
+2544:  MOVFF  245,247
+2548:  GOTO   1496
 ....................       VddVppLevels.VddThreshold = cal_threshold_byte (data_in[i+3]); 
-25C6:  MOVLW  03
-25C8:  ADDWF  x69,W
-25CA:  CLRF   03
-25CC:  ADDLW  29
-25CE:  MOVWF  FE9
-25D0:  MOVLW  00
-25D2:  ADDWFC 03,W
-25D4:  MOVWF  FEA
-25D6:  MOVFF  FEF,244
-25DA:  MOVFF  244,245
-25DE:  CALL   1558
-25E2:  MOVFF  01,231
+254C:  MOVLW  03
+254E:  ADDWF  x69,W
+2550:  CLRF   03
+2552:  ADDLW  29
+2554:  MOVWF  FE9
+2556:  MOVLW  00
+2558:  ADDWFC 03,W
+255A:  MOVWF  FEA
+255C:  MOVFF  FEF,244
+2560:  MOVFF  244,245
+2564:  CALL   1558
+2568:  MOVFF  01,231
 ....................       i += 4; 
-25E6:  MOVLW  04
-25E8:  ADDWF  x69,F
+256C:  MOVLW  04
+256E:  ADDWF  x69,F
 ....................       continue; 
-25EA:  BRA    2524
-25EC:  MOVLB  2
+2570:  BRA    24A8
+2572:  MOVLB  2
 ....................        
 .................... SET_VPP_LBL: 
 ....................       /* 
@@ -10569,66 +10567,66 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................        * data_in[i+3] = VPPlim = Vfault * 18.61  
 ....................       */ 
 ....................       Vpp_PWM.CCPRSetPoint = data_in[i+1]; 
-25EE:  MOVLW  01
-25F0:  MOVLB  0
-25F2:  ADDWF  x69,W
-25F4:  CLRF   03
-25F6:  ADDLW  29
-25F8:  MOVWF  FE9
-25FA:  MOVLW  00
-25FC:  ADDWFC 03,W
-25FE:  MOVWF  FEA
-2600:  MOVFF  FEF,237
+2574:  MOVLW  01
+2576:  MOVLB  0
+2578:  ADDWF  x69,W
+257A:  CLRF   03
+257C:  ADDLW  29
+257E:  MOVWF  FE9
+2580:  MOVLW  00
+2582:  ADDWFC 03,W
+2584:  MOVWF  FEA
+2586:  MOVFF  FEF,237
 ....................       Vpp_PWM.UppperLimit = cal_threshold_byte(data_in[i+2])+1; //VPP upper limit = VPP + 1 
-2604:  MOVLW  02
-2606:  ADDWF  x69,W
-2608:  CLRF   03
-260A:  ADDLW  29
-260C:  MOVWF  FE9
-260E:  MOVLW  00
-2610:  ADDWFC 03,W
-2612:  MOVWF  FEA
-2614:  MOVFF  FEF,244
-2618:  MOVFF  244,245
-261C:  CALL   1558
-2620:  MOVLW  01
-2622:  ADDWF  01,W
-2624:  MOVLB  2
-2626:  MOVWF  x38
+258A:  MOVLW  02
+258C:  ADDWF  x69,W
+258E:  CLRF   03
+2590:  ADDLW  29
+2592:  MOVWF  FE9
+2594:  MOVLW  00
+2596:  ADDWFC 03,W
+2598:  MOVWF  FEA
+259A:  MOVFF  FEF,244
+259E:  MOVFF  244,245
+25A2:  CALL   1558
+25A6:  MOVLW  01
+25A8:  ADDWF  01,W
+25AA:  MOVLB  2
+25AC:  MOVWF  x38
 ....................       Vpp_PWM.LowerLimit = Vpp_PWM.UppperLimit - 2;        //VPP lower limit = VPP - 1 
-2628:  MOVLW  02
-262A:  SUBWF  x38,W
-262C:  MOVWF  x39
+25AE:  MOVLW  02
+25B0:  SUBWF  x38,W
+25B2:  MOVWF  x39
 ....................       VddVppLevels.VppThreshold = cal_threshold_byte(data_in[i+3]); //calibrate VPPLim  
-262E:  MOVLW  03
-2630:  MOVLB  0
-2632:  ADDWF  x69,W
-2634:  CLRF   03
-2636:  ADDLW  29
-2638:  MOVWF  FE9
-263A:  MOVLW  00
-263C:  ADDWFC 03,W
-263E:  MOVWF  FEA
-2640:  MOVFF  FEF,244
-2644:  MOVFF  244,245
-2648:  CALL   1558
-264C:  MOVFF  01,232
+25B4:  MOVLW  03
+25B6:  MOVLB  0
+25B8:  ADDWF  x69,W
+25BA:  CLRF   03
+25BC:  ADDLW  29
+25BE:  MOVWF  FE9
+25C0:  MOVLW  00
+25C2:  ADDWFC 03,W
+25C4:  MOVWF  FEA
+25C6:  MOVFF  FEF,244
+25CA:  MOVFF  244,245
+25CE:  CALL   1558
+25D2:  MOVFF  01,232
 ....................       i += 4; 
-2650:  MOVLW  04
-2652:  ADDWF  x69,F
+25D6:  MOVLW  04
+25D8:  ADDWF  x69,F
 ....................       continue; 
-2654:  BRA    2524
-2656:  MOVLB  2
+25DA:  BRA    24A8
+25DC:  MOVLB  2
 ....................        
 .................... READ_VOLTAGES_LBL: 
 ....................       send_voltages (); 
-2658:  MOVLB  0
-265A:  GOTO   1A8A
+25DE:  MOVLB  0
+25E0:  GOTO   1650
 ....................       i++; 
-265E:  INCF   x69,F
+25E4:  INCF   x69,F
 ....................       continue; 
-2660:  BRA    2524
-2662:  MOVLB  2
+25E6:  BRA    24A8
+25E8:  MOVLB  2
 ....................        
 .................... RUN_ROM_SCRIPT_LBL: 
 ....................       /* 
@@ -10638,6 +10636,61 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................       */ 
 ....................       unsigned int8 *script_buffer = malloc (data_in[i+1]); 
 ....................       unsigned int16 address =  ((data_in[i+3] * 0x100) + data_in[i+2]); 
+25EA:  MOVLW  01
+25EC:  MOVLB  0
+25EE:  ADDWF  x69,W
+25F0:  CLRF   03
+25F2:  ADDLW  29
+25F4:  MOVWF  FE9
+25F6:  MOVLW  00
+25F8:  ADDWFC 03,W
+25FA:  MOVWF  FEA
+25FC:  MOVFF  FEF,244
+2600:  MOVLB  2
+2602:  CLRF   x46
+2604:  MOVFF  244,245
+2608:  MOVLB  0
+260A:  GOTO   180C
+260E:  MOVFF  02,241
+2612:  MOVFF  01,240
+2616:  MOVLW  03
+2618:  ADDWF  x69,W
+261A:  CLRF   03
+261C:  ADDLW  29
+261E:  MOVWF  FE9
+2620:  MOVLW  00
+2622:  ADDWFC 03,W
+2624:  MOVWF  FEA
+2626:  CLRF   16
+2628:  BTFSC  FF2.7
+262A:  BSF    16.7
+262C:  BCF    FF2.7
+262E:  MOVLB  2
+2630:  CLRF   x6B
+2632:  MOVFF  FEF,26A
+2636:  MOVLW  01
+2638:  MOVWF  x6D
+263A:  CLRF   x6C
+263C:  MOVLB  0
+263E:  CALL   02C4
+2642:  BTFSC  16.7
+2644:  BSF    FF2.7
+2646:  MOVLW  02
+2648:  ADDWF  x69,W
+264A:  CLRF   03
+264C:  ADDLW  29
+264E:  MOVWF  FE9
+2650:  MOVLW  00
+2652:  ADDWFC 03,W
+2654:  MOVWF  FEA
+2656:  MOVF   FEF,W
+2658:  MOVLB  2
+265A:  ADDWF  01,W
+265C:  MOVWF  x42
+265E:  MOVLW  00
+2660:  ADDWFC 02,W
+2662:  MOVWF  x43
+....................       read_program_memory(address, script_buffer, data_in[i+1]);  
 2664:  MOVLW  01
 2666:  MOVLB  0
 2668:  ADDWF  x69,W
@@ -10648,97 +10701,40 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 2672:  ADDWFC 03,W
 2674:  MOVWF  FEA
 2676:  MOVFF  FEF,244
-267A:  MOVLB  2
-267C:  CLRF   x49
-267E:  MOVFF  244,248
-2682:  MOVLB  0
-2684:  CALL   164E
-2688:  MOVFF  02,241
-268C:  MOVFF  01,240
-2690:  MOVLW  03
-2692:  ADDWF  x69,W
-2694:  CLRF   03
-2696:  ADDLW  29
-2698:  MOVWF  FE9
-269A:  MOVLW  00
-269C:  ADDWFC 03,W
-269E:  MOVWF  FEA
-26A0:  CLRF   16
-26A2:  BTFSC  FF2.7
-26A4:  BSF    16.7
-26A6:  BCF    FF2.7
-26A8:  MOVLB  2
-26AA:  CLRF   x6C
-26AC:  MOVFF  FEF,26B
-26B0:  MOVLW  01
-26B2:  MOVWF  x6E
-26B4:  CLRF   x6D
-26B6:  MOVLB  0
-26B8:  CALL   02C4
-26BC:  BTFSC  16.7
-26BE:  BSF    FF2.7
-26C0:  MOVLW  02
-26C2:  ADDWF  x69,W
-26C4:  CLRF   03
-26C6:  ADDLW  29
-26C8:  MOVWF  FE9
-26CA:  MOVLW  00
-26CC:  ADDWFC 03,W
-26CE:  MOVWF  FEA
-26D0:  MOVF   FEF,W
-26D2:  MOVLB  2
-26D4:  ADDWF  01,W
-26D6:  MOVWF  x42
-26D8:  MOVLW  00
-26DA:  ADDWFC 02,W
-26DC:  MOVWF  x43
-....................       read_program_memory(address, script_buffer, data_in[i+1]);  
-26DE:  MOVLW  01
-26E0:  MOVLB  0
-26E2:  ADDWF  x69,W
-26E4:  CLRF   03
-26E6:  ADDLW  29
-26E8:  MOVWF  FE9
-26EA:  MOVLW  00
-26EC:  ADDWFC 03,W
-26EE:  MOVWF  FEA
-26F0:  MOVFF  FEF,244
-26F4:  CLRF   FF8
-26F6:  MOVFF  243,FF7
-26FA:  MOVFF  242,FF6
-26FE:  MOVFF  241,FEA
-2702:  MOVFF  240,FE9
-2706:  MOVLB  2
-2708:  CLRF   x46
-270A:  MOVFF  244,245
-270E:  MOVLB  0
-2710:  GOTO   1BEA
+267A:  CLRF   FF8
+267C:  MOVFF  243,FF7
+2680:  MOVFF  242,FF6
+2684:  MOVFF  241,FEA
+2688:  MOVFF  240,FE9
+268C:  MOVLB  2
+268E:  CLRF   x46
+2690:  MOVFF  244,245
+2694:  MOVLB  0
+2696:  GOTO   1958
 ....................       execute_script(data_in[i+1], script_buffer); 
-2714:  MOVLW  01
-2716:  ADDWF  x69,W
-2718:  CLRF   03
-271A:  ADDLW  29
-271C:  MOVWF  FE9
-271E:  MOVLW  00
-2720:  ADDWFC 03,W
-2722:  MOVWF  FEA
-2724:  MOVFF  FEF,244
-2728:  MOVFF  244,245
-272C:  MOVFF  241,247
-2730:  MOVFF  240,246
-2734:  GOTO   1D8E
+269A:  MOVLW  01
+269C:  ADDWF  x69,W
+269E:  CLRF   03
+26A0:  ADDLW  29
+26A2:  MOVWF  FE9
+26A4:  MOVLW  00
+26A6:  ADDWFC 03,W
+26A8:  MOVWF  FEA
+26AA:  MOVFF  FEF,244
+26AE:  MOVFF  244,247
+26B2:  MOVFF  241,249
+26B6:  MOVFF  240,248
+26BA:  CALL   1AFC
 ....................       free(script_buffer); 
-2738:  MOVFF  241,249
-273C:  MOVFF  240,248
-2740:  CALL   1A10
-....................       BUSY_LED = 0; 
-2744:  BCF    F8B.0
+26BE:  MOVFF  241,245
+26C2:  MOVFF  240,244
+26C6:  BRA    231E
 ....................       i += 4; 
-2746:  MOVLW  04
-2748:  ADDWF  x69,F
+26C8:  MOVLW  04
+26CA:  ADDWF  x69,F
 ....................       continue; 
-274A:  BRA    2524
-274C:  MOVLB  2
+26CC:  BRA    24A8
+26CE:  MOVLB  2
 ....................        
 .................... //downloadScrptArgsLbl: 
 ....................    //downloadScriptArgs(); 
@@ -10747,104 +10743,135 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................  
 .................... CLEAR_DOWN_BUFF_LBL:  
 ....................       DIB_mngnt.rd_idx = 0; 
-274E:  CLRF   x2E
+26D0:  CLRF   x2E
 ....................       DIB_mngnt.wr_idx = 0; 
-2750:  CLRF   x2F
+26D2:  CLRF   x2F
 ....................       DIB_mngnt.nbr_bytes = 0; 
-2752:  CLRF   x30
+26D4:  CLRF   x30
 ....................       i++; 
-2754:  MOVLB  0
-2756:  INCF   x69,F
+26D6:  MOVLB  0
+26D8:  INCF   x69,F
 ....................       continue; 
-2758:  BRA    2524
-275A:  MOVLB  2
+26DA:  BRA    24A8
+26DC:  MOVLB  2
 ....................  
 .................... WRITE_DOWN_BUFF_LBL: 
 ....................       i++; 
-275C:  MOVLB  0
-275E:  INCF   x69,F
+26DE:  MOVLB  0
+26E0:  INCF   x69,F
 ....................       write_down_buff(); 
-2760:  BRA    2416
+26E2:  BRA    239C
 ....................       continue; 
-2762:  MOVLB  0
-2764:  BRA    2524
-2766:  MOVLB  2
+26E4:  MOVLB  0
+26E6:  BRA    24A8
+26E8:  MOVLB  2
 ....................  
 .................... CLEAR_UP_BUFF_LBL: 
 ....................       DOB_mngnt.rd_idx = 0; 
-2768:  MOVLB  1
-276A:  CLRF   x2B
+26EA:  MOVLB  1
+26EC:  CLRF   x2B
 ....................       DOB_mngnt.wr_idx = 0; 
-276C:  CLRF   x2C
+26EE:  CLRF   x2C
 ....................       DOB_mngnt.nbr_bytes = 0; 
-276E:  CLRF   x2D
+26F0:  CLRF   x2D
 ....................       i++; 
-2770:  MOVLB  0
-2772:  INCF   x69,F
+26F2:  MOVLB  0
+26F4:  INCF   x69,F
 ....................       continue; 
-2774:  BRA    2524
-2776:  MOVLB  2
+26F6:  BRA    24A8
+26F8:  MOVLB  2
 ....................        
 .................... UPLOAD_LBL: 
 ....................       send_data_usb(); 
-2778:  MOVLB  0
-277A:  BRA    2476
+26FA:  MOVLB  0
+26FC:  BRA    23FC
 ....................       i++; 
-277C:  INCF   x69,F
+26FE:  INCF   x69,F
 ....................       continue; 
-277E:  BRA    2524
-2780:  BRA    2524
-2782:  MOVLB  2
+2700:  BRA    24A8
+2702:  MOVLB  2
+....................        
+.................... RUN_USB_SCRIPT_LBL: 
+....................       // data_in[i+1] = number of commands 
+....................       // data_in[i+2] = start of commands  
+....................       execute_script(data_in[i+1],&data_in[i+2]); 
+2704:  MOVLW  01
+2706:  MOVLB  0
+2708:  ADDWF  x69,W
+270A:  CLRF   03
+270C:  ADDLW  29
+270E:  MOVWF  FE9
+2710:  MOVLW  00
+2712:  ADDWFC 03,W
+2714:  MOVWF  FEA
+2716:  MOVFF  FEF,244
+271A:  MOVLW  02
+271C:  ADDWF  x69,W
+271E:  CLRF   03
+2720:  ADDLW  29
+2722:  MOVWF  01
+2724:  MOVLW  00
+2726:  ADDWFC 03,F
+2728:  MOVFF  01,245
+272C:  MOVFF  03,246
+2730:  MOVFF  244,247
+2734:  MOVFF  03,249
+2738:  MOVFF  01,248
+273C:  MOVLB  0
+273E:  CALL   1AFC
+....................       i += data_in[i+1] + 2; 
+2742:  MOVLW  01
+2744:  ADDWF  x69,W
+2746:  CLRF   03
+2748:  ADDLW  29
+274A:  MOVWF  FE9
+274C:  MOVLW  00
+274E:  ADDWFC 03,W
+2750:  MOVWF  FEA
+2752:  MOVLW  02
+2754:  ADDWF  FEF,W
+2756:  ADDWF  x69,F
+....................       continue; 
+2758:  BRA    24A8
+275A:  BRA    24A8
+275C:  MOVLB  2
 ....................    } 
-2784:  MOVLB  0
-2786:  GOTO   27F6 (RETURN)
-....................    /* 
-....................    #ASM 
-....................       BCF BUSY_LED 
-....................    #ENDASM 
-....................    */ 
+....................     
+....................    BUSY_LED = 0; 
+275E:  BCF    F8B.0
+2760:  MOVLB  0
+2762:  GOTO   27D2 (RETURN)
 .................... } 
 ....................  
 .................... void get_version_number (void) 
 .................... { 
-....................    /* 
-....................    unsigned int8 *DATAout  = malloc(4); 
-....................    *DATAout++ = 4;  //length of data to be sent, including this byte 
-....................    *DATAout++ = 0; 
-....................    *DATAout++ = 0; 
-....................    *DATAout = 1; 
-....................    usb_put_packet(1, (DATAout-3), 64, USB_DTS_TOGGLE); 
-....................    free(DATAout); 
-....................    */ 
-....................     
-....................     
 ....................    data_out [0] = 3;  //length of data to be sent, this byte not included 
 *
 1414:  MOVLW  03
 1416:  MOVWF  x6A
 ....................    data_out [1] = 0; 
 1418:  CLRF   x6B
-....................    data_out [2] = 2;    //month 
+....................    data_out [2] = 2;     
 141A:  MOVLW  02
 141C:  MOVWF  x6C
-....................    data_out [3] = 14; 
-141E:  MOVLW  0E
+....................    data_out [3] = 22; 
+141E:  MOVLW  16
 1420:  MOVWF  x6D
 ....................    usb_put_packet(1, data_out, 64, USB_DTS_TOGGLE); 
 1422:  MOVLW  01
 1424:  MOVLB  2
-1426:  MOVWF  x4A
-1428:  CLRF   x4C
+1426:  MOVWF  x46
+1428:  CLRF   x48
 142A:  MOVLW  6A
-142C:  MOVWF  x4B
-142E:  CLRF   x4E
+142C:  MOVWF  x47
+142E:  CLRF   x4A
 1430:  MOVLW  40
-1432:  MOVWF  x4D
+1432:  MOVWF  x49
 1434:  MOVLW  02
-1436:  MOVWF  x4F
+1436:  MOVWF  x4B
 1438:  MOVLB  0
 143A:  RCALL  1352
-143C:  GOTO   257A (RETURN)
+143C:  GOTO   2500 (RETURN)
 .................... } 
 ....................  
 .................... //Used in setVDD 
@@ -10855,11 +10882,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 149A:  BSF    16.7
 149C:  BCF    FF2.7
 149E:  MOVLB  2
-14A0:  CLRF   x6C
-14A2:  MOVFF  246,26B
+14A0:  CLRF   x6B
+14A2:  MOVFF  246,26A
 14A6:  MOVLW  01
-14A8:  MOVWF  x6E
-14AA:  CLRF   x6D
+14A8:  MOVWF  x6D
+14AA:  CLRF   x6C
 14AC:  MOVLB  0
 14AE:  CALL   02C4
 14B2:  BTFSC  16.7
@@ -10945,7 +10972,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 154E:  IORWF  x4A,W
 1550:  MOVWF  FBD
 1552:  MOVLB  0
-1554:  GOTO   25C6 (RETURN)
+1554:  GOTO   254C (RETURN)
 ....................    /* 
 ....................    #ASM  
 ....................    MOVLW 0xCF 
@@ -10975,174 +11002,129 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 156C:  MOVFF  246,01
 1570:  MOVLB  0
 1572:  RETURN 0
-.................... } //See CalADCWord(unsigned int rawValue) 
+.................... } // See cal_adc_word(unsigned int rawValue) 
 ....................  
-.................... //TODO: create a function to store cal and offset values in eeprom and a function to read them 
+.................... // TODO: create a function to store cal and offset values in eeprom and a function to read them 
 ....................  
-.................... //Read VDD and VPP voltages, used to detect self-powered targets  
+.................... // Read VDD and VPP voltages, used to detect self-powered targets  
 .................... void send_voltages (void) 
-*
-1A8A:  MOVLB  2
-1A8C:  CLRF   x49
-1A8E:  MOVLW  05
-1A90:  MOVWF  x48
-1A92:  MOVLB  0
-1A94:  RCALL  164E
-1A96:  MOVFF  02,247
-1A9A:  MOVFF  01,246
 .................... { 
 ....................    unsigned int16 adc_result; 
-....................    unsigned int8 *DATAout = malloc(5); 
-....................    *DATAout++ = 5;   //Length of data to be sent 
-1A9E:  MOVLB  2
-1AA0:  MOVFF  247,03
-1AA4:  MOVF   x46,W
-1AA6:  INCF   x46,F
-1AA8:  BTFSC  FD8.2
-1AAA:  INCF   x47,F
-1AAC:  MOVWF  FE9
-1AAE:  MOVFF  03,FEA
-1AB2:  MOVLW  05
-1AB4:  MOVWF  FEF
+....................    data_out [0] = 5;   //Length of data to be sent 
+*
+1650:  MOVLW  05
+1652:  MOVWF  x6A
 ....................    adc_vpp_vdd_control (0); //Stop ADC, VPP and VDD 
-1AB6:  CLRF   x48
-1AB8:  MOVLB  0
-1ABA:  CALL   1040
-....................    getADC (0x04); //CH1_VDD 
-1ABE:  MOVLW  04
-1AC0:  MOVLB  2
-1AC2:  MOVWF  x48
-1AC4:  MOVLB  0
-1AC6:  RCALL  1798
-1AC8:  CLRF   16
-1ACA:  BTFSC  FF2.7
-1ACC:  BSF    16.7
-1ACE:  BCF    FF2.7
+1654:  MOVLB  2
+1656:  CLRF   x46
+1658:  MOVLB  0
+165A:  RCALL  1040
+....................    get_adc (0x04); //CH1_VDD 
+165C:  MOVLW  04
+165E:  MOVLB  2
+1660:  MOVWF  x46
+1662:  MOVLB  0
+1664:  RCALL  1574
+1666:  CLRF   16
+1668:  BTFSC  FF2.7
+166A:  BSF    16.7
+166C:  BCF    FF2.7
 ....................    adc_result = (ADRESH * 0x100) + ADRESL; 
-1AD0:  MOVLB  2
-1AD2:  CLRF   x6C
-1AD4:  MOVFF  FC4,26B
-1AD8:  MOVLW  01
-1ADA:  MOVWF  x6E
-1ADC:  CLRF   x6D
-1ADE:  MOVLB  0
-1AE0:  CALL   02C4
-1AE4:  BTFSC  16.7
-1AE6:  BSF    FF2.7
-1AE8:  MOVF   FC3,W
-1AEA:  MOVLB  2
-1AEC:  ADDWF  01,W
-1AEE:  MOVWF  x44
-1AF0:  MOVLW  00
-1AF2:  ADDWFC 02,W
-1AF4:  MOVWF  x45
-....................    adc_result = calADCWord(adc_result); 
-1AF6:  MOVFF  245,249
-1AFA:  MOVFF  244,248
-1AFE:  MOVLB  0
-1B00:  RCALL  180A
-1B02:  MOVFF  02,245
-1B06:  MOVFF  01,244
-....................    *DATAout++ = (unsigned int8) adc_result; 
-1B0A:  MOVLB  2
-1B0C:  MOVFF  247,03
-1B10:  MOVF   x46,W
-1B12:  INCF   x46,F
-1B14:  BTFSC  FD8.2
-1B16:  INCF   x47,F
-1B18:  MOVWF  FE9
-1B1A:  MOVFF  03,FEA
-1B1E:  MOVFF  244,FEF
-....................    *DATAout++ = (unsigned int8) (adc_result >> 8); 
-1B22:  MOVFF  247,03
-1B26:  MOVF   x46,W
-1B28:  INCF   x46,F
-1B2A:  BTFSC  FD8.2
-1B2C:  INCF   x47,F
-1B2E:  MOVWF  FE9
-1B30:  MOVFF  03,FEA
-1B34:  MOVF   x45,W
-1B36:  MOVWF  FEF
+166E:  MOVLB  2
+1670:  CLRF   x6B
+1672:  MOVFF  FC4,26A
+1676:  MOVLW  01
+1678:  MOVWF  x6D
+167A:  CLRF   x6C
+167C:  MOVLB  0
+167E:  CALL   02C4
+1682:  BTFSC  16.7
+1684:  BSF    FF2.7
+1686:  MOVF   FC3,W
+1688:  MOVLB  2
+168A:  ADDWF  01,W
+168C:  MOVWF  x44
+168E:  MOVLW  00
+1690:  ADDWFC 02,W
+1692:  MOVWF  x45
+....................    adc_result = cal_adc_word(adc_result); 
+1694:  MOVFF  245,247
+1698:  MOVFF  244,246
+169C:  MOVLB  0
+169E:  RCALL  15E4
+16A0:  MOVFF  02,245
+16A4:  MOVFF  01,244
+....................    data_out [1] = (unsigned int8) adc_result; 
+16A8:  MOVFF  244,6B
+....................    data_out [2] = (unsigned int8) (adc_result >> 8); 
+16AC:  MOVLB  2
+16AE:  MOVF   x45,W
+16B0:  MOVLB  0
+16B2:  MOVWF  x6C
 ....................     
-....................    getADC (0x00); //CH0_VPP 
-1B38:  CLRF   x48
-1B3A:  MOVLB  0
-1B3C:  RCALL  1798
-1B3E:  CLRF   16
-1B40:  BTFSC  FF2.7
-1B42:  BSF    16.7
-1B44:  BCF    FF2.7
+....................    get_adc (0x00); //CH0_VPP 
+16B4:  MOVLB  2
+16B6:  CLRF   x46
+16B8:  MOVLB  0
+16BA:  RCALL  1574
+16BC:  CLRF   16
+16BE:  BTFSC  FF2.7
+16C0:  BSF    16.7
+16C2:  BCF    FF2.7
 ....................    adc_result = (ADRESH * 0x100) + ADRESL; 
-1B46:  MOVLB  2
-1B48:  CLRF   x6C
-1B4A:  MOVFF  FC4,26B
-1B4E:  MOVLW  01
-1B50:  MOVWF  x6E
-1B52:  CLRF   x6D
-1B54:  MOVLB  0
-1B56:  CALL   02C4
-1B5A:  BTFSC  16.7
-1B5C:  BSF    FF2.7
-1B5E:  MOVF   FC3,W
-1B60:  MOVLB  2
-1B62:  ADDWF  01,W
-1B64:  MOVWF  x44
-1B66:  MOVLW  00
-1B68:  ADDWFC 02,W
-1B6A:  MOVWF  x45
-....................    adc_result = calADCWord(adc_result); 
-1B6C:  MOVFF  245,249
-1B70:  MOVFF  244,248
-1B74:  MOVLB  0
-1B76:  RCALL  180A
-1B78:  MOVFF  02,245
-1B7C:  MOVFF  01,244
-....................    *DATAout++ = (unsigned int8) adc_result; 
-1B80:  MOVLB  2
-1B82:  MOVFF  247,03
-1B86:  MOVF   x46,W
-1B88:  INCF   x46,F
-1B8A:  BTFSC  FD8.2
-1B8C:  INCF   x47,F
-1B8E:  MOVWF  FE9
-1B90:  MOVFF  03,FEA
-1B94:  MOVFF  244,FEF
-....................    *DATAout = (unsigned int8) (adc_result >> 8); 
-1B98:  MOVFF  247,03
-1B9C:  MOVFF  246,FE9
-1BA0:  MOVFF  247,FEA
-1BA4:  MOVF   x45,W
-1BA6:  MOVWF  FEF
+16C4:  MOVLB  2
+16C6:  CLRF   x6B
+16C8:  MOVFF  FC4,26A
+16CC:  MOVLW  01
+16CE:  MOVWF  x6D
+16D0:  CLRF   x6C
+16D2:  MOVLB  0
+16D4:  CALL   02C4
+16D8:  BTFSC  16.7
+16DA:  BSF    FF2.7
+16DC:  MOVF   FC3,W
+16DE:  MOVLB  2
+16E0:  ADDWF  01,W
+16E2:  MOVWF  x44
+16E4:  MOVLW  00
+16E6:  ADDWFC 02,W
+16E8:  MOVWF  x45
+....................    adc_result = cal_adc_word(adc_result); 
+16EA:  MOVFF  245,247
+16EE:  MOVFF  244,246
+16F2:  MOVLB  0
+16F4:  RCALL  15E4
+16F6:  MOVFF  02,245
+16FA:  MOVFF  01,244
+....................    data_out [3] = (unsigned int8) adc_result; 
+16FE:  MOVFF  244,6D
+....................    data_out [4] = (unsigned int8) (adc_result >> 8); 
+1702:  MOVLB  2
+1704:  MOVF   x45,W
+1706:  MOVLB  0
+1708:  MOVWF  x6E
 ....................     
-....................    usb_put_packet(1, (DATAout-4), 64, USB_DTS_TOGGLE); 
-1BA8:  MOVLW  04
-1BAA:  SUBWF  x46,W
-1BAC:  MOVWF  x48
-1BAE:  MOVLW  00
-1BB0:  SUBWFB x47,W
-1BB2:  MOVWF  x49
-1BB4:  MOVLW  01
-1BB6:  MOVWF  x4A
-1BB8:  MOVFF  249,24C
-1BBC:  MOVFF  248,24B
-1BC0:  CLRF   x4E
-1BC2:  MOVLW  40
-1BC4:  MOVWF  x4D
-1BC6:  MOVLW  02
-1BC8:  MOVWF  x4F
-1BCA:  MOVLB  0
-1BCC:  CALL   1352
-....................    free(DATAout); 
-1BD0:  MOVFF  247,249
-1BD4:  MOVFF  246,248
-1BD8:  RCALL  1A10
-....................    adc_vpp_vdd_control (1); //Start ADC, VPP and VDD 
-1BDA:  MOVLW  01
-1BDC:  MOVLB  2
-1BDE:  MOVWF  x48
-1BE0:  MOVLB  0
-1BE2:  CALL   1040
-1BE6:  GOTO   265E (RETURN)
+....................    usb_put_packet(1, data_out, 64, USB_DTS_TOGGLE); 
+170A:  MOVLW  01
+170C:  MOVLB  2
+170E:  MOVWF  x46
+1710:  CLRF   x48
+1712:  MOVLW  6A
+1714:  MOVWF  x47
+1716:  CLRF   x4A
+1718:  MOVLW  40
+171A:  MOVWF  x49
+171C:  MOVLW  02
+171E:  MOVWF  x4B
+1720:  MOVLB  0
+1722:  RCALL  1352
+....................    adc_vpp_vdd_control (1); // Start ADC, VPP and VDD 
+1724:  MOVLW  01
+1726:  MOVLB  2
+1728:  MOVWF  x46
+172A:  MOVLB  0
+172C:  RCALL  1040
+172E:  GOTO   25E4 (RETURN)
 .................... } 
 ....................  
 .................... void adc_vpp_vdd_control (int1 state) 
@@ -11150,7 +11132,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    if (state) 
 *
 1040:  MOVLB  2
-1042:  MOVF   x48,F
+1042:  MOVF   x46,F
 1044:  BZ    106C
 ....................    {//Activate modules 
 ....................       VddVppLevels.VddErrCount = 0; 
@@ -11216,209 +11198,206 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 1078:  RETURN 0
 .................... } 
 ....................  
-.................... void getADC (unsigned int8 channel) 
+.................... void get_adc (unsigned int8 channel) 
 .................... { 
-....................    ADCON0 = (channel + 1);     // set channel. ADD 1 to enable A/D Converter (bit 0) page 261 
+....................    ADCON0 = (channel + 1);     // Set channel. ADD 1 to enable A/D Converter (bit 0) page 261 
 *
-1798:  MOVLW  01
-179A:  MOVLB  2
-179C:  ADDWF  x48,W
-179E:  MOVWF  FC2
-....................    #ASM 
-....................    BSF GO                      // begin conversion 
-17A0:  BSF    FC2.1
-....................    #ENDASM    
-....................    while ((ADCON0 | 0x02));       // wait while GO is still set 
-17A2:  MOVF   FC2,W
-17A4:  IORLW  02
-17A6:  BNZ   17A2
-17A8:  MOVLB  0
-17AA:  RETURN 0
+1574:  MOVLW  01
+1576:  MOVLB  2
+1578:  ADDWF  x46,W
+157A:  MOVWF  FC2
+....................    GO = 1;                    // Begin conversion   
+157C:  BSF    FC2.1
+....................    while (ADCON0 & 0x02);       // Wait while GO is still set 
+157E:  BTFSC  FC2.1
+1580:  BRA    157E
+1582:  MOVLB  0
+1584:  RETURN 0
 .................... } 
 ....................  
-.................... unsigned int16 calADCWord(unsigned int16 Val) 
+.................... unsigned int16 cal_adc_word(unsigned int16 Val) 
 *
-180A:  MOVLB  2
-180C:  CLRF   x4D
-180E:  CLRF   x4C
-1810:  MOVFF  249,24B
-1814:  MOVFF  248,24A
+15E4:  MOVLB  2
+15E6:  CLRF   x4B
+15E8:  CLRF   x4A
+15EA:  MOVFF  247,249
+15EE:  MOVFF  246,248
 .................... { 
 ....................  
 ....................     unsigned int32 cal_value = Val; 
 ....................     cal_value *= VoltageCalibration.adc_calfactor; 
-1818:  MOVFF  24D,251
-181C:  MOVFF  24C,250
-1820:  MOVFF  24B,24F
-1824:  MOVFF  24A,24E
-1828:  CLRF   x55
-182A:  CLRF   x54
-182C:  MOVFF  23B,253
-1830:  MOVFF  23A,252
-1834:  MOVLB  0
-1836:  BRA    17AC
-1838:  MOVFF  03,24D
-183C:  MOVFF  02,24C
-1840:  MOVFF  01,24B
-1844:  MOVFF  00,24A
+15F2:  MOVFF  24B,24F
+15F6:  MOVFF  24A,24E
+15FA:  MOVFF  249,24D
+15FE:  MOVFF  248,24C
+1602:  CLRF   x53
+1604:  CLRF   x52
+1606:  MOVFF  23B,251
+160A:  MOVFF  23A,250
+160E:  MOVLB  0
+1610:  BRA    1586
+1612:  MOVFF  03,24B
+1616:  MOVFF  02,24A
+161A:  MOVFF  01,249
+161E:  MOVFF  00,248
 ....................     cal_value >>= 8; 
-1848:  MOVFF  24B,24A
-184C:  MOVFF  24C,24B
-1850:  MOVFF  24D,24C
-1854:  MOVLB  2
-1856:  CLRF   x4D
+1622:  MOVFF  249,248
+1626:  MOVFF  24A,249
+162A:  MOVFF  24B,24A
+162E:  MOVLB  2
+1630:  CLRF   x4B
 ....................     if (cal_value > 0xFFFF) 
-1858:  MOVF   x4D,F
-185A:  BNZ   1862
-185C:  MOVF   x4C,W
-185E:  SUBLW  00
-1860:  BC    186A
+1632:  MOVF   x4B,F
+1634:  BNZ   163C
+1636:  MOVF   x4A,W
+1638:  SUBLW  00
+163A:  BC    1644
 ....................         cal_value = 0xFFFF; 
-1862:  CLRF   x4D
-1864:  CLRF   x4C
-1866:  SETF   x4B
-1868:  SETF   x4A
+163C:  CLRF   x4B
+163E:  CLRF   x4A
+1640:  SETF   x49
+1642:  SETF   x48
 ....................  
 ....................     return (unsigned int16) cal_value; 
-186A:  MOVFF  24A,01
-186E:  MOVFF  24B,02
-1872:  MOVLB  0
-1874:  RETURN 0
+1644:  MOVFF  248,01
+1648:  MOVFF  249,02
+164C:  MOVLB  0
+164E:  RETURN 0
 .................... } 
 ....................  
 .................... void write_down_buff(void) 
 *
-2416:  MOVF   x69,W
-2418:  INCF   x69,F
-241A:  CLRF   03
-241C:  ADDLW  29
-241E:  MOVWF  FE9
-2420:  MOVLW  00
-2422:  ADDWFC 03,W
-2424:  MOVWF  FEA
-2426:  MOVFF  FEF,244
+239C:  MOVF   x69,W
+239E:  INCF   x69,F
+23A0:  CLRF   03
+23A2:  ADDLW  29
+23A4:  MOVWF  FE9
+23A6:  MOVLW  00
+23A8:  ADDWFC 03,W
+23AA:  MOVWF  FEA
+23AC:  MOVFF  FEF,244
 .................... { 
 ....................    unsigned int8 len = data_in[i++]; //get length of data 
 ....................    if (len + DIB_mngnt.nbr_bytes > 255) return;   
 ....................     
 ....................    for (int8 k = 0; k < len; k++) 
-242A:  MOVLB  2
-242C:  CLRF   x45
-242E:  MOVF   x44,W
-2430:  SUBWF  x45,W
-2432:  BC    2470
+23B0:  MOVLB  2
+23B2:  CLRF   x45
+23B4:  MOVF   x44,W
+23B6:  SUBWF  x45,W
+23B8:  BC    23F6
 ....................    { 
 ....................       DATA_In_Buffer[DIB_mngnt.wr_idx++] = data_in[i++]; 
-2434:  MOVF   x2F,W
-2436:  INCF   x2F,F
-2438:  CLRF   03
-243A:  ADDLW  2E
-243C:  MOVWF  01
-243E:  MOVLW  01
-2440:  ADDWFC 03,F
-2442:  MOVFF  03,247
-2446:  MOVLB  0
-2448:  MOVF   x69,W
-244A:  INCF   x69,F
-244C:  CLRF   03
-244E:  ADDLW  29
-2450:  MOVWF  FE9
-2452:  MOVLW  00
-2454:  ADDWFC 03,W
-2456:  MOVWF  FEA
-2458:  MOVFF  FEF,248
-245C:  MOVLB  2
-245E:  MOVFF  247,FEA
-2462:  MOVFF  01,FE9
-2466:  MOVFF  248,FEF
+23BA:  MOVF   x2F,W
+23BC:  INCF   x2F,F
+23BE:  CLRF   03
+23C0:  ADDLW  2E
+23C2:  MOVWF  01
+23C4:  MOVLW  01
+23C6:  ADDWFC 03,F
+23C8:  MOVFF  03,247
+23CC:  MOVLB  0
+23CE:  MOVF   x69,W
+23D0:  INCF   x69,F
+23D2:  CLRF   03
+23D4:  ADDLW  29
+23D6:  MOVWF  FE9
+23D8:  MOVLW  00
+23DA:  ADDWFC 03,W
+23DC:  MOVWF  FEA
+23DE:  MOVFF  FEF,248
+23E2:  MOVLB  2
+23E4:  MOVFF  247,FEA
+23E8:  MOVFF  01,FE9
+23EC:  MOVFF  248,FEF
 ....................       //if (DIB_mngnt.wr_idx > 255)       //just let DIB_mngnt.wr_idx overflow  
 ....................       //   DIB_mngnt.wr_idx = 0; 
 ....................       DIB_mngnt.nbr_bytes++; 
-246A:  INCF   x30,F
-246C:  INCF   x45,F
-246E:  BRA    242E
+23F0:  INCF   x30,F
+23F2:  INCF   x45,F
+23F4:  BRA    23B4
 ....................    } 
-2470:  MOVLB  0
-2472:  GOTO   2524 (RETURN)
+23F6:  MOVLB  0
+23F8:  GOTO   24A8 (RETURN)
 .................... } 
 ....................  
 ....................  
 .................... void send_data_usb(void) 
-2476:  MOVFF  12D,244
+23FC:  MOVFF  12D,244
 .................... { 
 ....................    unsigned int8 len = DOB_mngnt.nbr_bytes; //get number of bytes in DATA_Out_Buffer 
 ....................     
 ....................    len = len < 63 ? len : 63; //first byte in usb report will be used to store length, the other 63 used for data 
-247A:  MOVLB  2
-247C:  MOVF   x44,W
-247E:  SUBLW  3E
-2480:  BNC   2486
-2482:  MOVF   x44,W
-2484:  BRA    2488
-2486:  MOVLW  3F
-2488:  MOVWF  x44
+2400:  MOVLB  2
+2402:  MOVF   x44,W
+2404:  SUBLW  3E
+2406:  BNC   240C
+2408:  MOVF   x44,W
+240A:  BRA    240E
+240C:  MOVLW  3F
+240E:  MOVWF  x44
 ....................    data_out[0] = len; 
-248A:  MOVFF  244,6A
+2410:  MOVFF  244,6A
 ....................    for (int8 m = 1; m <= len; m++) 
-248E:  MOVLW  01
-2490:  MOVWF  x45
-2492:  MOVF   x45,W
-2494:  SUBWF  x44,W
-2496:  BNC   24DC
+2414:  MOVLW  01
+2416:  MOVWF  x45
+2418:  MOVF   x45,W
+241A:  SUBWF  x44,W
+241C:  BNC   2462
 ....................    { 
 ....................       data_out[m] = data_out_buffer[DOB_mngnt.rd_idx++]; 
-2498:  CLRF   03
-249A:  MOVF   x45,W
-249C:  ADDLW  6A
-249E:  MOVWF  01
-24A0:  MOVLW  00
-24A2:  ADDWFC 03,F
-24A4:  MOVFF  03,247
-24A8:  MOVLB  1
-24AA:  MOVF   x2B,W
-24AC:  INCF   x2B,F
-24AE:  CLRF   03
-24B0:  ADDLW  AB
-24B2:  MOVWF  FE9
-24B4:  MOVLW  00
-24B6:  ADDWFC 03,W
-24B8:  MOVWF  FEA
-24BA:  MOVFF  FEF,248
-24BE:  MOVLB  2
-24C0:  MOVFF  247,FEA
-24C4:  MOVFF  01,FE9
-24C8:  MOVFF  248,FEF
+241E:  CLRF   03
+2420:  MOVF   x45,W
+2422:  ADDLW  6A
+2424:  MOVWF  01
+2426:  MOVLW  00
+2428:  ADDWFC 03,F
+242A:  MOVFF  03,247
+242E:  MOVLB  1
+2430:  MOVF   x2B,W
+2432:  INCF   x2B,F
+2434:  CLRF   03
+2436:  ADDLW  AB
+2438:  MOVWF  FE9
+243A:  MOVLW  00
+243C:  ADDWFC 03,W
+243E:  MOVWF  FEA
+2440:  MOVFF  FEF,248
+2444:  MOVLB  2
+2446:  MOVFF  247,FEA
+244A:  MOVFF  01,FE9
+244E:  MOVFF  248,FEF
 ....................       if (DOB_mngnt.rd_idx > 127) 
-24CC:  MOVLB  1
-24CE:  MOVF   x2B,W
-24D0:  SUBLW  7F
-24D2:  BC    24D6
+2452:  MOVLB  1
+2454:  MOVF   x2B,W
+2456:  SUBLW  7F
+2458:  BC    245C
 ....................             DOB_mngnt.rd_idx = 0; 
-24D4:  CLRF   x2B
-24D6:  MOVLB  2
-24D8:  INCF   x45,F
-24DA:  BRA    2492
+245A:  CLRF   x2B
+245C:  MOVLB  2
+245E:  INCF   x45,F
+2460:  BRA    2418
 ....................    } 
 ....................     
 ....................    DOB_mngnt.nbr_bytes -= len; 
-24DC:  MOVF   x44,W
-24DE:  MOVLB  1
-24E0:  SUBWF  x2D,F
+2462:  MOVF   x44,W
+2464:  MOVLB  1
+2466:  SUBWF  x2D,F
 ....................    usb_put_packet(1, data_out, 64, USB_DTS_TOGGLE); 
-24E2:  MOVLW  01
-24E4:  MOVLB  2
-24E6:  MOVWF  x4A
-24E8:  CLRF   x4C
-24EA:  MOVLW  6A
-24EC:  MOVWF  x4B
-24EE:  CLRF   x4E
-24F0:  MOVLW  40
-24F2:  MOVWF  x4D
-24F4:  MOVLW  02
-24F6:  MOVWF  x4F
-24F8:  MOVLB  0
-24FA:  CALL   1352
-24FE:  GOTO   277C (RETURN)
+2468:  MOVLW  01
+246A:  MOVLB  2
+246C:  MOVWF  x46
+246E:  CLRF   x48
+2470:  MOVLW  6A
+2472:  MOVWF  x47
+2474:  CLRF   x4A
+2476:  MOVLW  40
+2478:  MOVWF  x49
+247A:  MOVLW  02
+247C:  MOVWF  x4B
+247E:  MOVLB  0
+2480:  CALL   1352
+2484:  GOTO   26FE (RETURN)
 .................... } 
 ....................  
 .................... /* 
@@ -11427,7 +11406,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    unsigned int8 len = data_in[++i]; 
 ....................    for (unsigned int8 j = 0; j < len; j++) 
 ....................    { 
-....................       scrpt_args[j] = data_in[++i];           //Copy the arguments from USB packet to scrpt_args buffer  
+....................       scrpt_args[j] = data_in[++i];           // Copy the arguments from USB packet to scrpt_args buffer  
 ....................    } 
 ....................    scrpt_rd_idx = 0; 
 .................... } 
@@ -11436,755 +11415,753 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................  
 ....................  
 ....................  
-....................  
-....................  
 .................... void execute_script(unsigned int8 scrpt_len, unsigned int8 *script_location) 
 *
-1D8E:  MOVLB  2
-1D90:  CLRF   x48
-1D92:  BSF    x4C.0
-1D94:  BSF    x4C.1
+1AFC:  MOVLB  2
+1AFE:  CLRF   x4A
+1B00:  BSF    x4E.0
+1B02:  BSF    x4E.1
 .................... { 
-....................    unsigned int8 si = 0; //initialize script index to 0 
+....................    unsigned int8 si = 0; // Initialize script index to 0 
 ....................    unsigned int8 offset, loop_buff_idx, temp; 
-....................    int1 first_iteration_LB = 1; //used by LOOPBUFFER cmd 
-....................    int1 first_iteration_L = 1; //Used by LOOP cmd 
+....................    int1 first_iteration_LB = 1; // Used by LOOPBUFFER cmd 
+....................    int1 first_iteration_L = 1; // Used by LOOP cmd 
 ....................    unsigned int16 nbr_iterations, loop_count, loop_idx; 
-....................    unsigned int8 *SFR_ptr; //used by the WRITE_SFR and READ_SFR commands 
+....................    unsigned int8 *SFR_ptr; // Used by the WRITE_SFR and READ_SFR commands 
 ....................     
 ....................    #ASM 
-....................       BCF INT0IE //Disable Timer0 interrupt 
-1D96:  BCF    FF2.4
+....................       BCF INT0IE // Disable Timer0 interrupt 
+1B04:  BCF    FF2.4
 ....................       MOVLW 0x07 
-1D98:  MOVLW  07
-....................       MOVWF T0CON //16-bit timer, 1:256 prescale 
-1D9A:  MOVWF  FD5
+1B06:  MOVLW  07
+....................       MOVWF T0CON // 16-bit timer, 1:256 prescale 
+1B08:  MOVWF  FD5
 ....................    #ENDASM 
 ....................     
 ....................    if (scrpt_len == 0) return;  
-1D9C:  MOVF   x45,F
-1D9E:  BTFSC  FD8.2
-1DA0:  BRA    2410
+1B0A:  MOVF   x47,F
+1B0C:  BTFSC  FD8.2
+1B0E:  BRA    217E
 ....................    while (si < scrpt_len) 
-1DA2:  MOVF   x45,W
-1DA4:  SUBWF  x48,W
-1DA6:  BTFSC  FD8.0
-1DA8:  BRA    2410
+1B10:  MOVF   x47,W
+1B12:  SUBWF  x4A,W
+1B14:  BTFSC  FD8.0
+1B16:  BRA    217E
 ....................    { 
 ....................       offset = *(script_location + si);  
-1DAA:  MOVF   x48,W
-1DAC:  ADDWF  x46,W
-1DAE:  MOVWF  01
-1DB0:  MOVLW  00
-1DB2:  ADDWFC x47,W
-1DB4:  MOVFF  01,FE9
-1DB8:  MOVWF  FEA
-1DBA:  MOVFF  FEF,249
+1B18:  MOVF   x4A,W
+1B1A:  ADDWF  x48,W
+1B1C:  MOVWF  01
+1B1E:  MOVLW  00
+1B20:  ADDWFC x49,W
+1B22:  MOVFF  01,FE9
+1B26:  MOVWF  FEA
+1B28:  MOVFF  FEF,24B
 ....................       offset -= 0xD5;  // Consider 0xD5 to be the minimum for now 
-1DBE:  MOVLW  D5
-1DC0:  SUBWF  x49,F
+1B2C:  MOVLW  D5
+1B2E:  SUBWF  x4B,F
 ....................       offset *= 2;      
-1DC2:  BCF    FD8.0
-1DC4:  RLCF   x49,F
+1B30:  BCF    FD8.0
+1B32:  RLCF   x4B,F
 ....................       offset += 8;      
-1DC6:  MOVLW  08
-1DC8:  ADDWF  x49,F
+1B34:  MOVLW  08
+1B36:  ADDWF  x4B,F
 ....................       #ASM 
 ....................          MOVF     PCL, W  //Save current PCL value in Wreg, by reading PCL, PCH and PCU will be loaded into PCLATH and PCLATU  
-1DCA:  MOVF   FF9,W
+1B38:  MOVF   FF9,W
 ....................          ADDWF    offset, W 
-1DCC:  ADDWF  x49,W
+1B3A:  ADDWF  x4B,W
 ....................          BTFSC    C 
-1DCE:  BTFSC  FD8.0
+1B3C:  BTFSC  FD8.0
 ....................          INCF     PCLATH 
-1DD0:  INCF   FFA,F
+1B3E:  INCF   FFA,F
 ....................          MOVWF    PCL 
-1DD2:  MOVWF  FF9
+1B40:  MOVWF  FF9
 ....................          BRA      READ_N_BITS_LBL  //Read N bits from target and store them in DATA_Out_Buffer, (May not be used) 
-1DD4:  BRA    1E1E
+1B42:  BRA    1B8C
 ....................          BRA      READ_BYTE_LBL 
-1DD6:  BRA    1E4E
+1B44:  BRA    1BBC
 ....................          BRA      VISI24_LBL 
-1DD8:  BRA    1E66
+1B46:  BRA    1BD4
 ....................          BRA      NOP24_LBL 
-1DDA:  BRA    1EAC
+1B48:  BRA    1C1A
 ....................          BRA      COREINST24_LBL 
-1DDC:  BRA    1EE0
+1B4A:  BRA    1C4E
 ....................          BRA      COREINST18_LBL 
-1DDE:  BRA    1F62
+1B4C:  BRA    1CD0
 ....................          BRA      POP_DOWNLOAD_BUFFER_LBL 
-1DE0:  BRA    1FBE
+1B4E:  BRA    1D2C
 ....................          BRA      READ_ICSP_STATES_LBL 
-1DE2:  BRA    1FC8
+1B50:  BRA    1D36
 ....................          BRA      LOOP_BUFFER_LBL 
-1DE4:  BRA    1FDC
+1B52:  BRA    1D4A
 ....................          BRA      WRITE_SFR_LBL 
-1DE6:  BRA    2044
+1B54:  BRA    1DB2
 ....................          BRA      READ_SFR_LBL 
-1DE8:  BRA    2084
+1B56:  BRA    1DF2
 ....................          BRA      EXIT_SCRIPT_LBL 
-1DEA:  BRA    20BC
+1B58:  BRA    1E2A
 ....................          BRA      GOTO_IDX_LBL 
-1DEC:  BRA    20C2
+1B5A:  BRA    1E30
 ....................          BRA      IF_GT_GOTO_LBL 
-1DEE:  BRA    20DA
+1B5C:  BRA    1E48
 ....................          BRA      IF_EQ_GOTO_LBL 
-1DF0:  BRA    212C
+1B5E:  BRA    1E9A
 ....................          BRA      SHORT_DELAY_LBL 
-1DF2:  BRA    217C
+1B60:  BRA    1EEA
 ....................          BRA      LONG_DELAY_LBL 
-1DF4:  BRA    21A2
+1B62:  BRA    1F10
 ....................          BRA      LOOP_LBL 
-1DF6:  BRA    21C8
+1B64:  BRA    1F36
 ....................          //BRA      SET_ICSP_RATELbl      //Used for HCS encoders, not MCUs 
 ....................          BRA      SHIFT_BITS_IN_LBL 
-1DF8:  BRA    2238
+1B66:  BRA    1FA6
 ....................          BRA      SHIFT_BITS_IN_BUFFER_LBL 
-1DFA:  BRA    225E
+1B68:  BRA    1FCC
 ....................          BRA      SHIFT_BITS_OUT_BUFFER_LBL 
-1DFC:  BRA    228E
+1B6A:  BRA    1FFC
 ....................          BRA      SHIFT_BITS_OUT_LBL 
-1DFE:  BRA    22C2
+1B6C:  BRA    2030
 ....................          BRA      SHIFT_BYTE_IN_LBL 
-1E00:  BRA    231A
+1B6E:  BRA    2088
 ....................          BRA      SHIFT_BYTE_IN_BUFFER_LBL 
-1E02:  BRA    2328
+1B70:  BRA    2096
 ....................          BRA      SHIFT_BYTE_OUT_BUFFER_LBL 
-1E04:  BRA    2340
+1B72:  BRA    20AE
 ....................          BRA      SHIFT_BYTE_OUT_LBL 
-1E06:  BRA    235C
+1B74:  BRA    20CA
 ....................          BRA      SET_ICSP_PINS_LBL 
-1E08:  BRA    2386
+1B76:  BRA    20F4
 ....................          BRA      MCLR_TGT_GND_OFF_LBL 
-1E0A:  BRA    23CE
+1B78:  BRA    213C
 ....................          BRA      MCLR_TGT_GND_ON_LBL 
-1E0C:  BRA    23D4
+1B7A:  BRA    2142
 ....................          BRA      VPP_PWM_OFF_LBL 
-1E0E:  BRA    23DA
+1B7C:  BRA    2148
 ....................          BRA      VPP_PWM_ON_LBL 
-1E10:  BRA    23E2
+1B7E:  BRA    2150
 ....................          BRA      VPP_ON_LBL 
-1E12:  BRA    23EA
+1B80:  BRA    2158
 ....................          BRA      VPP_OFF_LBL 
-1E14:  BRA    23F0
+1B82:  BRA    215E
 ....................          BRA      VDD_GND_ON_LBL 
-1E16:  BRA    23F6
+1B84:  BRA    2164
 ....................          BRA      VDD_GND_OFF_LBL 
-1E18:  BRA    23FC
+1B86:  BRA    216A
 ....................          BRA      VDD_ON_LBL 
-1E1A:  BRA    2402
+1B88:  BRA    2170
 ....................          BRA      VDD_OFF_LBL 
-1E1C:  BRA    2408
+1B8A:  BRA    2176
 ....................       #ENDASM  
 .................... READ_N_BITS_LBL: 
 ....................       write_upload_buff(read_n_bits_24(*(script_location + ++si)));//WriteUploadBuffer(readN_Bits(*(script_location + si + 1))); 
-1E1E:  INCF   x48,F
-1E20:  MOVF   x48,W
-1E22:  ADDWF  x46,W
-1E24:  MOVWF  01
-1E26:  MOVLW  00
-1E28:  ADDWFC x47,W
-1E2A:  MOVWF  03
-1E2C:  MOVFF  01,FE9
-1E30:  MOVWF  FEA
-1E32:  MOVFF  FEF,255
-1E36:  MOVFF  255,256
-1E3A:  MOVLB  0
-1E3C:  RCALL  1C0A
-1E3E:  MOVFF  01,255
-1E42:  MOVFF  01,256
-1E46:  RCALL  1C2E
+1B8C:  INCF   x4A,F
+1B8E:  MOVF   x4A,W
+1B90:  ADDWF  x48,W
+1B92:  MOVWF  01
+1B94:  MOVLW  00
+1B96:  ADDWFC x49,W
+1B98:  MOVWF  03
+1B9A:  MOVFF  01,FE9
+1B9E:  MOVWF  FEA
+1BA0:  MOVFF  FEF,257
+1BA4:  MOVFF  257,258
+1BA8:  MOVLB  0
+1BAA:  RCALL  1978
+1BAC:  MOVFF  01,257
+1BB0:  MOVFF  01,258
+1BB4:  RCALL  199C
 ....................       si++; 
-1E48:  MOVLB  2
-1E4A:  INCF   x48,F
+1BB6:  MOVLB  2
+1BB8:  INCF   x4A,F
 ....................       continue; 
-1E4C:  BRA    1DA2
+1BBA:  BRA    1B10
 ....................     
 .................... READ_BYTE_LBL: 
 ....................       write_upload_buff(read_n_bits_24(8)); 
-1E4E:  MOVLW  08
-1E50:  MOVWF  x56
-1E52:  MOVLB  0
-1E54:  RCALL  1C0A
-1E56:  MOVFF  01,255
-1E5A:  MOVFF  01,256
-1E5E:  RCALL  1C2E
+1BBC:  MOVLW  08
+1BBE:  MOVWF  x58
+1BC0:  MOVLB  0
+1BC2:  RCALL  1978
+1BC4:  MOVFF  01,257
+1BC8:  MOVFF  01,258
+1BCC:  RCALL  199C
 ....................       si++; 
-1E60:  MOVLB  2
-1E62:  INCF   x48,F
+1BCE:  MOVLB  2
+1BD0:  INCF   x4A,F
 ....................       continue; 
-1E64:  BRA    1DA2
+1BD2:  BRA    1B10
 ....................  
 .................... VISI24_LBL: 
 ....................       shift_bits_out_ICSP(1, 4); 
-1E66:  MOVLW  01
-1E68:  MOVWF  x56
-1E6A:  MOVLW  04
-1E6C:  MOVWF  x57
-1E6E:  MOVLB  0
-1E70:  RCALL  1C5A
+1BD4:  MOVLW  01
+1BD6:  MOVWF  x58
+1BD8:  MOVLW  04
+1BDA:  MOVWF  x59
+1BDC:  MOVLB  0
+1BDE:  RCALL  19C8
 ....................       shift_bits_out_ICSP(0, 8); 
-1E72:  MOVLB  2
-1E74:  CLRF   x56
-1E76:  MOVLW  08
-1E78:  MOVWF  x57
-1E7A:  MOVLB  0
-1E7C:  RCALL  1C5A
+1BE0:  MOVLB  2
+1BE2:  CLRF   x58
+1BE4:  MOVLW  08
+1BE6:  MOVWF  x59
+1BE8:  MOVLB  0
+1BEA:  RCALL  19C8
 ....................       write_upload_buff(read_n_bits_24(8)); 
-1E7E:  MOVLW  08
-1E80:  MOVLB  2
-1E82:  MOVWF  x56
-1E84:  MOVLB  0
-1E86:  RCALL  1C0A
-1E88:  MOVFF  01,255
-1E8C:  MOVFF  01,256
-1E90:  RCALL  1C2E
+1BEC:  MOVLW  08
+1BEE:  MOVLB  2
+1BF0:  MOVWF  x58
+1BF2:  MOVLB  0
+1BF4:  RCALL  1978
+1BF6:  MOVFF  01,257
+1BFA:  MOVFF  01,258
+1BFE:  RCALL  199C
 ....................       write_upload_buff(read_n_bits_24(8)); 
-1E92:  MOVLW  08
-1E94:  MOVLB  2
-1E96:  MOVWF  x56
-1E98:  MOVLB  0
-1E9A:  RCALL  1C0A
-1E9C:  MOVFF  01,255
-1EA0:  MOVFF  01,256
-1EA4:  RCALL  1C2E
+1C00:  MOVLW  08
+1C02:  MOVLB  2
+1C04:  MOVWF  x58
+1C06:  MOVLB  0
+1C08:  RCALL  1978
+1C0A:  MOVFF  01,257
+1C0E:  MOVFF  01,258
+1C12:  RCALL  199C
 ....................       si++; 
-1EA6:  MOVLB  2
-1EA8:  INCF   x48,F
+1C14:  MOVLB  2
+1C16:  INCF   x4A,F
 ....................       continue; 
-1EAA:  BRA    1DA2
+1C18:  BRA    1B10
 ....................     
 .................... NOP24_LBL: 
 ....................       shift_bits_out_ICSP(0, 8); 
-1EAC:  CLRF   x56
-1EAE:  MOVLW  08
-1EB0:  MOVWF  x57
-1EB2:  MOVLB  0
-1EB4:  RCALL  1C5A
+1C1A:  CLRF   x58
+1C1C:  MOVLW  08
+1C1E:  MOVWF  x59
+1C20:  MOVLB  0
+1C22:  RCALL  19C8
 ....................       shift_bits_out_ICSP(0, 8); 
-1EB6:  MOVLB  2
-1EB8:  CLRF   x56
-1EBA:  MOVLW  08
-1EBC:  MOVWF  x57
-1EBE:  MOVLB  0
-1EC0:  RCALL  1C5A
+1C24:  MOVLB  2
+1C26:  CLRF   x58
+1C28:  MOVLW  08
+1C2A:  MOVWF  x59
+1C2C:  MOVLB  0
+1C2E:  RCALL  19C8
 ....................       shift_bits_out_ICSP(0, 8); 
-1EC2:  MOVLB  2
-1EC4:  CLRF   x56
-1EC6:  MOVLW  08
-1EC8:  MOVWF  x57
-1ECA:  MOVLB  0
-1ECC:  RCALL  1C5A
+1C30:  MOVLB  2
+1C32:  CLRF   x58
+1C34:  MOVLW  08
+1C36:  MOVWF  x59
+1C38:  MOVLB  0
+1C3A:  RCALL  19C8
 ....................       shift_bits_out_ICSP(0, 8); 
-1ECE:  MOVLB  2
-1ED0:  CLRF   x56
-1ED2:  MOVLW  08
-1ED4:  MOVWF  x57
-1ED6:  MOVLB  0
-1ED8:  RCALL  1C5A
+1C3C:  MOVLB  2
+1C3E:  CLRF   x58
+1C40:  MOVLW  08
+1C42:  MOVWF  x59
+1C44:  MOVLB  0
+1C46:  RCALL  19C8
 ....................       si++; 
-1EDA:  MOVLB  2
-1EDC:  INCF   x48,F
+1C48:  MOVLB  2
+1C4A:  INCF   x4A,F
 ....................       continue; 
-1EDE:  BRA    1DA2
+1C4C:  BRA    1B10
 ....................     
 .................... COREINST24_LBL: 
 ....................       shift_bits_out_ICSP(0, 4); 
-1EE0:  CLRF   x56
-1EE2:  MOVLW  04
-1EE4:  MOVWF  x57
-1EE6:  MOVLB  0
-1EE8:  RCALL  1C5A
+1C4E:  CLRF   x58
+1C50:  MOVLW  04
+1C52:  MOVWF  x59
+1C54:  MOVLB  0
+1C56:  RCALL  19C8
 ....................       shift_bits_out_ICSP(*(script_location + ++si), 8); 
-1EEA:  MOVLB  2
-1EEC:  INCF   x48,F
-1EEE:  MOVF   x48,W
-1EF0:  ADDWF  x46,W
-1EF2:  MOVWF  01
-1EF4:  MOVLW  00
-1EF6:  ADDWFC x47,W
-1EF8:  MOVWF  03
-1EFA:  MOVFF  01,FE9
-1EFE:  MOVWF  FEA
-1F00:  MOVFF  FEF,255
-1F04:  MOVFF  255,256
-1F08:  MOVLW  08
-1F0A:  MOVWF  x57
-1F0C:  MOVLB  0
-1F0E:  RCALL  1C5A
+1C58:  MOVLB  2
+1C5A:  INCF   x4A,F
+1C5C:  MOVF   x4A,W
+1C5E:  ADDWF  x48,W
+1C60:  MOVWF  01
+1C62:  MOVLW  00
+1C64:  ADDWFC x49,W
+1C66:  MOVWF  03
+1C68:  MOVFF  01,FE9
+1C6C:  MOVWF  FEA
+1C6E:  MOVFF  FEF,257
+1C72:  MOVFF  257,258
+1C76:  MOVLW  08
+1C78:  MOVWF  x59
+1C7A:  MOVLB  0
+1C7C:  RCALL  19C8
 ....................       shift_bits_out_ICSP(*(script_location + ++si), 8); 
-1F10:  MOVLB  2
-1F12:  INCF   x48,F
-1F14:  MOVF   x48,W
-1F16:  ADDWF  x46,W
-1F18:  MOVWF  01
-1F1A:  MOVLW  00
-1F1C:  ADDWFC x47,W
-1F1E:  MOVWF  03
-1F20:  MOVFF  01,FE9
-1F24:  MOVWF  FEA
-1F26:  MOVFF  FEF,255
-1F2A:  MOVFF  255,256
-1F2E:  MOVLW  08
-1F30:  MOVWF  x57
-1F32:  MOVLB  0
-1F34:  RCALL  1C5A
+1C7E:  MOVLB  2
+1C80:  INCF   x4A,F
+1C82:  MOVF   x4A,W
+1C84:  ADDWF  x48,W
+1C86:  MOVWF  01
+1C88:  MOVLW  00
+1C8A:  ADDWFC x49,W
+1C8C:  MOVWF  03
+1C8E:  MOVFF  01,FE9
+1C92:  MOVWF  FEA
+1C94:  MOVFF  FEF,257
+1C98:  MOVFF  257,258
+1C9C:  MOVLW  08
+1C9E:  MOVWF  x59
+1CA0:  MOVLB  0
+1CA2:  RCALL  19C8
 ....................       shift_bits_out_ICSP(*(script_location + ++si), 8); 
-1F36:  MOVLB  2
-1F38:  INCF   x48,F
-1F3A:  MOVF   x48,W
-1F3C:  ADDWF  x46,W
-1F3E:  MOVWF  01
-1F40:  MOVLW  00
-1F42:  ADDWFC x47,W
-1F44:  MOVWF  03
-1F46:  MOVFF  01,FE9
-1F4A:  MOVWF  FEA
-1F4C:  MOVFF  FEF,255
-1F50:  MOVFF  255,256
-1F54:  MOVLW  08
-1F56:  MOVWF  x57
-1F58:  MOVLB  0
-1F5A:  RCALL  1C5A
+1CA4:  MOVLB  2
+1CA6:  INCF   x4A,F
+1CA8:  MOVF   x4A,W
+1CAA:  ADDWF  x48,W
+1CAC:  MOVWF  01
+1CAE:  MOVLW  00
+1CB0:  ADDWFC x49,W
+1CB2:  MOVWF  03
+1CB4:  MOVFF  01,FE9
+1CB8:  MOVWF  FEA
+1CBA:  MOVFF  FEF,257
+1CBE:  MOVFF  257,258
+1CC2:  MOVLW  08
+1CC4:  MOVWF  x59
+1CC6:  MOVLB  0
+1CC8:  RCALL  19C8
 ....................       si++; 
-1F5C:  MOVLB  2
-1F5E:  INCF   x48,F
+1CCA:  MOVLB  2
+1CCC:  INCF   x4A,F
 ....................       continue; 
-1F60:  BRA    1DA2
+1CCE:  BRA    1B10
 ....................  
 .................... COREINST18_LBL: 
 ....................       shift_bits_out_ICSP(0, 4); 
-1F62:  CLRF   x56
-1F64:  MOVLW  04
-1F66:  MOVWF  x57
-1F68:  MOVLB  0
-1F6A:  RCALL  1C5A
+1CD0:  CLRF   x58
+1CD2:  MOVLW  04
+1CD4:  MOVWF  x59
+1CD6:  MOVLB  0
+1CD8:  RCALL  19C8
 ....................       shift_bits_out_ICSP(*(script_location + ++si), 8); 
-1F6C:  MOVLB  2
-1F6E:  INCF   x48,F
-1F70:  MOVF   x48,W
-1F72:  ADDWF  x46,W
-1F74:  MOVWF  01
-1F76:  MOVLW  00
-1F78:  ADDWFC x47,W
-1F7A:  MOVWF  03
-1F7C:  MOVFF  01,FE9
-1F80:  MOVWF  FEA
-1F82:  MOVFF  FEF,255
-1F86:  MOVFF  255,256
-1F8A:  MOVLW  08
-1F8C:  MOVWF  x57
-1F8E:  MOVLB  0
-1F90:  RCALL  1C5A
+1CDA:  MOVLB  2
+1CDC:  INCF   x4A,F
+1CDE:  MOVF   x4A,W
+1CE0:  ADDWF  x48,W
+1CE2:  MOVWF  01
+1CE4:  MOVLW  00
+1CE6:  ADDWFC x49,W
+1CE8:  MOVWF  03
+1CEA:  MOVFF  01,FE9
+1CEE:  MOVWF  FEA
+1CF0:  MOVFF  FEF,257
+1CF4:  MOVFF  257,258
+1CF8:  MOVLW  08
+1CFA:  MOVWF  x59
+1CFC:  MOVLB  0
+1CFE:  RCALL  19C8
 ....................       shift_bits_out_ICSP(*(script_location + ++si), 8); 
-1F92:  MOVLB  2
-1F94:  INCF   x48,F
-1F96:  MOVF   x48,W
-1F98:  ADDWF  x46,W
-1F9A:  MOVWF  01
-1F9C:  MOVLW  00
-1F9E:  ADDWFC x47,W
-1FA0:  MOVWF  03
-1FA2:  MOVFF  01,FE9
-1FA6:  MOVWF  FEA
-1FA8:  MOVFF  FEF,255
-1FAC:  MOVFF  255,256
-1FB0:  MOVLW  08
-1FB2:  MOVWF  x57
-1FB4:  MOVLB  0
-1FB6:  RCALL  1C5A
+1D00:  MOVLB  2
+1D02:  INCF   x4A,F
+1D04:  MOVF   x4A,W
+1D06:  ADDWF  x48,W
+1D08:  MOVWF  01
+1D0A:  MOVLW  00
+1D0C:  ADDWFC x49,W
+1D0E:  MOVWF  03
+1D10:  MOVFF  01,FE9
+1D14:  MOVWF  FEA
+1D16:  MOVFF  FEF,257
+1D1A:  MOVFF  257,258
+1D1E:  MOVLW  08
+1D20:  MOVWF  x59
+1D22:  MOVLB  0
+1D24:  RCALL  19C8
 ....................       si++; 
-1FB8:  MOVLB  2
-1FBA:  INCF   x48,F
+1D26:  MOVLB  2
+1D28:  INCF   x4A,F
 ....................       continue; 
-1FBC:  BRA    1DA2
+1D2A:  BRA    1B10
 ....................     
 .................... POP_DOWNLOAD_BUFFER_LBL: 
 ....................       pop_down_buff (); 
-1FBE:  MOVLB  0
-1FC0:  RCALL  1C7E
+1D2C:  MOVLB  0
+1D2E:  RCALL  19EC
 ....................       si++; 
-1FC2:  MOVLB  2
-1FC4:  INCF   x48,F
+1D30:  MOVLB  2
+1D32:  INCF   x4A,F
 ....................       continue; 
-1FC6:  BRA    1DA2
+1D34:  BRA    1B10
 ....................     
 .................... READ_ICSP_STATES_LBL: 
 ....................       write_upload_buff(getICSP_States()); 
-1FC8:  MOVLB  0
-1FCA:  BRA    1CA8
-1FCC:  MOVFF  01,255
-1FD0:  MOVFF  01,256
-1FD4:  RCALL  1C2E
+1D36:  MOVLB  0
+1D38:  BRA    1A16
+1D3A:  MOVFF  01,257
+1D3E:  MOVFF  01,258
+1D42:  RCALL  199C
 ....................       si++; 
-1FD6:  MOVLB  2
-1FD8:  INCF   x48,F
+1D44:  MOVLB  2
+1D46:  INCF   x4A,F
 ....................       continue; 
-1FDA:  BRA    1DA2
+1D48:  BRA    1B10
 ....................     
 .................... LOOP_BUFFER_LBL:  //will loop through a number of script commands, argument is the number if bytes to loop through  
 ....................       if (!first_iteration_LB) 
-1FDC:  BTFSC  x4C.0
-1FDE:  BRA    1FFE
+1D4A:  BTFSC  x4E.0
+1D4C:  BRA    1D6C
 ....................       { 
 ....................          nbr_iterations--; 
-1FE0:  MOVF   x4D,W
-1FE2:  BTFSC  FD8.2
-1FE4:  DECF   x4E,F
-1FE6:  DECF   x4D,F
+1D4E:  MOVF   x4F,W
+1D50:  BTFSC  FD8.2
+1D52:  DECF   x50,F
+1D54:  DECF   x4F,F
 ....................          if (nbr_iterations == 0)   //no iterations  
-1FE8:  MOVF   x4D,F
-1FEA:  BNZ   1FF6
-1FEC:  MOVF   x4E,F
-1FEE:  BNZ   1FF6
+1D56:  MOVF   x4F,F
+1D58:  BNZ   1D64
+1D5A:  MOVF   x50,F
+1D5C:  BNZ   1D64
 ....................          { 
 ....................             first_iteration_LB = 1; //number of iterations endded for the current run  
-1FF0:  BSF    x4C.0
+1D5E:  BSF    x4E.0
 ....................             si ++; 
-1FF2:  INCF   x48,F
+1D60:  INCF   x4A,F
 ....................             continue; 
-1FF4:  BRA    1DA2
+1D62:  BRA    1B10
 ....................          } 
 ....................          si = first_iteration_LB;   //Still iterating 
-1FF6:  CLRF   x48
-1FF8:  BTFSC  x4C.0
-1FFA:  INCF   x48,F
+1D64:  CLRF   x4A
+1D66:  BTFSC  x4E.0
+1D68:  INCF   x4A,F
 ....................          continue; 
-1FFC:  BRA    1DA2
+1D6A:  BRA    1B10
 ....................       } 
 ....................       loop_buff_idx = si - *(script_location + ++si); //always loops to the instruction before it, except in the script n 255 in the original Firmware 
-1FFE:  INCF   x48,F
-2000:  MOVF   x48,W
-2002:  ADDWF  x46,W
-2004:  MOVWF  01
-2006:  MOVLW  00
-2008:  ADDWFC x47,W
-200A:  MOVFF  01,FE9
-200E:  MOVWF  FEA
-2010:  MOVF   FEF,W
-2012:  SUBWF  x48,W
-2014:  MOVWF  x4A
+1D6C:  INCF   x4A,F
+1D6E:  MOVF   x4A,W
+1D70:  ADDWF  x48,W
+1D72:  MOVWF  01
+1D74:  MOVLW  00
+1D76:  ADDWFC x49,W
+1D78:  MOVFF  01,FE9
+1D7C:  MOVWF  FEA
+1D7E:  MOVF   FEF,W
+1D80:  SUBWF  x4A,W
+1D82:  MOVWF  x4C
 ....................       //scrpt_rd_idx -= 2;      //the instruction before LOOPBUFFER has 2 args 
 ....................       nbr_iterations = (unsigned int16) pop_down_buff ();   //low byte 
-2016:  MOVLB  0
-2018:  RCALL  1C7E
-201A:  MOVLB  2
-201C:  CLRF   x4E
-201E:  MOVFF  01,24D
+1D84:  MOVLB  0
+1D86:  RCALL  19EC
+1D88:  MOVLB  2
+1D8A:  CLRF   x50
+1D8C:  MOVFF  01,24F
 ....................       nbr_iterations += (256  *  pop_down_buff ());         //upper byte 
-2022:  MOVLB  0
-2024:  RCALL  1C7E
-2026:  MOVLW  00
-2028:  MOVLB  2
-202A:  ADDWF  x4D,F
-202C:  MOVF   01,W
-202E:  ADDWFC x4E,F
+1D90:  MOVLB  0
+1D92:  RCALL  19EC
+1D94:  MOVLW  00
+1D96:  MOVLB  2
+1D98:  ADDWF  x4F,F
+1D9A:  MOVF   01,W
+1D9C:  ADDWFC x50,F
 ....................       if (nbr_iterations == 0)   //no iterations  
-2030:  MOVF   x4D,F
-2032:  BNZ   203C
-2034:  MOVF   x4E,F
-2036:  BNZ   203C
+1D9E:  MOVF   x4F,F
+1DA0:  BNZ   1DAA
+1DA2:  MOVF   x50,F
+1DA4:  BNZ   1DAA
 ....................       { 
 ....................          si++; //advance to next command  
-2038:  INCF   x48,F
+1DA6:  INCF   x4A,F
 ....................          continue; 
-203A:  BRA    1DA2
+1DA8:  BRA    1B10
 ....................       } 
 ....................       first_iteration_LB = 0; 
-203C:  BCF    x4C.0
+1DAA:  BCF    x4E.0
 ....................       si = loop_buff_idx;   
-203E:  MOVFF  24A,248
+1DAC:  MOVFF  24C,24A
 ....................       continue; 
-2042:  BRA    1DA2
+1DB0:  BRA    1B10
 ....................        
 .................... WRITE_SFR_LBL: 
 ....................       SFR_ptr = (unsigned int8 *) 0x0F00 + *(script_location + ++si); 
-2044:  INCF   x48,F
-2046:  MOVF   x48,W
-2048:  ADDWF  x46,W
-204A:  MOVWF  01
-204C:  MOVLW  00
-204E:  ADDWFC x47,W
-2050:  MOVFF  01,FE9
-2054:  MOVWF  FEA
-2056:  MOVFF  FEF,253
-205A:  MOVLW  0F
-205C:  MOVWF  x54
+1DB2:  INCF   x4A,F
+1DB4:  MOVF   x4A,W
+1DB6:  ADDWF  x48,W
+1DB8:  MOVWF  01
+1DBA:  MOVLW  00
+1DBC:  ADDWFC x49,W
+1DBE:  MOVFF  01,FE9
+1DC2:  MOVWF  FEA
+1DC4:  MOVFF  FEF,255
+1DC8:  MOVLW  0F
+1DCA:  MOVWF  x56
 ....................       *SFR_ptr = *(script_location + ++si); 
-205E:  INCF   x48,F
-2060:  MOVF   x48,W
-2062:  ADDWF  x46,W
-2064:  MOVWF  01
-2066:  MOVLW  00
-2068:  ADDWFC x47,W
-206A:  MOVFF  01,FE9
-206E:  MOVWF  FEA
-2070:  MOVFF  FEF,257
-2074:  MOVFF  254,FEA
-2078:  MOVFF  253,FE9
-207C:  MOVFF  257,FEF
+1DCC:  INCF   x4A,F
+1DCE:  MOVF   x4A,W
+1DD0:  ADDWF  x48,W
+1DD2:  MOVWF  01
+1DD4:  MOVLW  00
+1DD6:  ADDWFC x49,W
+1DD8:  MOVFF  01,FE9
+1DDC:  MOVWF  FEA
+1DDE:  MOVFF  FEF,259
+1DE2:  MOVFF  256,FEA
+1DE6:  MOVFF  255,FE9
+1DEA:  MOVFF  259,FEF
 ....................       si++; 
-2080:  INCF   x48,F
+1DEE:  INCF   x4A,F
 ....................       continue; 
-2082:  BRA    1DA2
+1DF0:  BRA    1B10
 ....................  
 .................... READ_SFR_LBL: 
 ....................       SFR_ptr = (unsigned int8 *) 0x0F00 + *(script_location + ++si); 
-2084:  INCF   x48,F
-2086:  MOVF   x48,W
-2088:  ADDWF  x46,W
-208A:  MOVWF  01
-208C:  MOVLW  00
-208E:  ADDWFC x47,W
-2090:  MOVFF  01,FE9
-2094:  MOVWF  FEA
-2096:  MOVFF  FEF,253
-209A:  MOVLW  0F
-209C:  MOVWF  x54
+1DF2:  INCF   x4A,F
+1DF4:  MOVF   x4A,W
+1DF6:  ADDWF  x48,W
+1DF8:  MOVWF  01
+1DFA:  MOVLW  00
+1DFC:  ADDWFC x49,W
+1DFE:  MOVFF  01,FE9
+1E02:  MOVWF  FEA
+1E04:  MOVFF  FEF,255
+1E08:  MOVLW  0F
+1E0A:  MOVWF  x56
 ....................       write_upload_buff(*SFR_ptr); 
-209E:  MOVFF  254,03
-20A2:  MOVFF  253,FE9
-20A6:  MOVFF  254,FEA
-20AA:  MOVFF  FEF,255
-20AE:  MOVFF  255,256
-20B2:  MOVLB  0
-20B4:  RCALL  1C2E
+1E0C:  MOVFF  256,03
+1E10:  MOVFF  255,FE9
+1E14:  MOVFF  256,FEA
+1E18:  MOVFF  FEF,257
+1E1C:  MOVFF  257,258
+1E20:  MOVLB  0
+1E22:  RCALL  199C
 ....................       si++; 
-20B6:  MOVLB  2
-20B8:  INCF   x48,F
+1E24:  MOVLB  2
+1E26:  INCF   x4A,F
 ....................       continue; 
-20BA:  BRA    1DA2
+1E28:  BRA    1B10
 ....................        
 .................... EXIT_SCRIPT_LBL: 
 ....................       si = scrpt_len; 
-20BC:  MOVFF  245,248
+1E2A:  MOVFF  247,24A
 ....................       continue; 
-20C0:  BRA    1DA2
+1E2E:  BRA    1B10
 ....................        
 .................... GOTO_IDX_LBL: 
 ....................       si = *(script_location + ++si); 
-20C2:  INCF   x48,F
-20C4:  MOVF   x48,W
-20C6:  ADDWF  x46,W
-20C8:  MOVWF  01
-20CA:  MOVLW  00
-20CC:  ADDWFC x47,W
-20CE:  MOVFF  01,FE9
-20D2:  MOVWF  FEA
-20D4:  MOVFF  FEF,248
+1E30:  INCF   x4A,F
+1E32:  MOVF   x4A,W
+1E34:  ADDWF  x48,W
+1E36:  MOVWF  01
+1E38:  MOVLW  00
+1E3A:  ADDWFC x49,W
+1E3C:  MOVFF  01,FE9
+1E40:  MOVWF  FEA
+1E42:  MOVFF  FEF,24A
 ....................       continue; 
-20D8:  BRA    1DA2
+1E46:  BRA    1B10
 ....................        
 .................... IF_GT_GOTO_LBL: //if last loaded byte in DATA_Out_Buffer is greater than arg[1], execution will branch to offset specified by arg[2]  
 ....................       temp = DATA_Out_Buffer[DOB_mngnt.wr_idx - 1]; //get last byte written to DATA_Out_Buffer, - 1 because DOM_mngnt.wr_idx is always post-incremented, and points to the next location to be written 
-20DA:  MOVLW  01
-20DC:  MOVLB  1
-20DE:  SUBWF  x2C,W
-20E0:  CLRF   03
-20E2:  ADDLW  AB
-20E4:  MOVWF  FE9
-20E6:  MOVLW  00
-20E8:  ADDWFC 03,W
-20EA:  MOVWF  FEA
-20EC:  MOVFF  FEF,24B
+1E48:  MOVLW  01
+1E4A:  MOVLB  1
+1E4C:  SUBWF  x2C,W
+1E4E:  CLRF   03
+1E50:  ADDLW  AB
+1E52:  MOVWF  FE9
+1E54:  MOVLW  00
+1E56:  ADDWFC 03,W
+1E58:  MOVWF  FEA
+1E5A:  MOVFF  FEF,24D
 ....................       if (temp > *(script_location + ++si)) 
-20F0:  MOVLB  2
-20F2:  INCF   x48,F
-20F4:  MOVF   x48,W
-20F6:  ADDWF  x46,W
-20F8:  MOVWF  01
-20FA:  MOVLW  00
-20FC:  ADDWFC x47,W
-20FE:  MOVWF  03
-2100:  MOVFF  01,FE9
-2104:  MOVWF  FEA
-2106:  MOVF   FEF,W
-2108:  SUBWF  x4B,W
-210A:  BZ    2128
-210C:  BNC   2128
+1E5E:  MOVLB  2
+1E60:  INCF   x4A,F
+1E62:  MOVF   x4A,W
+1E64:  ADDWF  x48,W
+1E66:  MOVWF  01
+1E68:  MOVLW  00
+1E6A:  ADDWFC x49,W
+1E6C:  MOVWF  03
+1E6E:  MOVFF  01,FE9
+1E72:  MOVWF  FEA
+1E74:  MOVF   FEF,W
+1E76:  SUBWF  x4D,W
+1E78:  BZ    1E96
+1E7A:  BNC   1E96
 ....................       { 
 ....................          si += (signed int8) *(script_location + ++si); 
-210E:  INCF   x48,F
-2110:  MOVF   x48,W
-2112:  ADDWF  x46,W
-2114:  MOVWF  01
-2116:  MOVLW  00
-2118:  ADDWFC x47,W
-211A:  MOVFF  01,FE9
-211E:  MOVWF  FEA
-2120:  MOVF   FEF,W
-2122:  ADDWF  x48,W
-2124:  MOVWF  x48
+1E7C:  INCF   x4A,F
+1E7E:  MOVF   x4A,W
+1E80:  ADDWF  x48,W
+1E82:  MOVWF  01
+1E84:  MOVLW  00
+1E86:  ADDWFC x49,W
+1E88:  MOVFF  01,FE9
+1E8C:  MOVWF  FEA
+1E8E:  MOVF   FEF,W
+1E90:  ADDWF  x4A,W
+1E92:  MOVWF  x4A
 ....................       } 
-2126:  BRA    212A
+1E94:  BRA    1E98
 ....................       else  
 ....................       { 
 ....................          si++; 
-2128:  INCF   x48,F
+1E96:  INCF   x4A,F
 ....................       } 
 ....................       continue; 
-212A:  BRA    1DA2
+1E98:  BRA    1B10
 ....................        
 .................... IF_EQ_GOTO_LBL: //if last loaded byte in DATA_Out_Buffer is equal than arg[1], execution will branch to offset specified by arg[2]  
 ....................       temp = DATA_Out_Buffer[DOB_mngnt.wr_idx - 1]; //get last byte written to DATA_Out_Buffer, - 1 because DOM_mngnt.wr_idx is always post-incremented, and points to the next location to be written 
-212C:  MOVLW  01
-212E:  MOVLB  1
-2130:  SUBWF  x2C,W
-2132:  CLRF   03
-2134:  ADDLW  AB
-2136:  MOVWF  FE9
-2138:  MOVLW  00
-213A:  ADDWFC 03,W
-213C:  MOVWF  FEA
-213E:  MOVFF  FEF,24B
+1E9A:  MOVLW  01
+1E9C:  MOVLB  1
+1E9E:  SUBWF  x2C,W
+1EA0:  CLRF   03
+1EA2:  ADDLW  AB
+1EA4:  MOVWF  FE9
+1EA6:  MOVLW  00
+1EA8:  ADDWFC 03,W
+1EAA:  MOVWF  FEA
+1EAC:  MOVFF  FEF,24D
 ....................       if (temp == *(script_location + ++si)) 
-2142:  MOVLB  2
-2144:  INCF   x48,F
-2146:  MOVF   x48,W
-2148:  ADDWF  x46,W
-214A:  MOVWF  01
-214C:  MOVLW  00
-214E:  ADDWFC x47,W
-2150:  MOVWF  03
-2152:  MOVFF  01,FE9
-2156:  MOVWF  FEA
-2158:  MOVF   FEF,W
-215A:  SUBWF  x4B,W
-215C:  BNZ   2178
+1EB0:  MOVLB  2
+1EB2:  INCF   x4A,F
+1EB4:  MOVF   x4A,W
+1EB6:  ADDWF  x48,W
+1EB8:  MOVWF  01
+1EBA:  MOVLW  00
+1EBC:  ADDWFC x49,W
+1EBE:  MOVWF  03
+1EC0:  MOVFF  01,FE9
+1EC4:  MOVWF  FEA
+1EC6:  MOVF   FEF,W
+1EC8:  SUBWF  x4D,W
+1ECA:  BNZ   1EE6
 ....................       { 
 ....................          si += (signed int8) *(script_location + ++si); 
-215E:  INCF   x48,F
-2160:  MOVF   x48,W
-2162:  ADDWF  x46,W
-2164:  MOVWF  01
-2166:  MOVLW  00
-2168:  ADDWFC x47,W
-216A:  MOVFF  01,FE9
-216E:  MOVWF  FEA
-2170:  MOVF   FEF,W
-2172:  ADDWF  x48,W
-2174:  MOVWF  x48
+1ECC:  INCF   x4A,F
+1ECE:  MOVF   x4A,W
+1ED0:  ADDWF  x48,W
+1ED2:  MOVWF  01
+1ED4:  MOVLW  00
+1ED6:  ADDWFC x49,W
+1ED8:  MOVFF  01,FE9
+1EDC:  MOVWF  FEA
+1EDE:  MOVF   FEF,W
+1EE0:  ADDWF  x4A,W
+1EE2:  MOVWF  x4A
 ....................       } 
-2176:  BRA    217A
+1EE4:  BRA    1EE8
 ....................       else  
 ....................       { 
 ....................          si++; 
-2178:  INCF   x48,F
+1EE6:  INCF   x4A,F
 ....................       } 
 ....................       continue; 
-217A:  BRA    1DA2
+1EE8:  BRA    1B10
 ....................        
 .................... SHORT_DELAY_LBL:      //causes a delay of : duration * 21.3us, NOTE : 0 = 255 
 ....................       delay_short (*(script_location + ++si)); 
-217C:  INCF   x48,F
-217E:  MOVF   x48,W
-2180:  ADDWF  x46,W
-2182:  MOVWF  01
-2184:  MOVLW  00
-2186:  ADDWFC x47,W
-2188:  MOVWF  03
-218A:  MOVFF  01,FE9
-218E:  MOVWF  FEA
-2190:  MOVFF  FEF,255
-2194:  MOVFF  255,256
-2198:  MOVLB  0
-219A:  BRA    1CC2
+1EEA:  INCF   x4A,F
+1EEC:  MOVF   x4A,W
+1EEE:  ADDWF  x48,W
+1EF0:  MOVWF  01
+1EF2:  MOVLW  00
+1EF4:  ADDWFC x49,W
+1EF6:  MOVWF  03
+1EF8:  MOVFF  01,FE9
+1EFC:  MOVWF  FEA
+1EFE:  MOVFF  FEF,257
+1F02:  MOVFF  257,258
+1F06:  MOVLB  0
+1F08:  BRA    1A30
 ....................       si++; 
-219C:  MOVLB  2
-219E:  INCF   x48,F
+1F0A:  MOVLB  2
+1F0C:  INCF   x4A,F
 ....................       continue; 
-21A0:  BRA    1DA2
+1F0E:  BRA    1B10
 ....................        
 .................... LONG_DELAY_LBL: 
 ....................       delay_long (*(script_location + ++si)); 
-21A2:  INCF   x48,F
-21A4:  MOVF   x48,W
-21A6:  ADDWF  x46,W
-21A8:  MOVWF  01
-21AA:  MOVLW  00
-21AC:  ADDWFC x47,W
-21AE:  MOVWF  03
-21B0:  MOVFF  01,FE9
-21B4:  MOVWF  FEA
-21B6:  MOVFF  FEF,255
-21BA:  MOVFF  255,256
-21BE:  MOVLB  0
-21C0:  BRA    1CDE
+1F10:  INCF   x4A,F
+1F12:  MOVF   x4A,W
+1F14:  ADDWF  x48,W
+1F16:  MOVWF  01
+1F18:  MOVLW  00
+1F1A:  ADDWFC x49,W
+1F1C:  MOVWF  03
+1F1E:  MOVFF  01,FE9
+1F22:  MOVWF  FEA
+1F24:  MOVFF  FEF,257
+1F28:  MOVFF  257,258
+1F2C:  MOVLB  0
+1F2E:  BRA    1A4C
 ....................       si++; 
-21C2:  MOVLB  2
-21C4:  INCF   x48,F
+1F30:  MOVLB  2
+1F32:  INCF   x4A,F
 ....................       continue; 
-21C6:  BRA    1DA2
+1F34:  BRA    1B10
 ....................        
 .................... LOOP_LBL: 
 ....................       if (!first_iteration_L) 
-21C8:  BTFSC  x4C.1
-21CA:  BRA    21EA
+1F36:  BTFSC  x4E.1
+1F38:  BRA    1F58
 ....................       { 
 ....................          loop_count--; 
-21CC:  MOVF   x4F,W
-21CE:  BTFSC  FD8.2
-21D0:  DECF   x50,F
-21D2:  DECF   x4F,F
+1F3A:  MOVF   x51,W
+1F3C:  BTFSC  FD8.2
+1F3E:  DECF   x52,F
+1F40:  DECF   x51,F
 ....................          if (loop_count == 0) 
-21D4:  MOVF   x4F,F
-21D6:  BNZ   21E4
-21D8:  MOVF   x50,F
-21DA:  BNZ   21E4
+1F42:  MOVF   x51,F
+1F44:  BNZ   1F52
+1F46:  MOVF   x52,F
+1F48:  BNZ   1F52
 ....................          { 
 ....................             first_iteration_L = 1; 
-21DC:  BSF    x4C.1
+1F4A:  BSF    x4E.1
 ....................             si += 3; //LOOP command + 2 args 
-21DE:  MOVLW  03
-21E0:  ADDWF  x48,F
+1F4C:  MOVLW  03
+1F4E:  ADDWF  x4A,F
 ....................             continue; 
-21E2:  BRA    1DA2
+1F50:  BRA    1B10
 ....................          } 
 ....................          si = loop_idx; 
-21E4:  MOVFF  251,248
+1F52:  MOVFF  253,24A
 ....................          continue; 
-21E8:  BRA    1DA2
+1F56:  BRA    1B10
 ....................       } 
 ....................       first_iteration_L = 0; 
-21EA:  BCF    x4C.1
+1F58:  BCF    x4E.1
 ....................       loop_idx = si - *(script_location + si + 1); 
-21EC:  MOVF   x48,W
-21EE:  ADDWF  x46,W
-21F0:  MOVWF  x55
-21F2:  MOVLW  00
-21F4:  ADDWFC x47,W
-21F6:  MOVWF  x56
-21F8:  MOVLW  01
-21FA:  ADDWF  x55,W
-21FC:  MOVWF  01
-21FE:  MOVLW  00
-2200:  ADDWFC x56,W
-2202:  MOVFF  01,FE9
-2206:  MOVWF  FEA
-2208:  MOVF   FEF,W
-220A:  SUBWF  x48,W
-220C:  MOVWF  x51
-220E:  CLRF   x52
+1F5A:  MOVF   x4A,W
+1F5C:  ADDWF  x48,W
+1F5E:  MOVWF  x57
+1F60:  MOVLW  00
+1F62:  ADDWFC x49,W
+1F64:  MOVWF  x58
+1F66:  MOVLW  01
+1F68:  ADDWF  x57,W
+1F6A:  MOVWF  01
+1F6C:  MOVLW  00
+1F6E:  ADDWFC x58,W
+1F70:  MOVFF  01,FE9
+1F74:  MOVWF  FEA
+1F76:  MOVF   FEF,W
+1F78:  SUBWF  x4A,W
+1F7A:  MOVWF  x53
+1F7C:  CLRF   x54
 ....................       loop_count = *(script_location + si + 2); 
-2210:  MOVF   x48,W
-2212:  ADDWF  x46,W
-2214:  MOVWF  x55
-2216:  MOVLW  00
-2218:  ADDWFC x47,W
-221A:  MOVWF  x56
-221C:  MOVLW  02
-221E:  ADDWF  x55,W
-2220:  MOVWF  01
-2222:  MOVLW  00
-2224:  ADDWFC x56,W
-2226:  MOVFF  01,FE9
-222A:  MOVWF  FEA
-222C:  CLRF   x50
-222E:  MOVFF  FEF,24F
+1F7E:  MOVF   x4A,W
+1F80:  ADDWF  x48,W
+1F82:  MOVWF  x57
+1F84:  MOVLW  00
+1F86:  ADDWFC x49,W
+1F88:  MOVWF  x58
+1F8A:  MOVLW  02
+1F8C:  ADDWF  x57,W
+1F8E:  MOVWF  01
+1F90:  MOVLW  00
+1F92:  ADDWFC x58,W
+1F94:  MOVFF  01,FE9
+1F98:  MOVWF  FEA
+1F9A:  CLRF   x52
+1F9C:  MOVFF  FEF,251
 ....................       si = loop_idx; 
-2232:  MOVFF  251,248
+1FA0:  MOVFF  253,24A
 ....................       continue; 
-2236:  BRA    1DA2
+1FA4:  BRA    1B10
 ....................   
 .................... //SET_ICSP_RATELbl: 
 .................... //      icsp_rate = *(script_location + ++si); 
@@ -12193,325 +12170,325 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................  
 .................... SHIFT_BITS_IN_LBL: 
 ....................       shift_bits_in(*(script_location + ++si)); 
-2238:  INCF   x48,F
-223A:  MOVF   x48,W
-223C:  ADDWF  x46,W
-223E:  MOVWF  01
-2240:  MOVLW  00
-2242:  ADDWFC x47,W
-2244:  MOVWF  03
-2246:  MOVFF  01,FE9
-224A:  MOVWF  FEA
-224C:  MOVFF  FEF,255
-2250:  MOVFF  255,256
-2254:  MOVLB  0
-2256:  RCALL  1CF8
+1FA6:  INCF   x4A,F
+1FA8:  MOVF   x4A,W
+1FAA:  ADDWF  x48,W
+1FAC:  MOVWF  01
+1FAE:  MOVLW  00
+1FB0:  ADDWFC x49,W
+1FB2:  MOVWF  03
+1FB4:  MOVFF  01,FE9
+1FB8:  MOVWF  FEA
+1FBA:  MOVFF  FEF,257
+1FBE:  MOVFF  257,258
+1FC2:  MOVLB  0
+1FC4:  RCALL  1A66
 ....................       si++; 
-2258:  MOVLB  2
-225A:  INCF   x48,F
+1FC6:  MOVLB  2
+1FC8:  INCF   x4A,F
 ....................       continue; 
-225C:  BRA    1DA2
+1FCA:  BRA    1B10
 ....................        
 .................... SHIFT_BITS_IN_BUFFER_LBL: 
 ....................       write_upload_buff(shift_bits_in(*(script_location + ++si))); 
-225E:  INCF   x48,F
-2260:  MOVF   x48,W
-2262:  ADDWF  x46,W
-2264:  MOVWF  01
-2266:  MOVLW  00
-2268:  ADDWFC x47,W
-226A:  MOVWF  03
-226C:  MOVFF  01,FE9
-2270:  MOVWF  FEA
-2272:  MOVFF  FEF,255
-2276:  MOVFF  255,256
-227A:  MOVLB  0
-227C:  RCALL  1CF8
-227E:  MOVFF  01,255
-2282:  MOVFF  01,256
-2286:  RCALL  1C2E
+1FCC:  INCF   x4A,F
+1FCE:  MOVF   x4A,W
+1FD0:  ADDWF  x48,W
+1FD2:  MOVWF  01
+1FD4:  MOVLW  00
+1FD6:  ADDWFC x49,W
+1FD8:  MOVWF  03
+1FDA:  MOVFF  01,FE9
+1FDE:  MOVWF  FEA
+1FE0:  MOVFF  FEF,257
+1FE4:  MOVFF  257,258
+1FE8:  MOVLB  0
+1FEA:  RCALL  1A66
+1FEC:  MOVFF  01,257
+1FF0:  MOVFF  01,258
+1FF4:  RCALL  199C
 ....................       si++; 
-2288:  MOVLB  2
-228A:  INCF   x48,F
+1FF6:  MOVLB  2
+1FF8:  INCF   x4A,F
 ....................       continue; 
-228C:  BRA    1DA2
+1FFA:  BRA    1B10
 ....................        
 .................... SHIFT_BITS_OUT_BUFFER_LBL: //Shift bits located in DATA_In_Buffer out  
 ....................       shift_bits_out (pop_down_buff(), *(script_location + ++si)); 
-228E:  MOVLB  0
-2290:  RCALL  1C7E
-2292:  MOVFF  01,255
-2296:  MOVLB  2
-2298:  INCF   x48,F
-229A:  MOVF   x48,W
-229C:  ADDWF  x46,W
-229E:  MOVWF  01
-22A0:  MOVLW  00
-22A2:  ADDWFC x47,W
-22A4:  MOVWF  03
-22A6:  MOVFF  01,FE9
-22AA:  MOVWF  FEA
-22AC:  MOVFF  FEF,256
-22B0:  MOVFF  255,257
-22B4:  MOVFF  256,258
-22B8:  MOVLB  0
-22BA:  RCALL  1D22
+1FFC:  MOVLB  0
+1FFE:  RCALL  19EC
+2000:  MOVFF  01,257
+2004:  MOVLB  2
+2006:  INCF   x4A,F
+2008:  MOVF   x4A,W
+200A:  ADDWF  x48,W
+200C:  MOVWF  01
+200E:  MOVLW  00
+2010:  ADDWFC x49,W
+2012:  MOVWF  03
+2014:  MOVFF  01,FE9
+2018:  MOVWF  FEA
+201A:  MOVFF  FEF,258
+201E:  MOVFF  257,259
+2022:  MOVFF  258,25A
+2026:  MOVLB  0
+2028:  RCALL  1A90
 ....................       si++; 
-22BC:  MOVLB  2
-22BE:  INCF   x48,F
+202A:  MOVLB  2
+202C:  INCF   x4A,F
 ....................       continue; 
-22C0:  BRA    1DA2
+202E:  BRA    1B10
 ....................        
 .................... SHIFT_BITS_OUT_LBL: 
 ....................       shift_bits_out (*(script_location + si + 2), *(script_location + si + 1)); 
-22C2:  MOVF   x48,W
-22C4:  ADDWF  x46,W
-22C6:  MOVWF  x55
-22C8:  MOVLW  00
-22CA:  ADDWFC x47,W
-22CC:  MOVWF  x56
-22CE:  MOVLW  02
-22D0:  ADDWF  x55,W
-22D2:  MOVWF  01
-22D4:  MOVLW  00
-22D6:  ADDWFC x56,W
-22D8:  MOVWF  03
-22DA:  MOVFF  01,FE9
-22DE:  MOVWF  FEA
-22E0:  MOVFF  FEF,255
-22E4:  MOVF   x48,W
-22E6:  ADDWF  x46,W
-22E8:  MOVWF  x56
-22EA:  MOVLW  00
-22EC:  ADDWFC x47,W
-22EE:  MOVWF  x57
-22F0:  MOVLW  01
-22F2:  ADDWF  x56,W
-22F4:  MOVWF  01
-22F6:  MOVLW  00
-22F8:  ADDWFC x57,W
-22FA:  MOVWF  03
-22FC:  MOVFF  01,FE9
-2300:  MOVWF  FEA
-2302:  MOVFF  FEF,256
-2306:  MOVFF  255,257
-230A:  MOVFF  256,258
-230E:  MOVLB  0
-2310:  RCALL  1D22
+2030:  MOVF   x4A,W
+2032:  ADDWF  x48,W
+2034:  MOVWF  x57
+2036:  MOVLW  00
+2038:  ADDWFC x49,W
+203A:  MOVWF  x58
+203C:  MOVLW  02
+203E:  ADDWF  x57,W
+2040:  MOVWF  01
+2042:  MOVLW  00
+2044:  ADDWFC x58,W
+2046:  MOVWF  03
+2048:  MOVFF  01,FE9
+204C:  MOVWF  FEA
+204E:  MOVFF  FEF,257
+2052:  MOVF   x4A,W
+2054:  ADDWF  x48,W
+2056:  MOVWF  x58
+2058:  MOVLW  00
+205A:  ADDWFC x49,W
+205C:  MOVWF  x59
+205E:  MOVLW  01
+2060:  ADDWF  x58,W
+2062:  MOVWF  01
+2064:  MOVLW  00
+2066:  ADDWFC x59,W
+2068:  MOVWF  03
+206A:  MOVFF  01,FE9
+206E:  MOVWF  FEA
+2070:  MOVFF  FEF,258
+2074:  MOVFF  257,259
+2078:  MOVFF  258,25A
+207C:  MOVLB  0
+207E:  RCALL  1A90
 ....................       si += 3; 
-2312:  MOVLW  03
-2314:  MOVLB  2
-2316:  ADDWF  x48,F
+2080:  MOVLW  03
+2082:  MOVLB  2
+2084:  ADDWF  x4A,F
 ....................       continue; 
-2318:  BRA    1DA2
+2086:  BRA    1B10
 ....................        
 .................... SHIFT_BYTE_IN_LBL: 
 ....................       shift_bits_in(8); 
-231A:  MOVLW  08
-231C:  MOVWF  x56
-231E:  MOVLB  0
-2320:  RCALL  1CF8
+2088:  MOVLW  08
+208A:  MOVWF  x58
+208C:  MOVLB  0
+208E:  RCALL  1A66
 ....................       si++; 
-2322:  MOVLB  2
-2324:  INCF   x48,F
+2090:  MOVLB  2
+2092:  INCF   x4A,F
 ....................       continue; 
-2326:  BRA    1DA2
+2094:  BRA    1B10
 ....................        
 .................... SHIFT_BYTE_IN_BUFFER_LBL: 
 ....................       write_upload_buff (shift_bits_in(8)); 
-2328:  MOVLW  08
-232A:  MOVWF  x56
-232C:  MOVLB  0
-232E:  RCALL  1CF8
-2330:  MOVFF  01,255
-2334:  MOVFF  01,256
-2338:  RCALL  1C2E
+2096:  MOVLW  08
+2098:  MOVWF  x58
+209A:  MOVLB  0
+209C:  RCALL  1A66
+209E:  MOVFF  01,257
+20A2:  MOVFF  01,258
+20A6:  RCALL  199C
 ....................       si++; 
-233A:  MOVLB  2
-233C:  INCF   x48,F
+20A8:  MOVLB  2
+20AA:  INCF   x4A,F
 ....................       continue; 
-233E:  BRA    1DA2
+20AC:  BRA    1B10
 ....................        
 .................... SHIFT_BYTE_OUT_BUFFER_LBL: 
 ....................       shift_bits_out (pop_down_buff(), 8); 
-2340:  MOVLB  0
-2342:  RCALL  1C7E
-2344:  MOVFF  01,255
-2348:  MOVFF  01,257
-234C:  MOVLW  08
-234E:  MOVLB  2
-2350:  MOVWF  x58
-2352:  MOVLB  0
-2354:  RCALL  1D22
+20AE:  MOVLB  0
+20B0:  RCALL  19EC
+20B2:  MOVFF  01,257
+20B6:  MOVFF  01,259
+20BA:  MOVLW  08
+20BC:  MOVLB  2
+20BE:  MOVWF  x5A
+20C0:  MOVLB  0
+20C2:  RCALL  1A90
 ....................       si++; 
-2356:  MOVLB  2
-2358:  INCF   x48,F
+20C4:  MOVLB  2
+20C6:  INCF   x4A,F
 ....................       continue; 
-235A:  BRA    1DA2
+20C8:  BRA    1B10
 ....................        
 .................... SHIFT_BYTE_OUT_LBL: 
 ....................       shift_bits_out (*(script_location + ++si), 8); 
-235C:  INCF   x48,F
-235E:  MOVF   x48,W
-2360:  ADDWF  x46,W
-2362:  MOVWF  01
-2364:  MOVLW  00
-2366:  ADDWFC x47,W
-2368:  MOVWF  03
-236A:  MOVFF  01,FE9
-236E:  MOVWF  FEA
-2370:  MOVFF  FEF,255
-2374:  MOVFF  255,257
-2378:  MOVLW  08
-237A:  MOVWF  x58
-237C:  MOVLB  0
-237E:  RCALL  1D22
+20CA:  INCF   x4A,F
+20CC:  MOVF   x4A,W
+20CE:  ADDWF  x48,W
+20D0:  MOVWF  01
+20D2:  MOVLW  00
+20D4:  ADDWFC x49,W
+20D6:  MOVWF  03
+20D8:  MOVFF  01,FE9
+20DC:  MOVWF  FEA
+20DE:  MOVFF  FEF,257
+20E2:  MOVFF  257,259
+20E6:  MOVLW  08
+20E8:  MOVWF  x5A
+20EA:  MOVLB  0
+20EC:  RCALL  1A90
 ....................       si++; 
-2380:  MOVLB  2
-2382:  INCF   x48,F
+20EE:  MOVLB  2
+20F0:  INCF   x4A,F
 ....................       continue; 
-2384:  BRA    1DA2
+20F2:  BRA    1B10
 ....................        
 .................... SET_ICSP_PINS_LBL: 
 ....................       icsp_pins_states = *(script_location + si + 1); 
-2386:  MOVF   x48,W
-2388:  ADDWF  x46,W
-238A:  MOVWF  x55
-238C:  MOVLW  00
-238E:  ADDWFC x47,W
-2390:  MOVWF  x56
-2392:  MOVLW  01
-2394:  ADDWF  x55,W
-2396:  MOVWF  01
-2398:  MOVLW  00
-239A:  ADDWFC x56,W
-239C:  MOVFF  01,FE9
-23A0:  MOVWF  FEA
-23A2:  MOVFF  FEF,AA
+20F4:  MOVF   x4A,W
+20F6:  ADDWF  x48,W
+20F8:  MOVWF  x57
+20FA:  MOVLW  00
+20FC:  ADDWFC x49,W
+20FE:  MOVWF  x58
+2100:  MOVLW  01
+2102:  ADDWF  x57,W
+2104:  MOVWF  01
+2106:  MOVLW  00
+2108:  ADDWFC x58,W
+210A:  MOVFF  01,FE9
+210E:  MOVWF  FEA
+2110:  MOVFF  FEF,AA
 ....................       set_icsp_pins(*(script_location + ++si)); 
-23A6:  INCF   x48,F
-23A8:  MOVF   x48,W
-23AA:  ADDWF  x46,W
-23AC:  MOVWF  01
-23AE:  MOVLW  00
-23B0:  ADDWFC x47,W
-23B2:  MOVWF  03
-23B4:  MOVFF  01,FE9
-23B8:  MOVWF  FEA
-23BA:  MOVFF  FEF,255
-23BE:  MOVFF  255,256
-23C2:  MOVLB  0
-23C4:  BRA    1D46
+2114:  INCF   x4A,F
+2116:  MOVF   x4A,W
+2118:  ADDWF  x48,W
+211A:  MOVWF  01
+211C:  MOVLW  00
+211E:  ADDWFC x49,W
+2120:  MOVWF  03
+2122:  MOVFF  01,FE9
+2126:  MOVWF  FEA
+2128:  MOVFF  FEF,257
+212C:  MOVFF  257,258
+2130:  MOVLB  0
+2132:  BRA    1AB4
 ....................       si += 1; 
-23C6:  MOVLW  01
-23C8:  MOVLB  2
-23CA:  ADDWF  x48,F
+2134:  MOVLW  01
+2136:  MOVLB  2
+2138:  ADDWF  x4A,F
 ....................       continue; 
-23CC:  BRA    1DA2
+213A:  BRA    1B10
 ....................        
 .................... MCLR_TGT_GND_OFF_LBL: 
 ....................       #ASM 
 ....................          BCF   MCLR_TGT 
-23CE:  BCF    F89.5
+213C:  BCF    F89.5
 ....................       #ENDASM 
 ....................       si++; 
-23D0:  INCF   x48,F
+213E:  INCF   x4A,F
 ....................       continue; 
-23D2:  BRA    1DA2
+2140:  BRA    1B10
 ....................  
 .................... MCLR_TGT_GND_ON_LBL: 
 ....................       #ASM 
 ....................          BSF   MCLR_TGT 
-23D4:  BSF    F89.5
+2142:  BSF    F89.5
 ....................       #ENDASM 
 ....................       si++; 
-23D6:  INCF   x48,F
+2144:  INCF   x4A,F
 ....................       continue; 
-23D8:  BRA    1DA2
+2146:  BRA    1B10
 ....................        
 .................... VPP_PWM_OFF_LBL: 
-....................       CCP2CON = 0x00; //Turn off PWM, DS page 143 
-23DA:  CLRF   FBA
+....................       CCP2CON = 0x00; // Turn off PWM, DS page 143 
+2148:  CLRF   FBA
 ....................       Vpp_PUMP = 0; 
-23DC:  BCF    F8B.1
+214A:  BCF    F8B.1
 ....................       si++; 
-23DE:  INCF   x48,F
+214C:  INCF   x4A,F
 ....................       continue; 
-23E0:  BRA    1DA2
+214E:  BRA    1B10
 ....................        
 .................... VPP_PWM_ON_LBL: 
-....................       CCP2CON = 0x0C; //PWM mode, DS page 143 
-23E2:  MOVLW  0C
-23E4:  MOVWF  FBA
+....................       CCP2CON = 0x0C; // PWM mode, DS page 143 
+2150:  MOVLW  0C
+2152:  MOVWF  FBA
 ....................       si++; 
-23E6:  INCF   x48,F
+2154:  INCF   x4A,F
 ....................       continue; 
-23E8:  BRA    1DA2
+2156:  BRA    1B10
 ....................        
 .................... VPP_ON_LBL: 
 ....................       #ASM 
 ....................          BSF   Vpp_ON 
-23EA:  BSF    F8A.2
+2158:  BSF    F8A.2
 ....................       #ENDASM 
 ....................       si++;  
-23EC:  INCF   x48,F
+215A:  INCF   x4A,F
 ....................       continue; 
-23EE:  BRA    1DA2
+215C:  BRA    1B10
 ....................   
 ....................  VPP_OFF_LBL: 
 ....................       #ASM 
 ....................          BCF   Vpp_ON 
-23F0:  BCF    F8A.2
+215E:  BCF    F8A.2
 ....................       #ENDASM 
 ....................       si++;  
-23F2:  INCF   x48,F
+2160:  INCF   x4A,F
 ....................       continue; 
-23F4:  BRA    1DA2
+2162:  BRA    1B10
 ....................        
 .................... VDD_GND_ON_LBL: 
 ....................       #ASM 
 ....................          BSF   Vdd_TGT_N 
-23F6:  BSF    F8A.3
+2164:  BSF    F8A.3
 ....................       #ENDASM 
 ....................       si++;  
-23F8:  INCF   x48,F
+2166:  INCF   x4A,F
 ....................       continue; 
-23FA:  BRA    1DA2
+2168:  BRA    1B10
 ....................        
 .................... VDD_GND_OFF_LBL: 
 ....................       #ASM 
 ....................          BCF   Vdd_TGT_N 
-23FC:  BCF    F8A.3
+216A:  BCF    F8A.3
 ....................       #ENDASM 
 ....................       si++;  
-23FE:  INCF   x48,F
+216C:  INCF   x4A,F
 ....................       continue; 
-2400:  BRA    1DA2
+216E:  BRA    1B10
 ....................   
 .................... VDD_ON_LBL: 
 ....................       #ASM 
 ....................          BCF   Vdd_TGT_P 
-2402:  BCF    F8A.4
+2170:  BCF    F8A.4
 ....................       #ENDASM 
 ....................       si++;  
-2404:  INCF   x48,F
+2172:  INCF   x4A,F
 ....................       continue; 
-2406:  BRA    1DA2
+2174:  BRA    1B10
 ....................        
 .................... VDD_OFF_LBL: 
 ....................       #ASM 
 ....................          BSF   Vdd_TGT_P 
-2408:  BSF    F8A.4
+2176:  BSF    F8A.4
 ....................       #ENDASM 
 ....................       si++;  
-240A:  INCF   x48,F
+2178:  INCF   x4A,F
 ....................       continue; 
-240C:  BRA    1DA2
-240E:  BRA    1DA2
+217A:  BRA    1B10
+217C:  BRA    1B10
 ....................        
 ....................    } //end of while loop 
-2410:  MOVLB  0
-2412:  GOTO   2738 (RETURN)
+217E:  MOVLB  0
+2180:  RETURN 0
 .................... } 
 ....................  
 ....................  
@@ -12522,80 +12499,80 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 .................... */ 
 .................... unsigned int8 read_n_bits_24(unsigned int8 numberOfBits) 
 *
-1C0A:  MOVLB  2
-1C0C:  CLRF   x57
+1978:  MOVLB  2
+197A:  CLRF   x59
 .................... { 
 ....................    unsigned int8 bitsBuff = 0; //Bits are shifted in here  
 ....................    //unsigned int8 iteration = numberOfBits; 
 ....................    #ASM 
 ....................       BSF      tris_ICSPDAT  //Set PGD pin as input 
-1C0E:  BSF    F92.2
+197C:  BSF    F92.2
 ....................       //MOVLW 0x01        //this will be used to set the bits  
 ....................    READBITSLOOP: 
 ....................       BTFSC    ICSPDAT_in  //read PGD pin 
-1C10:  BTFSC  F80.2
+197E:  BTFSC  F80.2
 ....................       BSF      bitsBuff,0      //If PGD was high, set the corresponding bit starting from LSB 
-1C12:  BSF    x57.0
+1980:  BSF    x59.0
 ....................       BSF      ICSPCLK_out       //Clock rising edge 
-1C14:  BSF    F89.3
-1C16:  NOP   
+1982:  BSF    F89.3
+1984:  NOP   
 ....................       //RLNCF    W,W               //Rotate W left, (no carry) 
 ....................       NOP 
-1C18:  NOP   
+1986:  NOP   
 ....................       NOP 
-1C1A:  NOP   
+1988:  NOP   
 ....................       NOP 
 ....................       BCF      ICSPCLK_out    //Clock falling edge  
-1C1C:  BCF    F89.3
-1C1E:  NOP   
+198A:  BCF    F89.3
+198C:  NOP   
 ....................       NOP 
 ....................       RRNCF    bitsBuff, f    //Rotate right (no carry) 
-1C20:  RRNCF  x57,F
+198E:  RRNCF  x59,F
 ....................       DECFSZ   numberOfBits, f 
-1C22:  DECFSZ x56,F
+1990:  DECFSZ x58,F
 ....................       BRA      READBITSLOOP 
-1C24:  BRA    1C10
+1992:  BRA    197E
 ....................    #ENDASM 
 ....................    return bitsBuff; 
-1C26:  MOVFF  257,01
-1C2A:  MOVLB  0
-1C2C:  RETURN 0
+1994:  MOVFF  259,01
+1998:  MOVLB  0
+199A:  RETURN 0
 .................... } 
 ....................  
 ....................  
 .................... void write_upload_buff(unsigned int8 wr_byte) 
 .................... { 
 ....................    if (DOB_mngnt.nbr_bytes > 127)  
-1C2E:  MOVLB  1
-1C30:  MOVF   x2D,W
-1C32:  SUBLW  7F
-1C34:  BC    1C38
+199C:  MOVLB  1
+199E:  MOVF   x2D,W
+19A0:  SUBLW  7F
+19A2:  BC    19A6
 ....................    { 
 ....................       return; 
-1C36:  BRA    1C56
+19A4:  BRA    19C4
 ....................    } 
 ....................     
 ....................    DATA_Out_Buffer[DOB_mngnt.wr_idx] = wr_byte; 
-1C38:  CLRF   03
-1C3A:  MOVF   x2C,W
-1C3C:  ADDLW  AB
-1C3E:  MOVWF  FE9
-1C40:  MOVLW  00
-1C42:  ADDWFC 03,W
-1C44:  MOVWF  FEA
-1C46:  MOVFF  256,FEF
+19A6:  CLRF   03
+19A8:  MOVF   x2C,W
+19AA:  ADDLW  AB
+19AC:  MOVWF  FE9
+19AE:  MOVLW  00
+19B0:  ADDWFC 03,W
+19B2:  MOVWF  FEA
+19B4:  MOVFF  258,FEF
 ....................    DOB_mngnt.wr_idx++; 
-1C4A:  INCF   x2C,F
+19B8:  INCF   x2C,F
 ....................    if (DOB_mngnt.wr_idx > 127) 
-1C4C:  MOVF   x2C,W
-1C4E:  SUBLW  7F
-1C50:  BC    1C54
+19BA:  MOVF   x2C,W
+19BC:  SUBLW  7F
+19BE:  BC    19C2
 ....................       DOB_mngnt.wr_idx = 0; 
-1C52:  CLRF   x2C
+19C0:  CLRF   x2C
 ....................    DOB_mngnt.nbr_bytes++; 
-1C54:  INCF   x2D,F
-1C56:  MOVLB  0
-1C58:  RETURN 0
+19C2:  INCF   x2D,F
+19C4:  MOVLB  0
+19C6:  RETURN 0
 .................... } 
 ....................  
 .................... /* 
@@ -12604,8 +12581,8 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................  * 
 .................... */ 
 .................... void shift_bits_out_ICSP (unsigned int8 char_to_be_shifted, unsigned int8 number_of_bits) 
-1C5A:  MOVFF  256,258
-1C5E:  MOVFF  257,259
+19C8:  MOVFF  258,25A
+19CC:  MOVFF  259,25B
 .................... { 
 ....................    char temp_char = char_to_be_shifted; 
 ....................    char num_bits = number_of_bits; 
@@ -12613,54 +12590,54 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    #ASM 
 ....................       BITS_OUT_LOOP: 
 ....................          BTFSS    temp_char,0 
-1C62:  MOVLB  2
-1C64:  BTFSS  x58.0
+19D0:  MOVLB  2
+19D2:  BTFSS  x5A.0
 ....................          BCF      ICSPDAT_out    //If LSB of char_to_be_shifted is 0, clear PGD pin 
-1C66:  BCF    F89.2
+19D4:  BCF    F89.2
 ....................          BTFSC    temp_char,0 
-1C68:  BTFSC  x58.0
+19D6:  BTFSC  x5A.0
 ....................          BCF      ICSPDAT_out 
-1C6A:  BCF    F89.2
-1C6C:  NOP   
+19D8:  BCF    F89.2
+19DA:  NOP   
 ....................          NOP 
 ....................          BSF      ICSPCLK_out    //Clock rising edge  
-1C6E:  BSF    F89.3
-1C70:  NOP   
+19DC:  BSF    F89.3
+19DE:  NOP   
 ....................          NOP 
 ....................          BCF      ICSPCLK_out 
-1C72:  BCF    F89.3
+19E0:  BCF    F89.3
 ....................          RRNCF    temp_char,f 
-1C74:  RRNCF  x58,F
+19E2:  RRNCF  x5A,F
 ....................          DECFSZ   num_bits 
-1C76:  DECFSZ x59,F
+19E4:  DECFSZ x5B,F
 ....................          BRA      BITS_OUT_LOOP 
-1C78:  BRA    1C64
+19E6:  BRA    19D2
 ....................    #ENDASM 
-1C7A:  MOVLB  0
-1C7C:  RETURN 0
+19E8:  MOVLB  0
+19EA:  RETURN 0
 .................... } 
 ....................  
 .................... unsigned int8 getICSP_States(void) 
 *
-1CA8:  MOVLB  2
-1CAA:  CLRF   x55
+1A16:  MOVLB  2
+1A18:  CLRF   x57
 .................... { 
 ....................    unsigned int8 state = 0; 
 ....................    if (ICSPDAT_in == 1)    //ICSPDAT_in = PORTA.2 
-1CAC:  BTFSS  F80.2
-1CAE:  BRA    1CB2
+1A1A:  BTFSS  F80.2
+1A1C:  BRA    1A20
 ....................       state |= 0x02; 
-1CB0:  BSF    x55.1
+1A1E:  BSF    x57.1
 ....................    if (ICSPCLK_in == 1)    //ICSPCLK_in = PORTA.3 
-1CB2:  BTFSS  F80.3
-1CB4:  BRA    1CB8
+1A20:  BTFSS  F80.3
+1A22:  BRA    1A26
 ....................       state |= 0x01; 
-1CB6:  BSF    x55.0
+1A24:  BSF    x57.0
 ....................        
 ....................    return state; 
-1CB8:  MOVFF  255,01
-1CBC:  MOVLB  0
-1CBE:  GOTO   1FCC (RETURN)
+1A26:  MOVFF  257,01
+1A2A:  MOVLB  0
+1A2C:  GOTO   1D3A (RETURN)
 .................... } 
 ....................  
 .................... //Return a byte from the DATA_In_Buffer 
@@ -12669,36 +12646,36 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    unsigned int8 popped;  
 ....................    if (DIB_mngnt.nbr_bytes == 0) 
 *
-1C7E:  MOVLB  2
-1C80:  MOVF   x30,F
-1C82:  BNZ   1C8A
+19EC:  MOVLB  2
+19EE:  MOVF   x30,F
+19F0:  BNZ   19F8
 ....................    { 
 ....................       return 0; 
-1C84:  MOVLW  00
-1C86:  MOVWF  01
-1C88:  BRA    1CA4
+19F2:  MOVLW  00
+19F4:  MOVWF  01
+19F6:  BRA    1A12
 ....................    } 
 ....................    popped = DATA_In_Buffer[DIB_mngnt.rd_idx]; 
-1C8A:  CLRF   03
-1C8C:  MOVF   x2E,W
-1C8E:  ADDLW  2E
-1C90:  MOVWF  FE9
-1C92:  MOVLW  01
-1C94:  ADDWFC 03,W
-1C96:  MOVWF  FEA
-1C98:  MOVFF  FEF,255
+19F8:  CLRF   03
+19FA:  MOVF   x2E,W
+19FC:  ADDLW  2E
+19FE:  MOVWF  FE9
+1A00:  MOVLW  01
+1A02:  ADDWFC 03,W
+1A04:  MOVWF  FEA
+1A06:  MOVFF  FEF,257
 ....................    DIB_mngnt.rd_idx++; 
-1C9C:  INCF   x2E,F
+1A0A:  INCF   x2E,F
 ....................    DIB_mngnt.nbr_bytes--; 
-1C9E:  DECF   x30,F
+1A0C:  DECF   x30,F
 ....................     
 ....................    //if (DIB_mngnt.rd_idx > 255) 
 ....................    //   DIB_mngnt.rd_idx = 0; 
 ....................     
 ....................    return popped; 
-1CA0:  MOVFF  255,01
-1CA4:  MOVLB  0
-1CA6:  RETURN 0
+1A0E:  MOVFF  257,01
+1A12:  MOVLB  0
+1A14:  RETURN 0
 .................... } 
 ....................  
 .................... // Each Timer0's lower byte increment is 21.3 uS, there's a delay of 12 uS between script commands, it is ignored here 
@@ -12707,26 +12684,26 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    #ASM 
 ....................       BCF   TMR0IF   // Clear timer0 interrupt flag 
 *
-1CC2:  BCF    FF2.2
+1A30:  BCF    FF2.2
 ....................       MOVLW    0xFF     // So that the timer will overflow when TMR0L does 
-1CC4:  MOVLW  FF
+1A32:  MOVLW  FF
 ....................       MOVWF    TMR0H 
-1CC6:  MOVWF  FD7
+1A34:  MOVWF  FD7
 ....................    #ENDASM 
 ....................    TMR0L = 0 - duration; 
-1CC8:  MOVLB  2
-1CCA:  COMF   x56,W
-1CCC:  MOVWF  FD6
-1CCE:  INCF   FD6,F
+1A36:  MOVLB  2
+1A38:  COMF   x58,W
+1A3A:  MOVWF  FD6
+1A3C:  INCF   FD6,F
 ....................    TMR0ON = 1; // Start Timer0, DS page 127 
-1CD0:  BSF    FD5.7
+1A3E:  BSF    FD5.7
 ....................    while (TMR0IF == 0); //Wait for overflow flag to be set 
-1CD2:  BTFSS  FF2.2
-1CD4:  BRA    1CD2
+1A40:  BTFSS  FF2.2
+1A42:  BRA    1A40
 ....................    TMR0ON = 0; // Stop Timer0 
-1CD6:  BCF    FD5.7
-1CD8:  MOVLB  0
-1CDA:  GOTO   219C (RETURN)
+1A44:  BCF    FD5.7
+1A46:  MOVLB  0
+1A48:  GOTO   1F0A (RETURN)
 ....................     
 .................... } 
 ....................  
@@ -12734,103 +12711,103 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 .................... void delay_long (unsigned int8 duration) 
 .................... { 
 ....................    TMR0IF = 0; 
-1CDE:  BCF    FF2.2
+1A4C:  BCF    FF2.2
 ....................    TMR0H = 0 - duration; 
-1CE0:  MOVLB  2
-1CE2:  COMF   x56,W
-1CE4:  MOVWF  FD7
-1CE6:  INCF   FD7,F
+1A4E:  MOVLB  2
+1A50:  COMF   x58,W
+1A52:  MOVWF  FD7
+1A54:  INCF   FD7,F
 ....................    TMR0L = 0; 
-1CE8:  CLRF   FD6
+1A56:  CLRF   FD6
 ....................    TMR0ON = 1; //Start Timer0 
-1CEA:  BSF    FD5.7
+1A58:  BSF    FD5.7
 ....................    while (TMR0IF == 0); //Wait for overflow flag to be set 
-1CEC:  BTFSS  FF2.2
-1CEE:  BRA    1CEC
+1A5A:  BTFSS  FF2.2
+1A5C:  BRA    1A5A
 ....................    TMR0ON = 0; //Stop Timer0 
-1CF0:  BCF    FD5.7
-1CF2:  MOVLB  0
-1CF4:  GOTO   21C2 (RETURN)
+1A5E:  BCF    FD5.7
+1A60:  MOVLB  0
+1A62:  GOTO   1F30 (RETURN)
 .................... } 
 ....................  
 .................... unsigned int8 shift_bits_in (unsigned int8 number_of_bits) 
-1CF8:  MOVFF  256,257
-1CFC:  MOVLB  2
-1CFE:  CLRF   x58
+1A66:  MOVFF  258,259
+1A6A:  MOVLB  2
+1A6C:  CLRF   x5A
 .................... { 
 ....................    unsigned int8 num_bits = number_of_bits; 
 ....................    unsigned int8 bits_buff = 0; // Bits are shifted in here  
 ....................    tris_ICSPDAT = 1;             // Set PGD pin as input 
-1D00:  BSF    F92.2
+1A6E:  BSF    F92.2
 ....................    #ASM 
 ....................    READ_BITS_LOOP: 
 ....................       BSF      LATA, 3  // ICSPCLK_out       // Clock rising edge 
-1D02:  BSF    F89.3
-1D04:  NOP   
+1A70:  BSF    F89.3
+1A72:  NOP   
 ....................       NOP 
-1D06:  NOP   
+1A74:  NOP   
 ....................       NOP 
-1D08:  NOP   
+1A76:  NOP   
 ....................       NOP 
 ....................       BTFSC    PORTA, 2        // Read PGD pin 
-1D0A:  BTFSC  F80.2
+1A78:  BTFSC  F80.2
 ....................       BSF      bits_buff,0       // If PGD was high, set the corresponding bit starting from LSB 
-1D0C:  BSF    x58.0
+1A7A:  BSF    x5A.0
 ....................       BCF      LATA, 3       // Clock falling edge  
-1D0E:  BCF    F89.3
-1D10:  NOP   
+1A7C:  BCF    F89.3
+1A7E:  NOP   
 ....................       NOP 
 ....................       RRNCF    bits_buff, 1      // Rotate right (no carry) 
-1D12:  RRNCF  x58,F
+1A80:  RRNCF  x5A,F
 ....................       DECFSZ   num_bits, 1 
-1D14:  DECFSZ x57,F
+1A82:  DECFSZ x59,F
 ....................       BRA      READ_BITS_LOOP 
-1D16:  BRA    1D02
+1A84:  BRA    1A70
 ....................       BCF      tris_ICSPDAT      // PGD set as output 
-1D18:  BCF    F92.2
+1A86:  BCF    F92.2
 ....................    #ENDASM 
 ....................     
 ....................    //bits_buff >>= (8 - num_bits); // Right justified 
 ....................    return bits_buff; 
-1D1A:  MOVFF  258,01
-1D1E:  MOVLB  0
-1D20:  RETURN 0
+1A88:  MOVFF  25A,01
+1A8C:  MOVLB  0
+1A8E:  RETURN 0
 .................... } 
 ....................  
 .................... void shift_bits_out (unsigned int8  outb, unsigned int8 number_of_bits) 
-1D22:  MOVFF  257,259
-1D26:  MOVFF  258,25A
+1A90:  MOVFF  259,25B
+1A94:  MOVFF  25A,25C
 .................... { 
 ....................    unsigned int8 out_char = outb; 
 ....................    unsigned int8  num_bits = number_of_bits; 
 ....................    #ASM 
 ....................       WRITE_BITS_LOOP: 
 ....................          BTFSS    out_char,0 
-1D2A:  MOVLB  2
-1D2C:  BTFSS  x59.0
+1A98:  MOVLB  2
+1A9A:  BTFSS  x5B.0
 ....................          BCF      ICSPDAT_out 
-1D2E:  BCF    F89.2
+1A9C:  BCF    F89.2
 ....................          BTFSC    out_char,0 
-1D30:  BTFSC  x59.0
+1A9E:  BTFSC  x5B.0
 ....................          BSF      ICSPDAT_out 
-1D32:  BSF    F89.2
-1D34:  NOP   
+1AA0:  BSF    F89.2
+1AA2:  NOP   
 ....................          NOP 
 ....................          BSF      ICSPCLK_out //Clock rising edge 
-1D36:  BSF    F89.3
-1D38:  NOP   
+1AA4:  BSF    F89.3
+1AA6:  NOP   
 ....................          NOP 
 ....................          BCF      ICSPCLK_out  //Clock falling edge  
-1D3A:  BCF    F89.3
+1AA8:  BCF    F89.3
 ....................          RRNCF    out_char, 1 
-1D3C:  RRNCF  x59,F
+1AAA:  RRNCF  x5B,F
 ....................          DECFSZ   num_bits, 1 
-1D3E:  DECFSZ x5A,F
+1AAC:  DECFSZ x5C,F
 ....................          BRA      WRITE_BITS_LOOP 
-1D40:  BRA    1D2C
+1AAE:  BRA    1A9A
 ....................    #ENDASM 
-1D42:  MOVLB  0
-1D44:  RETURN 0
+1AB0:  MOVLB  0
+1AB2:  RETURN 0
 .................... } 
 ....................  
 .................... void set_icsp_pins(int8 state) 
@@ -12861,44 +12838,44 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................       tris_ICSPDAT = 0; 
 ....................    */ 
 ....................    ICSPCLK_out  = (state & 0x04) ? 1 : 0; //state[3] = Clock state 
-1D46:  MOVLB  2
-1D48:  BTFSS  x56.2
-1D4A:  BRA    1D50
-1D4C:  MOVLW  01
-1D4E:  BRA    1D52
-1D50:  MOVLW  00
-1D52:  BCF    F89.3
-1D54:  BTFSC  FE8.0
-1D56:  BSF    F89.3
+1AB4:  MOVLB  2
+1AB6:  BTFSS  x58.2
+1AB8:  BRA    1ABE
+1ABA:  MOVLW  01
+1ABC:  BRA    1AC0
+1ABE:  MOVLW  00
+1AC0:  BCF    F89.3
+1AC2:  BTFSC  FE8.0
+1AC4:  BSF    F89.3
 ....................    ICSPDAT_out  = (state & 0x08) ? 1 : 0; //state[4] = Data state 
-1D58:  BTFSS  x56.3
-1D5A:  BRA    1D60
-1D5C:  MOVLW  01
-1D5E:  BRA    1D62
-1D60:  MOVLW  00
-1D62:  BCF    F89.2
-1D64:  BTFSC  FE8.0
-1D66:  BSF    F89.2
+1AC6:  BTFSS  x58.3
+1AC8:  BRA    1ACE
+1ACA:  MOVLW  01
+1ACC:  BRA    1AD0
+1ACE:  MOVLW  00
+1AD0:  BCF    F89.2
+1AD2:  BTFSC  FE8.0
+1AD4:  BSF    F89.2
 ....................    tris_ICSPCLK = (state & 0x01) ? 1 : 0; //state[0] = Clock direction 
-1D68:  BTFSS  x56.0
-1D6A:  BRA    1D70
-1D6C:  MOVLW  01
-1D6E:  BRA    1D72
-1D70:  MOVLW  00
-1D72:  BCF    F92.3
-1D74:  BTFSC  FE8.0
-1D76:  BSF    F92.3
+1AD6:  BTFSS  x58.0
+1AD8:  BRA    1ADE
+1ADA:  MOVLW  01
+1ADC:  BRA    1AE0
+1ADE:  MOVLW  00
+1AE0:  BCF    F92.3
+1AE2:  BTFSC  FE8.0
+1AE4:  BSF    F92.3
 ....................    tris_ICSPDAT = (state & 0x02) ? 1 : 0; //state[1] = Data direction 
-1D78:  BTFSS  x56.1
-1D7A:  BRA    1D80
-1D7C:  MOVLW  01
-1D7E:  BRA    1D82
-1D80:  MOVLW  00
-1D82:  BCF    F92.2
-1D84:  BTFSC  FE8.0
-1D86:  BSF    F92.2
-1D88:  MOVLB  0
-1D8A:  GOTO   23C6 (RETURN)
+1AE6:  BTFSS  x58.1
+1AE8:  BRA    1AEE
+1AEA:  MOVLW  01
+1AEC:  BRA    1AF0
+1AEE:  MOVLW  00
+1AF0:  BCF    F92.2
+1AF2:  BTFSC  FE8.0
+1AF4:  BSF    F92.2
+1AF6:  MOVLB  0
+1AF8:  GOTO   2134 (RETURN)
 ....................  
 .................... } 
 ....................  
@@ -12987,7 +12964,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 .................... #rom  int8 0x603C = {VPP_OFF, MCLR_TGT_GND_ON, VPP_PWM_OFF, SET_ICSP_PINS_CMD, 0x03, LONG_DELAY, 0x0A} 
 ....................  
 ....................  
-.................... /*********** DevIdScript PIC24 *************/ 
+.................... /*********** READ_DEV_ID PIC24 *************/ 
 .................... /***           Address = 0x604A          ***/ 
 .................... /***           Length = 50               ***/ 
 .................... #rom int8 0x604A = {COREINST24, 0x00, 0x02, 0x04, COREINST24, 0x00, 0x02, 0x04, NOP24, NOP24, NOP24, COREINST24, 0x00, 0x02, 0x04, NOP24, COREINST24, 0xF0, 0x0F, 0x20, COREINST24, 0x90, 0x01, 0x88, COREINST24, 0x06, 0x00, 0x20, NOP24, NOP24, COREINST24, 0x07, 0x00, 0x20, COREINST24, 0xB6, 0x0B, 0xBA, NOP24, NOP24, COREINST24, 0x20, 0x3C, 0x88, NOP24, VISI24, NOP24, LOOP, 0x0D, 0x01}  
@@ -13000,7 +12977,7 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................  
 ....................  
 ....................  
-.................... /********** ReadDevID PIC18F_J_ ************/ 
+.................... /********** READ_DEV_ID PIC18F_ ************/ 
 .................... /***           Address = 0x60E4          ***/ 
 .................... /***           Length = 45               ***/ 
 .................... #rom int8 0x60E4 = {COREINST18, 0x2A, 0x0E, COREINST18, 0x15, 0x09, COREINST18, 0x00, 0x00, COREINST18, 0xF8, 0x6E, COREINST18, 0xAA, 0x0E, COREINST18, 0x55, 0x0A, COREINST18, 0xF7, 0x6E, COREINST18, 0xAA, 0x0E, COREINST18, 0x54, 0x0A, COREINST18, 0x00, 0x00, COREINST18, 0xF6, 0x6E, SHIFT_BITS_OUT_CMD, 0x04, 0x09, SHIFT_BYTE_OUT, 0x00, SHIFT_BYTE_IN_BUFFER, COREINST18, 0xFF, 0xFF, LOOP, 0x09, 0x01} 
@@ -13198,46 +13175,46 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................  
 .................... void main() 
 *
-278A:  CLRF   FF8
-278C:  BCF    FD0.7
-278E:  BSF    07.7
-2790:  MOVF   FC1,W
-2792:  ANDLW  C0
-2794:  IORLW  0F
-2796:  MOVWF  FC1
-2798:  MOVLW  07
-279A:  MOVWF  FB4
-279C:  MOVLW  02
-279E:  MOVWF  28
-27A0:  MOVLW  70
-27A2:  MOVWF  27
-27A4:  MOVLW  01
-27A6:  MOVLB  2
-27A8:  MOVWF  x71
-27AA:  MOVLW  8C
-27AC:  MOVWF  x70
-27AE:  MOVLW  05
-27B0:  MOVWF  x73
-27B2:  MOVLW  10
-27B4:  MOVWF  x72
-27B6:  MOVLW  02
-27B8:  MOVLB  5
-27BA:  MOVWF  x11
-27BC:  MOVLW  EC
-27BE:  MOVWF  x10
-27C0:  CLRF   x13
-27C2:  CLRF   x12
-27C4:  MOVLB  0
-27C6:  CLRF   1B
-27C8:  MOVLW  04
-27CA:  MOVWF  1C
-27CC:  MOVLW  0C
-27CE:  MOVWF  1D
+2766:  CLRF   FF8
+2768:  BCF    FD0.7
+276A:  BSF    07.7
+276C:  MOVF   FC1,W
+276E:  ANDLW  C0
+2770:  IORLW  0F
+2772:  MOVWF  FC1
+2774:  MOVLW  07
+2776:  MOVWF  FB4
+2778:  MOVLW  02
+277A:  MOVWF  28
+277C:  MOVLW  6F
+277E:  MOVWF  27
+2780:  MOVLW  01
+2782:  MOVLB  2
+2784:  MOVWF  x70
+2786:  MOVLW  8D
+2788:  MOVWF  x6F
+278A:  MOVLW  05
+278C:  MOVWF  x72
+278E:  MOVLW  10
+2790:  MOVWF  x71
+2792:  MOVLW  02
+2794:  MOVLB  5
+2796:  MOVWF  x11
+2798:  MOVLW  EC
+279A:  MOVWF  x10
+279C:  CLRF   x13
+279E:  CLRF   x12
+27A0:  MOVLB  0
+27A2:  CLRF   1B
+27A4:  MOVLW  04
+27A6:  MOVWF  1C
+27A8:  MOVLW  0C
+27AA:  MOVWF  1D
 .................... { 
 ....................    pgm_init(); 
-27D0:  GOTO   107A
+27AC:  GOTO   107A
 ....................    usb_init_cs();  
-27D4:  GOTO   1146
+27B0:  GOTO   1146
 ....................    /* 
 ....................    #ASM  
 ....................    BSF LATC,0  //Busy LED 
@@ -13250,23 +13227,23 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................    while(TRUE) 
 ....................    { 
 ....................       usb_task(); 
-27D8:  GOTO   116E
+27B4:  GOTO   116E
 ....................       if(usb_enumerated()){// If the device has been enumerated by the PC 
-27DC:  GOTO   1192
-27E0:  MOVF   01,F
-27E2:  BZ    27F6
+27B8:  GOTO   1192
+27BC:  MOVF   01,F
+27BE:  BZ    27D2
 ....................          if(usb_kbhit(1)) 
-27E4:  MOVLW  01
-27E6:  MOVLB  2
-27E8:  MOVWF  x3E
-27EA:  MOVLB  0
-27EC:  GOTO   119A
-27F0:  MOVF   01,F
-27F2:  BZ    27F6
+27C0:  MOVLW  01
+27C2:  MOVLB  2
+27C4:  MOVWF  x3E
+27C6:  MOVLB  0
+27C8:  GOTO   119A
+27CC:  MOVF   01,F
+27CE:  BZ    27D2
 ....................          {                  // If endpoint1 has data in its receive buffer 
 ....................           
 ....................          Process_Input (); 
-27F4:  BRA    2502
+27D0:  BRA    2488
 ....................           
 ....................           
 ....................           
@@ -13281,11 +13258,11 @@ CCS PCH C Compiler, Version 5.008, 5967               14-févr.-19 21:00
 ....................            usb_put_packet(1, data, 64, USB_DTS_TOGGLE);*/ 
 ....................          } 
 ....................        } 
-27F6:  BRA    27D8
+27D2:  BRA    27B4
 ....................    } 
 .................... } 
 ....................  
-27F8:  SLEEP 
+27D4:  SLEEP 
 ....................  
 
 Configuration Fuses:

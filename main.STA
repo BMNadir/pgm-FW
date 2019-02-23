@@ -1,12 +1,12 @@
 
-ROM used:   10520/16384 (32%)
+ROM used:   10484/16384 (32%)
             12574/16384 (38%) including unused fragments
 
             1.4 Average locations per line
-            8.9 Average locations per statement
+            8.8 Average locations per statement
 
 RAM used:   846/2048 (41%) at main() level
-            896/2048 (44%) worst case
+            895/2048 (44%) worst case
 
 Stack used: 15 worst case (6 in main + 9 for interrupts)
 Stack size: 31
@@ -22,7 +22,7 @@ Lines Stmts  %   Files
  1103     0   0  C:\Program Files (x86)\PICC\Drivers\usb.h
  1180   247  21  usb\usb.c
  1403   317  27  C:\Program Files (x86)\PICC\Drivers\pic18_usb.c
- 1055   435  37  pgm_lib.c
+ 1039   437  37  pgm_lib.c
   188     0   0  pgm_lib.h
   326   128  11  C:\Program Files (x86)\PICC\Drivers\stdlibm.h
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
@@ -30,7 +30,7 @@ Lines Stmts  %   Files
   160     0   0  scripts.h
    66    37   3  isr.c
 ----- -----
- 7328  1187 Total
+ 7312  1189 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -95,22 +95,22 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     24   0    6    60  3.1  update_node
 0    134   1    8   180  4.5  insert_node_after
 0    136   1    8   192  3.8  remove_node
-0    274   1   12   705  9.2  traverse
-0    330   2   12   853 11.5  malloc
-0    122   1    8   380  6.3  free
+0    276   1   12   705  9.2  traverse
+0    332   2   12   853 11.5  malloc
+0    126   1    8   380  6.3  free
 0    164   1    0  1819  3.0  pgm_init
-0    648   3    3  2527 11.4  Process_Input
+0    734   4    3  2758 11.8  Process_Input
 0     44   0    0   174  2.7  get_version_number
 0    194   1    7   462  8.7  cal_and_set_ccp
-0     86   0    6   462  8.7  @MULS1616
+0     86   0    6             @MULS1616
 0     28   0    2   136  5.1  cal_threshold_byte
-0    352   2    6   750  5.7  send_voltages
+0    226   1    4   656  4.9  send_voltages
 0     58   0    1   227  3.3  adc_vpp_vdd_control
-0     20   0    1    83  2.9  getADC
-0    108   1    7   173  5.3  calADCWord
+0     18   0    1    93  2.9  get_adc
+0    108   1    7   173  5.3  cal_adc_word
 0     96   0    4   281  6.2  write_down_buff
 0    140   1    4   470  7.8  send_data_usb
-0   1672   8   19  7857 13.2  execute_script
+0   1670   8   19  7857 13.2  execute_script
 0     36   0    2   139  3.9  read_n_bits_24
 0     44   0    3   230  4.5  write_upload_buff
 0     36   0    4   175  3.3  shift_bits_out_ICSP
@@ -124,26 +124,26 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     62   0    0   401  6.1  timer1_overflow
 0     44   0    0   538  6.2  adc_complete
 0    112   1    0   113  2.0  MAIN
- Inline         0   113  2.0  @cinit1
+ Inline         0             @cinit1
 
 Program metrics:
-    Functions               77
-    Statements              1187
-    Comments                2845
-    Volume (V)              74632
-    Difficulty (D)          377.3
-    Effort to implement (E) 28162021
-    Time to implement (T)   434 hours, 36 minutes
-    Est Delivered Bugs (B)  31
-    Cyclomatic Complexity   150
-    Maintainability (MI)    91
+    Functions               75
+    Statements              1189
+    Comments                2833
+    Volume (V)              73353
+    Difficulty (D)          366.4
+    Effort to implement (E) 26877814
+    Time to implement (T)   414 hours, 47 minutes
+    Est Delivered Bugs (B)  30
+    Cyclomatic Complexity   148
+    Maintainability (MI)    85
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-00006     4  0  
 00008-000AC   166  0  
-000AE-02FFE  10060  2054  
+000AE-02FFE  10024  2090  
 03000-0300E    16  0  
 03010-05FFE     0  12272  
 06000-0601C    30  0  

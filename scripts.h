@@ -73,7 +73,7 @@
 #rom  int8 0x603C = {VPP_OFF, MCLR_TGT_GND_ON, VPP_PWM_OFF, SET_ICSP_PINS_CMD, 0x03, LONG_DELAY, 0x0A}
 
 
-/*********** DevIdScript PIC24 *************/
+/*********** READ_DEV_ID PIC24 *************/
 /***           Address = 0x604A          ***/
 /***           Length = 50               ***/
 #rom int8 0x604A = {COREINST24, 0x00, 0x02, 0x04, COREINST24, 0x00, 0x02, 0x04, NOP24, NOP24, NOP24, COREINST24, 0x00, 0x02, 0x04, NOP24, COREINST24, 0xF0, 0x0F, 0x20, COREINST24, 0x90, 0x01, 0x88, COREINST24, 0x06, 0x00, 0x20, NOP24, NOP24, COREINST24, 0x07, 0x00, 0x20, COREINST24, 0xB6, 0x0B, 0xBA, NOP24, NOP24, COREINST24, 0x20, 0x3C, 0x88, NOP24, VISI24, NOP24, LOOP, 0x0D, 0x01} 
@@ -86,7 +86,7 @@
 
 
 
-/********** ReadDevID PIC18F_J_ ************/
+/********** READ_DEV_ID PIC18F_ ************/
 /***           Address = 0x60E4          ***/
 /***           Length = 45               ***/
 #rom int8 0x60E4 = {COREINST18, 0x2A, 0x0E, COREINST18, 0x15, 0x09, COREINST18, 0x00, 0x00, COREINST18, 0xF8, 0x6E, COREINST18, 0xAA, 0x0E, COREINST18, 0x55, 0x0A, COREINST18, 0xF7, 0x6E, COREINST18, 0xAA, 0x0E, COREINST18, 0x54, 0x0A, COREINST18, 0x00, 0x00, COREINST18, 0xF6, 0x6E, SHIFT_BITS_OUT_CMD, 0x04, 0x09, SHIFT_BYTE_OUT, 0x00, SHIFT_BYTE_IN_BUFFER, COREINST18, 0xFF, 0xFF, LOOP, 0x09, 0x01}

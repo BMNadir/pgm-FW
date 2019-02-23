@@ -186,10 +186,7 @@ void Process_Input ()
    unsigned int8 packet_length = data_in[0];
    unsigned int8 offset;
    
-   
-   MCLR_TGT = 1;
-   
-   
+   //MCLR_TGT = 1;
    
    while (i <= packet_length)
    {
@@ -217,6 +214,7 @@ void Process_Input ()
          BRA      WRITE_DOWN_BUFF_LBL
          BRA      CLEAR_UP_BUFF_LBL
          BRA      UPLOAD_LBL
+         BRA      RUN_USB_SCRIPT_LBL
       #ENDASM 
       
 GET_VERSION_LBL:
@@ -269,7 +267,6 @@ RUN_ROM_SCRIPT_LBL:
       read_program_memory(address, script_buffer, data_in[i+1]); 
       execute_script(data_in[i+1], script_buffer);
       free(script_buffer);
-      BUSY_LED = 0;
       i += 4;
       continue;
       
@@ -301,31 +298,24 @@ UPLOAD_LBL:
       send_data_usb();
       i++;
       continue;
+      
+RUN_USB_SCRIPT_LBL:
+      // data_in[i+1] = number of commands
+      // data_in[i+2] = start of commands 
+      execute_script(data_in[i+1],&data_in[i+2]);
+      i += data_in[i+1] + 2;
+      continue;
    }
-   /*
-   #ASM
-      BCF BUSY_LED
-   #ENDASM
-   */
+   
+   BUSY_LED = 0;
 }
 
 void get_version_number (void)
 {
-   /*
-   unsigned int8 *DATAout  = malloc(4);
-   *DATAout++ = 4;  //length of data to be sent, including this byte
-   *DATAout++ = 0;
-   *DATAout++ = 0;
-   *DATAout = 1;
-   usb_put_packet(1, (DATAout-3), 64, USB_DTS_TOGGLE);
-   free(DATAout);
-   */
-   
-   
    data_out [0] = 3;  //length of data to be sent, this byte not included
    data_out [1] = 0;
-   data_out [2] = 2;    //month
-   data_out [3] = 14;
+   data_out [2] = 2;    
+   data_out [3] = 22;
    usb_put_packet(1, data_out, 64, USB_DTS_TOGGLE);
 }
 
@@ -362,32 +352,30 @@ unsigned int8 cal_threshold_byte(unsigned int8 voltageVal)
     inverse_cal >>= 8;
 
     return (unsigned int8) inverse_cal;
-} //See CalADCWord(unsigned int rawValue)
+} // See cal_adc_word(unsigned int rawValue)
 
-//TODO: create a function to store cal and offset values in eeprom and a function to read them
+// TODO: create a function to store cal and offset values in eeprom and a function to read them
 
-//Read VDD and VPP voltages, used to detect self-powered targets 
+// Read VDD and VPP voltages, used to detect self-powered targets 
 void send_voltages (void)
 {
    unsigned int16 adc_result;
-   unsigned int8 *DATAout = malloc(5);
-   *DATAout++ = 5;   //Length of data to be sent
+   data_out [0] = 5;   //Length of data to be sent
    adc_vpp_vdd_control (0); //Stop ADC, VPP and VDD
-   getADC (0x04); //CH1_VDD
+   get_adc (0x04); //CH1_VDD
    adc_result = (ADRESH * 0x100) + ADRESL;
-   adc_result = calADCWord(adc_result);
-   *DATAout++ = (unsigned int8) adc_result;
-   *DATAout++ = (unsigned int8) (adc_result >> 8);
+   adc_result = cal_adc_word(adc_result);
+   data_out [1] = (unsigned int8) adc_result;
+   data_out [2] = (unsigned int8) (adc_result >> 8);
    
-   getADC (0x00); //CH0_VPP
+   get_adc (0x00); //CH0_VPP
    adc_result = (ADRESH * 0x100) + ADRESL;
-   adc_result = calADCWord(adc_result);
-   *DATAout++ = (unsigned int8) adc_result;
-   *DATAout = (unsigned int8) (adc_result >> 8);
+   adc_result = cal_adc_word(adc_result);
+   data_out [3] = (unsigned int8) adc_result;
+   data_out [4] = (unsigned int8) (adc_result >> 8);
    
-   usb_put_packet(1, (DATAout-4), 64, USB_DTS_TOGGLE);
-   free(DATAout);
-   adc_vpp_vdd_control (1); //Start ADC, VPP and VDD
+   usb_put_packet(1, data_out, 64, USB_DTS_TOGGLE);
+   adc_vpp_vdd_control (1); // Start ADC, VPP and VDD
 }
 
 void adc_vpp_vdd_control (int1 state)
@@ -404,11 +392,11 @@ void adc_vpp_vdd_control (int1 state)
          MOVLW 0x38
          MOVWF TMR1L
          
-         BCF   TMR1IF           // clear int flag
-         BSF   TMR1IE           // enable int
-         BSF   TMR1ON           // start timer
+         BCF   TMR1IF           // Clear int flag
+         BSF   TMR1IE           // Enable int
+         BSF   TMR1ON           // Start timer
          
-         BCF   ADIF  // clear A/D Converter Interrupt Flag
+         BCF   ADIF  // Clear A/D Converter Interrupt Flag
          BCF   ADIE  // Disable ADC int
          MOVLW 0x26
          MOVWF ADCON2           //ADCON2 setting for voltage monitoring
@@ -423,24 +411,22 @@ void adc_vpp_vdd_control (int1 state)
          BCF   TMR1IE   // Disable Timer1 interrupt
          BCF   TMR1ON   // Stop Timer1
          
-         CLRF  ADCON0   //Shut off ADC conversion in progress
+         CLRF  ADCON0   // Shut off ADC conversion in progress
          
-         BCF   ADIF  // clear A/D Converter Interrupt Flag
+         BCF   ADIF  // Clear A/D Converter Interrupt Flag
          BCF   ADIE  // Disable ADC int
       #ENDASM
    }
 }
 
-void getADC (unsigned int8 channel)
+void get_adc (unsigned int8 channel)
 {
-   ADCON0 = (channel + 1);     // set channel. ADD 1 to enable A/D Converter (bit 0) page 261
-   #ASM
-   BSF GO                      // begin conversion
-   #ENDASM   
-   while ((ADCON0 | 0x02));       // wait while GO is still set
+   ADCON0 = (channel + 1);     // Set channel. ADD 1 to enable A/D Converter (bit 0) page 261
+   GO = 1;                    // Begin conversion  
+   while (ADCON0 & 0x02);       // Wait while GO is still set
 }
 
-unsigned int16 calADCWord(unsigned int16 Val)
+unsigned int16 cal_adc_word(unsigned int16 Val)
 {
 
     unsigned int32 cal_value = Val;
@@ -490,7 +476,7 @@ void downloadScriptArgs (void)
    unsigned int8 len = data_in[++i];
    for (unsigned int8 j = 0; j < len; j++)
    {
-      scrpt_args[j] = data_in[++i];           //Copy the arguments from USB packet to scrpt_args buffer 
+      scrpt_args[j] = data_in[++i];           // Copy the arguments from USB packet to scrpt_args buffer 
    }
    scrpt_rd_idx = 0;
 }
@@ -499,21 +485,19 @@ void downloadScriptArgs (void)
 
 
 
-
-
 void execute_script(unsigned int8 scrpt_len, unsigned int8 *script_location)
 {
-   unsigned int8 si = 0; //initialize script index to 0
+   unsigned int8 si = 0; // Initialize script index to 0
    unsigned int8 offset, loop_buff_idx, temp;
-   int1 first_iteration_LB = 1; //used by LOOPBUFFER cmd
-   int1 first_iteration_L = 1; //Used by LOOP cmd
+   int1 first_iteration_LB = 1; // Used by LOOPBUFFER cmd
+   int1 first_iteration_L = 1; // Used by LOOP cmd
    unsigned int16 nbr_iterations, loop_count, loop_idx;
-   unsigned int8 *SFR_ptr; //used by the WRITE_SFR and READ_SFR commands
+   unsigned int8 *SFR_ptr; // Used by the WRITE_SFR and READ_SFR commands
    
    #ASM
-      BCF INT0IE //Disable Timer0 interrupt
+      BCF INT0IE // Disable Timer0 interrupt
       MOVLW 0x07
-      MOVWF T0CON //16-bit timer, 1:256 prescale
+      MOVWF T0CON // 16-bit timer, 1:256 prescale
    #ENDASM
    
    if (scrpt_len == 0) return; 
@@ -784,13 +768,13 @@ MCLR_TGT_GND_ON_LBL:
       continue;
       
 VPP_PWM_OFF_LBL:
-      CCP2CON = 0x00; //Turn off PWM, DS page 143
+      CCP2CON = 0x00; // Turn off PWM, DS page 143
       Vpp_PUMP = 0;
       si++;
       continue;
       
 VPP_PWM_ON_LBL:
-      CCP2CON = 0x0C; //PWM mode, DS page 143
+      CCP2CON = 0x0C; // PWM mode, DS page 143
       si++;
       continue;
       
