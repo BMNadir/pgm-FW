@@ -12,7 +12,7 @@
    ³  ÃÄusb_enumerated  0/8  Ram=0
    ³  ÃÄusb_kbhit  0/92  Ram=4
    ³  ³  ÀÄ@MUL1616  0/34  Ram=5
-   ³  ÀÄProcess_Input  0/734  Ram=3
+   ³  ÀÄProcess_Input  0/1002  Ram=3
    ³     ÃÄusb_get_packet  0/72  Ram=5
    ³     ³  ÃÄusb_get_packet_buffer  0/276  Ram=12
    ³     ³  ³  ÃÄ@MUL1616  0/34  Ram=5
@@ -55,13 +55,13 @@
    ³     ³  ÃÄusb_put_packet  0/194  Ram=10
    ³     ³  ³  ÀÄ*
    ³     ³  ÀÄadc_vpp_vdd_control  0/58  Ram=1
-   ³     ÃÄmalloc  0/332  Ram=12
+   ³     ÃÄmalloc  0/330  Ram=12
    ³     ³  ÃÄcreate_node  0/60  Ram=8
    ³     ³  ÃÄinsert_node_after  0/134  Ram=8
    ³     ³  ÃÄupdate_node  0/24  Ram=6
    ³     ³  ÀÄupdate_node  0/24  Ram=6
    ³     ÃÄ@MUL1616  0/34  Ram=5
-   ³     ÃÄ@READ_PROGRAM_MEMORY  0/32  Ram=7
+   ³     ÃÄ@READ_PROGRAM_MEMORY  0/30  Ram=7
    ³     ÃÄexecute_script  0/1670  Ram=19
    ³     ³  ÃÄread_n_bits_24  0/36  Ram=2
    ³     ³  ÃÄwrite_upload_buff  0/44  Ram=3
@@ -105,7 +105,7 @@
    ³     ³  ÃÄshift_bits_out  0/36  Ram=4
    ³     ³  ÃÄshift_bits_out  0/36  Ram=4
    ³     ³  ÀÄset_icsp_pins  0/72  Ram=1
-   ³     ÃÄfree  0/126  Ram=8
+   ³     ÃÄfree  0/124  Ram=8
    ³     ³  ÃÄupdate_node  0/24  Ram=6
    ³     ³  ÀÄtraverse  0/276  Ram=12
    ³     ³     ÃÄremove_node  0/136  Ram=8
@@ -114,7 +114,15 @@
    ³     ÃÄsend_data_usb  0/140  Ram=4
    ³     ³  ÀÄusb_put_packet  0/194  Ram=10
    ³     ³     ÀÄ*
-   ³     ÀÄexecute_script  0/1670  Ram=19
+   ³     ÃÄexecute_script  0/1670  Ram=19
+   ³     ³  ÀÄ*
+   ³     ÃÄmalloc  0/330  Ram=12
+   ³     ³  ÀÄ*
+   ³     ÃÄ@MUL1616  0/34  Ram=5
+   ³     ÃÄ@READ_PROGRAM_MEMORY  0/30  Ram=7
+   ³     ÃÄexecute_script  0/1670  Ram=19
+   ³     ³  ÀÄ*
+   ³     ÀÄfree  0/124  Ram=8
    ³        ÀÄ*
    ÃÄusb_isr  0/126  Ram=2
    ³  ÃÄusb_isr_activity  0/16  Ram=0

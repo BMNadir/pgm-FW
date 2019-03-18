@@ -1,19 +1,19 @@
 
-ROM used:   10484/16384 (32%)
-            12574/16384 (38%) including unused fragments
+ROM used:   11068/16384 (34%)
+            25184/16384 (77%) including unused fragments
 
-            1.4 Average locations per line
-            8.8 Average locations per statement
+            1.5 Average locations per line
+            9.2 Average locations per statement
 
 RAM used:   846/2048 (41%) at main() level
-            895/2048 (44%) worst case
+            896/2048 (44%) worst case
 
 Stack used: 15 worst case (6 in main + 9 for interrupts)
 Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   43    10   1  main.c
+   22    10   1  main.c
    29     0   0  main.h
   759     0   0  C:\Program Files (x86)\PICC\Devices\18F2550.h
   228     0   0  usb\pic18_usb.h
@@ -21,20 +21,20 @@ Lines Stmts  %   Files
   352     0   0  usb\usb_desc_hid.h
  1103     0   0  C:\Program Files (x86)\PICC\Drivers\usb.h
  1180   247  21  usb\usb.c
- 1403   317  27  C:\Program Files (x86)\PICC\Drivers\pic18_usb.c
- 1039   437  37  pgm_lib.c
+ 1403   317  26  C:\Program Files (x86)\PICC\Drivers\pic18_usb.c
+ 1060   450  37  pgm_lib.c
   188     0   0  pgm_lib.h
   326   128  11  C:\Program Files (x86)\PICC\Drivers\stdlibm.h
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
    76    13   1  C:\Program Files (x86)\PICC\Drivers\memmgmt.c
-  160     0   0  scripts.h
+  260     0   0  scripts.h
    66    37   3  isr.c
 ----- -----
- 7312  1189 Total
+ 7412  1202 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
-0     32   0    7             @READ_PROGRAM_MEMORY
+0     30   0    7             @READ_PROGRAM_MEMORY
 0     32   0    0             @const719
 0     66   0    0             @const725
 0     48   0    0             @const731
@@ -61,7 +61,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    100   0    6   266  4.6  usb_unstall_ep
 0    118   1    5   373  6.0  usb_endpoint_stalled
 0     26   0    1    94  2.7  usb_set_address
-0    538   3   12  1774 10.4  usb_set_configured
+0    538   2   12  1774 10.4  usb_set_configured
 0    112   1    5   199  3.2  usb_disable_endpoint
 0     30   0    1    99  3.0  usb_disable_endpoints
 0      4   0    0    61  4.0  usb_clear_trn
@@ -85,7 +85,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     50   0    0   375  6.4  usb_isr_tok_setup_dne
 0    188   1    0  1454  8.3  usb_isr_tkn_setup_StandardDevice
 0    180   1    3  1002  7.8  usb_isr_tkn_setup_StandardInterface
-0    108   1    0   753  5.8  usb_isr_tkn_setup_StandardEndpoint
+0    108   0    0   753  5.8  usb_isr_tkn_setup_StandardEndpoint
 0     12   0    0   105  3.8  usb_isr_tkn_setup_ClassInterface
 0    336   2    1  1492  8.8  usb_Get_Descriptor
 0     14   0    0    76  1.8  usb_finish_set_address
@@ -96,10 +96,10 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    134   1    8   180  4.5  insert_node_after
 0    136   1    8   192  3.8  remove_node
 0    276   1   12   705  9.2  traverse
-0    332   2   12   853 11.5  malloc
-0    126   1    8   380  6.3  free
+0    330   1   12   853 11.5  malloc
+0    124   1    8   380  6.3  free
 0    164   1    0  1819  3.0  pgm_init
-0    734   4    3  2758 11.8  Process_Input
+0   1002   5    3  3555 13.4  Process_Input
 0     44   0    0   174  2.7  get_version_number
 0    194   1    7   462  8.7  cal_and_set_ccp
 0     86   0    6             @MULS1616
@@ -107,15 +107,15 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    226   1    4   656  4.9  send_voltages
 0     58   0    1   227  3.3  adc_vpp_vdd_control
 0     18   0    1    93  2.9  get_adc
-0    108   1    7   173  5.3  cal_adc_word
-0     96   0    4   281  6.2  write_down_buff
+0    108   0    7   173  5.3  cal_adc_word
+0     96   0    4   287  6.5  write_down_buff
 0    140   1    4   470  7.8  send_data_usb
 0   1670   8   19  7857 13.2  execute_script
 0     36   0    2   139  3.9  read_n_bits_24
 0     44   0    3   230  4.5  write_upload_buff
 0     36   0    4   175  3.3  shift_bits_out_ICSP
-0     26   0    2   138  3.5  getICSP_States
-0     42   0    1   191  4.9  pop_down_buff
+0     26   0    2   131  3.5  getICSP_States
+0     42   0    1   185  4.9  pop_down_buff
 0     28   0    2   128  3.1  delay_short
 0     26   0    2   153  3.1  delay_long
 0     42   0    3   234  3.8  shift_bits_in
@@ -128,24 +128,22 @@ Page ROM  %  RAM   Vol Diff  Functions:
 
 Program metrics:
     Functions               75
-    Statements              1189
-    Comments                2833
-    Volume (V)              73353
-    Difficulty (D)          366.4
-    Effort to implement (E) 26877814
-    Time to implement (T)   414 hours, 47 minutes
+    Statements              1202
+    Comments                2870
+    Volume (V)              74481
+    Difficulty (D)          368.4
+    Effort to implement (E) 27438993
+    Time to implement (T)   423 hours, 26 minutes
     Est Delivered Bugs (B)  30
-    Cyclomatic Complexity   148
-    Maintainability (MI)    85
+    Cyclomatic Complexity   149
+    Maintainability (MI)    82
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-00006     4  0  
 00008-000AC   166  0  
-000AE-02FFE  10024  2090  
-03000-0300E    16  0  
-03010-05FFE     0  12272  
+000AE-05FFE  10286  14116  
 06000-0601C    30  0  
 0601E-0603A     0  30  
 0603C-06042     8  0  
@@ -165,7 +163,29 @@ Program metrics:
 061AE-061C8    28  0  
 061CA-061E2     0  26  
 061E4-061F8    22  0  
-061FA-07FFE     0  7686  
+061FA-06204    12  0  
+06206-06214    16  0  
+06216-0621E     0  10  
+06220-0622A    12  0  
+0622C-0622C     0  2  
+0622E-06238    12  0  
+0623A-0624A    18  0  
+0624C-0625C    18  0  
+0625E-0625E     0  2  
+06260-0627C    30  0  
+0627E-0627E     0  2  
+06280-06296    24  0  
+06298-062B2    28  0  
+062B4-062CA    24  0  
+062CC-062DC    18  0  
+062DE-062DE     0  2  
+062E0-062EA    12  0  
+062EC-062F6    12  0  
+062F8-06308    18  0  
+0630A-06324    28  0  
+06326-0633A    22  0  
+0633C-0635C    34  0  
+0635E-07FFE     0  7330  
 
 
 

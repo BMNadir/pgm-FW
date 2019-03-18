@@ -1,33 +1,31 @@
 /* This file contains all programmer functions */
 #include "pgm_lib.h"  
-#include <stdlibm.h> //necessary for malloc 
+#include <stdlibm.h> // Necessary for malloc 
 
-volatile unsigned int8 data_in[64];  //USB packet is copied here when received 
-unsigned int8 i;     //used to iterate through data_in in Process_Input()
+volatile unsigned int8 data_in[64];  // USB packet is copied here when received 
+unsigned int8 i;     // Used to iterate through data_in in Process_Input()
 
-unsigned int8 data_out[64]; //Data is read from here by USB
+unsigned int8 data_out[64]; // Data is read from here by USB
 
-//unsigned int8 icsp_rate; //period in multiples of 1uS 
+//unsigned int8 icsp_rate; // Period in multiples of 1uS 
 unsigned int8 icsp_pins_states; 
 
-unsigned int8 DATA_Out_Buffer[128]; //Data is stored here by scripts and will be copied to data_out to be read by USB
+unsigned int8 DATA_Out_Buffer[128]; // Data is stored here by scripts and will be copied to data_out to be read by USB
 struct 
 {
    unsigned int8 rd_idx;
    unsigned int8 wr_idx;
-   unsigned int8 nbr_bytes; //number of bytes in DATA_On_Buffer
-} DOB_mngnt;   //DATA_Out_Buffer Management
+   unsigned int8 nbr_bytes; // Number of bytes in DATA_On_Buffer
+} DOB_mngnt;   // DATA_Out_Buffer Management
 
 unsigned int8 DATA_In_Buffer[256];
 struct 
 {
    unsigned int8 rd_idx;
    unsigned int8 wr_idx;
-   unsigned int8 nbr_bytes; //number of bytes in DATA_In_Buffer
-} DIB_mngnt;   //DATA_In_Buffer Management 
+   unsigned int8 nbr_bytes; // Number of bytes in DATA_In_Buffer
+} DIB_mngnt;   // DATA_In_Buffer Management 
 
-//unsigned int8 scrpt_args[20];
-//unsigned int8  scrpt_rd_idx = 0; //scrpt_args_num_bytes = 0,
 
 struct {
    unsigned int8   VddThreshold;   // error detect threshold
@@ -185,8 +183,8 @@ void Process_Input ()
    //usb_flush_out(1, USB_DTS_TOGGLE);
    unsigned int8 packet_length = data_in[0];
    unsigned int8 offset;
-   
-   //MCLR_TGT = 1;
+   unsigned int8 *script_buffer;
+   unsigned int16 address;
    
    while (i <= packet_length)
    {
@@ -215,6 +213,7 @@ void Process_Input ()
          BRA      CLEAR_UP_BUFF_LBL
          BRA      UPLOAD_LBL
          BRA      RUN_USB_SCRIPT_LBL
+         BRA      RUN_ROM_SCRIIPT_ITR_LBL
       #ENDASM 
       
 GET_VERSION_LBL:
@@ -262,8 +261,8 @@ RUN_ROM_SCRIPT_LBL:
        * data_in[i+2] = Least significant byte of the script's address
        * data_in[i+3] = Most significant byte of the script's address
       */
-      unsigned int8 *script_buffer = malloc (data_in[i+1]);
-      unsigned int16 address =  ((data_in[i+3] * 0x100) + data_in[i+2]);
+      script_buffer = malloc (data_in[i+1]);
+      address =  ((data_in[i+3] * 0x100) + data_in[i+2]);
       read_program_memory(address, script_buffer, data_in[i+1]); 
       execute_script(data_in[i+1], script_buffer);
       free(script_buffer);
@@ -305,6 +304,26 @@ RUN_USB_SCRIPT_LBL:
       execute_script(data_in[i+1],&data_in[i+2]);
       i += data_in[i+1] + 2;
       continue;
+
+RUN_ROM_SCRIIPT_ITR_LBL:
+      /*
+       * data_in[i+1] = Script's length
+       * data_in[i+2] = Least significant byte of the script's address
+       * data_in[i+3] = Most significant byte of the script's address
+       * data_in[i+4] = number of iterations
+      */
+      script_buffer = malloc (data_in[i+1]);
+      address =  ((data_in[i+3] * 0x100) + data_in[i+2]);
+      unsigned int8 iterations = data_in[i+4];
+      read_program_memory(address, script_buffer, data_in[i+1]); 
+      do 
+      {
+         execute_script(data_in[i+1], script_buffer);
+         iterations--;
+      } while (iterations > 0);
+      free(script_buffer);
+      i += 5;
+      continue;
    }
    
    BUSY_LED = 0;
@@ -312,14 +331,14 @@ RUN_USB_SCRIPT_LBL:
 
 void get_version_number (void)
 {
-   data_out [0] = 3;  //length of data to be sent, this byte not included
+   data_out [0] = 3;  // Length of data to be sent, this byte not included
    data_out [1] = 0;
    data_out [2] = 2;    
    data_out [3] = 22;
    usb_put_packet(1, data_out, 64, USB_DTS_TOGGLE);
 }
 
-//Used in setVDD
+// Used in setVDD
 void cal_and_set_ccp (unsigned int8 ccph, unsigned int8 ccpl)
 {
    signed int16 ccp1 = (ccph * 0x100) + ccpl; //ccp1 = ccph:ccpl
@@ -440,13 +459,13 @@ unsigned int16 cal_adc_word(unsigned int16 Val)
 
 void write_down_buff(void)
 {
-   unsigned int8 len = data_in[i++]; //get length of data
+   unsigned int8 len = data_in[i++]; // Get length of data
    if (len + DIB_mngnt.nbr_bytes > 255) return;  
    
-   for (int8 k = 0; k < len; k++)
+   for (unsigned int8 k = 0; k < len; k++)
    {
       DATA_In_Buffer[DIB_mngnt.wr_idx++] = data_in[i++];
-      //if (DIB_mngnt.wr_idx > 255)       //just let DIB_mngnt.wr_idx overflow 
+      //if (DIB_mngnt.wr_idx > 255)       // Just let DIB_mngnt.wr_idx overflow 
       //   DIB_mngnt.wr_idx = 0;
       DIB_mngnt.nbr_bytes++;
    }
@@ -455,9 +474,9 @@ void write_down_buff(void)
 
 void send_data_usb(void)
 {
-   unsigned int8 len = DOB_mngnt.nbr_bytes; //get number of bytes in DATA_Out_Buffer
+   unsigned int8 len = DOB_mngnt.nbr_bytes; // Get number of bytes in DATA_Out_Buffer
    
-   len = len < 63 ? len : 63; //first byte in usb report will be used to store length, the other 63 used for data
+   len = len < 63 ? len : 63; // First byte in usb report will be used to store length, the other 63 used for data
    data_out[0] = len;
    for (int8 m = 1; m <= len; m++)
    {
@@ -894,19 +913,19 @@ void shift_bits_out_ICSP (unsigned int8 char_to_be_shifted, unsigned int8 number
    #ENDASM
 }
 
-unsigned int8 getICSP_States(void)
+unsigned int8 getICSP_States()
 {
    unsigned int8 state = 0;
-   if (ICSPDAT_in == 1)    //ICSPDAT_in = PORTA.2
+   if (ICSPDAT_in == 1)    // ICSPDAT_in = PORTA.2
       state |= 0x02;
-   if (ICSPCLK_in == 1)    //ICSPCLK_in = PORTA.3
+   if (ICSPCLK_in == 1)    // ICSPCLK_in = PORTA.3
       state |= 0x01;
       
    return state;
 }
 
-//Return a byte from the DATA_In_Buffer
-unsigned int8 pop_down_buff (void)
+// Return a byte from the DATA_In_Buffer
+unsigned int8 pop_down_buff ()
 {
    unsigned int8 popped; 
    if (DIB_mngnt.nbr_bytes == 0)

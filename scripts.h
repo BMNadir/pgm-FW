@@ -129,15 +129,115 @@
 //#rom int8 0x60C5 = {VPP_OFF, MCLR_TGT_GND_ON, VPP_PWM_ON, SET_ICSP_PINS_CMD, 0x00, LONG_DELAY, 0x14, MCLR_TGT_GND_OFF, VPP_ON_CMD, SHORT_DELAY, 0x17, VPP_OFF, MCLR_TGT_GND_ON, SHORT_DELAY, 0x2F, SHIFT_BYTE_OUT, 0xB2, SHIFT_BYTE_OUT, 0xC2, SHIFT_BYTE_OUT, 0x12, SHIFT_BYTE_OUT, 0x0A, MCLR_TGT_GND_OFF, VPP_ON_CMD, SHORT_DELAY, 0xEB, SET_ICSP_PINS_CMD, 0x02}   
 
 
+/**********       CHIP_ERASE     ***********/
+/***           Address = 0x61F9          ***/
+/***              Length = 12            ***/
+#rom int8 0x61F9 = {SHIFT_BITS_OUT_CMD, 0x06, 0x00, SHIFT_BYTE_OUT, 00,  SHIFT_BYTE_OUT, 00, SHIFT_BITS_OUT_CMD, 0x06, 0x1F, LONG_DELAY, 0x02}
 
-#rom int8 0x3000 = {SET_ICSP_PINS_CMD, 0x00, SHIFT_BITS_OUT_CMD, 0x06, 0x00, SHIFT_BYTE_OUT, 0x00, SHIFT_BYTE_OUT, 0x00, SHIFT_BITS_OUT_CMD, 0x06, 0x06, LOOP, 0x03, 0x05}//, SHIFT_BITS_OUT_CMD, 0x06, 0x04, SHIFT_BYTE_IN_BUFFER, SHIFT_BYTE_IN_BUFFER}
+/**********   PROG_MEM_ADDR_SET  ***********/
+/***           Address = 0x6205          ***/
+/***              Length = 16            ***/
+#rom int8 0x6205 = {VPP_OFF, MCLR_TGT_GND_ON, SHORT_DELAY, 0x5E, MCLR_TGT_GND_OFF, VPP_ON_CMD, SHORT_DELAY, 0x2F, GOTO_IDX, 0x05, SHIFT_BITS_OUT_CMD, 0x06, 0x06, LOOP_BUFFER, 0x03, POP_DOWNLOAD_BUFFER}
+
+/**********     PROG_MEM_READ    ***********/
+/***           Address = 0x6220          ***/
+/***              Length = 11            ***/
+#rom int8 0x6220 = {SHIFT_BITS_OUT_CMD, 0x06, 0x04, SHIFT_BYTE_IN_BUFFER, SHIFT_BYTE_IN_BUFFER, SHIFT_BITS_OUT_CMD, 0x06, 0x06, LOOP, 8, 0x1F}
+
+
+/**********         EE_RD        ***********/
+/***           Address = 0x622E          ***/
+/***              Length = 11            ***/
+#rom int8 0x622E = {SHIFT_BITS_OUT_CMD, 0x06, 0x05, SHIFT_BYTE_IN_BUFFER, SHIFT_BYTE_IN_BUFFER, SHIFT_BITS_OUT_CMD, 0x06, 0x06, LOOP, 8, 0x1F}
+
+
+/**********       USER_ID_RD     ***********/
+/***           Address = 0x6239          ***/
+/***              Length = 18            ***/
+#rom int8 0x6239 = {SHIFT_BITS_OUT_CMD, 0x06, 0x00, SHIFT_BYTE_OUT, 0x00, SHIFT_BYTE_OUT, 0x00, SHIFT_BITS_OUT_CMD, 0x06, 0x04, SHIFT_BYTE_IN_BUFFER, SHIFT_BYTE_IN_BUFFER, SHIFT_BITS_OUT_CMD, 0x06, 0x06, LOOP, 0x08, 0x03}
+
+/**********       CONFIG_RD      ***********/
+/***           Address = 0x624B          ***/
+/***              Length = 18            ***/
+#rom int8 0x624B = {SHIFT_BITS_OUT_CMD, 0x06, 0x00, SHIFT_BYTE_OUT, 0x00, SHIFT_BYTE_OUT, 0x00, SHIFT_BITS_OUT_CMD, 0x06, 0x06, LOOP, 0x03, 0x06, SHIFT_BITS_OUT_CMD, 0x06, 0x04, SHIFT_BYTE_IN_BUFFER, SHIFT_BYTE_IN_BUFFER}
+
+
+/**********       PROG_MEM_WR    ***********/
+/***           Address = 0x6260          ***/
+/***              Length = 29            ***/
+#rom int8 0x6260 = {SHIFT_BITS_OUT_CMD, 0x06, 0x02, SHIFT_BYTE_OUT_BUFFER, SHIFT_BYTE_OUT_BUFFER, SHIFT_BITS_OUT_CMD, 0x06, 0x06, LOOP, 0x08, 0x06, SHIFT_BITS_OUT_CMD, 0x06, 0x02, SHIFT_BYTE_OUT_BUFFER, SHIFT_BYTE_OUT_BUFFER, SHIFT_BITS_OUT_CMD, 0x06, 0x18, SHORT_DELAY, 0x2F, SHIFT_BITS_OUT_CMD, 0x06, 0x17, SHORT_DELAY, 0x05, SHIFT_BITS_OUT_CMD, 0x06, 0x06}
+
+
+/**********       EE_MEM_WR      ***********/
+/***           Address = 0x6280          ***/
+/***              Length = 24            ***/
+#rom int8 0x6280 = {SHIFT_BITS_OUT_CMD, 0x06, 0x03, SHIFT_BYTE_OUT_BUFFER, SHIFT_BYTE_OUT_BUFFER, SHIFT_BITS_OUT_CMD, 0x06, 0x08, SHORT_DELAY, 0xBC, SHIFT_BITS_OUT_CMD, 0x06, 0x17, SHIFT_BITS_OUT_CMD, 0x06, 0x18, SHORT_DELAY, 0x5E, SHIFT_BITS_OUT_CMD, 0x06, 0x17, SHIFT_BITS_OUT_CMD, 0x06, 0x06}
+
+
+/**********       USER_ID_WR     ***********/
+/***           Address = 0x6298          ***/
+/***              Length = 28            ***/
+#rom int8 0x6298 = {SHIFT_BITS_OUT_CMD, 0x06, 0x00, SHIFT_BYTE_OUT, 0, SHIFT_BYTE_OUT, 0, SHIFT_BITS_OUT_CMD, 0x06, 0x02, SHIFT_BYTE_OUT_BUFFER, SHIFT_BYTE_OUT_BUFFER, SHIFT_BITS_OUT_CMD, 0x06, 0x18, SHORT_DELAY, 0x5E, SHIFT_BITS_OUT_CMD, 0x06, 0x17, SHORT_DELAY, 0x05, SHIFT_BITS_OUT_CMD, 0x06, 0x06, LOOP, 0x12, 0x03}
+
+
+/**********       CONFIG_WR      ***********/
+/***           Address = 0x62B4          ***/
+/***              Length = 23            ***/
+#rom int8 0x62B4 = {SHIFT_BITS_OUT_CMD, 0x06, 0x00, SHIFT_BYTE_OUT, 0, SHIFT_BYTE_OUT, 0, SHIFT_BITS_OUT_CMD, 0x06, 0x06, LOOP, 3, 6, SHIFT_BITS_OUT_CMD, 0x06, 0x02, SHIFT_BYTE_OUT_BUFFER, SHIFT_BYTE_OUT_BUFFER, SHIFT_BITS_OUT_CMD, 0x06, 0x08, SHORT_DELAY, 0x8D} 
+
+
+/**********    PROG_MEM_ERASE    ***********/
+/***           Address = 0x62CB          ***/
+/***              Length = 18            ***/
+#rom int8 0x62CB = {SHIFT_BITS_OUT_CMD, 0x06, 0x00, SHIFT_BYTE_OUT, 0, SHIFT_BYTE_OUT, 0, SHIFT_BITS_OUT_CMD, 0x06, 0x09, SHIFT_BITS_OUT_CMD, 0x06, 0x08, SHORT_DELAY, 0x5E, SHIFT_BITS_OUT_CMD, 0x06, 0x17}
+
+
+/**********     EE_MEM_ERASE     ***********/
+/***           Address = 0x62E0          ***/
+/***              Length = 11            ***/
+#rom int8 0x62E0 = {SHIFT_BITS_OUT_CMD, 0x06, 0x0B, SHIFT_BITS_OUT_CMD, 0x06, 0x08, SHORT_DELAY, 0x5E, SHIFT_BITS_OUT_CMD, 0x06, 0x17}
+
+
+/**********      CHIP_ERASE      ***********/
+/***           Address = 0x62EB          ***/
+/***              Length = 12            ***/
+#rom int8 0x62EB = {SHIFT_BITS_OUT_CMD, 0x06, 0x00, SHIFT_BYTE_OUT, 0, SHIFT_BYTE_OUT, 0, SHIFT_BITS_OUT_CMD, 0x06, 0x09, LONG_DELAY, 0x02}
+
+
+/**********      PROG_MEM_WR     ***********/
+/***           Address = 0x62F7          ***/
+/***              Length = 18            ***/
+#rom int8 0x62F7 = {SHIFT_BITS_OUT_CMD, 0x06, 0x02, SHIFT_BYTE_OUT_BUFFER, SHIFT_BYTE_OUT_BUFFER, SHIFT_BITS_OUT_CMD, 0x06, 0x18, SHORT_DELAY, 0x76, SHIFT_BITS_OUT_CMD, 0x06, 0x0A, SHORT_DELAY, 0x05, SHIFT_BITS_OUT_CMD, 0x06, 0x06} 
+
+
+/**********       USER_ID_WR     ***********/
+/***           Address = 0x6309          ***/
+/***              Length = 28            ***/
+#rom int8 0x6309 = {SHIFT_BITS_OUT_CMD, 0x06, 0x00, SHIFT_BYTE_OUT, 0, SHIFT_BYTE_OUT, 0, SHIFT_BITS_OUT_CMD, 0x06, 0x02, SHIFT_BYTE_OUT_BUFFER, SHIFT_BYTE_OUT_BUFFER, SHIFT_BITS_OUT_CMD, 0x06, 0x18, SHORT_DELAY, 0x76, SHIFT_BITS_OUT_CMD, 0x06, 0x0A, SHORT_DELAY, 0x05, SHIFT_BITS_OUT_CMD, 0x06, 0x06, LOOP, 0x12, 0x03}
+
+
+/**********       CONFIG_WR      ***********/
+/***           Address = 0x6326          ***/
+/***              Length = 21            ***/
+#rom int8 0x6326 = {SHIFT_BITS_OUT_CMD, 0x06, 0x00, SHIFT_BYTE_OUT_BUFFER, SHIFT_BYTE_OUT_BUFFER, SHIFT_BITS_OUT_CMD, 0x06, 0x06, LOOP, 0x03, 0x06, SHIFT_BITS_OUT_CMD, 0x06, 0x18, SHORT_DELAY, 0x76, SHIFT_BITS_OUT_CMD, 0x06, 0x0A, SHORT_DELAY, 0x05}
+
+
+/**********       OSCCAL_WR      ***********/
+/***           Address = 0x633C          ***/
+/***              Length = 33            ***/
+#rom int8 0x633C = {SHIFT_BITS_OUT_CMD, 0x06, 0x00, SHIFT_BYTE_OUT, 0, SHIFT_BYTE_OUT, 0, SHIFT_BITS_OUT_CMD, 0x06, 0x06, LOOP, 0x03, 0x07, SHIFT_BITS_OUT_CMD, 0x06, 0x09, LONG_DELAY, 0x02, SHIFT_BITS_OUT_CMD, 0x06, 0x02, SHIFT_BYTE_OUT_BUFFER, SHIFT_BYTE_OUT_BUFFER, SHIFT_BITS_OUT_CMD, 0x06, 0x18, SHORT_DELAY, 0x76, SHIFT_BITS_OUT_CMD, 0x06, 0x0A, SHORT_DELAY, 0x05}
 
 
 
 
 
 
-#endif 
+
+
+
+
+
+#endif
 
 
 
