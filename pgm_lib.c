@@ -19,13 +19,17 @@ struct
 } DOB_mngnt;   // DATA_Out_Buffer Management
 
 unsigned int8 DATA_In_Buffer[256];
+/*
 struct 
 {
    unsigned int8 rd_idx;
    unsigned int8 wr_idx;
    unsigned int8 nbr_bytes; // Number of bytes in DATA_In_Buffer
 } DIB_mngnt;   // DATA_In_Buffer Management 
-
+*/
+unsigned int8 dib_wr_idx = 0;
+unsigned int8 dib_rd_idx = 0;
+unsigned int8 dib_nbr_bytes = 0;
 
 struct {
    unsigned int8   VddThreshold;   // error detect threshold
@@ -165,9 +169,9 @@ void pgm_init()
    DOB_mngnt.nbr_bytes = 0; 
    DOB_mngnt.wr_idx    = 0;
    DOB_mngnt.rd_idx    = 0;
-   DIB_mngnt.nbr_bytes = 0; 
-   DIB_mngnt.wr_idx    = 0;
-   DIB_mngnt.rd_idx    = 0;
+   dib_nbr_bytes = 0; 
+   dib_wr_idx    = 0;
+   dib_rd_idx    = 0;
    
    // Set default values for ADC voltage calibration
    VoltageCalibration.adc_calfactor = 0x0100;  
@@ -177,7 +181,7 @@ void pgm_init()
 
 void Process_Input ()
 {  
-   BUSY_LED = 1;
+   //BUSY_LED = 1;
    i = 1;   // Initialize index
    usb_get_packet(1, data_in, 64);
    //usb_flush_out(1, USB_DTS_TOGGLE);
@@ -207,7 +211,6 @@ void Process_Input ()
          BRA      SET_VPP_LBL
          BRA      READ_VOLTAGES_LBL
          BRA      RUN_ROM_SCRIPT_LBL
-         //BRA      downloadScrptArgsLbl
          BRA      CLEAR_DOWN_BUFF_LBL
          BRA      WRITE_DOWN_BUFF_LBL
          BRA      CLEAR_UP_BUFF_LBL
@@ -268,16 +271,11 @@ RUN_ROM_SCRIPT_LBL:
       free(script_buffer);
       i += 4;
       continue;
-      
-//downloadScrptArgsLbl:
-   //downloadScriptArgs();
-   //i++;
-   //continue;
 
 CLEAR_DOWN_BUFF_LBL: 
-      DIB_mngnt.rd_idx = 0;
-      DIB_mngnt.wr_idx = 0;
-      DIB_mngnt.nbr_bytes = 0;
+      dib_rd_idx = 0;
+      dib_wr_idx = 0;
+      dib_nbr_bytes = 0;
       i++;
       continue;
 
@@ -325,8 +323,7 @@ RUN_ROM_SCRIIPT_ITR_LBL:
       i += 5;
       continue;
    }
-   
-   BUSY_LED = 0;
+   //BUSY_LED = 0;
 }
 
 void get_version_number (void)
@@ -457,22 +454,32 @@ unsigned int16 cal_adc_word(unsigned int16 Val)
     return (unsigned int16) cal_value;
 }
 
-void write_down_buff(void)
+void write_down_buff()
 {
    unsigned int8 len = data_in[i++]; // Get length of data
-   if (len + DIB_mngnt.nbr_bytes > 255) return;  
+   if (((unsigned int16)(len + dib_nbr_bytes)) > 255) {return; } 
    
    for (unsigned int8 k = 0; k < len; k++)
    {
-      DATA_In_Buffer[DIB_mngnt.wr_idx++] = data_in[i++];
-      //if (DIB_mngnt.wr_idx > 255)       // Just let DIB_mngnt.wr_idx overflow 
-      //   DIB_mngnt.wr_idx = 0;
-      DIB_mngnt.nbr_bytes++;
+      DATA_In_Buffer[dib_wr_idx++] = data_in[i++];
+      
+      //if (dib_wr_idx > 255)       // Just let dib_wr_idx overflow 
+      //   dib_wr_idx = 0;
    }
+   for (unsigned int8 s = 0; s < dib_wr_idx; s++)
+   {
+      if (DATA_In_Buffer[s] == 0x7E)
+      {
+         BUSY_LED = 1;
+         delay_long(100);
+      }
+   }
+   
+   dib_nbr_bytes = dib_nbr_bytes + len;
 }
 
 
-void send_data_usb(void)
+void send_data_usb()
 {
    unsigned int8 len = DOB_mngnt.nbr_bytes; // Get number of bytes in DATA_Out_Buffer
    
@@ -488,20 +495,6 @@ void send_data_usb(void)
    DOB_mngnt.nbr_bytes -= len;
    usb_put_packet(1, data_out, 64, USB_DTS_TOGGLE);
 }
-
-/*
-void downloadScriptArgs (void)
-{
-   unsigned int8 len = data_in[++i];
-   for (unsigned int8 j = 0; j < len; j++)
-   {
-      scrpt_args[j] = data_in[++i];           // Copy the arguments from USB packet to scrpt_args buffer 
-   }
-   scrpt_rd_idx = 0;
-}
-
-*/
-
 
 
 void execute_script(unsigned int8 scrpt_len, unsigned int8 *script_location)
@@ -622,26 +615,26 @@ READ_ICSP_STATES_LBL:
       si++;
       continue;
    
-LOOP_BUFFER_LBL:  //will loop through a number of script commands, argument is the number if bytes to loop through 
+LOOP_BUFFER_LBL:  // Will loop through a number of script commands, argument is the number if bytes to loop through 
       if (!first_iteration_LB)
       {
          nbr_iterations--;
-         if (nbr_iterations == 0)   //no iterations 
+         if (nbr_iterations == 0)   // No iterations 
          {
-            first_iteration_LB = 1; //number of iterations endded for the current run 
+            first_iteration_LB = 1; // Number of iterations endded for the current run 
             si ++;
             continue;
          }
-         si = first_iteration_LB;   //Still iterating
+         si = first_iteration_LB;   // Still iterating
          continue;
       }
-      loop_buff_idx = si - *(script_location + ++si); //always loops to the instruction before it, except in the script n 255 in the original Firmware
-      //scrpt_rd_idx -= 2;      //the instruction before LOOPBUFFER has 2 args
-      nbr_iterations = (unsigned int16) pop_down_buff ();   //low byte
-      nbr_iterations += (256  *  pop_down_buff ());         //upper byte
-      if (nbr_iterations == 0)   //no iterations 
+      loop_buff_idx = si - *(script_location + ++si); // Always loops to the instruction before it, except in the script n 255 in the original Firmware
+      //scrpt_rd_idx -= 2;      // The instruction before LOOPBUFFER has 2 args
+      nbr_iterations = (unsigned int16) pop_down_buff ();   // Low byte
+      nbr_iterations += (256  *  pop_down_buff ());         // Upper byte
+      if (nbr_iterations == 0)   // No iterations 
       {
-         si++; //advance to next command 
+         si++; // Advance to next command 
          continue;
       }
       first_iteration_LB = 0;
@@ -709,7 +702,7 @@ LOOP_LBL:
          if (loop_count == 0)
          {
             first_iteration_L = 1;
-            si += 3; //LOOP command + 2 args
+            si += 3; // LOOP command + 2 args
             continue;
          }
          si = loop_idx;
@@ -736,7 +729,7 @@ SHIFT_BITS_IN_BUFFER_LBL:
       si++;
       continue;
       
-SHIFT_BITS_OUT_BUFFER_LBL: //Shift bits located in DATA_In_Buffer out 
+SHIFT_BITS_OUT_BUFFER_LBL: // Shift bits located in DATA_In_Buffer out 
       shift_bits_out (pop_down_buff(), *(script_location + ++si));
       si++;
       continue;
@@ -881,6 +874,7 @@ void write_upload_buff(unsigned int8 wr_byte)
    }
    
    DATA_Out_Buffer[DOB_mngnt.wr_idx] = wr_byte;
+   
    DOB_mngnt.wr_idx++;
    if (DOB_mngnt.wr_idx > 127)
       DOB_mngnt.wr_idx = 0;
@@ -928,16 +922,21 @@ unsigned int8 getICSP_States()
 unsigned int8 pop_down_buff ()
 {
    unsigned int8 popped; 
-   if (DIB_mngnt.nbr_bytes == 0)
+   /*
+   if (dib_nbr_bytes == 0) 
    {
       return 0;
    }
-   popped = DATA_In_Buffer[DIB_mngnt.rd_idx];
-   DIB_mngnt.rd_idx++;
-   DIB_mngnt.nbr_bytes--;
+   */
    
-   //if (DIB_mngnt.rd_idx > 255)
-   //   DIB_mngnt.rd_idx = 0;
+   popped = DATA_In_Buffer[dib_rd_idx];
+   dib_rd_idx++;
+   dib_nbr_bytes--;
+   
+   if (popped == 0x7E)
+   {
+      BUSY_LED = 0;
+   }
    
    return popped;
 }
@@ -950,9 +949,10 @@ void delay_short (unsigned int8 duration)
       MOVLW    0xFF     // So that the timer will overflow when TMR0L does
       MOVWF    TMR0H
    #ENDASM
-   TMR0L = 0 - duration;
+   TMR0L = 0 - (duration + 1);
    TMR0ON = 1; // Start Timer0, DS page 127
-   while (TMR0IF == 0); //Wait for overflow flag to be set
+   while (TMR0IF == 0); // Wait for overflow flag to be set
+   TMR0IF = 0;
    TMR0ON = 0; // Stop Timer0
    
 }
@@ -963,9 +963,10 @@ void delay_long (unsigned int8 duration)
    TMR0IF = 0;
    TMR0H = 0 - duration;
    TMR0L = 0;
-   TMR0ON = 1; //Start Timer0
-   while (TMR0IF == 0); //Wait for overflow flag to be set
-   TMR0ON = 0; //Stop Timer0
+   TMR0ON = 1; // Start Timer0
+   while (TMR0IF == 0); // Wait for overflow flag to be set
+   TMR0IF = 0; // Clear interrupt flag, page 101
+   TMR0ON = 0; // Stop Timer0
 }
 
 unsigned int8 shift_bits_in (unsigned int8 number_of_bits)
@@ -985,10 +986,9 @@ unsigned int8 shift_bits_in (unsigned int8 number_of_bits)
       NOP
       RRNCF    bits_buff, 1      // Rotate right (no carry)
       DECFSZ   num_bits, 1
-      BRA      READ_BITS_LOOP
-      BCF      tris_ICSPDAT      // PGD set as output
+      BRA      READ_BITS_LOOP 
    #ENDASM
-   
+   tris_ICSPDAT = 0; // PGD set as output
    //bits_buff >>= (8 - num_bits); // Right justified
    return bits_buff;
 }
@@ -1004,7 +1004,7 @@ void shift_bits_out (unsigned int8  outb, unsigned int8 number_of_bits)
          BTFSC    out_char,0
          BSF      ICSPDAT_out
          NOP
-         BSF      ICSPCLK_out //Clock rising edge
+         BSF      ICSPCLK_out // Clock rising edge
          NOP
          BCF      ICSPCLK_out  //Clock falling edge 
          RRNCF    out_char, 1

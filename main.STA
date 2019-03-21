@@ -1,6 +1,6 @@
 
-ROM used:   11068/16384 (34%)
-            25184/16384 (77%) including unused fragments
+ROM used:   11144/16384 (34%)
+            12902/16384 (39%) including unused fragments
 
             1.5 Average locations per line
             9.2 Average locations per statement
@@ -20,9 +20,9 @@ Lines Stmts  %   Files
   328     0   0  C:\Program Files (x86)\PICC\Drivers\usb_hw_layer.h
   352     0   0  usb\usb_desc_hid.h
  1103     0   0  C:\Program Files (x86)\PICC\Drivers\usb.h
- 1180   247  21  usb\usb.c
+ 1180   247  20  usb\usb.c
  1403   317  26  C:\Program Files (x86)\PICC\Drivers\pic18_usb.c
- 1060   450  37  pgm_lib.c
+ 1058   458  38  pgm_lib.c
   188     0   0  pgm_lib.h
   326   128  11  C:\Program Files (x86)\PICC\Drivers\stdlibm.h
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
@@ -30,7 +30,7 @@ Lines Stmts  %   Files
   260     0   0  scripts.h
    66    37   3  isr.c
 ----- -----
- 7412  1202 Total
+ 7410  1210 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -98,8 +98,8 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    276   1   12   705  9.2  traverse
 0    330   1   12   853 11.5  malloc
 0    124   1    8   380  6.3  free
-0    164   1    0  1819  3.0  pgm_init
-0   1002   5    3  3555 13.4  Process_Input
+0    164   1    0  1768  3.0  pgm_init
+0    998   4    3  3425 13.5  Process_Input
 0     44   0    0   174  2.7  get_version_number
 0    194   1    7   462  8.7  cal_and_set_ccp
 0     86   0    6             @MULS1616
@@ -108,34 +108,34 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     58   0    1   227  3.3  adc_vpp_vdd_control
 0     18   0    1    93  2.9  get_adc
 0    108   0    7   173  5.3  cal_adc_word
-0     96   0    4   287  6.5  write_down_buff
-0    140   1    4   470  7.8  send_data_usb
-0   1670   8   19  7857 13.2  execute_script
+0    160   1    4   491  7.1  write_down_buff
+0    140   1    4   463  7.8  send_data_usb
+0   1670   7   19  7857 13.2  execute_script
 0     36   0    2   139  3.9  read_n_bits_24
 0     44   0    3   230  4.5  write_upload_buff
 0     36   0    4   175  3.3  shift_bits_out_ICSP
 0     26   0    2   131  3.5  getICSP_States
-0     42   0    1   185  4.9  pop_down_buff
-0     28   0    2   128  3.1  delay_short
-0     26   0    2   153  3.1  delay_long
-0     42   0    3   234  3.8  shift_bits_in
+0     40   0    1   144  4.3  pop_down_buff
+0     34   0    2   168  3.6  delay_short
+0     26   0    2   176  3.1  delay_long
+0     42   0    3   251  3.8  shift_bits_in
 0     36   0    4   196  3.5  shift_bits_out
 0     72   0    1   293  1.2  set_icsp_pins
 0     62   0    0   401  6.1  timer1_overflow
 0     44   0    0   538  6.2  adc_complete
-0    112   1    0   113  2.0  MAIN
+0    118   1    0   113  2.0  MAIN
  Inline         0             @cinit1
 
 Program metrics:
     Functions               75
-    Statements              1202
-    Comments                2870
-    Volume (V)              74481
-    Difficulty (D)          368.4
-    Effort to implement (E) 27438993
-    Time to implement (T)   423 hours, 26 minutes
+    Statements              1210
+    Comments                2864
+    Volume (V)              74713
+    Difficulty (D)          368.8
+    Effort to implement (E) 27554731
+    Time to implement (T)   425 hours, 14 minutes
     Est Delivered Bugs (B)  30
-    Cyclomatic Complexity   149
+    Cyclomatic Complexity   151
     Maintainability (MI)    82
 
  Segment     Used  Free
@@ -143,7 +143,9 @@ Program metrics:
 00000-00002     4  0  
 00004-00006     4  0  
 00008-000AC   166  0  
-000AE-05FFE  10286  14116  
+000AE-02FFE  10356  1758  
+03000-03004     6  0  
+03006-05FFE     0  12282  
 06000-0601C    30  0  
 0601E-0603A     0  30  
 0603C-06042     8  0  
