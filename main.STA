@@ -1,9 +1,9 @@
 
-ROM used:   11144/16384 (34%)
-            12902/16384 (39%) including unused fragments
+ROM used:   11918/16384 (36%)
+            25866/16384 (79%) including unused fragments
 
-            1.5 Average locations per line
-            9.2 Average locations per statement
+            1.6 Average locations per line
+            9.8 Average locations per statement
 
 RAM used:   846/2048 (41%) at main() level
             896/2048 (44%) worst case
@@ -22,15 +22,15 @@ Lines Stmts  %   Files
  1103     0   0  C:\Program Files (x86)\PICC\Drivers\usb.h
  1180   247  20  usb\usb.c
  1403   317  26  C:\Program Files (x86)\PICC\Drivers\pic18_usb.c
- 1058   458  38  pgm_lib.c
-  188     0   0  pgm_lib.h
+ 1065   463  38  pgm_lib.c
+  189     0   0  pgm_lib.h
   326   128  11  C:\Program Files (x86)\PICC\Drivers\stdlibm.h
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
    76    13   1  C:\Program Files (x86)\PICC\Drivers\memmgmt.c
-  260     0   0  scripts.h
+  443     0   0  scripts.h
    66    37   3  isr.c
 ----- -----
- 7410  1210 Total
+ 7601  1215 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -59,10 +59,10 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     72   0    5   154  3.9  usb_get_packet
 0    102   0    6   258  4.6  usb_stall_ep
 0    100   0    6   266  4.6  usb_unstall_ep
-0    118   1    5   373  6.0  usb_endpoint_stalled
+0    118   0    5   373  6.0  usb_endpoint_stalled
 0     26   0    1    94  2.7  usb_set_address
 0    538   2   12  1774 10.4  usb_set_configured
-0    112   1    5   199  3.2  usb_disable_endpoint
+0    112   0    5   199  3.2  usb_disable_endpoint
 0     30   0    1    99  3.0  usb_disable_endpoints
 0      4   0    0    61  4.0  usb_clear_trn
 0    126   1    2   662  6.8  usb_isr
@@ -87,7 +87,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    180   1    3  1002  7.8  usb_isr_tkn_setup_StandardInterface
 0    108   0    0   753  5.8  usb_isr_tkn_setup_StandardEndpoint
 0     12   0    0   105  3.8  usb_isr_tkn_setup_ClassInterface
-0    336   2    1  1492  8.8  usb_Get_Descriptor
+0    336   1    1  1492  8.8  usb_Get_Descriptor
 0     14   0    0    76  1.8  usb_finish_set_address
 0    188   1    4   668  8.4  usb_copy_desc_seg_to_ep
 0     34   0    0             @goto11593
@@ -99,7 +99,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    330   1   12   853 11.5  malloc
 0    124   1    8   380  6.3  free
 0    164   1    0  1768  3.0  pgm_init
-0    998   4    3  3425 13.5  Process_Input
+0   1014   4    3  3597 13.4  Process_Input
 0     44   0    0   174  2.7  get_version_number
 0    194   1    7   462  8.7  cal_and_set_ccp
 0     86   0    6             @MULS1616
@@ -108,44 +108,43 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     58   0    1   227  3.3  adc_vpp_vdd_control
 0     18   0    1    93  2.9  get_adc
 0    108   0    7   173  5.3  cal_adc_word
-0    160   1    4   491  7.1  write_down_buff
+0    114   0    4   292  6.3  write_down_buff
 0    140   1    4   463  7.8  send_data_usb
+0    134   1    4   420  7.3  send_data_usb_no_len
 0   1670   7   19  7857 13.2  execute_script
 0     36   0    2   139  3.9  read_n_bits_24
 0     44   0    3   230  4.5  write_upload_buff
 0     36   0    4   175  3.3  shift_bits_out_ICSP
-0     26   0    2   131  3.5  getICSP_States
-0     40   0    1   144  4.3  pop_down_buff
+0     26   0    2   131  3.5  get_icsp_state
+0     32   0    1    88  3.6  pop_down_buff
 0     34   0    2   168  3.6  delay_short
-0     26   0    2   176  3.1  delay_long
+0     28   0    2   176  3.1  delay_long
 0     42   0    3   251  3.8  shift_bits_in
 0     36   0    4   196  3.5  shift_bits_out
 0     72   0    1   293  1.2  set_icsp_pins
 0     62   0    0   401  6.1  timer1_overflow
 0     44   0    0   538  6.2  adc_complete
-0    118   1    0   113  2.0  MAIN
+0    118   0    0   113  2.0  MAIN
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               75
-    Statements              1210
-    Comments                2864
-    Volume (V)              74713
-    Difficulty (D)          368.8
-    Effort to implement (E) 27554731
-    Time to implement (T)   425 hours, 14 minutes
-    Est Delivered Bugs (B)  30
-    Cyclomatic Complexity   151
-    Maintainability (MI)    82
+    Functions               76
+    Statements              1215
+    Comments                2950
+    Volume (V)              75426
+    Difficulty (D)          374.5
+    Effort to implement (E) 28245887
+    Time to implement (T)   435 hours, 54 minutes
+    Est Delivered Bugs (B)  31
+    Cyclomatic Complexity   150
+    Maintainability (MI)    79
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-00006     4  0  
 00008-000AC   166  0  
-000AE-02FFE  10356  1758  
-03000-03004     6  0  
-03006-05FFE     0  12282  
+000AE-05FFE  10454  13948  
 06000-0601C    30  0  
 0601E-0603A     0  30  
 0603C-06042     8  0  
@@ -187,7 +186,38 @@ Program metrics:
 0630A-06324    28  0  
 06326-0633A    22  0  
 0633C-0635C    34  0  
-0635E-07FFE     0  7330  
+0635E-06374    24  0  
+06376-06376     0  2  
+06378-06388    18  0  
+0638A-06396    14  0  
+06398-063A4    14  0  
+063A6-063A8     0  4  
+063AA-063C0    24  0  
+063C2-063D0    16  0  
+063D2-063DE    14  0  
+063E0-063F0    18  0  
+063F2-063FC    12  0  
+063FE-06414    24  0  
+06416-06442    46  0  
+06444-0645E    28  0  
+06460-0646C    14  0  
+0646E-0647A    14  0  
+0647C-06498    30  0  
+0649A-064D0    56  0  
+064D2-064DE    14  0  
+064E0-064F6    24  0  
+064F8-0650E    24  0  
+06510-0651E    16  0  
+06520-0653C    30  0  
+0653E-06558    28  0  
+0655A-06574    28  0  
+06576-06580    12  0  
+06582-0659A    26  0  
+0659C-065B6    28  0  
+065B8-065D2    28  0  
+065D4-065F4    34  0  
+065F6-0660C    24  0  
+0660E-07FFE     0  6642  
 
 
 

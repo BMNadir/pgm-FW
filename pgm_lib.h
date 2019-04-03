@@ -166,7 +166,7 @@ unsigned int8 read_n_bits_24(unsigned int8 numberOfBits);
 void write_upload_buff(unsigned int8 wr_byte);
 void shift_bits_out_ICSP (unsigned int8 char_to_be_shifted, unsigned int8 number_of_bits);
 //void downloadScriptArgs (void);
-unsigned int8 getICSP_States(void);
+unsigned int8 get_icsp_state(void);
 unsigned int8 pop_down_buff (void);
 void delay_short (unsigned int8 duration);
 void delay_long (unsigned int8 duration);
@@ -175,6 +175,7 @@ void shift_bits_out (unsigned int8 outb, unsigned int8 number_of_bits);
 void set_icsp_pins(int8 state); 
 void write_down_buff(void);
 void send_data_usb(void);
+void send_data_usb_no_len(void);
 #ENDIF
 
 

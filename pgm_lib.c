@@ -181,7 +181,7 @@ void pgm_init()
 
 void Process_Input ()
 {  
-   //BUSY_LED = 1;
+   BUSY_LED = 1;
    i = 1;   // Initialize index
    usb_get_packet(1, data_in, 64);
    //usb_flush_out(1, USB_DTS_TOGGLE);
@@ -217,6 +217,7 @@ void Process_Input ()
          BRA      UPLOAD_LBL
          BRA      RUN_USB_SCRIPT_LBL
          BRA      RUN_ROM_SCRIIPT_ITR_LBL
+         BRA      UPLOAD_WITHOUT_LENGTH_LBL
       #ENDASM 
       
 GET_VERSION_LBL:
@@ -322,8 +323,13 @@ RUN_ROM_SCRIIPT_ITR_LBL:
       free(script_buffer);
       i += 5;
       continue;
+      
+UPLOAD_WITHOUT_LENGTH_LBL:
+      send_data_usb_no_len();
+      i++;
+      continue;
    }
-   //BUSY_LED = 0;
+   BUSY_LED = 0;
 }
 
 void get_version_number (void)
@@ -466,15 +472,6 @@ void write_down_buff()
       //if (dib_wr_idx > 255)       // Just let dib_wr_idx overflow 
       //   dib_wr_idx = 0;
    }
-   for (unsigned int8 s = 0; s < dib_wr_idx; s++)
-   {
-      if (DATA_In_Buffer[s] == 0x7E)
-      {
-         BUSY_LED = 1;
-         delay_long(100);
-      }
-   }
-   
    dib_nbr_bytes = dib_nbr_bytes + len;
 }
 
@@ -486,6 +483,22 @@ void send_data_usb()
    len = len < 63 ? len : 63; // First byte in usb report will be used to store length, the other 63 used for data
    data_out[0] = len;
    for (int8 m = 1; m <= len; m++)
+   {
+      data_out[m] = data_out_buffer[DOB_mngnt.rd_idx++];
+      if (DOB_mngnt.rd_idx > 127)
+            DOB_mngnt.rd_idx = 0;
+   }
+   
+   DOB_mngnt.nbr_bytes -= len;
+   usb_put_packet(1, data_out, 64, USB_DTS_TOGGLE);
+}
+
+void send_data_usb_no_len()
+{
+   unsigned int8 len = DOB_mngnt.nbr_bytes; // Get number of bytes in DATA_Out_Buffer
+   
+   len = len < 64 ? len : 64; 
+   for (int8 m = 0; m < len; m++)
    {
       data_out[m] = data_out_buffer[DOB_mngnt.rd_idx++];
       if (DOB_mngnt.rd_idx > 127)
@@ -611,7 +624,7 @@ POP_DOWNLOAD_BUFFER_LBL:
       continue;
    
 READ_ICSP_STATES_LBL:
-      write_upload_buff(getICSP_States());
+      write_upload_buff(get_icsp_state());
       si++;
       continue;
    
@@ -907,7 +920,7 @@ void shift_bits_out_ICSP (unsigned int8 char_to_be_shifted, unsigned int8 number
    #ENDASM
 }
 
-unsigned int8 getICSP_States()
+unsigned int8 get_icsp_state()
 {
    unsigned int8 state = 0;
    if (ICSPDAT_in == 1)    // ICSPDAT_in = PORTA.2
@@ -928,15 +941,9 @@ unsigned int8 pop_down_buff ()
       return 0;
    }
    */
-   
    popped = DATA_In_Buffer[dib_rd_idx];
    dib_rd_idx++;
    dib_nbr_bytes--;
-   
-   if (popped == 0x7E)
-   {
-      BUSY_LED = 0;
-   }
    
    return popped;
 }
