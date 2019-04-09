@@ -1,9 +1,9 @@
 
-ROM used:   11918/16384 (36%)
-            25866/16384 (79%) including unused fragments
+ROM used:   12188/16384 (37%)
+            26136/16384 (80%) including unused fragments
 
             1.6 Average locations per line
-            9.8 Average locations per statement
+            10.0 Average locations per statement
 
 RAM used:   846/2048 (41%) at main() level
             896/2048 (44%) worst case
@@ -22,15 +22,15 @@ Lines Stmts  %   Files
  1103     0   0  C:\Program Files (x86)\PICC\Drivers\usb.h
  1180   247  20  usb\usb.c
  1403   317  26  C:\Program Files (x86)\PICC\Drivers\pic18_usb.c
- 1065   463  38  pgm_lib.c
+ 1066   463  38  pgm_lib.c
   189     0   0  pgm_lib.h
   326   128  11  C:\Program Files (x86)\PICC\Drivers\stdlibm.h
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
    76    13   1  C:\Program Files (x86)\PICC\Drivers\memmgmt.c
-  443     0   0  scripts.h
+  524     0   0  scripts.h
    66    37   3  isr.c
 ----- -----
- 7601  1215 Total
+ 7683  1215 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -130,14 +130,14 @@ Page ROM  %  RAM   Vol Diff  Functions:
 Program metrics:
     Functions               76
     Statements              1215
-    Comments                2950
+    Comments                2980
     Volume (V)              75426
     Difficulty (D)          374.5
     Effort to implement (E) 28245887
     Time to implement (T)   435 hours, 54 minutes
     Est Delivered Bugs (B)  31
     Cyclomatic Complexity   150
-    Maintainability (MI)    79
+    Maintainability (MI)    76
 
  Segment     Used  Free
 -----------  ----  ----
@@ -217,7 +217,18 @@ Program metrics:
 065B8-065D2    28  0  
 065D4-065F4    34  0  
 065F6-0660C    24  0  
-0660E-07FFE     0  6642  
+0660E-0662A    30  0  
+0662C-06646    28  0  
+06648-06656    16  0  
+06658-0666C    22  0  
+0666E-06670     0  4  
+06672-06692    34  0  
+06694-066B4    34  0  
+066B6-066CC    24  0  
+066CE-066EA    30  0  
+066EC-06706    28  0  
+06708-0671E    24  0  
+06720-07FFE     0  6368  
 
 
 

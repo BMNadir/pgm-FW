@@ -4,6 +4,6 @@
 >>> Warning 216 "main.c" Line 19(1,2): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_out)
 >>> Warning 216 "main.c" Line 19(1,2): Interrupts disabled during call to prevent re-entrancy:  (usb_tbe)
 >>> Warning 216 "main.c" Line 19(1,2): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_in)
-      Memory usage:   ROM=36%      RAM=41% - 44%
+      Memory usage:   ROM=37%      RAM=41% - 44%
       0 Errors,  6 Warnings.
 Build Successful.
