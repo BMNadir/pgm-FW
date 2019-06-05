@@ -1,9 +1,9 @@
 
-ROM used:   12188/16384 (37%)
-            26136/16384 (80%) including unused fragments
+ROM used:   12226/16384 (37%)
+            26174/16384 (80%) including unused fragments
 
             1.6 Average locations per line
-            10.0 Average locations per statement
+            10.1 Average locations per statement
 
 RAM used:   846/2048 (41%) at main() level
             896/2048 (44%) worst case
@@ -27,10 +27,10 @@ Lines Stmts  %   Files
   326   128  11  C:\Program Files (x86)\PICC\Drivers\stdlibm.h
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
    76    13   1  C:\Program Files (x86)\PICC\Drivers\memmgmt.c
-  524     0   0  scripts.h
+  534     0   0  scripts.h
    66    37   3  isr.c
 ----- -----
- 7683  1215 Total
+ 7693  1215 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -130,7 +130,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 Program metrics:
     Functions               76
     Statements              1215
-    Comments                2980
+    Comments                2983
     Volume (V)              75426
     Difficulty (D)          374.5
     Effort to implement (E) 28245887
@@ -228,7 +228,8 @@ Program metrics:
 066CE-066EA    30  0  
 066EC-06706    28  0  
 06708-0671E    24  0  
-06720-07FFE     0  6368  
+06720-06744    38  0  
+06746-07FFE     0  6330  
 
 
 

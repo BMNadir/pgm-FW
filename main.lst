@@ -1,8 +1,8 @@
-CCS PCH C Compiler, Version 5.008, 5967               09-avr.-19 18:24
+CCS PCH C Compiler, Version 5.008, 5967               03-juin-19 09:39
 
-               Filename:   N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\main.lst
+               Filename:   N:\Should be on the desktop\_PFE\Firmware\_PGM Firmware\main.lst
 
-               ROM used:   12188 bytes (37%)
+               ROM used:   12226 bytes (37%)
                            Largest free fragment is 13948
                RAM used:   846 (41%) at main() level
                            896 (44%) worst case
@@ -13569,6 +13569,16 @@ CCS PCH C Compiler, Version 5.008, 5967               09-avr.-19 18:24
 .................... #rom int8 0x6707 = {SHIFT_BITS_OUT_CMD, 0x06, 0x02, SHIFT_BYTE_OUT_BUFFER, SHIFT_BYTE_OUT_BUFFER, SHIFT_BITS_OUT_CMD, 0x06, 0x06, SHIFT_BITS_OUT_CMD, 0x06, 0x02, SHIFT_BYTE_OUT_BUFFER, SHIFT_BYTE_OUT_BUFFER, LOOP, 8, 6, SHIFT_BITS_OUT_CMD, 0x06, 0x08, SHORT_DELAY, 0x8D, SHIFT_BITS_OUT_CMD, 0x06, 0x06} 
 ....................  
 ....................  
+.................... /**********      CHIP_ERASE       **********/ 
+.................... /***           Address = 0x6720          ***/ 
+.................... /***              Length = 37            ***/ 
+.................... #rom int8 0x6720 = {COREINST18, 0x3C, 0x0E, COREINST18, 0xF8, 0x6E, COREINST18, 0, 0x0E, COREINST18, 0xF7, 0x6E, COREINST18, 0, 0x0E, COREINST18, 0xF6, 0x6E, SHIFT_BITS_OUT_CMD, 4, 0x0C, SHIFT_BYTE_OUT, 0x80, SHIFT_BYTE_OUT, 0x80, COREINST18, 0, 0, SHIFT_BITS_OUT_CMD, 4, 0, LONG_DELAY, 1, SHIFT_BYTE_OUT, 0, SHIFT_BYTE_OUT, 0} 
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
 ....................  
 ....................  
 ....................  
@@ -13979,3 +13989,7 @@ ROM data:
 0066FE: 06 02 ED ED EA 06 08 E4 8D EA 06 02 ED ED EA 06 
 00670E: 06 EA 06 02 ED ED E6 08 06 EA 06 08 E4 8D EA 06 
 00671E: 06 
+
+006720: DA 3C 0E DA F8 6E DA 00 0E DA F7 6E DA 00 0E DA 
+006730: F6 6E EA 04 0C EE 80 EE 80 DA 00 00 EA 04 00 E5 
+006740: 01 EE 00 EE 00 

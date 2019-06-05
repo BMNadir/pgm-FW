@@ -7,22 +7,23 @@ CCSVersion=5.008
 [Target Data]
 FileList=main.c
 [Directories]
-Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\;N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\usb\;N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\usb\C:\Program Files (x86)\PICC\Devices\
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\;N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\usb\;N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\usb\C:\Program Files (x86)\PICC\Devices\;N:\Should be on the desktop\_PFE\Firmware\_PGM Firmware\;N:\Should be on the desktop\_PFE\Firmware\_PGM Firmware\usb\
 [N:\Should be on the desktop\_PFE\Firmware\PGM Firmware\main]
 Type=4
 [mru-list]
 1=main.c
 [Opened Files]
 1=main.c
-2=scripts.h
-3=pgm_lib.c
-4=pgm_lib.h
-5=main.lst
-6=
-7=
-8=C:\Program Files (x86)\PICC\Drivers\usb_hw_layer.h
-9=
-10=
+2=
+3=main.lst
+4=
+5=main.h
+6=usb\USB.C
+7=usb\USB.H
+8=main.lst
+9=C:\Program Files (x86)\PICC\Examples\ex_usb_bootloader.c
+10=C:\Program Files (x86)\PICC\Drivers\usb_bootloader.h
+11=
 [main.c]
 Type=4
 [Units]
